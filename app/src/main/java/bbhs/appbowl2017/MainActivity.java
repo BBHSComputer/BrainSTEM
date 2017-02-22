@@ -1,5 +1,6 @@
 package bbhs.appbowl2017;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         game3 = (Button) findViewById(R.id.game3);
         game4 = (Button) findViewById(R.id.game4);
 
+
         hello.setText("i work ?");
         gamesSetOnClick();
 
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 hello.setText("playing game 1");
+                startActivity( new Intent(getApplicationContext(),Game1SettingsActivity.class));
+
             }
         });
 
