@@ -13,6 +13,7 @@ public class Game1Game extends AppCompatActivity {
 
     RelativeLayout imageDisplay;
     ImageView[] imageHolders = new ImageView[20];
+    int taps = 0;
 
 
     @Override
@@ -38,6 +39,8 @@ public class Game1Game extends AppCompatActivity {
                 public void onClick(View v) {
                     flip(imgv, flipped);
                     flipped = !flipped;
+                    taps++;
+                    checkRotation();
                 }
             });
 
@@ -63,6 +66,19 @@ public class Game1Game extends AppCompatActivity {
             imageView.setImageAlpha(255);
         } else {
             imageView.setImageAlpha(0);
+        }
+    }
+
+
+
+    public void checkRotation(){
+        if(taps == 2){
+            for(ImageView imageView : imageHolders){
+
+                imageView.setImageAlpha(0);
+
+            }
+     taps =0;
         }
     }
 }

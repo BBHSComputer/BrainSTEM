@@ -20,8 +20,8 @@
             android:id="@+id/imageView12"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:background="#ec2323"
-            android:contentDescription="b" />
+            android:contentDescription="b"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -29,17 +29,17 @@
             android:id="@+id/imageView13"
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/imageView18"
-            android:background="#ec2323"
-            android:contentDescription="c" />
+            android:contentDescription="c"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/imageView14"
             android:layout_alignParentStart="true"
-            android:background="#ec2323"
             android:contentDescription="d"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -47,8 +47,8 @@
             android:id="@+id/imageView15"
             android:layout_alignTop="@+id/imageView14"
             android:layout_alignParentEnd="true"
-            android:background="#ec2323"
-            android:contentDescription="e" />
+            android:contentDescription="e"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -56,8 +56,8 @@
             android:id="@+id/imageView17"
             android:layout_alignTop="@+id/imageView14"
             android:layout_centerHorizontal="true"
-            android:background="#ec2323"
-            android:contentDescription="g" />
+            android:contentDescription="g"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -65,8 +65,8 @@
             android:id="@+id/imageView18"
             android:layout_above="@+id/imageView29"
             android:layout_toStartOf="@+id/imageView29"
-            android:background="#ec2323"
-            android:contentDescription="h" />
+            android:contentDescription="h"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -74,8 +74,8 @@
             android:id="@+id/imageView19"
             android:layout_alignTop="@+id/imageView18"
             android:layout_alignStart="@+id/imageView12"
-            android:background="#ec2323"
-            android:contentDescription="h" />
+            android:contentDescription="h"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -84,8 +84,8 @@
             android:layout_below="@+id/imageView14"
             android:layout_alignParentStart="true"
             android:layout_marginTop="54dp"
-            android:background="#ec2323"
-            android:contentDescription="i" />
+            android:contentDescription="i"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -93,8 +93,8 @@
             android:id="@+id/imageView21"
             android:layout_alignTop="@+id/imageView18"
             android:layout_alignParentStart="true"
-            android:background="#ec2323"
-            android:contentDescription="j" />
+            android:contentDescription="j"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -102,17 +102,17 @@
             android:id="@+id/imageView22"
             android:layout_above="@+id/imageView27"
             android:layout_toEndOf="@+id/imageView27"
-            android:background="#ec2323"
-            android:contentDescription="k" />
+            android:contentDescription="k"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/imageView23"
-            android:background="#ec2323"
             android:contentDescription="l"
             android:layout_alignTop="@+id/imageView20"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -120,8 +120,8 @@
             android:id="@+id/imageView24"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:background="#ec2323"
-            android:contentDescription="m" />
+            android:contentDescription="m"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -129,8 +129,8 @@
             android:id="@+id/imageView25"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/imageView17"
-            android:background="#ec2323"
-            android:contentDescription="n" />
+            android:contentDescription="n"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -138,8 +138,8 @@
             android:id="@+id/imageView26"
             android:layout_alignBottom="@+id/imageView25"
             android:layout_alignParentEnd="true"
-            android:background="#ec2323"
-            android:contentDescription="o" />
+            android:contentDescription="o"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -147,8 +147,8 @@
             android:id="@+id/imageView27"
             android:layout_above="@+id/imageView25"
             android:layout_toStartOf="@+id/imageView25"
-            android:background="#ec2323"
-            android:contentDescription="p" />
+            android:contentDescription="p"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -156,8 +156,8 @@
             android:id="@+id/imageView28"
             android:layout_alignTop="@+id/imageView27"
             android:layout_toEndOf="@+id/imageView25"
-            android:background="#ec2323"
-            android:contentDescription="r" />
+            android:contentDescription="r"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -165,8 +165,8 @@
             android:id="@+id/imageView29"
             android:layout_above="@+id/imageView15"
             android:layout_toEndOf="@+id/imageView17"
-            android:background="#ec2323"
-            android:contentDescription="s" />
+            android:contentDescription="s"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -174,18 +174,18 @@
             android:id="@+id/imageView30"
             android:layout_above="@+id/imageView17"
             android:layout_alignStart="@+id/imageView27"
-            android:background="#ec2323"
             android:contentDescription="t"
-            android:contextClickable="false" />
+            android:contextClickable="false"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/imageView31"
-            android:background="#ec2323"
             android:contentDescription="q"
             android:layout_above="@+id/imageView22"
-            android:layout_toEndOf="@+id/imageView27" />
+            android:layout_toEndOf="@+id/imageView27"
+            tools:background="#f0FF0000" />
 
         <ImageView
             android:layout_width="50dp"
@@ -193,8 +193,8 @@
             android:id="@+id/imageView32"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:background="#ec2323"
-            android:contentDescription="a" />
+            android:contentDescription="a"
+            tools:background="#f0FF0000" />
 
     </RelativeLayout>
 
