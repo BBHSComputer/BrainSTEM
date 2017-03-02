@@ -14,17 +14,18 @@ import android.widget.RelativeLayout;
 
 public class Game1SettingsActivity extends AppCompatActivity {
 
-    ImageView imageView;
-    Button chooser;
-    EditText getPairs;
-    Uri selectedImage;
-    Uri image;
+   private ImageView imageView;
+    private   Button chooser;
+    private Button play;
+    private EditText getPairs;
+    private Uri selectedImage;
+    private  Uri image;
 
-    RelativeLayout imageDisplay; //ONLY PLACES WHERE IMAGES WILL BE DISPLAYED ARE ACCEPTABLE TO PUT IN HERE
+    private  RelativeLayout imageDisplay; //ONLY PLACES WHERE IMAGES WILL BE DISPLAYED ARE ACCEPTABLE TO PUT IN HERE
 
-    ImageView[] displayedImages;
+    private  ImageView[] displayedImages;
 
-    int count = 0;
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class Game1SettingsActivity extends AppCompatActivity {
         chooser = (Button) findViewById(R.id.chooser);
         getPairs = (EditText) findViewById(R.id.parisOfCards);
         imageDisplay = (RelativeLayout) findViewById(R.id.ImageDisplays);
+        play = (Button) findViewById(R.id.play);
 
         displayedImages = new ImageView[10];
 
@@ -44,7 +46,7 @@ public class Game1SettingsActivity extends AppCompatActivity {
 
 
 
-        setButtonsOnClick();
+        setButtonsOnClick(); 
 
     }
 
@@ -65,18 +67,24 @@ public class Game1SettingsActivity extends AppCompatActivity {
 
                 for (int i = 0; i < Game1.cards.length; i++) {
                     getImage();
-                    Log.d("jkl", "ive also been called");
-                    Game1.cards[i] = image;
 
-
-                }
-                for (int i = 0; i < Game1.cards.length; i++) {
-
-                        displayedImages[i].setImageURI(Game1.cards[i]);
 
 
 
                 }
+
+
+            }
+        });
+
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Game1.test =5;
+
+
+
+                startActivity( new Intent(getApplicationContext(),Game1Game.class));
             }
         });
     }
@@ -97,9 +105,10 @@ public class Game1SettingsActivity extends AppCompatActivity {
                     selectedImage = imageReturnedIntent.getData();
                     image = selectedImage;
                     Log.d("jkl", "ive been called " + image);
-                   // imageView.setImageURI(selectedImage);
+
 
                     displayedImages[count].setImageURI(image);
+                    Game1.cards[count] = image;
                     count++;
 
                 }

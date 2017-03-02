@@ -7,6 +7,11 @@ import android.net.Uri;
  */
 public class Game1 {
 public static  Uri[] cards;
+    public static int test;
+
+    public static void makeFinal(){
+
+    }
 
 
 
