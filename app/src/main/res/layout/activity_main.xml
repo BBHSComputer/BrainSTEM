@@ -19,15 +19,16 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Game 1"
+        android:text="Matching Game"
         android:id="@+id/game1"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:clickable="true"
         android:enabled="true"
-        android:textColor="#ff0000"
-        android:background="#5e5b5b" />
+        android:textColor="@color/colorAccent"
+        android:background="@color/colorPrimaryDark"
+        style="@android:style/Widget.Material.Button" />
 
     <Button
         android:layout_width="200dp"
@@ -36,8 +37,8 @@
         android:id="@+id/game2"
         android:clickable="true"
         android:enabled="true"
-        android:textColor="#ff0000"
-        android:background="#5e5b5b"
+        android:textColor="@color/colorAccent"
+        android:background="@color/colorPrimaryDark"
         android:layout_below="@+id/game1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp" />
@@ -50,8 +51,8 @@
         android:layout_marginTop="50dp"
         android:clickable="true"
         android:enabled="true"
-        android:textColor="#ff0000"
-        android:background="#5e5b5b"
+        android:textColor="@color/colorAccent"
+        android:background="@color/colorPrimaryDark"
         android:layout_below="@+id/game2"
         android:layout_centerHorizontal="true" />
 
@@ -62,8 +63,8 @@
         android:id="@+id/game4"
         android:clickable="true"
         android:enabled="true"
-        android:textColor="#ff0000"
-        android:background="#5e5b5b"
+        android:textColor="@color/colorAccent"
+        android:background="@color/colorPrimaryDark"
         android:layout_marginTop="50dp"
         android:layout_below="@+id/game3"
         android:layout_centerHorizontal="true" />

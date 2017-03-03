@@ -1,5 +1,6 @@
 package bbhs.appbowl2017;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,6 +52,7 @@ public class Game1Game extends AppCompatActivity {
 
             try {
                 imageHolders[i].setImageURI(Game1.cards[i / 2]);
+                imageHolders[i].setBackgroundColor(Color.parseColor("#e63a3a"));
 
 
             } catch (ArrayIndexOutOfBoundsException a) {
