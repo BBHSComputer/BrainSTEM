@@ -74,7 +74,11 @@ public class Game1Game extends AppCompatActivity {
     public void checkRotation(){
         if(taps == 2){
             for(ImageView imageView : imageHolders){
-
+               if(imageView.getImageAlpha() == 255){
+                   for(int i = 0; i <  10000; i++){
+                      int j = i * i;
+                   }
+               }
                 imageView.setImageAlpha(0);
 
             }
