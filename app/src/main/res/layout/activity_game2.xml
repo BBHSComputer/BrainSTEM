@@ -22,13 +22,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:id="@+id/game2_title"
-                tools:text="@string/game2_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_green_dark"
-                android:textSize="45sp" />
+                android:textSize="45sp"
+                android:clickable="true" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -37,8 +37,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
-                android:text="@string/game_rules_title"
-                tools:text="@string/game2_description" />
+                android:text="@string/game_rules_title" />
 
             <TextView
                 android:text="@string/game2_description"
@@ -47,7 +46,6 @@
                 android:layout_below="@+id/imageButton"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/game2_description"
-                tools:text="@string/game2_description"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:fontFamily="sans-serif"
                 android:textSize="24sp"
