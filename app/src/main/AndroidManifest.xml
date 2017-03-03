@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:hardwareAccelerated="false"
         android:largeHeap="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.Design.Light">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

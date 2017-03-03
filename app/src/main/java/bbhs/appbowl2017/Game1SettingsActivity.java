@@ -1,8 +1,11 @@
 package bbhs.appbowl2017;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +38,7 @@ public class Game1SettingsActivity extends AppCompatActivity {
        // imageView = (ImageView) findViewById(R.id.imageView);
         chooser = (Button) findViewById(R.id.chooser);
         getPairs = (EditText) findViewById(R.id.parisOfCards);
+        getPairs.setText("");
         imageDisplay = (RelativeLayout) findViewById(R.id.ImageDisplays);
         play = (Button) findViewById(R.id.play);
 
@@ -46,7 +50,7 @@ public class Game1SettingsActivity extends AppCompatActivity {
 
 
 
-        setButtonsOnClick(); 
+        setButtonsOnClick();
 
     }
 
@@ -55,24 +59,42 @@ public class Game1SettingsActivity extends AppCompatActivity {
         chooser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Game1.cards = new Uri[Integer.parseInt(getPairs.getText().toString()) > 10 ? 10 : Integer.parseInt(getPairs.getText().toString())];
+                if (getPairs.getText().equals("") || getPairs.getText().equals(null)){
+                    Snackbar snackbar = Snackbar
+                            .make(imageDisplay, "Please enter a number of pairs.", Snackbar.LENGTH_LONG);
+
+                    snackbar.show();
+                }
+                else {
+                    try{
+                        Game1.cards = new Uri[Integer.parseInt(getPairs.getText().toString()) > 10 ? 10 : Integer.parseInt(getPairs.getText().toString())];
+
+                        count = 0;
+
+                        for (int i = 0; i < displayedImages.length; i++) {
+                            displayedImages[i].setImageURI(null);
+                        }
+
+                        for (int i = 0; i < Game1.cards.length; i++) {
+                            getImage();
 
 
+                        }
+                    }
+                    catch(NumberFormatException e){
+                        Snackbar snackbar = Snackbar
+                                .make(imageDisplay, "Please enter a number of pairs.", Snackbar.LENGTH_LONG);
+                        snackbar.show();
 
-                count = 0;
+                    }
+                    catch(NullPointerException yes){
+                        Snackbar snackbar = Snackbar
+                                .make(imageDisplay, "Please enter a number of pairs.", Snackbar.LENGTH_LONG);
+                        snackbar.show();
 
-               for(int i = 0; i < displayedImages.length; i++){
-                   displayedImages[i].setImageURI(null);
-               }
-
-                for (int i = 0; i < Game1.cards.length; i++) {
-                    getImage();
-
-
-
+                    }
 
                 }
-
 
             }
         });
@@ -80,11 +102,17 @@ public class Game1SettingsActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Game1.test =5;
 
+                if (Game1.cards == null || getPairs.getText().equals("") || getPairs.getText().equals(null)){
+                    Snackbar snackbar = Snackbar
+                            .make(imageDisplay, "No cards entered. Please select some images.", Snackbar.LENGTH_LONG);
 
-
-                startActivity( new Intent(getApplicationContext(),Game1Game.class));
+                    snackbar.show();
+                }
+                else {
+                    Game1.test =5;
+                    startActivity(new Intent(getApplicationContext(), Game1Game.class));
+                }
             }
         });
     }
