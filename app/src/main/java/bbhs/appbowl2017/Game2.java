@@ -14,4 +14,7 @@ public class Game2 extends AppCompatActivity {
         setContentView(R.layout.activity_game2);
 
     }
+
+    
+
 }

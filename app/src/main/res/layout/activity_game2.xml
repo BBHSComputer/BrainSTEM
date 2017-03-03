@@ -5,34 +5,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:text="TextView"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:id="@+id/game2_title"
-            tools:text="@string/game2_name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:scrollbars="vertical">
 
-        <TextView
-            android:text="TextView"
+            <TextView
+                android:text="@string/game2_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:id="@+id/game2_title"
+                tools:text="@string/game2_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:text="@string/game2_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="26dp"
+                android:id="@+id/game2_description"
+                tools:text="@string/game2_description"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:fontFamily="sans-serif"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="120dp"
+        android:layout_marginBottom="20dp">
+
+        <android.support.design.widget.FloatingActionButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imageButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="26dp"
-            android:id="@+id/game2_description"
-            tools:text="@string/game2_description"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:clickable="true"
+            app:fabSize="mini"
+            app:srcCompat="@android:drawable/ic_menu_manage"
+            android:id="@+id/game2_settings"
+            android:layout_margin="8dp"
+            app:elevation="6dp" />
+    </FrameLayout>
 
     <FrameLayout android:layout_height="100dp"
         android:layout_width="100dp"
@@ -48,7 +75,9 @@
             android:clickable="true"
             app:fabSize="mini"
             app:srcCompat="@android:drawable/ic_media_play"
-            android:id="@+id/floatingActionButton" />
+            android:id="@+id/game2_play"
+            android:layout_margin="8dp"
+            app:elevation="6dp" />
     </FrameLayout>
 
 </RelativeLayout>
