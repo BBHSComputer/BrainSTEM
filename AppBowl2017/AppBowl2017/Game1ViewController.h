@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Game1EndViewController.h"
 
 @interface Game1ViewController : UIViewController
+
+@property (strong, nonatomic) IBOutlet UILabel *time, *moves;
 
 @property (strong, nonatomic) NSMutableArray *images;
 @property (strong, nonatomic) NSMutableArray *imageViews;

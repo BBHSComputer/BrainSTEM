@@ -15,18 +15,21 @@
 
 @implementation Game1ViewController
 
+NSInteger gameTime = 0;
+int gameMoves = 0;
+
 int selections = 0;
+int flipping = 0;
 TileImageView *a, *b;
 
-@synthesize images;
-@synthesize imageViews;
+@synthesize time, moves, images, imageViews;
 
 - (void)layoutImages:(int)numberOfImages {
 	imageViews = [[NSMutableArray alloc] init];
 	
 	int cellSize, numCols;
 	
-	int dy = 64;//(int) (self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y);
+	int dy = 100;//(int) (self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y);
 	
 	int w = self.view.frame.size.width;
 	int h = self.view.frame.size.height - dy;
@@ -72,9 +75,10 @@ TileImageView *a, *b;
 	for (int i = 0; i < n; i++) {
 		int cardNumber = [(NSNumber *) [cards objectAtIndex:i] intValue];
 		
-		TileImageView *card = [[TileImageView alloc] initWithImage:[UIImage imageNamed:@"CardBack"]]; // TODO
+		TileImageView *card = [[TileImageView alloc] initWithImage:[UIImage imageNamed:@"CardBack"]];
 		[card setHighlightedImage:[images objectAtIndex:cardNumber]];
 		card.imageId = cardNumber;
+		[card setContentMode:UIViewContentModeScaleAspectFit];
 		
 		int x = i % numCols;
 		int y = i / numCols;
@@ -96,18 +100,21 @@ TileImageView *a, *b;
 
 - (void)flipImage:(NSInteger)image {
 	TileImageView *imageView = (TileImageView *) [imageViews objectAtIndex:image];
-	if (imageView.matched) return;
-	
+	if (imageView.matched || imageView.flipped == FlippingStateFlipping || imageView.flipped == FlippingStateUnflipping) return;
+		
 	[UIView transitionWithView:imageView duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
-		[imageView setImage:!imageView.flipped ? [images objectAtIndex:imageView.imageId] : [UIImage imageNamed:@"CardBack"]];
+		[imageView setImage:imageView.flipped == FlippingStateUnflipped ? (imageView.imageId >= [images count] ? nil : [images objectAtIndex:imageView.imageId]) : [UIImage imageNamed:@"CardBack"]];
+		imageView.flipped = imageView.flipped == FlippingStateUnflipped ? FlippingStateFlipping : FlippingStateUnflipping;
+		if (imageView.flipped == FlippingStateFlipping) flipping++;
 	} completion:^(BOOL finished) {
-		imageView.flipped = !imageView.flipped;
-		selections += imageView.flipped ? 1 : -1;
+		if (imageView.flipped == FlippingStateFlipping) flipping--;
+		imageView.flipped = imageView.flipped == FlippingStateFlipping ? FlippingStateFlipped : FlippingStateUnflipped;
+		selections += imageView.flipped == FlippingStateFlipped ? 1 : -1;
 		
 		if (selections >= 2) {
 			for (int i = 0; i < imageViews.count; i++) {
 				TileImageView *image = (TileImageView *) [imageViews objectAtIndex:i];
-				if (image.flipped && !image.matched) {
+				if (image.flipped == FlippingStateFlipped && !image.matched) {
 					if (!a) {
 						a = image;
 					} else if (!b) {
@@ -116,10 +123,25 @@ TileImageView *a, *b;
 					}
 				}
 			}
+			gameMoves++;
+			[moves setText:[NSString stringWithFormat:@"Moves: %i", gameMoves]];
+
 			if (a.imageId != b.imageId) {
-				[self performSelector:@selector(unflip) withObject:nil afterDelay:1];
+				[self performSelector:@selector(unflip) withObject:nil afterDelay:0.75];
 			} else {
 				a.matched =	b.matched = YES;
+				BOOL unmatched = NO;
+				for (int i = 0; i < imageViews.count; i++) {
+					TileImageView *image = (TileImageView *) [imageViews objectAtIndex:i];
+					if (!image.matched) {
+						unmatched = YES;
+						break;
+					}
+				}
+				if (!unmatched) {
+					gameTime = -1;
+					[self performSegueWithIdentifier:@"Win" sender:self];
+				}
 				a = b = nil;
 				selections = 0;
 			}
@@ -129,24 +151,42 @@ TileImageView *a, *b;
 
 - (void)unflip {
 	[UIView transitionWithView:a duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
-		a.flipped = NO;
+		a.flipped = FlippingStateUnflipping;
 		[a setImage:[UIImage imageNamed:@"CardBack"]];
 	} completion:^(BOOL finished) {
+		a.flipped = FlippingStateUnflipped;
 		selections--;
 		a = nil;
 	}];
 	[UIView transitionWithView:b duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
-		b.flipped = NO;
+		b.flipped = FlippingStateUnflipping;
 		[b setImage:[UIImage imageNamed:@"CardBack"]];
 	} completion:^(BOOL finished) {
+		b.flipped = FlippingStateUnflipped;
 		selections--;
 		b = nil;
 	}];
 }
 
 - (void)imagePressed:(UIButton *)sender {
-	if (selections < 2) {
+	if (selections + flipping < 2) {
 		[self flipImage:sender.tag];
+	}
+}
+
+- (void)reset {
+	gameTime = 0;
+	gameMoves = 0;
+}
+
+- (void)incrementTime {
+	if (gameTime >= 0) {
+		gameTime++;
+		NSInteger seconds = gameTime % 60;
+		NSInteger minutes = (gameTime / 60) % 60;
+		NSInteger hours = (gameTime / 3600);
+		[time setText:[NSString stringWithFormat:@"Time: %li:%02li:%02li", hours, minutes, seconds]];
+		[self performSelector:@selector(incrementTime) withObject:nil afterDelay:1];
 	}
 }
 
@@ -155,19 +195,27 @@ TileImageView *a, *b;
     // Do any additional setup after loading the view.
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[self incrementTime];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.identifier isEqualToString:@"Win"]) {
+		Game1EndViewController *end = (Game1EndViewController *) [segue destinationViewController];
+		[end setTimeString:[self.time text]];
+		[end setMovesString:[self.moves text]];
+	}
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
 
 @end

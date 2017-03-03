@@ -7,13 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
+#import <PhotosUI/PhotosUI.h>
 #import "Game1ViewController.h"
 
-@interface Game1SettingsViewController : UIViewController
+@interface Game1SettingsViewController : UIViewController <PHLivePhotoViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *stepperValue;
 @property (strong, nonatomic) IBOutlet UIStepper *stepper;
 
 - (IBAction)stepperChanged:(UIStepper *)sender;
+
+- (IBAction)selectImages:(UIButton *)sender;
+
+- (IBAction)unwindToSettings:(UIStoryboardSegue *)segue;
 
 @end

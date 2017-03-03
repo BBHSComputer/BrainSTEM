@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+	FlippingStateUnflipped,
+	FlippingStateFlipping,
+	FlippingStateFlipped,
+	FlippingStateUnflipping
+} FlippingState;
+
 @interface TileImageView : UIImageView
 
 @property (nonatomic) int imageId;
-@property (nonatomic) BOOL flipped;
+@property (nonatomic) FlippingState flipped;
 @property (nonatomic) BOOL matched;
 @property (nonatomic) int x, y;
 

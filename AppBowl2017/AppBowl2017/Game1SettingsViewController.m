@@ -21,9 +21,14 @@
 	[stepperValue setText:[NSString stringWithFormat:@"%i", (int) sender.value]];
 }
 
+- (IBAction)selectImages:(UIButton *)sender {
+	
+}
+
+- (IBAction)unwindToSettings:(UIStoryboardSegue *)segue {}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,7 +42,7 @@
 	if ([segue.identifier isEqualToString:@"PlayGame"]) {
 		Game1ViewController *vc = (Game1ViewController *) [segue destinationViewController];
 		[vc layoutImages:stepper.value];
-		vc.images = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"A"], [UIImage imageNamed:@"B"], [UIImage imageNamed:@"C"], [UIImage imageNamed:@"D"], [UIImage imageNamed:@"E"], nil];
+		vc.images = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"A"], [UIImage imageNamed:@"B"], [UIImage imageNamed:@"C"], [UIImage imageNamed:@"D"], [UIImage imageNamed:@"E"], [UIImage imageNamed:@"F"], [UIImage imageNamed:@"G"], [UIImage imageNamed:@"H"], [UIImage imageNamed:@"I"], [UIImage imageNamed:@"J"], [UIImage imageNamed:@"K"], [UIImage imageNamed:@"L"], [UIImage imageNamed:@"M"], [UIImage imageNamed:@"N"], [UIImage imageNamed:@"O"], nil];
 	}
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
