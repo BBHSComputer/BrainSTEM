@@ -25,7 +25,7 @@ public class Game2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
-        settings = (FloatingActionButton) findViewById(R.id.game2_settings);
+        /*settings = (FloatingActionButton) findViewById(R.id.game2_settings);
         play = (FloatingActionButton) findViewById(R.id.game2_play);
         layout = (LinearLayout) findViewById(R.id.game2InfoLayout);
         title = (TextView) findViewById(R.id.game2_title);
@@ -50,6 +50,7 @@ public class Game2 extends AppCompatActivity {
                 snackbar.show();
             }
         });
+        */
     }
 
 

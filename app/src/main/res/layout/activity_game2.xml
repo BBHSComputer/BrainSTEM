@@ -5,98 +5,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <ScrollView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:id="@+id/game2InfoLayout"
+        android:scrollbars="vertical">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <TextView
+            android:text="@string/game2_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/game2InfoLayout"
-            android:scrollbars="vertical">
+            android:layout_marginTop="18dp"
+            android:id="@+id/game2_title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="45sp"
+            android:clickable="true"
+            android:textStyle="normal|bold|italic" />
 
-            <TextView
-                android:text="@string/game2_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:id="@+id/game2_title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:textAlignment="center"
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="45sp"
-                android:clickable="true" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView2"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:text="@string/game_rules_title" />
-
-            <TextView
-                android:text="@string/game2_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/imageButton"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/game2_description"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:fontFamily="sans-serif"
-                android:textSize="24sp"
-                android:textAlignment="center"
-                android:layout_margin="10dp" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="130dp">
-
-            </FrameLayout>
-
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
     <FrameLayout
-        android:layout_width="100dp"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/game2InfoLayout"
+        android:layout_centerHorizontal="true"
         android:layout_height="100dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="120dp"
-        android:layout_marginBottom="20dp">
+        android:layout_width="350dp"
+        android:id="@+id/game2_playButton">
 
-        <android.support.design.widget.FloatingActionButton
+        <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="true"
-            app:fabSize="mini"
-            app:srcCompat="@android:drawable/ic_menu_manage"
-            android:id="@+id/game2_settings"
-            android:layout_margin="8dp"
-            app:elevation="6dp" />
-    </FrameLayout>
+            app:srcCompat="@mipmap/button"
+            android:layout_marginTop="0dp"
+            android:background="@null"
+            android:elevation="8dp"
+            android:layout_below="@+id/game2InfoLayout"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/game2_gameButton" />
 
-    <FrameLayout android:layout_height="100dp"
-        android:layout_width="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="20dp"
-        android:elevation="8dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="false"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="Play"
+            tools:text="Play"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@android:color/black"
+            android:fontFamily="sans-serif"
+            android:elevation="8dp"
+            android:id="@+id/game2_playText" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            app:fabSize="mini"
-            app:srcCompat="@android:drawable/ic_media_play"
-            android:id="@+id/game2_play"
-            android:layout_margin="8dp"
-            app:elevation="6dp" />
     </FrameLayout>
 
 </RelativeLayout>

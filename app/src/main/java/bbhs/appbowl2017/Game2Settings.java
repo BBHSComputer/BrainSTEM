@@ -1,7 +1,9 @@
+package  bbhs.appbowl2017;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Game2Settings{
+public class Game2Settings extends AppCompatActivity{
     
     @Override
     protected void onCreate(Bundle savedInstanceState){
