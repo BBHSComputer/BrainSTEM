@@ -25,6 +25,7 @@ public class Game1Game extends AppCompatActivity {
 
     RelativeLayout imageDisplay;
     ImageView[] imageHolders = new ImageView[20];
+	Uri[] imageMatches = new Uri[20];
     int taps = 0;
 
 
@@ -63,7 +64,7 @@ public class Game1Game extends AppCompatActivity {
 
             try {
                 Glide.with(this).load(Game1.cards[i / 2]).into(imageHolders[i]);
-                imageHolders[i].setBackgroundColor(Color.parseColor("#e63a3a"));
+                imageHolders[i].setBackgroundColor(Color.parseColor("#e63ea"));
 
 
             } catch (ArrayIndexOutOfBoundsException a) {
