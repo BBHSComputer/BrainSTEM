@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -36,9 +37,11 @@ public class Game2Game extends AppCompatActivity {
     private Point[][] coordinates;
     AnimatorSet as;
 
+    private RelativeLayout.LayoutParams lp;
     private RelativeLayout field;
     private Button home;
     private Button pause;
+    private Block gameBlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -54,9 +57,7 @@ public class Game2Game extends AppCompatActivity {
         Log.d("Test", "post find Home and Pause");
 
         buttonsClicked();//Set the click listeners
-    }
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus){
+
         grid = new ArrayList<>();
         for(int i = 0; i < gridSizeX; i++){
             grid.add(new ArrayList<Block>());
@@ -73,67 +74,87 @@ public class Game2Game extends AppCompatActivity {
         }
         Log.d("Test", "size is" + scaleX + "," + scaleY + "," + field.getWidth());
 
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(scaleX, scaleY);
-
-        Block gameBlock = new Block((int) (10 * Math.random()));
-        Log.d("Test", "block created with value" + gameBlock.value);
-        TextView image = new TextView(this);
-        image.setLayoutParams(lp);
-        image.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-        image.setTextSize(textSize);
-        image.setText("" + gameBlock.value);
-        image.setTop(0);
-        View.generateViewId();
-        gameBlock.image = image;
-        field.addView(gameBlock.image);
-
+        lp = new RelativeLayout.LayoutParams(scaleX, scaleY);
+    }
+    @Override
+    public void onStart(){
+        gameBlock = new Block((int) (10 * Math.random()));
+        gameBlock.initialize();
         //TODO set imageView position
 
-        Block col0 = new Block(0);
-        col0.image = new ImageView(getApplicationContext());
-        ((ImageView) col0.image).setImageResource(R.mipmap.tap);
-        col0.image.setLayoutParams(lp);
+        Block col0 = new Block(-1);
+        col0.initialize();
         grid.get(0).add(col0);
-        field.addView(col0.image);
 
-        Block col1 = new Block(0);
-        col1.image = new ImageView(getApplicationContext());
-        ((ImageView) col1.image).setImageResource(R.mipmap.tap);
-        col1.image.setLayoutParams(lp);
-        grid.get(1).add(col1);
-        field.addView(col1.image);
+        Block col1 = new Block(-1);
+        col1.initialize();
+        grid.get(0).add(col1);
 
-        Block col2 = new Block(0);
-        col2.image = new ImageView(getApplicationContext());
-        ((ImageView) col2.image).setImageResource(R.mipmap.tap);
-        col2.image.setLayoutParams(lp);
-        grid.get(2).add(col2);
-        field.addView(col2.image);
+        Block col2 = new Block(-1);
+        col2.initialize();
+        grid.get(0).add(col2);
 
-        Block col3 = new Block(0);
-        col3.image = new ImageView(getApplicationContext());
-        ((ImageView) col3.image).setImageResource(R.mipmap.tap);
-        col3.image.setLayoutParams(lp);
-        grid.get(3).add(col3);
-        field.addView(col3.image);
+        Block col3 = new Block(-1);
+        col3.initialize();
+        grid.get(0).add(col3);
 
-        Block col4 = new Block(0);
-        col4.image = new ImageView(getApplicationContext());
-        ((ImageView) col4.image).setImageResource(R.mipmap.tap);
-        col4.image.setLayoutParams(lp);
-        grid.get(4).add(col4);
-        field.addView(col4.image);
+        Block col4 = new Block(-1);
+        col4.initialize();
+        grid.get(0).add(col4);
 
         Log.d("Test", grid.toString());
 
         updatePositions();
 
+        col0.image.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                placeBlock(gameBlock, 0);
+                updatePositions();
+                gameBlock = new Block((int) (10 * Math.random()));
+                gameBlock.initialize();
+            }
+        });
         col1.image.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-
+                placeBlock(gameBlock, 1);
+                updatePositions();
+                gameBlock = new Block((int) (10 * Math.random()));
+                gameBlock.initialize();
             }
         });
+        col2.image.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                placeBlock(gameBlock, 2);
+                updatePositions();
+                gameBlock = new Block((int) (10 * Math.random()));
+                gameBlock.initialize();
+            }
+        });
+        col3.image.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                placeBlock(gameBlock, 3);
+                updatePositions();
+                gameBlock = new Block((int) (10 * Math.random()));
+                gameBlock.initialize();
+            }
+        });
+        col4.image.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                placeBlock(gameBlock, 4);
+                updatePositions();
+                gameBlock = new Block((int) (10 * Math.random()));
+                gameBlock.initialize();
+            }
+        });
+    }
+
+    private void placeBlock(Block block, int n){
+        grid.get(n).add(block);
     }
 
     private void updatePositions(){
@@ -190,6 +211,23 @@ public class Game2Game extends AppCompatActivity {
         public Block(int value){
             this.value = value;
             falling = false;
+        }
+        public void initialize(){
+            Log.d("Test", "block created with value" + this.value);
+            if(this.value == -1){
+                image = new ImageView(getApplicationContext());
+                image.setLayoutParams(lp);
+                ((ImageView) image).setImageResource(R.mipmap.tap);
+            }else {
+                image = new TextView(getApplicationContext());
+                image.setLayoutParams(lp);
+                ((TextView)image).setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                ((TextView)image).setTextSize(textSize);
+                ((TextView)image).setText("" + this.value);
+                //image.generateViewId();
+            }
+            //this.image = image;
+            field.addView(this.image);
         }
 
         public boolean finishAnim(int x, int y){
