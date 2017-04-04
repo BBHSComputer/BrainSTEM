@@ -5,7 +5,9 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +30,7 @@ public class Game1Game extends AppCompatActivity {
 	Uri[] imageMatches = new Uri[20];
     int taps = 0;
 
-
+    boolean[] activated = new boolean[20];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +47,7 @@ public class Game1Game extends AppCompatActivity {
             imageHolders[i].setImageAlpha(0);
             final int n = i;
             imageHolders[i].setOnClickListener(new View.OnClickListener() {
-                boolean flipped = true;
+               public boolean flipped = true;
                 ImageView imgv = imageHolders[n];
 
                 @Override
@@ -55,6 +57,7 @@ public class Game1Game extends AppCompatActivity {
                     taps++;
                     checkRotation();
                 }
+
             });
 
         }
@@ -64,11 +67,13 @@ public class Game1Game extends AppCompatActivity {
 
             try {
                 Glide.with(this).load(Game1.cards[i / 2]).into(imageHolders[i]);
-                imageHolders[i].setBackgroundColor(Color.parseColor("#e63ea"));
+                imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000"));
+                imageMatches[i] = Game1.cards[i/2];
 
 
             } catch (ArrayIndexOutOfBoundsException a) {
                 Glide.with(this).load(Game1.cards[(i - 1) / 2]).into(imageHolders[i - 1]);
+                imageMatches[i-1] = Game1.cards[(i-1)/2];
 
             }
         }
@@ -86,15 +91,39 @@ public class Game1Game extends AppCompatActivity {
 
 
     public void checkRotation(){
-        if(taps == 2){
-            for(ImageView imageView : imageHolders){
-               if(imageView.getImageAlpha() == 255){
-                   for(int i = 0; i <  10000; i++){
-                      int j = i * i;
-                   }
-               }
-                imageView.setImageAlpha(0);
 
+        if(taps == 2){
+        ImageView a= null,b = null;
+            for(int i = 0; i < imageHolders.length; i++){
+             ImageView imageView = imageHolders[i];
+
+
+
+                try {
+                 if (imageView.getImageAlpha() == 255) {
+                    try{a.setImageAlpha(0);}
+                    catch (NullPointerException n){
+                        a = imageView;
+                    }
+                     try{b.setImageAlpha(0);}
+                     catch (NullPointerException n){
+                         b = imageView;
+
+                     }
+                 }
+
+
+
+
+             }
+             catch(NullPointerException n){
+
+             }
+
+            }
+            if(a.getDrawable().equals(b.getDrawable())){
+                    a.setVisibility(View.INVISIBLE);
+                      b.setVisibility(View.INVISIBLE);
             }
      taps =0;
         }
