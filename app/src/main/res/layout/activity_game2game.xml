@@ -8,7 +8,7 @@
         android:layout_above="@+id/game2_bbar"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:id="@+id/game_field">
+        android:id="@+id/game2_field">
 
     </RelativeLayout>
 
