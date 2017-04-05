@@ -22,4 +22,6 @@
 
 - (void)imagePressed:(UIButton *)sender;
 
+- (void)reset;
+
 @end

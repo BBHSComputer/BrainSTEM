@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9A4727B91E67CE1700E98AAE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727B81E67CE1700E98AAE /* main.m */; };
 		9A4727BC1E67CE1700E98AAE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727BB1E67CE1700E98AAE /* AppDelegate.m */; };
-		9A4727BF1E67CE1700E98AAE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727BE1E67CE1700E98AAE /* ViewController.m */; };
 		9A4727C21E67CE1700E98AAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4727C01E67CE1700E98AAE /* Main.storyboard */; };
 		9A4727C71E67CE1700E98AAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4727C51E67CE1700E98AAE /* LaunchScreen.storyboard */; };
 		9A4727D21E67CE1700E98AAE /* AppBowl2017Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727D11E67CE1700E98AAE /* AppBowl2017Tests.m */; };
@@ -19,6 +18,39 @@
 		9A4727F81E68BF2C00E98AAE /* TileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727F71E68BF2C00E98AAE /* TileImageView.m */; };
 		9A4727FA1E69E0A900E98AAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A4727F91E69E0A900E98AAE /* Assets.xcassets */; };
 		9A4727FD1E6A014200E98AAE /* Game1EndViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727FC1E6A014200E98AAE /* Game1EndViewController.m */; };
+		9AD1C3631E9549A400C8F86E /* Rule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1C3621E9549A300C8F86E /* Rule.m */; };
+		9AD1C3661E954A8000C8F86E /* AdjacencyRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1C3651E954A8000C8F86E /* AdjacencyRule.m */; };
+		9AEAFC3A1E80170D00908941 /* PlayfairDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC341E80170D00908941 /* PlayfairDisplay-Black.ttf */; };
+		9AEAFC3B1E80170D00908941 /* PlayfairDisplay-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC351E80170D00908941 /* PlayfairDisplay-BlackItalic.ttf */; };
+		9AEAFC3C1E80170D00908941 /* PlayfairDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC361E80170D00908941 /* PlayfairDisplay-Bold.ttf */; };
+		9AEAFC3D1E80170D00908941 /* PlayfairDisplay-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC371E80170D00908941 /* PlayfairDisplay-BoldItalic.ttf */; };
+		9AEAFC3E1E80170D00908941 /* PlayfairDisplay-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC381E80170D00908941 /* PlayfairDisplay-Italic.ttf */; };
+		9AEAFC3F1E80170D00908941 /* PlayfairDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC391E80170D00908941 /* PlayfairDisplay-Regular.ttf */; };
+		9AEAFC521E80171C00908941 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC401E80171C00908941 /* Montserrat-Black.ttf */; };
+		9AEAFC531E80171C00908941 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC411E80171C00908941 /* Montserrat-BlackItalic.ttf */; };
+		9AEAFC541E80171C00908941 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC421E80171C00908941 /* Montserrat-Bold.ttf */; };
+		9AEAFC551E80171C00908941 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC431E80171C00908941 /* Montserrat-BoldItalic.ttf */; };
+		9AEAFC561E80171C00908941 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC441E80171C00908941 /* Montserrat-ExtraBold.ttf */; };
+		9AEAFC571E80171C00908941 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC451E80171C00908941 /* Montserrat-ExtraBoldItalic.ttf */; };
+		9AEAFC581E80171C00908941 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC461E80171C00908941 /* Montserrat-ExtraLight.ttf */; };
+		9AEAFC591E80171C00908941 /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC471E80171C00908941 /* Montserrat-ExtraLightItalic.ttf */; };
+		9AEAFC5A1E80171C00908941 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC481E80171C00908941 /* Montserrat-Italic.ttf */; };
+		9AEAFC5B1E80171C00908941 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC491E80171C00908941 /* Montserrat-Light.ttf */; };
+		9AEAFC5C1E80171C00908941 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC4A1E80171C00908941 /* Montserrat-LightItalic.ttf */; };
+		9AEAFC5D1E80171C00908941 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC4B1E80171C00908941 /* Montserrat-Medium.ttf */; };
+		9AEAFC5E1E80171C00908941 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC4C1E80171C00908941 /* Montserrat-MediumItalic.ttf */; };
+		9AEAFC5F1E80171C00908941 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC4D1E80171C00908941 /* Montserrat-Regular.ttf */; };
+		9AEAFC601E80171C00908941 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC4E1E80171C00908941 /* Montserrat-SemiBold.ttf */; };
+		9AEAFC611E80171C00908941 /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC4F1E80171C00908941 /* Montserrat-SemiBoldItalic.ttf */; };
+		9AEAFC621E80171C00908941 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC501E80171C00908941 /* Montserrat-Thin.ttf */; };
+		9AEAFC631E80171C00908941 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC511E80171C00908941 /* Montserrat-ThinItalic.ttf */; };
+		9AEAFC671E81D65000908941 /* GameListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFC661E81D65000908941 /* GameListTableViewCell.m */; };
+		9AEAFC6A1E81D73700908941 /* GameListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFC691E81D73700908941 /* GameListTableViewController.m */; };
+		9AEAFC6D1E81DA3500908941 /* Game2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFC6C1E81DA3500908941 /* Game2ViewController.m */; };
+		9AEAFC701E81DA3F00908941 /* Game3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFC6F1E81DA3F00908941 /* Game3ViewController.m */; };
+		9AEAFC731E81DA4600908941 /* Game4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFC721E81DA4600908941 /* Game4ViewController.m */; };
+		9AEAFC791E82C30A00908941 /* PhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFC781E82C30A00908941 /* PhotoCollectionViewCell.m */; };
+		9AEAFCBB1E8A9A9500908941 /* Game2SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFCBA1E8A9A9500908941 /* Game2SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +75,6 @@
 		9A4727B81E67CE1700E98AAE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9A4727BA1E67CE1700E98AAE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9A4727BB1E67CE1700E98AAE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9A4727BD1E67CE1700E98AAE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9A4727BE1E67CE1700E98AAE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9A4727C11E67CE1700E98AAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A4727C61E67CE1700E98AAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A4727C81E67CE1700E98AAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,6 +93,48 @@
 		9A4727F91E69E0A900E98AAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A4727FB1E6A014200E98AAE /* Game1EndViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game1EndViewController.h; sourceTree = "<group>"; };
 		9A4727FC1E6A014200E98AAE /* Game1EndViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game1EndViewController.m; sourceTree = "<group>"; };
+		9AD1C3611E9549A300C8F86E /* Rule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rule.h; sourceTree = "<group>"; };
+		9AD1C3621E9549A300C8F86E /* Rule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rule.m; sourceTree = "<group>"; };
+		9AD1C3641E954A8000C8F86E /* AdjacencyRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjacencyRule.h; sourceTree = "<group>"; };
+		9AD1C3651E954A8000C8F86E /* AdjacencyRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjacencyRule.m; sourceTree = "<group>"; };
+		9AEAFC341E80170D00908941 /* PlayfairDisplay-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-Black.ttf"; sourceTree = "<group>"; };
+		9AEAFC351E80170D00908941 /* PlayfairDisplay-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-BlackItalic.ttf"; sourceTree = "<group>"; };
+		9AEAFC361E80170D00908941 /* PlayfairDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-Bold.ttf"; sourceTree = "<group>"; };
+		9AEAFC371E80170D00908941 /* PlayfairDisplay-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-BoldItalic.ttf"; sourceTree = "<group>"; };
+		9AEAFC381E80170D00908941 /* PlayfairDisplay-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-Italic.ttf"; sourceTree = "<group>"; };
+		9AEAFC391E80170D00908941 /* PlayfairDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-Regular.ttf"; sourceTree = "<group>"; };
+		9AEAFC401E80171C00908941 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
+		9AEAFC411E80171C00908941 /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
+		9AEAFC421E80171C00908941 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		9AEAFC431E80171C00908941 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
+		9AEAFC441E80171C00908941 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
+		9AEAFC451E80171C00908941 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		9AEAFC461E80171C00908941 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
+		9AEAFC471E80171C00908941 /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		9AEAFC481E80171C00908941 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Italic.ttf"; sourceTree = "<group>"; };
+		9AEAFC491E80171C00908941 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		9AEAFC4A1E80171C00908941 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
+		9AEAFC4B1E80171C00908941 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		9AEAFC4C1E80171C00908941 /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
+		9AEAFC4D1E80171C00908941 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		9AEAFC4E1E80171C00908941 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		9AEAFC4F1E80171C00908941 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		9AEAFC501E80171C00908941 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.ttf"; sourceTree = "<group>"; };
+		9AEAFC511E80171C00908941 /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
+		9AEAFC651E81D65000908941 /* GameListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameListTableViewCell.h; sourceTree = "<group>"; };
+		9AEAFC661E81D65000908941 /* GameListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameListTableViewCell.m; sourceTree = "<group>"; };
+		9AEAFC681E81D73700908941 /* GameListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameListTableViewController.h; sourceTree = "<group>"; };
+		9AEAFC691E81D73700908941 /* GameListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameListTableViewController.m; sourceTree = "<group>"; };
+		9AEAFC6B1E81DA3500908941 /* Game2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game2ViewController.h; sourceTree = "<group>"; };
+		9AEAFC6C1E81DA3500908941 /* Game2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game2ViewController.m; sourceTree = "<group>"; };
+		9AEAFC6E1E81DA3F00908941 /* Game3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game3ViewController.h; sourceTree = "<group>"; };
+		9AEAFC6F1E81DA3F00908941 /* Game3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game3ViewController.m; sourceTree = "<group>"; };
+		9AEAFC711E81DA4600908941 /* Game4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game4ViewController.h; sourceTree = "<group>"; };
+		9AEAFC721E81DA4600908941 /* Game4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game4ViewController.m; sourceTree = "<group>"; };
+		9AEAFC771E82C30A00908941 /* PhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		9AEAFC781E82C30A00908941 /* PhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		9AEAFCB91E8A9A9500908941 /* Game2SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game2SettingsViewController.h; sourceTree = "<group>"; };
+		9AEAFCBA1E8A9A9500908941 /* Game2SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game2SettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,20 +187,37 @@
 			children = (
 				9A4727BA1E67CE1700E98AAE /* AppDelegate.h */,
 				9A4727BB1E67CE1700E98AAE /* AppDelegate.m */,
-				9A4727BD1E67CE1700E98AAE /* ViewController.h */,
-				9A4727BE1E67CE1700E98AAE /* ViewController.m */,
+				9A4727F01E684D5200E98AAE /* Game1SettingsViewController.h */,
+				9A4727F11E684D5200E98AAE /* Game1SettingsViewController.m */,
+				9AEAFC771E82C30A00908941 /* PhotoCollectionViewCell.h */,
+				9AEAFC781E82C30A00908941 /* PhotoCollectionViewCell.m */,
 				9A4727F31E684D7F00E98AAE /* Game1ViewController.h */,
 				9A4727F41E684D7F00E98AAE /* Game1ViewController.m */,
 				9A4727F61E68BF2C00E98AAE /* TileImageView.h */,
 				9A4727F71E68BF2C00E98AAE /* TileImageView.m */,
-				9A4727F01E684D5200E98AAE /* Game1SettingsViewController.h */,
-				9A4727F11E684D5200E98AAE /* Game1SettingsViewController.m */,
 				9A4727FB1E6A014200E98AAE /* Game1EndViewController.h */,
 				9A4727FC1E6A014200E98AAE /* Game1EndViewController.m */,
+				9AEAFCB91E8A9A9500908941 /* Game2SettingsViewController.h */,
+				9AEAFCBA1E8A9A9500908941 /* Game2SettingsViewController.m */,
+				9AEAFC6B1E81DA3500908941 /* Game2ViewController.h */,
+				9AEAFC6C1E81DA3500908941 /* Game2ViewController.m */,
+				9AD1C3611E9549A300C8F86E /* Rule.h */,
+				9AD1C3621E9549A300C8F86E /* Rule.m */,
+				9AD1C3641E954A8000C8F86E /* AdjacencyRule.h */,
+				9AD1C3651E954A8000C8F86E /* AdjacencyRule.m */,
+				9AEAFC6E1E81DA3F00908941 /* Game3ViewController.h */,
+				9AEAFC6F1E81DA3F00908941 /* Game3ViewController.m */,
+				9AEAFC711E81DA4600908941 /* Game4ViewController.h */,
+				9AEAFC721E81DA4600908941 /* Game4ViewController.m */,
+				9AEAFC651E81D65000908941 /* GameListTableViewCell.h */,
+				9AEAFC661E81D65000908941 /* GameListTableViewCell.m */,
+				9AEAFC681E81D73700908941 /* GameListTableViewController.h */,
+				9AEAFC691E81D73700908941 /* GameListTableViewController.m */,
 				9A4727C01E67CE1700E98AAE /* Main.storyboard */,
 				9A4727F91E69E0A900E98AAE /* Assets.xcassets */,
 				9A4727C51E67CE1700E98AAE /* LaunchScreen.storyboard */,
 				9A4727C81E67CE1700E98AAE /* Info.plist */,
+				9AEAFC641E80172400908941 /* Fonts */,
 				9A4727B71E67CE1700E98AAE /* Supporting Files */,
 			);
 			path = AppBowl2017;
@@ -158,6 +247,37 @@
 				9A4727DE1E67CE1700E98AAE /* Info.plist */,
 			);
 			path = AppBowl2017UITests;
+			sourceTree = "<group>";
+		};
+		9AEAFC641E80172400908941 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9AEAFC401E80171C00908941 /* Montserrat-Black.ttf */,
+				9AEAFC411E80171C00908941 /* Montserrat-BlackItalic.ttf */,
+				9AEAFC421E80171C00908941 /* Montserrat-Bold.ttf */,
+				9AEAFC431E80171C00908941 /* Montserrat-BoldItalic.ttf */,
+				9AEAFC441E80171C00908941 /* Montserrat-ExtraBold.ttf */,
+				9AEAFC451E80171C00908941 /* Montserrat-ExtraBoldItalic.ttf */,
+				9AEAFC461E80171C00908941 /* Montserrat-ExtraLight.ttf */,
+				9AEAFC471E80171C00908941 /* Montserrat-ExtraLightItalic.ttf */,
+				9AEAFC481E80171C00908941 /* Montserrat-Italic.ttf */,
+				9AEAFC491E80171C00908941 /* Montserrat-Light.ttf */,
+				9AEAFC4A1E80171C00908941 /* Montserrat-LightItalic.ttf */,
+				9AEAFC4B1E80171C00908941 /* Montserrat-Medium.ttf */,
+				9AEAFC4C1E80171C00908941 /* Montserrat-MediumItalic.ttf */,
+				9AEAFC4D1E80171C00908941 /* Montserrat-Regular.ttf */,
+				9AEAFC4E1E80171C00908941 /* Montserrat-SemiBold.ttf */,
+				9AEAFC4F1E80171C00908941 /* Montserrat-SemiBoldItalic.ttf */,
+				9AEAFC501E80171C00908941 /* Montserrat-Thin.ttf */,
+				9AEAFC511E80171C00908941 /* Montserrat-ThinItalic.ttf */,
+				9AEAFC341E80170D00908941 /* PlayfairDisplay-Black.ttf */,
+				9AEAFC351E80170D00908941 /* PlayfairDisplay-BlackItalic.ttf */,
+				9AEAFC361E80170D00908941 /* PlayfairDisplay-Bold.ttf */,
+				9AEAFC371E80170D00908941 /* PlayfairDisplay-BoldItalic.ttf */,
+				9AEAFC381E80170D00908941 /* PlayfairDisplay-Italic.ttf */,
+				9AEAFC391E80170D00908941 /* PlayfairDisplay-Regular.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,9 +386,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AEAFC5E1E80171C00908941 /* Montserrat-MediumItalic.ttf in Resources */,
+				9AEAFC551E80171C00908941 /* Montserrat-BoldItalic.ttf in Resources */,
+				9AEAFC5F1E80171C00908941 /* Montserrat-Regular.ttf in Resources */,
+				9AEAFC3C1E80170D00908941 /* PlayfairDisplay-Bold.ttf in Resources */,
+				9AEAFC521E80171C00908941 /* Montserrat-Black.ttf in Resources */,
 				9A4727C71E67CE1700E98AAE /* LaunchScreen.storyboard in Resources */,
+				9AEAFC601E80171C00908941 /* Montserrat-SemiBold.ttf in Resources */,
+				9AEAFC531E80171C00908941 /* Montserrat-BlackItalic.ttf in Resources */,
+				9AEAFC611E80171C00908941 /* Montserrat-SemiBoldItalic.ttf in Resources */,
+				9AEAFC561E80171C00908941 /* Montserrat-ExtraBold.ttf in Resources */,
+				9AEAFC3F1E80170D00908941 /* PlayfairDisplay-Regular.ttf in Resources */,
+				9AEAFC3B1E80170D00908941 /* PlayfairDisplay-BlackItalic.ttf in Resources */,
+				9AEAFC5C1E80171C00908941 /* Montserrat-LightItalic.ttf in Resources */,
+				9AEAFC3A1E80170D00908941 /* PlayfairDisplay-Black.ttf in Resources */,
+				9AEAFC621E80171C00908941 /* Montserrat-Thin.ttf in Resources */,
+				9AEAFC5D1E80171C00908941 /* Montserrat-Medium.ttf in Resources */,
 				9A4727FA1E69E0A900E98AAE /* Assets.xcassets in Resources */,
+				9AEAFC541E80171C00908941 /* Montserrat-Bold.ttf in Resources */,
 				9A4727C21E67CE1700E98AAE /* Main.storyboard in Resources */,
+				9AEAFC571E80171C00908941 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
+				9AEAFC581E80171C00908941 /* Montserrat-ExtraLight.ttf in Resources */,
+				9AEAFC591E80171C00908941 /* Montserrat-ExtraLightItalic.ttf in Resources */,
+				9AEAFC5A1E80171C00908941 /* Montserrat-Italic.ttf in Resources */,
+				9AEAFC631E80171C00908941 /* Montserrat-ThinItalic.ttf in Resources */,
+				9AEAFC5B1E80171C00908941 /* Montserrat-Light.ttf in Resources */,
+				9AEAFC3D1E80170D00908941 /* PlayfairDisplay-BoldItalic.ttf in Resources */,
+				9AEAFC3E1E80170D00908941 /* PlayfairDisplay-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,11 +437,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AEAFC6A1E81D73700908941 /* GameListTableViewController.m in Sources */,
+				9AEAFC791E82C30A00908941 /* PhotoCollectionViewCell.m in Sources */,
+				9AEAFC731E81DA4600908941 /* Game4ViewController.m in Sources */,
 				9A4727FD1E6A014200E98AAE /* Game1EndViewController.m in Sources */,
 				9A4727F81E68BF2C00E98AAE /* TileImageView.m in Sources */,
+				9AD1C3631E9549A400C8F86E /* Rule.m in Sources */,
+				9AEAFC6D1E81DA3500908941 /* Game2ViewController.m in Sources */,
+				9AEAFC701E81DA3F00908941 /* Game3ViewController.m in Sources */,
 				9A4727F21E684D5200E98AAE /* Game1SettingsViewController.m in Sources */,
-				9A4727BF1E67CE1700E98AAE /* ViewController.m in Sources */,
+				9AEAFC671E81D65000908941 /* GameListTableViewCell.m in Sources */,
+				9AEAFCBB1E8A9A9500908941 /* Game2SettingsViewController.m in Sources */,
 				9A4727BC1E67CE1700E98AAE /* AppDelegate.m in Sources */,
+				9AD1C3661E954A8000C8F86E /* AdjacencyRule.m in Sources */,
 				9A4727B91E67CE1700E98AAE /* main.m in Sources */,
 				9A4727F51E684D7F00E98AAE /* Game1ViewController.m in Sources */,
 			);
@@ -535,6 +687,7 @@
 				9A4727E31E67CE1700E98AAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9A4727E41E67CE1700E98AAE /* Build configuration list for PBXNativeTarget "AppBowl2017Tests" */ = {
 			isa = XCConfigurationList;
@@ -543,6 +696,7 @@
 				9A4727E61E67CE1700E98AAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9A4727E71E67CE1700E98AAE /* Build configuration list for PBXNativeTarget "AppBowl2017UITests" */ = {
 			isa = XCConfigurationList;
@@ -551,6 +705,7 @@
 				9A4727E91E67CE1700E98AAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

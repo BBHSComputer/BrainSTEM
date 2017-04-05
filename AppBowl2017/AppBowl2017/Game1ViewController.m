@@ -129,6 +129,12 @@ TileImageView *a, *b;
 			if (a.imageId != b.imageId) {
 				[self performSelector:@selector(unflip) withObject:nil afterDelay:0.75];
 			} else {
+				[UIView animateWithDuration:0.5 animations:^{
+					a.frame = CGRectMake(self.view.frame.size.width / 2, 0, 0, 0);
+					b.frame = CGRectMake(self.view.frame.size.width / 2, 0, 0, 0);
+					a.alpha = b.alpha = 0;
+				}];
+				
 				a.matched =	b.matched = YES;
 				BOOL unmatched = NO;
 				for (int i = 0; i < imageViews.count; i++) {
@@ -185,7 +191,7 @@ TileImageView *a, *b;
 		NSInteger seconds = gameTime % 60;
 		NSInteger minutes = (gameTime / 60) % 60;
 		NSInteger hours = (gameTime / 3600);
-		[time setText:[NSString stringWithFormat:@"Time: %li:%02li:%02li", hours, minutes, seconds]];
+		[time setText:[NSString stringWithFormat:@"Time: %li:%02li:%02li", (long)hours, minutes, seconds]];
 		[self performSelector:@selector(incrementTime) withObject:nil afterDelay:1];
 	}
 }

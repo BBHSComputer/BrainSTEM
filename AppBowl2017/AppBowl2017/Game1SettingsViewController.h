@@ -10,11 +10,15 @@
 #import <Photos/Photos.h>
 #import <PhotosUI/PhotosUI.h>
 #import "Game1ViewController.h"
+#import "PhotoCollectionViewCell.h"
 
-@interface Game1SettingsViewController : UIViewController <PHLivePhotoViewDelegate>
+@interface Game1SettingsViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UILabel *stepperValue;
 @property (strong, nonatomic) IBOutlet UIStepper *stepper;
+@property (strong, nonatomic) IBOutlet UICollectionView *collection;
+
+@property (strong, nonatomic) NSMutableArray *images;
 
 - (IBAction)stepperChanged:(UIStepper *)sender;
 
