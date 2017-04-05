@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -58,6 +59,10 @@ public class Game2Game extends AppCompatActivity {
 
         buttonsClicked();//Set the click listeners
 
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus){
         grid = new ArrayList<>();
         for(int i = 0; i < gridSizeX; i++){
             grid.add(new ArrayList<Block>());
@@ -75,9 +80,10 @@ public class Game2Game extends AppCompatActivity {
         Log.d("Test", "size is" + scaleX + "," + scaleY + "," + field.getWidth());
 
         lp = new RelativeLayout.LayoutParams(scaleX, scaleY);
+
+        gameStart();
     }
-    @Override
-    public void onStart(){
+    private void gameStart(){
         gameBlock = new Block((int) (10 * Math.random()));
         gameBlock.initialize();
         //TODO set imageView position
@@ -88,21 +94,22 @@ public class Game2Game extends AppCompatActivity {
 
         Block col1 = new Block(-1);
         col1.initialize();
-        grid.get(0).add(col1);
+        grid.get(1).add(col1);
 
         Block col2 = new Block(-1);
         col2.initialize();
-        grid.get(0).add(col2);
+        grid.get(2).add(col2);
 
         Block col3 = new Block(-1);
         col3.initialize();
-        grid.get(0).add(col3);
+        grid.get(3).add(col3);
 
         Block col4 = new Block(-1);
         col4.initialize();
-        grid.get(0).add(col4);
+        grid.get(4).add(col4);
 
         Log.d("Test", grid.toString());
+        //Log.d("Test", coordinates.toString());
 
         updatePositions();
 
@@ -181,7 +188,7 @@ public class Game2Game extends AppCompatActivity {
         });
         animationRunning = true;
         as.start();
-        Log.d("Test", "True");
+        Log.d("Test", "Update position finished");
     }
 
 
@@ -223,6 +230,7 @@ public class Game2Game extends AppCompatActivity {
                 image.setLayoutParams(lp);
                 ((TextView)image).setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                 ((TextView)image).setTextSize(textSize);
+                ((TextView)image).setTextColor(Color.BLACK);
                 ((TextView)image).setText("" + this.value);
                 //image.generateViewId();
             }
@@ -252,4 +260,5 @@ public class Game2Game extends AppCompatActivity {
         }
 
     }
+
 }
