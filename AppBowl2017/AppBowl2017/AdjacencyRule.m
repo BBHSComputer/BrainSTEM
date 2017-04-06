@@ -23,10 +23,6 @@
 }
 
 - (BOOL)isNewTile:(NSNumber *)tile allowedNextTo:(NSNumber *)adjacent inTileArray:(NSArray *)tiles {
-	NSLog(@"A %@", [tile isEqualToNumber:tile1] ? @"YES" : @"NO");
-	NSLog(@"B %@", [adjacent isEqualToNumber:tile2] ? @"YES" : @"NO");
-	NSLog(@"C %@", [tile isEqualToNumber:tile2] ? @"YES" : @"NO");
-	NSLog(@"D %@", [adjacent isEqualToNumber:tile1] ? @"YES" : @"NO");
 	return !([tile isEqualToNumber:tile1] && [adjacent isEqualToNumber:tile2]) && !([tile isEqualToNumber:tile2] && [adjacent isEqualToNumber:tile1]);
 }
 
