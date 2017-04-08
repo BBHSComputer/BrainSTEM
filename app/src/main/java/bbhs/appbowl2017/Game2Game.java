@@ -23,20 +23,23 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Game2Game extends AppCompatActivity {
 
     private int textSize = 36;
     private int gridSizeX = 5;
     private int gridSizeY = 7;
-    private int scaleX;
-    private int scaleY;
+
     private boolean animationRunning = false;
+    private boolean hasInit = false;
 
     private ArrayList<Animator> animations = new ArrayList<>();
     private ArrayList<ArrayList<Block>> grid;
     private Point[][] coordinates;
-    AnimatorSet as;
+    private AnimatorSet as;
+    private HashSet<Block> remove;
 
     private RelativeLayout.LayoutParams lp;
     private RelativeLayout field;
@@ -49,7 +52,7 @@ public class Game2Game extends AppCompatActivity {
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2game);
-       // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Log.d("Test", "post SetContentView");
 
         field = (RelativeLayout) findViewById(R.id.game2_field);
@@ -57,19 +60,18 @@ public class Game2Game extends AppCompatActivity {
         pause = (Button) findViewById(R.id.game2_pause);
         Log.d("Test", "post find Home and Pause");
 
-        buttonsClicked();//Set the click listeners
-
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus){
         grid = new ArrayList<>();
         for(int i = 0; i < gridSizeX; i++){
             grid.add(new ArrayList<Block>());
         }
 
-        scaleX = field.getWidth()/gridSizeX;
-        scaleY = field.getHeight()/gridSizeY;
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus){
+
+        int scaleX = field.getWidth()/gridSizeX;
+        int scaleY = field.getHeight()/gridSizeY;
 
         coordinates = new Point[gridSizeY][gridSizeX];
         for(int i = 0; i < gridSizeY; i++){
@@ -81,87 +83,44 @@ public class Game2Game extends AppCompatActivity {
 
         lp = new RelativeLayout.LayoutParams(scaleX, scaleY);
 
-        gameStart();
+        if(!hasInit){
+            hasInit = true;
+            gameStart();
+        }
     }
     private void gameStart(){
         gameBlock = new Block((int) (10 * Math.random()));
         gameBlock.initialize();
         //TODO set imageView position
 
-        Block col0 = new Block(-1);
-        col0.initialize();
-        grid.get(0).add(col0);
+        for(int column = 0; column < 5; column++) {
+            Block col = new Block(-1);
+            col.initialize();
+            grid.get(column).add(col);
 
-        Block col1 = new Block(-1);
-        col1.initialize();
-        grid.get(1).add(col1);
+            col.image.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    if(!animationRunning){
+                        //placeBlock(gameBlock, 0, grid.get(column));
+                        updatePositions();
+                        gameBlock = new Block((int) (10 * Math.random()));
+                        gameBlock.initialize();
+                    }
+                }
+            });
 
-        Block col2 = new Block(-1);
-        col2.initialize();
-        grid.get(2).add(col2);
-
-        Block col3 = new Block(-1);
-        col3.initialize();
-        grid.get(3).add(col3);
-
-        Block col4 = new Block(-1);
-        col4.initialize();
-        grid.get(4).add(col4);
+        }
 
         Log.d("Test", grid.toString());
         //Log.d("Test", coordinates.toString());
 
         updatePositions();
-
-        col0.image.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                placeBlock(gameBlock, 0);
-                updatePositions();
-                gameBlock = new Block((int) (10 * Math.random()));
-                gameBlock.initialize();
-            }
-        });
-        col1.image.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                placeBlock(gameBlock, 1);
-                updatePositions();
-                gameBlock = new Block((int) (10 * Math.random()));
-                gameBlock.initialize();
-            }
-        });
-        col2.image.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                placeBlock(gameBlock, 2);
-                updatePositions();
-                gameBlock = new Block((int) (10 * Math.random()));
-                gameBlock.initialize();
-            }
-        });
-        col3.image.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                placeBlock(gameBlock, 3);
-                updatePositions();
-                gameBlock = new Block((int) (10 * Math.random()));
-                gameBlock.initialize();
-            }
-        });
-        col4.image.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                placeBlock(gameBlock, 4);
-                updatePositions();
-                gameBlock = new Block((int) (10 * Math.random()));
-                gameBlock.initialize();
-            }
-        });
+        buttonsClicked();//Set the click listeners
     }
 
-    private void placeBlock(Block block, int n){
-        grid.get(n).add(block);
+    private void placeBlock(Block block, int n, Block button){
+        grid.get(n).add(grid.get(n).indexOf(button), block);
     }
 
     private void updatePositions(){
@@ -175,13 +134,15 @@ public class Game2Game extends AppCompatActivity {
                 }
             }
         }
+        as.playTogether(animations);
         as.addListener(new AnimatorListenerAdapter() {
             @Override
-            public void onAnimationEnd(Animator animation) {
+            public void onAnimationEnd(Animator animation) {//TODO Fix this broken mess of code
                 for (ArrayList<Block> column : grid) {
                     for (Block block : column) {
-                        block.falling = false;
+                        //block.falling = false;
                         animations.clear();
+                        animationRunning = false;
                     }
                 }
             }
@@ -207,17 +168,16 @@ public class Game2Game extends AppCompatActivity {
                     //paused = !paused;
             }
         });
+
     }
 
     private class Block{
         int value;
         View image;
-        //Point target;
-        boolean falling;
 
         public Block(int value){
             this.value = value;
-            falling = false;
+            //falling = false;
         }
         public void initialize(){
             Log.d("Test", "block created with value" + this.value);
@@ -245,12 +205,13 @@ public class Game2Game extends AppCompatActivity {
         public void initAnimation(int x, int y){
             Log.d("Test", "" + (image.getLeft() - coordinates[y][x].x) + "," + (image.getTop() - coordinates [y][x].y));
             if(!finishAnim(x,y)) {
+                AnimatorSet blockMove = new AnimatorSet();
                 ObjectAnimator moveX = ObjectAnimator.ofFloat(image, "x", coordinates[y][x].x);
                 ObjectAnimator moveY = ObjectAnimator.ofFloat(image, "y", coordinates[y][x].y);
-                as.playSequentially(moveX, moveY);
-                as.start();
+                blockMove.playSequentially(moveX, moveY);
+                animations.add(blockMove);
             }
-            falling = true;
+            //this.falling = true;
             Log.d("Test", "post AnimInit");
         }
 

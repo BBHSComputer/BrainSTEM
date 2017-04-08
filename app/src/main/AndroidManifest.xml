@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Game2Game" >
+        <activity android:name=".Game2Activity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
