@@ -245,12 +245,44 @@
                     <view key="view" contentMode="scaleToFill" id="4Ao-VP-69b">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w31-gz-Eg4">
+                                <rect key="frame" x="20" y="72" width="183" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="3N0-as-YEA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rules: 2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBz-wr-LfM">
+                                <rect key="frame" x="211" y="72" width="183" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="t9I-OR-fyr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="w31-gz-Eg4" firstAttribute="top" secondItem="4wb-7G-7hF" secondAttribute="bottom" constant="8" id="B6A-Hg-y67"/>
+                            <constraint firstItem="hBz-wr-LfM" firstAttribute="leading" secondItem="w31-gz-Eg4" secondAttribute="trailing" constant="8" id="DLv-W8-uaN"/>
+                            <constraint firstItem="hBz-wr-LfM" firstAttribute="width" secondItem="w31-gz-Eg4" secondAttribute="width" id="Wb7-pA-RhW"/>
+                            <constraint firstItem="hBz-wr-LfM" firstAttribute="trailing" secondItem="4Ao-VP-69b" secondAttribute="trailingMargin" id="bWC-n6-WVz"/>
+                            <constraint firstItem="hBz-wr-LfM" firstAttribute="top" secondItem="4wb-7G-7hF" secondAttribute="bottom" constant="8" id="cQp-LI-WlC"/>
+                            <constraint firstItem="w31-gz-Eg4" firstAttribute="leading" secondItem="4Ao-VP-69b" secondAttribute="leadingMargin" id="gpE-3w-VGx"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="level" destination="w31-gz-Eg4" id="UZJ-so-CTI"/>
+                        <outlet property="ruleCount" destination="hBz-wr-LfM" id="Qsu-85-wql"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6A7-kK-uIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2886" y="3333"/>
+            <point key="canvasLocation" x="2885.507246376812" y="3332.608695652174"/>
         </scene>
         <!--Game1 End View Controller-->
         <scene sceneID="9O1-hJ-u9Y">
@@ -386,7 +418,7 @@
         <scene sceneID="5Da-Ro-EGe">
             <objects>
                 <navigationController id="wnM-Db-2Gp" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cxg-4P-NNm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Cxg-4P-NNm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -414,7 +446,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="112"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TXf-08-Rww" id="pIY-TJ-BjJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="111.66666666666667"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="111"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="MLp-v2-o4M">

@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *image;
 @property (strong, nonatomic) IBOutlet UIImageView *checkbox;
-@property (nonatomic) BOOL selected;
+@property (nonatomic) BOOL checked;
 
 - (IBAction)select:(UIButton *)sender;
 

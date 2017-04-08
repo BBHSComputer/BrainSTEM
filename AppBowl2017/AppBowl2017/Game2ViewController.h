@@ -11,11 +11,15 @@
 
 @interface Game2ViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UILabel *level, *ruleCount;
+
 @property (strong, nonatomic) NSMutableArray *tileArray;
 @property (strong, nonatomic) NSMutableArray *tileLabels;
 @property (nonatomic) NSUInteger numberToDrop;
 @property (strong, nonatomic) UILabel *toDrop;
 @property (strong, nonatomic) NSMutableArray *buttons;
+
+@property (strong, nonatomic) UILabel *levelComplete;
 
 @property (strong, nonatomic) NSMutableArray *rules;
 

@@ -10,11 +10,11 @@
 
 @implementation PhotoCollectionViewCell
 
-@synthesize image, checkbox, selected;
+@synthesize image, checkbox, checked;
 
 - (IBAction)select:(UIButton *)sender {
-	selected = !selected;
-	[checkbox setImage:[UIImage imageNamed:(selected ? @"A" : @"B")]];
+	checked = !checked;
+	[checkbox setImage:[UIImage imageNamed:(checked ? @"A" : @"B")]];
 }
 
 @end
