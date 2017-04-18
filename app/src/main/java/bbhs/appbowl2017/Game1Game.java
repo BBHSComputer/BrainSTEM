@@ -27,12 +27,16 @@ public class Game1Game extends AppCompatActivity {
 
     RelativeLayout imageDisplay;
     ImageView[] imageHolders = new ImageView[20];
-	Uri[] imageMatches = new Uri[20];
+    String identity = "abcdefghijklmnopqrstuvwxyz";
+
+
     int taps = 0;
 
     boolean[] activated = new boolean[20];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game1_game);
         imageDisplay = (RelativeLayout) findViewById(R.id.images);
@@ -67,13 +71,17 @@ public class Game1Game extends AppCompatActivity {
 
             try {
                 Glide.with(this).load(Game1.cards[i / 2]).into(imageHolders[i]);
+                imageHolders[i].setContentDescription(identity.charAt(i/2)+"");
                 imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000"));
-                imageMatches[i] = Game1.cards[i/2];
+                imageHolders[i].setTag("fsdfa");
+
 
 
             } catch (ArrayIndexOutOfBoundsException a) {
                 Glide.with(this).load(Game1.cards[(i - 1) / 2]).into(imageHolders[i - 1]);
-                imageMatches[i-1] = Game1.cards[(i-1)/2];
+                imageHolders[i-1].setContentDescription(identity.charAt((i-1)/2)+"");
+                imageHolders[i-1].setTag("dfadsfd");
+                imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000"));
 
             }
         }
@@ -93,38 +101,40 @@ public class Game1Game extends AppCompatActivity {
     public void checkRotation(){
 
         if(taps == 2){
-        ImageView a= null,b = null;
+            ImageView a = null,b = null;
             for(int i = 0; i < imageHolders.length; i++){
              ImageView imageView = imageHolders[i];
 
 
 
-                try {
-                 if (imageView.getImageAlpha() == 255) {
-                    try{a.setImageAlpha(0);}
-                    catch (NullPointerException n){
-                        a = imageView;
-                    }
-                     try{b.setImageAlpha(0);}
-                     catch (NullPointerException n){
-                         b = imageView;
 
+                 if (imageView.getImageAlpha() == 255 && !imageView.getTag().toString().equals("Flipped")) {
+                     Log.d("iuo",imageView.getContentDescription().toString());
+                     if(a==null){
+                         a = imageView;
+                     }
+                     else{
+                         b = imageView;
                      }
                  }
 
 
 
 
-             }
-             catch(NullPointerException n){
 
-             }
+
 
             }
-            if(a.getDrawable().equals(b.getDrawable())){
-                    a.setVisibility(View.INVISIBLE);
-                      b.setVisibility(View.INVISIBLE);
-            }
+    a.getContentDescription();
+            if(a.getContentDescription().toString().equals(b.getContentDescription().toString())){
+
+    }
+            else{
+        a.setImageAlpha(0);
+        b.setImageAlpha(0);
+        a.setTag("Flipped");
+        b.setTag("Flipped");
+    }
      taps =0;
         }
     }
