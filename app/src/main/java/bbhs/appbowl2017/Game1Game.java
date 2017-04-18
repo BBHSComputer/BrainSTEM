@@ -21,158 +21,156 @@ import com.bumptech.glide.Glide;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Game1Game extends AppCompatActivity {
 
+	RelativeLayout imageDisplay;
+	ImageView[] imageHolders = new ImageView[20];
+	String identity = "abcdefghijklmnopqrstuvwxyz";
 
-    RelativeLayout imageDisplay;
-    ImageView[] imageHolders = new ImageView[20];
-    String identity = "abcdefghijklmnopqrstuvwxyz";
+	int taps = 0;
 
+	boolean[] activated = new boolean[20];
 
-    int taps = 0;
+	RelativeLayout layout;
 
-    boolean[] activated = new boolean[20];
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		layout = new RelativeLayout(this.getApplicationContext());
+		setContentView(layout);
+	}
 
+	@Override
+	protected void onPostCreate(Bundle savedBundleInstance) {
+		super.onPostCreate(savedBundleInstance);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game1_game);
-        imageDisplay = (RelativeLayout) findViewById(R.id.images);
+		int cellSize, numCols; // The length of the side of a cell, and the number of columns of cells, respectively. To be calculated.
 
+		final int w = layout.getWidth(); // The width of the screen
+		final int h = layout.getHeight(); // The height of the screen
+		final int n = Game1.cards.length * 2; // The number of images to create (2x the requested number, so each has a pair)
 
-        Log.d("op", "" + imageDisplay.getChildCount());
+		// The number of squares with which we can fill the x axis, given the maximum side of a
+		// square must be (width * height / num). w/sqrt(wh/n)=sqrt(wn/h)
+		final int numSqWideFitX = (int) Math.ceil(Math.sqrt(w * n / h));
+		double sqSizeFitX = w / numSqWideFitX; // The side length of a square given the x axis is filled
+		final int numSqTallFitX = (int) Math.ceil((double) n / numSqWideFitX); // The number of squares that will be fit vertically, given the x axis is filled.
+		if (sqSizeFitX * numSqTallFitX > h) sqSizeFitX = -1; // If there are too many squares vertically, set to -1 to ensure this value is not used.
 
+		// Repeat to fit y axis instead of x
+		final int numSqTallFitY = (int) Math.ceil(Math.sqrt(h * n / w));
+		double sqSizeFitY = h / numSqTallFitY;
+		final int numSqWideFitY = (int) Math.ceil((float) n / numSqTallFitY);
+		if (sqSizeFitY * numSqWideFitY > w) sqSizeFitY = -1;
 
-        for (int i = 0; i < imageDisplay.getChildCount(); i++) {
-            imageHolders[i] = (ImageView) imageDisplay.getChildAt(i);
+		if (sqSizeFitX > sqSizeFitY) { // Pick the size with the bigger square size
+			cellSize = (int) sqSizeFitX;
+			numCols = numSqWideFitX;
+		} else {
+			if (sqSizeFitY == -1) return; // If both were invalid, don't do anything.
+			cellSize = (int) sqSizeFitY;
+			numCols = numSqWideFitY;
+		}
 
-            imageHolders[i].setImageAlpha(0);
-            final int n = i;
-            imageHolders[i].setOnClickListener(new View.OnClickListener() {
-               public boolean flipped = true;
-                ImageView imgv = imageHolders[n];
+		final int dx = (w - cellSize * numCols) / 2; // The x offset, to center the tiles.
 
-                @Override
-                public void onClick(View v) {
-                    flip(imgv, flipped);
-                    flipped = !flipped;
-                    taps++;
-                    checkRotation();
-                }
+		final List<Integer> cards = new ArrayList<>(n * 2);
+		for (int i = 0; i < Game1.cards.length; i++) {
+			cards.add(i);
+			cards.add(i);
+		}
+		Collections.shuffle(cards);
 
-            });
+		for (int i = 0; i < n; i++) { // Create the image views
+			// Get the imageindex from the shuffled list
+			int cardNumber = cards.get(i);
 
-        }
+			// Create a card and configure it
+			ImageView card = new ImageView(this.getApplicationContext());
+			Glide.with(this).load(Game1.cards[i / 2]).into(imageHolders[i]);
 
+			int x = i % numCols; // Calculate x and y based on i
+			int y = i / numCols;
+			// Position the card
+			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(cellSize - 16, cellSize - 16);
+			params.leftMargin = dx + x * cellSize + 8;
+			params.topMargin = y * cellSize + 8;
 
-        for (int i = 0; i <= Game1.cards.length * 2; i++) {
+			layout.addView(card, params);
+		}
+	}
 
-            try {
-                Glide.with(this).load(Game1.cards[i / 2]).into(imageHolders[i]);
-                imageHolders[i].setContentDescription(identity.charAt(i/2)+"");
-                imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000"));
-                imageHolders[i].setTag("fsdfa");
+	public void flip(ImageView imageView, boolean flipped) {
+		if (flipped) {
+			imageView.setImageAlpha(255);
+		} else {
+			imageView.setImageAlpha(0);
+		}
+	}
 
+	public void checkRotation() {
+		if (taps == 2) {
+			ImageView a = null, b = null;
+			for (int i = 0; i < imageHolders.length; i++) {
+				ImageView imageView = imageHolders[i];
 
+				if (imageView.getImageAlpha() == 255 && !imageView.getTag().toString().equals("Flipped")) {
+					Log.d("iuo", imageView.getContentDescription().toString());
+					if (a == null) {
+						a = imageView;
+					} else {
+						b = imageView;
+					}
+				}
+			}
+			a.getContentDescription();
+			if (a.getContentDescription().toString().equals(b.getContentDescription().toString())) {
+				// TODO
+			} else {
+				a.setImageAlpha(0);
+				b.setImageAlpha(0);
+				a.setTag("Flipped");
+				b.setTag("Flipped");
+			}
+			taps = 0;
+		}
+	}
 
-            } catch (ArrayIndexOutOfBoundsException a) {
-                Glide.with(this).load(Game1.cards[(i - 1) / 2]).into(imageHolders[i - 1]);
-                imageHolders[i-1].setContentDescription(identity.charAt((i-1)/2)+"");
-                imageHolders[i-1].setTag("dfadsfd");
-                imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000"));
+	public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+		// Raw height and width of image
+		final int height = options.outHeight;
+		final int width = options.outWidth;
+		int inSampleSize = 1;
 
-            }
-        }
-    }
+		if (height > reqHeight || width > reqWidth) {
+			final int halfHeight = height / 2;
+			final int halfWidth = width / 2;
 
+			// Calculate the largest inSampleSize value that is a power of 2 and keeps both
+			// height and width larger than the requested height and width.
+			while ((halfHeight / inSampleSize) > reqHeight && (halfWidth / inSampleSize) > reqWidth) {
+				inSampleSize *= 2;
+			}
+		}
 
-    public void flip(ImageView imageView, boolean flipped) {
-        if (flipped) {
-            imageView.setImageAlpha(255);
-        } else {
-            imageView.setImageAlpha(0);
-        }
-    }
+		return inSampleSize;
+	}
 
+	public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight) {
+		// First decode with inJustDecodeBounds=true to check dimensions
+		final BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+		BitmapFactory.decodeResource(res, resId, options);
 
+		// Calculate inSampleSize
+		options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
 
-    public void checkRotation(){
-
-        if(taps == 2){
-            ImageView a = null,b = null;
-            for(int i = 0; i < imageHolders.length; i++){
-             ImageView imageView = imageHolders[i];
-
-
-
-
-                 if (imageView.getImageAlpha() == 255 && !imageView.getTag().toString().equals("Flipped")) {
-                     Log.d("iuo",imageView.getContentDescription().toString());
-                     if(a==null){
-                         a = imageView;
-                     }
-                     else{
-                         b = imageView;
-                     }
-                 }
-
-
-
-
-
-
-
-            }
-    a.getContentDescription();
-            if(a.getContentDescription().toString().equals(b.getContentDescription().toString())){
-
-    }
-            else{
-        a.setImageAlpha(0);
-        b.setImageAlpha(0);
-        a.setTag("Flipped");
-        b.setTag("Flipped");
-    }
-     taps =0;
-        }
-    }
-    public static int calculateInSampleSize(
-            BitmapFactory.Options options, int reqWidth, int reqHeight) {
-        // Raw height and width of image
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            final int halfHeight = height / 2;
-            final int halfWidth = width / 2;
-
-            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-            // height and width larger than the requested height and width.
-            while ((halfHeight / inSampleSize) > reqHeight
-                    && (halfWidth / inSampleSize) > reqWidth) {
-                inSampleSize *= 2;
-            }
-        }
-
-        return inSampleSize;
-    }
-    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
-                                                         int reqWidth, int reqHeight) {
-
-        // First decode with inJustDecodeBounds=true to check dimensions
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeResource(res, resId, options);
-
-        // Calculate inSampleSize
-        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-
-        // Decode bitmap with inSampleSize set
-        options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeResource(res, resId, options);
-    }
+		// Decode bitmap with inSampleSize set
+		options.inJustDecodeBounds = false;
+		return BitmapFactory.decodeResource(res, resId, options);
+	}
 }
