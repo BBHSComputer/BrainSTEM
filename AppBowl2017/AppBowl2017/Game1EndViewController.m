@@ -18,6 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	// Set the text of the labels
 	[time setText:timeString];
 	[moves setText:movesString];
 }

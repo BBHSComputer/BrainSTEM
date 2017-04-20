@@ -10,6 +10,7 @@
 
 @implementation Rule
 
+/// Is the first value allowed next to the second value?
 - (BOOL)isNewTile:(NSNumber *)tile allowedNextTo:(NSNumber *)adjacent inTileArray:(NSArray *)tiles {
 	return YES;
 }

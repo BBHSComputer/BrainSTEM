@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+/// A rule. Rules define whether or not two tiles are allowed to be adjacent
 @interface Rule : NSObject
 
 - (BOOL)isNewTile:(NSNumber *)tile allowedNextTo:(NSNumber *)adjacent inTileArray:(NSArray *)tiles;

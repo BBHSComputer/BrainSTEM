@@ -14,11 +14,11 @@
 
 @interface Game1SettingsViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (strong, nonatomic) IBOutlet UILabel *stepperValue;
-@property (strong, nonatomic) IBOutlet UIStepper *stepper;
-@property (strong, nonatomic) IBOutlet UICollectionView *collection;
+@property (strong, nonatomic) IBOutlet UILabel *stepperValue; // The display for the value of the stepper
+@property (strong, nonatomic) IBOutlet UIStepper *stepper; // The stepper for the number of images
+@property (strong, nonatomic) IBOutlet UICollectionView *collection; // The collection view for the images
 
-@property (strong, nonatomic) NSMutableArray *images;
+@property (strong, nonatomic) NSMutableArray *images; // An array of the selected images
 
 - (IBAction)stepperChanged:(UIStepper *)sender;
 

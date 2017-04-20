@@ -10,6 +10,7 @@
 
 @interface Game1EndViewController : UIViewController
 
+// The player's score (time taken, moves made)
 @property (strong, nonatomic) IBOutlet UILabel *time, *moves;
 @property (strong, nonatomic) NSString *timeString, *movesString;
 

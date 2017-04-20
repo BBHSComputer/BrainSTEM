@@ -369,7 +369,9 @@ BOOL dropping = NO;
 
 /// Add a repeating animation that changes the alpha of the given button from 0.4 to 0.6 and back
 - (void)startAlphaFlash:(UIButton *)button {
-	[button setAlpha:0.6];
+	[button setAlpha:0.6]; // Start at a = 0.6
+	
+	// Every second, set a to 0.4, then reverse and repeat
 	[UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat | UIViewAnimationOptionAllowUserInteraction animations:^{
 		[button setAlpha:0.4];
 	} completion:nil];

@@ -8,6 +8,7 @@
 
 #import "Rule.h"
 
+/// A rule that disallows two specific values from being next to each other
 @interface AdjacencyRule : Rule
 
 @property (readonly, strong, nonatomic) NSNumber *tile1, *tile2;

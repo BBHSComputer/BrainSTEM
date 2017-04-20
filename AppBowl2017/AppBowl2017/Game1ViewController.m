@@ -219,12 +219,16 @@ TileImageView *a, *b;
 
 /// Set the game time every second
 - (void)incrementTime {
-	if (gameTime >= 0) {
+	if (gameTime >= 0) { // If the game hasn't ended yet
 		gameTime++;
 		NSInteger seconds = gameTime % 60; // Split seconds into h/m/s
 		NSInteger minutes = (gameTime / 60) % 60;
 		NSInteger hours = (gameTime / 3600);
+		
+		// Format the time string
 		[time setText:[NSString stringWithFormat:@"Time: %li:%02li:%02li", (long)hours, minutes, seconds]];
+		
+		// Repeat in 1 second
 		[self performSelector:@selector(incrementTime) withObject:nil afterDelay:1];
 	}
 }
@@ -248,10 +252,10 @@ TileImageView *a, *b;
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	if ([segue.identifier isEqualToString:@"Win"]) {
+	if ([segue.identifier isEqualToString:@"Win"]) { // When the game is won...
 		Game1EndViewController *end = (Game1EndViewController *) [segue destinationViewController];
-		[end setTimeString:[self.time text]];
-		[end setMovesString:[self.moves text]];
+		[end setTimeString:[self.time text]]; // Send the time...
+		[end setMovesString:[self.moves text]]; // ...and the number of moves to the "You Win!" screen.
 	}
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

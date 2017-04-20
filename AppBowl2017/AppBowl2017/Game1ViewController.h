@@ -11,9 +11,12 @@
 
 @interface Game1ViewController : UIViewController
 
+// Labels showing current score
 @property (strong, nonatomic) IBOutlet UILabel *time, *moves;
 
+// The list of images
 @property (strong, nonatomic) NSMutableArray *images;
+// The list of image views
 @property (strong, nonatomic) NSMutableArray *imageViews;
 
 - (void)layoutImages:(int)numberOfImages;

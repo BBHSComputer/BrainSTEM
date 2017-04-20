@@ -37,7 +37,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     GameListTableViewCell *cell = (GameListTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"GameCell" forIndexPath:indexPath];
-    
+	
+	// Configure the table cells
 	[cell.name setText:@[@"Concentration", @"Neostriatum", @"DDR Clone", @"Help what's the last game"][indexPath.row]];
 	[cell.foci setText:@[@"Memory", @"Perception, Memory", @"Reflexes, Dexterity", @"Memory"][indexPath.row]];
 	[cell.image setImage:[UIImage imageNamed:@"AppIcon"]];
