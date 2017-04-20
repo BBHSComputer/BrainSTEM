@@ -67,7 +67,7 @@ public class Game1SettingsActivity extends AppCompatActivity {
                 }
                 else {
                     try{
-                        Game1.cards = new Uri[Integer.parseInt(getPairs.getText().toString()) > 10 ? 10 : Integer.parseInt(getPairs.getText().toString())];
+                        Game1.cards = new Uri[Integer.parseInt(getPairs.getText().toString()) > 10 ? 10 : Integer.parseInt(getPairs.getText().toString())]; //make sure num of cards is <= 10
 
                         count = 0;
 
@@ -83,7 +83,7 @@ public class Game1SettingsActivity extends AppCompatActivity {
                     }
                     catch(NumberFormatException e){
                         Snackbar snackbar = Snackbar
-                                .make(imageDisplay, "Please enter a number of pairs.", Snackbar.LENGTH_LONG);
+                                .make(imageDisplay, "Please enter a number of pairs.", Snackbar.LENGTH_LONG); //if no cards entered
                         snackbar.show();
 
                     }
@@ -111,7 +111,7 @@ public class Game1SettingsActivity extends AppCompatActivity {
                 }
                 else {
                     Game1.test =5;
-                    startActivity(new Intent(getApplicationContext(), Game1Game.class));
+                    startActivity(new Intent(getApplicationContext(), Game1Game.class)); //load up the game
                 }
             }
         });
@@ -145,7 +145,7 @@ public class Game1SettingsActivity extends AppCompatActivity {
 
     }
 
-    public void getImage() {
+    public void getImage() { //simplieifes image retrival calls
         Intent pickPhoto = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(pickPhoto, 1);//one can be replaced with any action code

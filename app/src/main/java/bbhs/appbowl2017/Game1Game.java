@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.ViewTarget;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class Game1Game extends AppCompatActivity {
     int taps = 0;
 
     boolean[] activated = new boolean[20];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -57,7 +59,7 @@ public class Game1Game extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     flip(imgv, flipped);
-                    flipped = !flipped;
+                    flipped = !flipped; //if flippped unflip, otherwise don't, add to the amount of taps, check rotations of everything
                     taps++;
                     checkRotation();
                 }
@@ -71,16 +73,17 @@ public class Game1Game extends AppCompatActivity {
 
             try {
                 Glide.with(this).load(Game1.cards[i / 2]).into(imageHolders[i]);
+
                 imageHolders[i].setContentDescription(identity.charAt(i/2)+"");
-                imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000"));
-                imageHolders[i].setTag("fsdfa");
+                imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000")); //load image, set color, give it a tag indicating it hasnt been flipped
+                imageHolders[i].setTag(3,"fsdfa");
 
 
 
             } catch (ArrayIndexOutOfBoundsException a) {
                 Glide.with(this).load(Game1.cards[(i - 1) / 2]).into(imageHolders[i - 1]);
                 imageHolders[i-1].setContentDescription(identity.charAt((i-1)/2)+"");
-                imageHolders[i-1].setTag("dfadsfd");
+                imageHolders[i-1].setTag(3,"dfadsfd");//load image, set color, give it a tag indicating it hasnt been flipped
                 imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000"));
 
             }
@@ -88,7 +91,7 @@ public class Game1Game extends AppCompatActivity {
     }
 
 
-    public void flip(ImageView imageView, boolean flipped) {
+    public void flip(ImageView imageView, boolean flipped) { //flips image by turning alpha 0 or 255
         if (flipped) {
             imageView.setImageAlpha(255);
         } else {
