@@ -1,37 +1,22 @@
 package bbhs.appbowl2017;
 
-import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Handler;
-import android.os.SystemClock;
-import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
-public class Game1Game extends AppCompatActivity {
+public class TileGameActivity extends AppCompatActivity {
 
 	int taps = 0;
 
@@ -56,7 +41,7 @@ public class Game1Game extends AppCompatActivity {
 
 				int cellSize, numCols; // The length of the side of a cell, and the number of columns of cells, respectively. To be calculated.
 
-				final int n = Game1.cards.length * 2; // The number of images to create (2x the requested number, so each has a pair)
+				final int n = Tile.cards.length * 2; // The number of images to create (2x the requested number, so each has a pair)
 
 				// The number of squares with which we can fill the x axis, given the maximum side of a
 				// square must be (width * height / num). w/sqrt(wh/n)=sqrt(wn/h)
@@ -84,7 +69,7 @@ public class Game1Game extends AppCompatActivity {
 
 				// Create a shuffled list of cards
 				final List<Integer> cards = new ArrayList<>(n);
-				for (int i = 0; i < Game1.cards.length; i++) {
+				for (int i = 0; i < Tile.cards.length; i++) {
 					cards.add(i);
 					cards.add(i);
 				}
@@ -94,9 +79,9 @@ public class Game1Game extends AppCompatActivity {
 
 				for (int i = 0; i < n; i++) { // Create the image views
 					// Create a card
-					imageHolders[i] = new ImageView(Game1Game.this.getApplicationContext());
+					imageHolders[i] = new ImageView(TileGameActivity.this.getApplicationContext());
 					// Set the image
-					Glide.with(Game1Game.this).load(Game1.cards[cards.get(i)]).into(imageHolders[i]);
+					Glide.with(TileGameActivity.this).load(Tile.cards[cards.get(i)]).into(imageHolders[i]);
 
 					int x = i % numCols; // Calculate x and y based on i
 					int y = i / numCols;
