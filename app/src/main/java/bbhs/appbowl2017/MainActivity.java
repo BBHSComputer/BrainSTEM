@@ -78,10 +78,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 hello.setText("Loading up Game 4...");
-                Snackbar snackbar = Snackbar
-                        .make(layout, "Games 2-4 are disabled for this demo.", Snackbar.LENGTH_LONG);
+                startActivity( new Intent(getApplicationContext(),Game4.class));
 
-                snackbar.show();
             }
         });
     }

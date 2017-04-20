@@ -62,7 +62,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Game 4"
+        android:text="Music"
         android:id="@+id/game4"
         android:clickable="true"
         android:enabled="true"
