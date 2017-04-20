@@ -7,13 +7,16 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -24,6 +27,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Game1Game extends AppCompatActivity {
 
@@ -35,73 +41,156 @@ public class Game1Game extends AppCompatActivity {
 
 	boolean[] activated = new boolean[20];
 
-	RelativeLayout layout;
+	private RelativeLayout layout;
+
+	private int prevW = 0, prevH = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		layout = new RelativeLayout(this.getApplicationContext());
 		setContentView(layout);
-	}
 
-	@Override
-	protected void onPostCreate(Bundle savedBundleInstance) {
-		super.onPostCreate(savedBundleInstance);
+		layout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+			@Override
+			public void onLayoutChange(View view, int left, int top, int right, int bottom, int leftWas, int topWas, int rightWas, int bottomWas) {
+				if (left == leftWas && right == rightWas && top == topWas && bottom == bottomWas) return;
 
-		int cellSize, numCols; // The length of the side of a cell, and the number of columns of cells, respectively. To be calculated.
+				Log.d("Info/GlobalLayout", System.currentTimeMillis() + "Run!" + prevW + " " + prevH);
 
-		final int w = layout.getWidth(); // The width of the screen
-		final int h = layout.getHeight(); // The height of the screen
-		final int n = Game1.cards.length * 2; // The number of images to create (2x the requested number, so each has a pair)
+				final int w = prevW = layout.getWidth(); // The width of the screen
+				final int h = prevH = layout.getHeight(); // The height of the screen
 
-		// The number of squares with which we can fill the x axis, given the maximum side of a
-		// square must be (width * height / num). w/sqrt(wh/n)=sqrt(wn/h)
-		final int numSqWideFitX = (int) Math.ceil(Math.sqrt(w * n / h));
-		double sqSizeFitX = w / numSqWideFitX; // The side length of a square given the x axis is filled
-		final int numSqTallFitX = (int) Math.ceil((double) n / numSqWideFitX); // The number of squares that will be fit vertically, given the x axis is filled.
-		if (sqSizeFitX * numSqTallFitX > h) sqSizeFitX = -1; // If there are too many squares vertically, set to -1 to ensure this value is not used.
+				// if (w * h == 0 || (w == prevW && h == prevH)) return; // If the layout has not been resized, to not layout again. This prevents infinite looping.
 
-		// Repeat to fit y axis instead of x
-		final int numSqTallFitY = (int) Math.ceil(Math.sqrt(h * n / w));
-		double sqSizeFitY = h / numSqTallFitY;
-		final int numSqWideFitY = (int) Math.ceil((float) n / numSqTallFitY);
-		if (sqSizeFitY * numSqWideFitY > w) sqSizeFitY = -1;
+				int cellSize, numCols; // The length of the side of a cell, and the number of columns of cells, respectively. To be calculated.
 
-		if (sqSizeFitX > sqSizeFitY) { // Pick the size with the bigger square size
-			cellSize = (int) sqSizeFitX;
-			numCols = numSqWideFitX;
-		} else {
-			if (sqSizeFitY == -1) return; // If both were invalid, don't do anything.
-			cellSize = (int) sqSizeFitY;
-			numCols = numSqWideFitY;
-		}
+				final int n = Game1.cards.length * 2; // The number of images to create (2x the requested number, so each has a pair)
 
-		final int dx = (w - cellSize * numCols) / 2; // The x offset, to center the tiles.
+				// The number of squares with which we can fill the x axis, given the maximum side of a
+				// square must be (width * height / num). w/sqrt(wh/n)=sqrt(wn/h)
+				final int numSqWideFitX = (int) Math.ceil(Math.sqrt(w * n / h));
+				double sqSizeFitX = w / numSqWideFitX; // The side length of a square given the x axis is filled
+				final int numSqTallFitX = (int) Math.ceil((double) n / numSqWideFitX); // The number of squares that will be fit vertically, given the x axis is filled.
+				if (sqSizeFitX * numSqTallFitX > h) sqSizeFitX = -1; // If there are too many squares vertically, set to -1 to ensure this value is not used.
 
-		final List<Integer> cards = new ArrayList<>(n * 2);
-		for (int i = 0; i < Game1.cards.length; i++) {
-			cards.add(i);
-			cards.add(i);
-		}
-		Collections.shuffle(cards);
+				// Repeat to fit y axis instead of x
+				final int numSqTallFitY = (int) Math.ceil(Math.sqrt(h * n / w));
+				double sqSizeFitY = h / numSqTallFitY;
+				final int numSqWideFitY = (int) Math.ceil((float) n / numSqTallFitY);
+				if (sqSizeFitY * numSqWideFitY > w) sqSizeFitY = -1;
 
-		for (int i = 0; i < n; i++) { // Create the image views
-			// Get the imageindex from the shuffled list
-			int cardNumber = cards.get(i);
+				if (sqSizeFitX > sqSizeFitY) { // Pick the size with the bigger square size
+					cellSize = (int) sqSizeFitX;
+					numCols = numSqWideFitX;
+				} else {
+					if (sqSizeFitY == -1) return; // If both were invalid, don't do anything.
+					cellSize = (int) sqSizeFitY;
+					numCols = numSqWideFitY;
+				}
 
-			// Create a card and configure it
-			ImageView card = new ImageView(this.getApplicationContext());
-			Glide.with(this).load(Game1.cards[i / 2]).into(imageHolders[i]);
+				final int dx = (w - cellSize * numCols) / 2; // The x offset, to center the tiles.
 
-			int x = i % numCols; // Calculate x and y based on i
-			int y = i / numCols;
-			// Position the card
-			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(cellSize - 16, cellSize - 16);
-			params.leftMargin = dx + x * cellSize + 8;
-			params.topMargin = y * cellSize + 8;
+				final List<Integer> cards = new ArrayList<>(n * 2);
+				for (int i = 0; i < Game1.cards.length; i++) {
+					cards.add(i);
+					cards.add(i);
+				}
+				Collections.shuffle(cards);
 
-			layout.addView(card, params);
-		}
+				for (int i = 0; i < n; i++) { // Create the image views
+					// Get the imageindex from the shuffled list
+					int cardNumber = cards.get(i);
+
+					// Create a card and configure it
+					ImageView card = new ImageView(Game1Game.this.getApplicationContext());
+					Glide.with(Game1Game.this).load(Game1.cards[cards.get(i)]).into(card);
+
+					int x = i % numCols; // Calculate x and y based on i
+					int y = i / numCols;
+					// Position the card
+					RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(cellSize - 16, cellSize - 16);
+					params.leftMargin = dx + x * cellSize + 8;
+					params.topMargin = y * cellSize + 8;
+
+					// Add the card to the layout
+					layout.addView(card, params);
+				}
+			}
+		});
+//		layout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() { // This allows the block to be called when the size of view is already calculated (from http://stackoverflow.com/a/18863283)
+//
+//			private boolean shouldRun = true;
+//
+//			@Override
+//			public void onGlobalLayout() {
+//				if (!shouldRun) return;
+//				shouldRun = false;
+//				// layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//
+//				Log.d("Info/GlobalLayout", System.currentTimeMillis() + "Run!" + prevW + " " + prevH);
+//
+//				final int w = prevW = layout.getWidth(); // The width of the screen
+//				final int h = prevH = layout.getHeight(); // The height of the screen
+//
+//				// if (w * h == 0 || (w == prevW && h == prevH)) return; // If the layout has not been resized, to not layout again. This prevents infinite looping.
+//
+//				int cellSize, numCols; // The length of the side of a cell, and the number of columns of cells, respectively. To be calculated.
+//
+//				final int n = Game1.cards.length * 2; // The number of images to create (2x the requested number, so each has a pair)
+//
+//				// The number of squares with which we can fill the x axis, given the maximum side of a
+//				// square must be (width * height / num). w/sqrt(wh/n)=sqrt(wn/h)
+//				final int numSqWideFitX = (int) Math.ceil(Math.sqrt(w * n / h));
+//				double sqSizeFitX = w / numSqWideFitX; // The side length of a square given the x axis is filled
+//				final int numSqTallFitX = (int) Math.ceil((double) n / numSqWideFitX); // The number of squares that will be fit vertically, given the x axis is filled.
+//				if (sqSizeFitX * numSqTallFitX > h) sqSizeFitX = -1; // If there are too many squares vertically, set to -1 to ensure this value is not used.
+//
+//				// Repeat to fit y axis instead of x
+//				final int numSqTallFitY = (int) Math.ceil(Math.sqrt(h * n / w));
+//				double sqSizeFitY = h / numSqTallFitY;
+//				final int numSqWideFitY = (int) Math.ceil((float) n / numSqTallFitY);
+//				if (sqSizeFitY * numSqWideFitY > w) sqSizeFitY = -1;
+//
+//				if (sqSizeFitX > sqSizeFitY) { // Pick the size with the bigger square size
+//					cellSize = (int) sqSizeFitX;
+//					numCols = numSqWideFitX;
+//				} else {
+//					if (sqSizeFitY == -1) return; // If both were invalid, don't do anything.
+//					cellSize = (int) sqSizeFitY;
+//					numCols = numSqWideFitY;
+//				}
+//
+//				final int dx = (w - cellSize * numCols) / 2; // The x offset, to center the tiles.
+//
+//				final List<Integer> cards = new ArrayList<>(n * 2);
+//				for (int i = 0; i < Game1.cards.length; i++) {
+//					cards.add(i);
+//					cards.add(i);
+//				}
+//				Collections.shuffle(cards);
+//
+//				for (int i = 0; i < n; i++) { // Create the image views
+//					// Get the imageindex from the shuffled list
+//					int cardNumber = cards.get(i);
+//
+//					// Create a card and configure it
+//					ImageView card = new ImageView(Game1Game.this.getApplicationContext());
+//					Glide.with(Game1Game.this).load(Game1.cards[i / 2]).into(card);
+//
+//					int x = i % numCols; // Calculate x and y based on i
+//					int y = i / numCols;
+//					// Position the card
+//					RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(cellSize - 16, cellSize - 16);
+//					params.leftMargin = dx + x * cellSize + 8;
+//					params.topMargin = y * cellSize + 8;
+//
+//					// Add the card to the layout
+//					layout.addView(card, params);
+//				}
+//				shouldRun = true;
+//			}
+//		});
 	}
 
 	public void flip(ImageView imageView, boolean flipped) {
