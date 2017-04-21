@@ -7,15 +7,10 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.graphics.Point;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,9 +19,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
 
-public class Game2Game extends AppCompatActivity {
+public class StackGameActivity extends AppCompatActivity {
 
     private int textSize = 36;
     private int gridSizeX = 5;
@@ -51,7 +45,7 @@ public class Game2Game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game2game);
+        setContentView(R.layout.activity_stackgame);
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Log.d("Test", "post SetContentView");
 

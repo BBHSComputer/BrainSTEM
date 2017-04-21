@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Game2Settings extends AppCompatActivity{
+public class StackSettingsActivity extends AppCompatActivity{
     
 	private Button home;
 

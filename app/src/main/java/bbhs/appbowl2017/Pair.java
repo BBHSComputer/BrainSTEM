@@ -5,14 +5,28 @@ public class Pair{
     private int b;
 
     public Pair(int a, int b){
-        this.a = a;
-        this.b = b;
+        this.a = Math.min(a, b);
+        this.b = Math.max(a, b);
     }
-    public boolean isSame(int a, int b){
-        if((this.a == a && this.b == b)||(this.b == a && this.a == b)){
-            return true;
-        }
-        return false;
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + a;
+        result = prime * result + b;
+        return result;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        final Pair other = (Pair) obj;
+        if (a != other.a) return false;
+        if (b != other.b) return false;
+        return true;
     }
 
     public boolean containsNum(int n){
