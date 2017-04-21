@@ -13,11 +13,11 @@
 		9A4727C71E67CE1700E98AAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4727C51E67CE1700E98AAE /* LaunchScreen.storyboard */; };
 		9A4727D21E67CE1700E98AAE /* AppBowl2017Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727D11E67CE1700E98AAE /* AppBowl2017Tests.m */; };
 		9A4727DD1E67CE1700E98AAE /* AppBowl2017UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727DC1E67CE1700E98AAE /* AppBowl2017UITests.m */; };
-		9A4727F21E684D5200E98AAE /* Game1SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727F11E684D5200E98AAE /* Game1SettingsViewController.m */; };
-		9A4727F51E684D7F00E98AAE /* Game1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727F41E684D7F00E98AAE /* Game1ViewController.m */; };
+		9A4727F21E684D5200E98AAE /* TileSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727F11E684D5200E98AAE /* TileSettingsViewController.m */; };
+		9A4727F51E684D7F00E98AAE /* TileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727F41E684D7F00E98AAE /* TileViewController.m */; };
 		9A4727F81E68BF2C00E98AAE /* TileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727F71E68BF2C00E98AAE /* TileImageView.m */; };
 		9A4727FA1E69E0A900E98AAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A4727F91E69E0A900E98AAE /* Assets.xcassets */; };
-		9A4727FD1E6A014200E98AAE /* Game1EndViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727FC1E6A014200E98AAE /* Game1EndViewController.m */; };
+		9A4727FD1E6A014200E98AAE /* TileEndViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727FC1E6A014200E98AAE /* TileEndViewController.m */; };
 		9AD1C3631E9549A400C8F86E /* Rule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1C3621E9549A300C8F86E /* Rule.m */; };
 		9AD1C3661E954A8000C8F86E /* AdjacencyRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1C3651E954A8000C8F86E /* AdjacencyRule.m */; };
 		9AEAFC3A1E80170D00908941 /* PlayfairDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC341E80170D00908941 /* PlayfairDisplay-Black.ttf */; };
@@ -46,11 +46,9 @@
 		9AEAFC631E80171C00908941 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC511E80171C00908941 /* Montserrat-ThinItalic.ttf */; };
 		9AEAFC671E81D65000908941 /* GameListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFC661E81D65000908941 /* GameListTableViewCell.m */; };
 		9AEAFC6A1E81D73700908941 /* GameListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFC691E81D73700908941 /* GameListTableViewController.m */; };
-		9AEAFC6D1E81DA3500908941 /* Game2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFC6C1E81DA3500908941 /* Game2ViewController.m */; };
-		9AEAFC701E81DA3F00908941 /* Game3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFC6F1E81DA3F00908941 /* Game3ViewController.m */; };
-		9AEAFC731E81DA4600908941 /* Game4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFC721E81DA4600908941 /* Game4ViewController.m */; };
+		9AEAFC6D1E81DA3500908941 /* StackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFC6C1E81DA3500908941 /* StackViewController.m */; };
 		9AEAFC791E82C30A00908941 /* PhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFC781E82C30A00908941 /* PhotoCollectionViewCell.m */; };
-		9AEAFCBB1E8A9A9500908941 /* Game2SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFCBA1E8A9A9500908941 /* Game2SettingsViewController.m */; };
+		9AEAFCBB1E8A9A9500908941 /* StackSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFCBA1E8A9A9500908941 /* StackSettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,15 +82,15 @@
 		9A4727D81E67CE1700E98AAE /* AppBowl2017UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppBowl2017UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4727DC1E67CE1700E98AAE /* AppBowl2017UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppBowl2017UITests.m; sourceTree = "<group>"; };
 		9A4727DE1E67CE1700E98AAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9A4727F01E684D5200E98AAE /* Game1SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game1SettingsViewController.h; sourceTree = "<group>"; };
-		9A4727F11E684D5200E98AAE /* Game1SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game1SettingsViewController.m; sourceTree = "<group>"; };
-		9A4727F31E684D7F00E98AAE /* Game1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game1ViewController.h; sourceTree = "<group>"; };
-		9A4727F41E684D7F00E98AAE /* Game1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game1ViewController.m; sourceTree = "<group>"; };
+		9A4727F01E684D5200E98AAE /* TileSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileSettingsViewController.h; sourceTree = "<group>"; };
+		9A4727F11E684D5200E98AAE /* TileSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileSettingsViewController.m; sourceTree = "<group>"; };
+		9A4727F31E684D7F00E98AAE /* TileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileViewController.h; sourceTree = "<group>"; };
+		9A4727F41E684D7F00E98AAE /* TileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileViewController.m; sourceTree = "<group>"; };
 		9A4727F61E68BF2C00E98AAE /* TileImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileImageView.h; sourceTree = "<group>"; };
 		9A4727F71E68BF2C00E98AAE /* TileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileImageView.m; sourceTree = "<group>"; };
 		9A4727F91E69E0A900E98AAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9A4727FB1E6A014200E98AAE /* Game1EndViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game1EndViewController.h; sourceTree = "<group>"; };
-		9A4727FC1E6A014200E98AAE /* Game1EndViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game1EndViewController.m; sourceTree = "<group>"; };
+		9A4727FB1E6A014200E98AAE /* TileEndViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileEndViewController.h; sourceTree = "<group>"; };
+		9A4727FC1E6A014200E98AAE /* TileEndViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileEndViewController.m; sourceTree = "<group>"; };
 		9AD1C3611E9549A300C8F86E /* Rule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rule.h; sourceTree = "<group>"; };
 		9AD1C3621E9549A300C8F86E /* Rule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rule.m; sourceTree = "<group>"; };
 		9AD1C3641E954A8000C8F86E /* AdjacencyRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjacencyRule.h; sourceTree = "<group>"; };
@@ -125,16 +123,12 @@
 		9AEAFC661E81D65000908941 /* GameListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameListTableViewCell.m; sourceTree = "<group>"; };
 		9AEAFC681E81D73700908941 /* GameListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameListTableViewController.h; sourceTree = "<group>"; };
 		9AEAFC691E81D73700908941 /* GameListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameListTableViewController.m; sourceTree = "<group>"; };
-		9AEAFC6B1E81DA3500908941 /* Game2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game2ViewController.h; sourceTree = "<group>"; };
-		9AEAFC6C1E81DA3500908941 /* Game2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game2ViewController.m; sourceTree = "<group>"; };
-		9AEAFC6E1E81DA3F00908941 /* Game3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game3ViewController.h; sourceTree = "<group>"; };
-		9AEAFC6F1E81DA3F00908941 /* Game3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game3ViewController.m; sourceTree = "<group>"; };
-		9AEAFC711E81DA4600908941 /* Game4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game4ViewController.h; sourceTree = "<group>"; };
-		9AEAFC721E81DA4600908941 /* Game4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game4ViewController.m; sourceTree = "<group>"; };
+		9AEAFC6B1E81DA3500908941 /* StackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackViewController.h; sourceTree = "<group>"; };
+		9AEAFC6C1E81DA3500908941 /* StackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackViewController.m; sourceTree = "<group>"; };
 		9AEAFC771E82C30A00908941 /* PhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionViewCell.h; sourceTree = "<group>"; };
 		9AEAFC781E82C30A00908941 /* PhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewCell.m; sourceTree = "<group>"; };
-		9AEAFCB91E8A9A9500908941 /* Game2SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game2SettingsViewController.h; sourceTree = "<group>"; };
-		9AEAFCBA1E8A9A9500908941 /* Game2SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game2SettingsViewController.m; sourceTree = "<group>"; };
+		9AEAFCB91E8A9A9500908941 /* StackSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackSettingsViewController.h; sourceTree = "<group>"; };
+		9AEAFCBA1E8A9A9500908941 /* StackSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackSettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,30 +179,12 @@
 		9A4727B61E67CE1700E98AAE /* AppBowl2017 */ = {
 			isa = PBXGroup;
 			children = (
+				9ADDE9551EAA56E900D09191 /* Stack */,
+				9ADDE9531EAA56D400D09191 /* Tile */,
+				9ADDE9561EAA56F100D09191 /* Summation */,
+				9ADDE9571EAA570600D09191 /* Music */,
 				9A4727BA1E67CE1700E98AAE /* AppDelegate.h */,
 				9A4727BB1E67CE1700E98AAE /* AppDelegate.m */,
-				9A4727F01E684D5200E98AAE /* Game1SettingsViewController.h */,
-				9A4727F11E684D5200E98AAE /* Game1SettingsViewController.m */,
-				9AEAFC771E82C30A00908941 /* PhotoCollectionViewCell.h */,
-				9AEAFC781E82C30A00908941 /* PhotoCollectionViewCell.m */,
-				9A4727F31E684D7F00E98AAE /* Game1ViewController.h */,
-				9A4727F41E684D7F00E98AAE /* Game1ViewController.m */,
-				9A4727F61E68BF2C00E98AAE /* TileImageView.h */,
-				9A4727F71E68BF2C00E98AAE /* TileImageView.m */,
-				9A4727FB1E6A014200E98AAE /* Game1EndViewController.h */,
-				9A4727FC1E6A014200E98AAE /* Game1EndViewController.m */,
-				9AEAFCB91E8A9A9500908941 /* Game2SettingsViewController.h */,
-				9AEAFCBA1E8A9A9500908941 /* Game2SettingsViewController.m */,
-				9AEAFC6B1E81DA3500908941 /* Game2ViewController.h */,
-				9AEAFC6C1E81DA3500908941 /* Game2ViewController.m */,
-				9AD1C3611E9549A300C8F86E /* Rule.h */,
-				9AD1C3621E9549A300C8F86E /* Rule.m */,
-				9AD1C3641E954A8000C8F86E /* AdjacencyRule.h */,
-				9AD1C3651E954A8000C8F86E /* AdjacencyRule.m */,
-				9AEAFC6E1E81DA3F00908941 /* Game3ViewController.h */,
-				9AEAFC6F1E81DA3F00908941 /* Game3ViewController.m */,
-				9AEAFC711E81DA4600908941 /* Game4ViewController.h */,
-				9AEAFC721E81DA4600908941 /* Game4ViewController.m */,
 				9AEAFC651E81D65000908941 /* GameListTableViewCell.h */,
 				9AEAFC661E81D65000908941 /* GameListTableViewCell.m */,
 				9AEAFC681E81D73700908941 /* GameListTableViewController.h */,
@@ -247,6 +223,52 @@
 				9A4727DE1E67CE1700E98AAE /* Info.plist */,
 			);
 			path = AppBowl2017UITests;
+			sourceTree = "<group>";
+		};
+		9ADDE9531EAA56D400D09191 /* Tile */ = {
+			isa = PBXGroup;
+			children = (
+				9A4727F01E684D5200E98AAE /* TileSettingsViewController.h */,
+				9A4727F11E684D5200E98AAE /* TileSettingsViewController.m */,
+				9AEAFC771E82C30A00908941 /* PhotoCollectionViewCell.h */,
+				9AEAFC781E82C30A00908941 /* PhotoCollectionViewCell.m */,
+				9A4727F31E684D7F00E98AAE /* TileViewController.h */,
+				9A4727F41E684D7F00E98AAE /* TileViewController.m */,
+				9A4727F61E68BF2C00E98AAE /* TileImageView.h */,
+				9A4727F71E68BF2C00E98AAE /* TileImageView.m */,
+				9A4727FB1E6A014200E98AAE /* TileEndViewController.h */,
+				9A4727FC1E6A014200E98AAE /* TileEndViewController.m */,
+			);
+			name = Tile;
+			sourceTree = "<group>";
+		};
+		9ADDE9551EAA56E900D09191 /* Stack */ = {
+			isa = PBXGroup;
+			children = (
+				9AEAFCB91E8A9A9500908941 /* StackSettingsViewController.h */,
+				9AEAFCBA1E8A9A9500908941 /* StackSettingsViewController.m */,
+				9AEAFC6B1E81DA3500908941 /* StackViewController.h */,
+				9AEAFC6C1E81DA3500908941 /* StackViewController.m */,
+				9AD1C3611E9549A300C8F86E /* Rule.h */,
+				9AD1C3621E9549A300C8F86E /* Rule.m */,
+				9AD1C3641E954A8000C8F86E /* AdjacencyRule.h */,
+				9AD1C3651E954A8000C8F86E /* AdjacencyRule.m */,
+			);
+			name = Stack;
+			sourceTree = "<group>";
+		};
+		9ADDE9561EAA56F100D09191 /* Summation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Summation;
+			sourceTree = "<group>";
+		};
+		9ADDE9571EAA570600D09191 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Music;
 			sourceTree = "<group>";
 		};
 		9AEAFC641E80172400908941 /* Fonts */ = {
@@ -439,19 +461,17 @@
 			files = (
 				9AEAFC6A1E81D73700908941 /* GameListTableViewController.m in Sources */,
 				9AEAFC791E82C30A00908941 /* PhotoCollectionViewCell.m in Sources */,
-				9AEAFC731E81DA4600908941 /* Game4ViewController.m in Sources */,
-				9A4727FD1E6A014200E98AAE /* Game1EndViewController.m in Sources */,
+				9A4727FD1E6A014200E98AAE /* TileEndViewController.m in Sources */,
 				9A4727F81E68BF2C00E98AAE /* TileImageView.m in Sources */,
 				9AD1C3631E9549A400C8F86E /* Rule.m in Sources */,
-				9AEAFC6D1E81DA3500908941 /* Game2ViewController.m in Sources */,
-				9AEAFC701E81DA3F00908941 /* Game3ViewController.m in Sources */,
-				9A4727F21E684D5200E98AAE /* Game1SettingsViewController.m in Sources */,
+				9AEAFC6D1E81DA3500908941 /* StackViewController.m in Sources */,
+				9A4727F21E684D5200E98AAE /* TileSettingsViewController.m in Sources */,
 				9AEAFC671E81D65000908941 /* GameListTableViewCell.m in Sources */,
-				9AEAFCBB1E8A9A9500908941 /* Game2SettingsViewController.m in Sources */,
+				9AEAFCBB1E8A9A9500908941 /* StackSettingsViewController.m in Sources */,
 				9A4727BC1E67CE1700E98AAE /* AppDelegate.m in Sources */,
 				9AD1C3661E954A8000C8F86E /* AdjacencyRule.m in Sources */,
 				9A4727B91E67CE1700E98AAE /* main.m in Sources */,
-				9A4727F51E684D7F00E98AAE /* Game1ViewController.m in Sources */,
+				9A4727F51E684D7F00E98AAE /* TileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,13 +6,13 @@
 //  Copyright © 2017 Blind Brook Computer Club. All rights reserved.
 //
 
-#import "Game2ViewController.h"
+#import "StackViewController.h"
 
-@interface Game2ViewController ()
+@interface StackViewController ()
 
 @end
 
-@implementation Game2ViewController
+@implementation StackViewController
 
 @synthesize toDrop, numberToDrop, buttons, rules;
 
@@ -65,15 +65,26 @@ BOOL dropping = NO;
 
 #pragma mark - Game methods
 
+// The number of cells that have yet to be animated
+int cellsToRemove;
+
 /// Animate clearing the board, can execute completion when the animation is finished
 - (void)clearWithCompletion:(void (^)(BOOL finished))completion {
-	[UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-		for (id cell in self.tileLabels) {
-			if ([cell isKindOfClass:[UILabel class]]) {
-				[(UILabel *) cell setCenter:CGPointMake([cell center].x, [cell center].y + 6 * size)]; // Move each tile down six spaces (i.e. off the bottom of the board
-			}
+	cellsToRemove = (int) self.tileLabels.count; // We need to animate all of the cells
+	for (id cell in self.tileLabels) {
+		if (![cell isKindOfClass:[UILabel class]]) { // If it's not a label...
+			cellsToRemove--; // ...we don't need to animate it
+			continue;
 		}
-	} completion:completion];
+		
+		// Face out with a random delay
+		[UIView animateWithDuration:0.5 delay:(arc4random() % 100) / 100.0 options:UIViewAnimationOptionCurveLinear animations:^{
+			[cell setAlpha:0];
+		} completion:^(BOOL finished) {
+			cellsToRemove--;
+			if (cellsToRemove == 0) completion(finished); // Run the completion block when all of the cells have been animated
+		}];
+	}
 }
 
 /// Clear the arrays and reset the positions of the initial components.

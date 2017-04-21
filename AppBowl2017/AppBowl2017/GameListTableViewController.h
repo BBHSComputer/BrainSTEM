@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GameListTableViewCell.h"
-#import "Game1SettingsViewController.h"
+#import "TileSettingsViewController.h"
 
 @interface GameListTableViewController : UITableViewController
 

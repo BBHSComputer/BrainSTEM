@@ -1,5 +1,5 @@
 //
-//  Game1SettingsViewController.h
+//  TileSettingsViewController.h
 //  AppBowl2017
 //
 //  Created by Ethan Tillison on 2/3/17.
@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <Photos/Photos.h>
 #import <PhotosUI/PhotosUI.h>
-#import "Game1ViewController.h"
+#import "TileViewController.h"
 #import "PhotoCollectionViewCell.h"
 
-@interface Game1SettingsViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface TileSettingsViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UILabel *stepperValue; // The display for the value of the stepper
 @property (strong, nonatomic) IBOutlet UIStepper *stepper; // The stepper for the number of images

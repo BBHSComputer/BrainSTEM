@@ -1,5 +1,5 @@
 //
-//  Game1EndViewController.h
+//  TileEndViewController.h
 //  AppBowl2017
 //
 //  Created by Ethan Tillison on 3/3/17.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Game1EndViewController : UIViewController
+@interface TileEndViewController : UIViewController
 
 // The player's score (time taken, moves made)
 @property (strong, nonatomic) IBOutlet UILabel *time, *moves;

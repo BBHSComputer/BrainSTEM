@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AdjacencyRule.h"
 
-@interface Game2ViewController : UIViewController
+@interface StackViewController : UIViewController
 
 // The labels that show level and number of rules
 @property (strong, nonatomic) IBOutlet UILabel *level, *ruleCount;

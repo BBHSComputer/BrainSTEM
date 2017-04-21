@@ -1,18 +1,18 @@
 //
-//  Game4ViewController.m
+//  Game2SettingsViewController.m
 //  AppBowl2017
 //
-//  Created by Ethan Tillison on 21/3/17.
+//  Created by Ethan Tillison on 28/3/17.
 //  Copyright © 2017 Blind Brook Computer Club. All rights reserved.
 //
 
-#import "Game4ViewController.h"
+#import "StackSettingsViewController.h"
 
-@interface Game4ViewController ()
+@interface StackSettingsViewController ()
 
 @end
 
-@implementation Game4ViewController
+@implementation StackSettingsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

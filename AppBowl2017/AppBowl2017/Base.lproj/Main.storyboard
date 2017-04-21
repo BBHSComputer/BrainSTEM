@@ -24,7 +24,7 @@
         <!--Settings-->
         <scene sceneID="DQC-WL-iqI">
             <objects>
-                <viewController title="Settings" id="6WP-qa-APB" customClass="Game1SettingsViewController" sceneMemberID="viewController">
+                <viewController title="Settings" id="6WP-qa-APB" customClass="TileSettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3oq-7c-yL9"/>
                         <viewControllerLayoutGuide type="bottom" id="VYV-Ah-9c9"/>
@@ -284,10 +284,10 @@
             </objects>
             <point key="canvasLocation" x="2885.507246376812" y="3332.608695652174"/>
         </scene>
-        <!--Game1 End View Controller-->
+        <!--Tile End View Controller-->
         <scene sceneID="9O1-hJ-u9Y">
             <objects>
-                <viewController id="Mf3-5b-Wkv" customClass="Game1EndViewController" sceneMemberID="viewController">
+                <viewController id="Mf3-5b-Wkv" customClass="TileEndViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fFT-lb-mL7"/>
                         <viewControllerLayoutGuide type="bottom" id="3Za-o5-hq2"/>
@@ -372,7 +372,7 @@
         <!--Concentration-->
         <scene sceneID="6He-if-8OY">
             <objects>
-                <viewController title="Concentration" id="heQ-Zq-Kcl" customClass="Game1ViewController" sceneMemberID="viewController">
+                <viewController title="Concentration" id="heQ-Zq-Kcl" customClass="TileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nT4-j1-AWC"/>
                         <viewControllerLayoutGuide type="bottom" id="Eb7-e5-teP"/>
@@ -446,7 +446,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="112"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TXf-08-Rww" id="pIY-TJ-BjJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="111"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="111.66666666666667"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="MLp-v2-o4M">
@@ -465,7 +465,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Focus, Focus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Tjr-fs-Xgb">
-                                            <rect key="frame" x="111.66666666666666" y="64" width="294.33333333333337" height="29.666666666666671"/>
+                                            <rect key="frame" x="111.66666666666666" y="63.999999999999993" width="294.33333333333337" height="29.333333333333321"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

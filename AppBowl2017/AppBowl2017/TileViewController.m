@@ -1,19 +1,19 @@
 //
-//  Game1ViewController.m
+//  TileViewController.m
 //  AppBowl2017
 //
 //  Created by Ethan Tillison on 2/3/17.
 //  Copyright © 2017 Blind Brook Computer Club. All rights reserved.
 //
 
-#import "Game1ViewController.h"
+#import "TileViewController.h"
 #import "TileImageView.h"
 
-@interface Game1ViewController ()
+@interface TileViewController ()
 
 @end
 
-@implementation Game1ViewController
+@implementation TileViewController
 
 // The amount of time since the game started
 NSInteger gameTime = 0;
@@ -253,7 +253,7 @@ TileImageView *a, *b;
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([segue.identifier isEqualToString:@"Win"]) { // When the game is won...
-		Game1EndViewController *end = (Game1EndViewController *) [segue destinationViewController];
+		TileEndViewController *end = (TileEndViewController *) [segue destinationViewController];
 		[end setTimeString:[self.time text]]; // Send the time...
 		[end setMovesString:[self.moves text]]; // ...and the number of moves to the "You Win!" screen.
 	}

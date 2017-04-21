@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Game2SettingsViewController : UIViewController
+@interface StackSettingsViewController : UIViewController
 
 @end

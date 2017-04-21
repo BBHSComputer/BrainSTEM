@@ -1,18 +1,18 @@
 //
-//  Game1SettingsViewController.m
+//  TileSettingsViewController.m
 //  AppBowl2017
 //
 //  Created by Ethan Tillison on 2/3/17.
 //  Copyright © 2017 Blind Brook Computer Club. All rights reserved.
 //
 
-#import "Game1SettingsViewController.h"
+#import "TileSettingsViewController.h"
 
-@interface Game1SettingsViewController ()
+@interface TileSettingsViewController ()
 
 @end
 
-@implementation Game1SettingsViewController
+@implementation TileSettingsViewController
 
 NSUInteger previousValue;
 
@@ -97,7 +97,7 @@ NSUInteger previousValue;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([segue.identifier isEqualToString:@"PlayGame"]) { // Will be called then the play button is pressed
-		Game1ViewController *vc = (Game1ViewController *) [segue destinationViewController];
+		TileViewController *vc = (TileViewController *) [segue destinationViewController];
 		[vc layoutImages:stepper.value];
 		vc.images = [self.images mutableCopy];
 		[vc reset];

@@ -1,18 +1,18 @@
 //
-//  Game1EndViewController.m
+//  TileEndViewController.m
 //  AppBowl2017
 //
 //  Created by Ethan Tillison on 3/3/17.
 //  Copyright © 2017 Blind Brook Computer Club. All rights reserved.
 //
 
-#import "Game1EndViewController.h"
+#import "TileEndViewController.h"
 
-@interface Game1EndViewController ()
+@interface TileEndViewController ()
 
 @end
 
-@implementation Game1EndViewController
+@implementation TileEndViewController
 
 @synthesize time, moves, timeString, movesString;
 

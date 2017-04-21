@@ -1,5 +1,5 @@
 //
-//  Game1ViewController.h
+//  TileViewController.h
 //  AppBowl2017
 //
 //  Created by Ethan Tillison on 2/3/17.
@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Game1EndViewController.h"
+#import "TileEndViewController.h"
 
-@interface Game1ViewController : UIViewController
+@interface TileViewController : UIViewController
 
 // Labels showing current score
 @property (strong, nonatomic) IBOutlet UILabel *time, *moves;
