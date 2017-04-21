@@ -1,19 +1,13 @@
 package bbhs.appbowl2017;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import static bbhs.appbowl2017.R.mipmap.ic_launcher;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 hello.setText("Loading up Matching Game...");
-                startActivity( new Intent(getApplicationContext(),Game1SettingsActivity.class));
+                startActivity( new Intent(getApplicationContext(),TileSettingsActivity.class));
 
             }
         });
@@ -78,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 hello.setText("Loading up Game 4...");
-                startActivity( new Intent(getApplicationContext(),Game4.class));
+                startActivity( new Intent(getApplicationContext(),MusicActivity.class));
 
             }
         });

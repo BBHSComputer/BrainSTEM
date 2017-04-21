@@ -17,13 +17,13 @@ import java.util.Random;
  * Created by adamf on 4/11/2017.
  */
 
-public class Game4 extends AppCompatActivity {
+public class MusicActivity extends AppCompatActivity {
     private int score = 0;
     MediaPlayer mediaPlayer;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game4);
+        setContentView(R.layout.activity_music);
         startGame(1);
     }
     public void startGame(int song) {

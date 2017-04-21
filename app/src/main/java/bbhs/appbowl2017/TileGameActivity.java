@@ -1,15 +1,10 @@
 package bbhs.appbowl2017;
 
-import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.SystemClock;
-import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,10 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-public class Game1Game extends AppCompatActivity {
+public class TileGameActivity extends AppCompatActivity {
 
 
     RelativeLayout imageDisplay;
@@ -34,7 +26,7 @@ public class Game1Game extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game1_game);
+        setContentView(R.layout.activity_tile_game);
         imageDisplay = (RelativeLayout) findViewById(R.id.images);
 
 
@@ -63,17 +55,17 @@ public class Game1Game extends AppCompatActivity {
         }
 
 
-        for (int i = 0; i <= Game1.cards.length * 2; i++) {
+        for (int i = 0; i <= TileActivity.cards.length * 2; i++) {
 
             try {
-                Glide.with(this).load(Game1.cards[i / 2]).into(imageHolders[i]);
+                Glide.with(this).load(TileActivity.cards[i / 2]).into(imageHolders[i]);
                 imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000"));
-                imageMatches[i] = Game1.cards[i/2];
+                imageMatches[i] = TileActivity.cards[i/2];
 
 
             } catch (ArrayIndexOutOfBoundsException a) {
-                Glide.with(this).load(Game1.cards[(i - 1) / 2]).into(imageHolders[i - 1]);
-                imageMatches[i-1] = Game1.cards[(i-1)/2];
+                Glide.with(this).load(TileActivity.cards[(i - 1) / 2]).into(imageHolders[i - 1]);
+                imageMatches[i-1] = TileActivity.cards[(i-1)/2];
 
             }
         }
