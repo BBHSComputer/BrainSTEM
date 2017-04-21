@@ -41,6 +41,7 @@ public class Game1Game extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game1_game);
+        ViewTarget.setTagId(R.id.glide_id);
         imageDisplay = (RelativeLayout) findViewById(R.id.images);
 
 
@@ -53,7 +54,7 @@ public class Game1Game extends AppCompatActivity {
             imageHolders[i].setImageAlpha(0);
             final int n = i;
             imageHolders[i].setOnClickListener(new View.OnClickListener() {
-               public boolean flipped = true;
+                public boolean flipped = true;
                 ImageView imgv = imageHolders[n];
 
                 @Override
@@ -74,16 +75,15 @@ public class Game1Game extends AppCompatActivity {
             try {
                 Glide.with(this).load(Game1.cards[i / 2]).into(imageHolders[i]);
 
-                imageHolders[i].setContentDescription(identity.charAt(i/2)+"");
+                imageHolders[i].setContentDescription(identity.charAt(i / 2) + "");
                 imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000")); //load image, set color, give it a tag indicating it hasnt been flipped
-                imageHolders[i].setTag(3,"fsdfa");
-
+                imageHolders[i].setTag("fsdfa");
 
 
             } catch (ArrayIndexOutOfBoundsException a) {
                 Glide.with(this).load(Game1.cards[(i - 1) / 2]).into(imageHolders[i - 1]);
-                imageHolders[i-1].setContentDescription(identity.charAt((i-1)/2)+"");
-                imageHolders[i-1].setTag(3,"dfadsfd");//load image, set color, give it a tag indicating it hasnt been flipped
+                imageHolders[i - 1].setContentDescription(identity.charAt((i - 1) / 2) + "");
+                imageHolders[i - 1].setTag("dfadsfd");//load image, set color, give it a tag indicating it hasnt been flipped
                 imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000"));
 
             }
@@ -100,47 +100,59 @@ public class Game1Game extends AppCompatActivity {
     }
 
 
+    public void checkRotation() {
 
-    public void checkRotation(){
-
-        if(taps == 2){
-            ImageView a = null,b = null;
-            for(int i = 0; i < imageHolders.length; i++){
-             ImageView imageView = imageHolders[i];
-
+        if (taps == 2) {
+            ImageView a = null, b = null;
+            for (int i = 0; i < imageHolders.length; i++) {
+                ImageView imageView = imageHolders[i];
 
 
+                if (imageView != null) {
+                    if (imageView.getImageAlpha() == 255 && !imageView.getTag().toString().equals("Flipped")) {
+                        Log.d("iuo", imageView.getContentDescription().toString());
+                        if (a == null) {
+                            a = imageView;
+                        } else {
+                            b = imageView;
+                        }
+                    }
+                }
+                if (a != null && b != null) {
 
-                 if (imageView.getImageAlpha() == 255 && !imageView.getTag().toString().equals("Flipped")) {
-                     Log.d("iuo",imageView.getContentDescription().toString());
-                     if(a==null){
-                         a = imageView;
-                     }
-                     else{
-                         b = imageView;
-                     }
-                 }
+                    if (a.getTag().equals(b.getTag()) && a.getTag().equals("Flipped")) { //if both are flipped permanently, do nothing
+
+                    } else if (a.getTag().equals(b.getTag()) && !a.getTag().equals("Flipped")) { //if a tag = b tag and they are bi=oth not flipped
+                        if (a.getContentDescription().equals(b.getContentDescription())) { //if  a and b are the same pic
+                            a.setTag("Flipped");
+                            b.setTag("Flippped");
+                        } else { //otherwise
+
+                            a.setImageAlpha(0);
 
 
+                            b.setImageAlpha(0);
 
+                        }
+                    } else { //if only one is flipped
+                        if (!a.getTag().equals("Flipped")) {
+                            b.setImageAlpha(0);
+                        }
+                        else{
+                            a.setImageAlpha(0);
+                        }
+                    }
 
-
+                }
 
 
             }
-    a.getContentDescription();
-            if(a.getContentDescription().toString().equals(b.getContentDescription().toString())){
 
-    }
-            else{
-        a.setImageAlpha(0);
-        b.setImageAlpha(0);
-        a.setTag("Flipped");
-        b.setTag("Flipped");
-    }
-     taps =0;
+
+            taps = 0;
         }
     }
+
     public static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image
@@ -163,6 +175,7 @@ public class Game1Game extends AppCompatActivity {
 
         return inSampleSize;
     }
+
     public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
                                                          int reqWidth, int reqHeight) {
 
