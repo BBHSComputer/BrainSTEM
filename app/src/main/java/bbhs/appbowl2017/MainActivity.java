@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 hello.setText("playing game 2");
+                startActivity(new Intent(getApplicationContext(), StackActivity2.class));
             }
         });
 

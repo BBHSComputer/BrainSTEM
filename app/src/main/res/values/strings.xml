@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AppBowl2017</string>
+    <string name="game2_name">Neostriatum</string>
+    <string name="game2_description">
+        The game is centered around remembering an increasing number of rules for block placement.
+        Blocks will fall from the top of the screen. The left button will shift the block to the left and the right button will shift the block to the right.
+        Follow the rules to fill up the screen. Be careful! If a rule is broken, you will lose some of your progress.
+    </string>
+    <string name="game_rules_title">Rules:</string>
 </resources>
