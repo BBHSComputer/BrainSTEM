@@ -32,7 +32,7 @@ public class Game1Game extends AppCompatActivity {
 
 
     int taps = 0;
-
+    int totalTaps = 0;
     boolean[] activated = new boolean[20];
 
     @Override
@@ -62,6 +62,7 @@ public class Game1Game extends AppCompatActivity {
                     flip(imgv, flipped);
                     flipped = !flipped; //if flippped unflip, otherwise don't, add to the amount of taps, check rotations of everything
                     taps++;
+                    totalTaps++;
                     checkRotation();
                 }
 
