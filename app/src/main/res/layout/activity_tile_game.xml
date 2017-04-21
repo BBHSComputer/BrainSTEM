@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="bbhs.appbowl2017.Game1Game">
+    tools:context="bbhs.appbowl2017.TileGameActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,7 +20,6 @@
             android:id="@+id/imageView12"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:background="#ec2323"
             android:contentDescription="b" />
 
         <ImageView
@@ -29,7 +28,6 @@
             android:id="@+id/imageView13"
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/imageView18"
-            android:background="#ec2323"
             android:contentDescription="c" />
 
         <ImageView
@@ -37,7 +35,6 @@
             android:layout_height="50dp"
             android:id="@+id/imageView14"
             android:layout_alignParentStart="true"
-            android:background="#ec2323"
             android:contentDescription="d"
             android:layout_centerVertical="true" />
 
@@ -47,7 +44,6 @@
             android:id="@+id/imageView15"
             android:layout_alignTop="@+id/imageView14"
             android:layout_alignParentEnd="true"
-            android:background="#ec2323"
             android:contentDescription="e" />
 
         <ImageView
@@ -56,7 +52,6 @@
             android:id="@+id/imageView17"
             android:layout_alignTop="@+id/imageView14"
             android:layout_centerHorizontal="true"
-            android:background="#ec2323"
             android:contentDescription="g" />
 
         <ImageView
@@ -65,7 +60,6 @@
             android:id="@+id/imageView18"
             android:layout_above="@+id/imageView29"
             android:layout_toStartOf="@+id/imageView29"
-            android:background="#ec2323"
             android:contentDescription="h" />
 
         <ImageView
@@ -74,7 +68,6 @@
             android:id="@+id/imageView19"
             android:layout_alignTop="@+id/imageView18"
             android:layout_alignStart="@+id/imageView12"
-            android:background="#ec2323"
             android:contentDescription="h" />
 
         <ImageView
@@ -84,8 +77,7 @@
             android:layout_below="@+id/imageView14"
             android:layout_alignParentStart="true"
             android:layout_marginTop="54dp"
-            android:background="#ec2323"
-            android:contentDescription="i" />
+            android:contentDescription="i"/>
 
         <ImageView
             android:layout_width="50dp"
@@ -93,7 +85,6 @@
             android:id="@+id/imageView21"
             android:layout_alignTop="@+id/imageView18"
             android:layout_alignParentStart="true"
-            android:background="#ec2323"
             android:contentDescription="j" />
 
         <ImageView
@@ -102,17 +93,15 @@
             android:id="@+id/imageView22"
             android:layout_above="@+id/imageView27"
             android:layout_toEndOf="@+id/imageView27"
-            android:background="#ec2323"
             android:contentDescription="k" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/imageView23"
-            android:background="#ec2323"
             android:contentDescription="l"
             android:layout_alignTop="@+id/imageView20"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"/>
 
         <ImageView
             android:layout_width="50dp"
@@ -120,7 +109,6 @@
             android:id="@+id/imageView24"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:background="#ec2323"
             android:contentDescription="m" />
 
         <ImageView
@@ -129,7 +117,6 @@
             android:id="@+id/imageView25"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/imageView17"
-            android:background="#ec2323"
             android:contentDescription="n" />
 
         <ImageView
@@ -138,7 +125,6 @@
             android:id="@+id/imageView26"
             android:layout_alignBottom="@+id/imageView25"
             android:layout_alignParentEnd="true"
-            android:background="#ec2323"
             android:contentDescription="o" />
 
         <ImageView
@@ -147,8 +133,7 @@
             android:id="@+id/imageView27"
             android:layout_above="@+id/imageView25"
             android:layout_toStartOf="@+id/imageView25"
-            android:background="#ec2323"
-            android:contentDescription="p" />
+            android:contentDescription="p"/>
 
         <ImageView
             android:layout_width="50dp"
@@ -156,7 +141,6 @@
             android:id="@+id/imageView28"
             android:layout_alignTop="@+id/imageView27"
             android:layout_toEndOf="@+id/imageView25"
-            android:background="#ec2323"
             android:contentDescription="r" />
 
         <ImageView
@@ -165,7 +149,6 @@
             android:id="@+id/imageView29"
             android:layout_above="@+id/imageView15"
             android:layout_toEndOf="@+id/imageView17"
-            android:background="#ec2323"
             android:contentDescription="s" />
 
         <ImageView
@@ -174,7 +157,6 @@
             android:id="@+id/imageView30"
             android:layout_above="@+id/imageView17"
             android:layout_alignStart="@+id/imageView27"
-            android:background="#ec2323"
             android:contentDescription="t"
             android:contextClickable="false" />
 
@@ -182,7 +164,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/imageView31"
-            android:background="#ec2323"
             android:contentDescription="q"
             android:layout_above="@+id/imageView22"
             android:layout_toEndOf="@+id/imageView27" />
@@ -193,7 +174,6 @@
             android:id="@+id/imageView32"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:background="#ec2323"
             android:contentDescription="a" />
 
     </RelativeLayout>
