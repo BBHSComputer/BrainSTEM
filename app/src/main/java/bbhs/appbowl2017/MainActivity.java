@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         game3 = (Button) findViewById(R.id.game3);
         game4 = (Button) findViewById(R.id.game4);
 
+
         hello.setText("i work ?");
         gamesSetOnClick();
 
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 hello.setText("playing game 1");
+                startActivity( new Intent(getApplicationContext(),Game1SettingsActivity.class));
+
             }
         });
 
