@@ -3,10 +3,15 @@ package bbhs.appbowl2017;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
+import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.v4.animation.ValueAnimatorCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -20,6 +25,7 @@ import java.util.List;
 import java.util.Set;
 
 public class StackActivity extends AppCompatActivity {
+    private static Context context;
 
     public static final int SIZE_X = 5; // This is the number of tiles across the game board is
     public static final int SIZE_Y = 8; // This is the number of tiles top to bottom the game board is - subtract one to get grid size
@@ -32,16 +38,19 @@ public class StackActivity extends AppCompatActivity {
     private static List<View> buttons = new ArrayList<>(); // This is the list of gameButtons, which is animated after the blocks are
     private static Point[][] coordinates; // This is a 2D array of the coordinates corresponding to the game field positions [y][x]
     private static List<Animator> animations = new ArrayList<>(); // List of animations that need to be done
+    private static AnimatorSet color = new AnimatorSet();//Animation of Views that need to be recolored
+    private static AnimatorSet removeAnim = new AnimatorSet();//Animation of removing Views
     private static List<Pair> rules = new ArrayList<>();
     private static Set<View> remove = new HashSet<>(); // Sets of views to remove
 
     private static RelativeLayout.LayoutParams lp; // This is useful in setting the size of the tiles, initialized in onWindowFocusChanged
-    private View gameTile; // This is the gameTile, or the View that the player places
+    private static View gameTile; // This is the gameTile, or the View that the player places
     private static RelativeLayout field; // This is the playing field
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StackActivity.context = getApplicationContext();
         setContentView(R.layout.activity_stackgame); // Sets view layout to activity_stackgame.xml
 
         for (int column = 0; column < SIZE_X; column++) { // Initializes the size of the grid ArrayList, or the number of columns
@@ -52,6 +61,8 @@ public class StackActivity extends AppCompatActivity {
 
         Log.d("BrainSTEM S", "onCreate() finished");
     }
+
+
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -82,16 +93,21 @@ public class StackActivity extends AppCompatActivity {
     }
 
     private void gameStart() {
+        gameTile = new TextView(getApplicationContext()); // Initializes the gameTile, or the Tile that is falling down
         newGameTile();
+        field.addView(gameTile);
         //TODO figure out the changing values of gameButtons
         for (int column = 0; column < SIZE_X; column++) { // Sets up the buttons that place the gameTile in each row
             View gameButton = new TextView(getApplicationContext());
             gameButton.setLayoutParams(lp);
             gameButton.setAlpha(0.8F);
-            gameButton.setTag(1, gameTile.getTag(1));
-            gameButton.setTag(2, column);
-
-            //((TextView)gameButton).setText((int)gameButton.getTag(1)); // Set up the text of the buttons to match the gameTile
+            gameButton.setTag(R.id.stack_value, gameTile.getTag(R.id.stack_value));
+            gameButton.setTag(R.id.stack_column, column);
+            ((TextView) gameButton).setText("" + (int) gameTile.getTag(R.id.stack_value));
+            ((TextView) gameButton).setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); // Centers the text
+            ((TextView) gameButton).setTextSize(TEXT_SIZE); // Sets text size
+            ((TextView) gameButton).setTextColor(Color.BLACK); // Sets text color
+            //((TextView)gameButton).setText((int)gameButton.getTag(R.id.stack_value)); // Set up the text of the buttons to match the gameTile
             //TODO move this to the newGameTile method somehow
 
             buttons.add(gameButton);
@@ -110,9 +126,10 @@ public class StackActivity extends AppCompatActivity {
                         }
                         fade.start();
 
-                        int column = (int) v.getTag(2);
-                        gameTile.setTag(2, column); // Sets the column tag of the gameTile
+                        int column = (int) v.getTag(R.id.stack_column);
+                        gameTile.setTag(R.id.stack_column, column); // Sets the column tag of the gameTile
                         grid.get(column).add(grid.get(column).indexOf(v), gameTile);
+                        Log.d("BrainSTEM S", "GameTile added to grid at " + column + " " + (grid.get(column).size() - 2));
                         //This places gameTile in the row that the gameButton is in, at the index that gameButton is in
 
                         updatePositions();
@@ -120,35 +137,95 @@ public class StackActivity extends AppCompatActivity {
                 }
             });
         }
+        updatePositions();
     }
 
-    private static void updatePositions() {
+    private void updatePositions() {
         AnimatorSet as = new AnimatorSet();
         for (int x = 0; x < grid.size(); x++) {
             List<View> column = grid.get(x);
             for (int y = 0; y < column.size(); y++) {
                 View v = column.get(y);
-                if (Math.abs(v.getLeft() - coordinates[y][x].x) > 1 || Math.abs(v.getTop() - coordinates[y][x].y) > 1) {
+                if (Math.abs(v.getX() - coordinates[y][x].x) > 2 || Math.abs(v.getY() - coordinates[y][x].y) > 2) {
+                    Log.d("BrainSTEM S", "" + Math.abs(v.getX() - coordinates[y][x].x));
                     individualMove(v, x, y);
                 }
             }
         }
-        as.playTogether(animations);
-        as.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                animations.clear();
-                if (brokenRule()) {
-
+        if (!animations.isEmpty()) {
+            as.playTogether(animations);
+            as.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    animations.clear();
+                    Log.d("BrainSTEM S", "Finished updating position animations");
+                    afterUpdate();
                 }
+            });
+            as.start();
+        }else{
+            Log.d("BrainSTEM S", "Update recursion has finished");
+            if (fallingAnim) {
+                fallingAnim = false;
+                gameTile = new TextView(getApplicationContext()); // Initializes the gameTile, or the Tile that is falling down
+                newGameTile();
+                field.addView(gameTile);
+                AnimatorSet fade = new AnimatorSet();
+                for (View button : buttons) {
+                    button.setTag(R.id.stack_value, gameTile.getTag(R.id.stack_value));
+                    ((TextView) button).setText((String) button.getTag(R.id.stack_value));
+                    ObjectAnimator fadeIn = ObjectAnimator.ofFloat(button, "alpha", 0.8f);
+                    fade.play(fadeIn);
+                }
+                fade.start();
+                fade.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        for (View button : buttons) {
+                            button.setEnabled(true);
+                        }
+                    }
+                });
             }
-        });
-        as.start();
-
+        }
+        Log.d("BrainSTEM S", "Finished setting up View position animations");
         //TODO add newGameTile after recursion of checking and falling is done
     }
 
-    private static boolean brokenRule() { // This checks that each View does not break a rule
+    private void afterUpdate() {
+        if (brokenRule()) {
+            color.start();
+            color.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    for (View v : remove) {
+                        grid.get(Integer.parseInt((String) v.getTag(R.id.stack_column))).remove(v);
+                        ObjectAnimator remove = new ObjectAnimator().ofFloat(v, "alpha", 0);
+                        removeAnim.play(remove);
+                    }
+                    afterColorAnim();
+                }
+            });
+        }else{
+            updatePositions();
+        }
+    }
+
+    private void afterColorAnim() {
+        removeAnim.start();
+        removeAnim.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                updatePositions();
+            }
+        });
+    }
+
+    private boolean brokenRule() { // This checks that each View does not break a rule
         /*  The method will iterate through every single View on the game board, including the gameButtons.
         *   It will then check if the View is not the top most view on the board, not including gameButtons (hence, the -2 on grid.size())
         *   Then, it checks that the View is not in the leftmost or rightmost column
@@ -159,15 +236,15 @@ public class StackActivity extends AppCompatActivity {
 
             for (View v : list) {
                 int pos = list.indexOf(v);
-                if(list.size() - 2 > pos){
-                    if(ruleCheck(v, list.get(pos + 1))){
+                if (list.size() - 2 > pos) {
+                    if (ruleCheck(v, list.get(pos + 1))) {
                         addRemove(column, pos);
                         addRemove(column, pos + 1);
                     }
                 }
-                if(SIZE_X - 1 > column){
-                    if((int)v.getTag(1) != -1 && grid.get(column + 1).size() - 1 > pos){
-                        if(ruleCheck(v, grid.get(column + 1).get(pos))){
+                if (SIZE_X - 1 > column) {
+                    if ((int) v.getTag(R.id.stack_value) != -1 && grid.get(column + 1).size() - 1 > pos) {
+                        if (ruleCheck(v, grid.get(column + 1).get(pos))) {
                             addRemove(column, pos);
                             addRemove(column + 1, pos);
                         }
@@ -181,24 +258,38 @@ public class StackActivity extends AppCompatActivity {
         return false;
     }
 
-    private static boolean ruleCheck(View v, View check){ // False if no broken rules, True if there are broken rules
-        for(Pair pair : rules){
-            if(pair.equals(new Pair((int) v.getTag(1), (int) check.getTag(1)))) {
+    private boolean ruleCheck(View v, View check) { // False if no broken rules, True if there are broken rules
+        for (Pair pair : rules) {
+            if (pair.equals(new Pair(Integer.parseInt((String) v.getTag(R.id.stack_value)), Integer.parseInt((String) check.getTag(R.id.stack_value))))) {
                 return true;
             }
         }
         return false;
     }
-    private static void addRemove(int column, int pos){
-        remove.add(grid.get(column).get(pos));
-        if(column > 0){
-            if(column < SIZE_X){
 
-            }
+    private void addRemove(int column, int pos) {
+        ValueAnimator colorAnim = ObjectAnimator.ofInt(grid.get(column).get(pos), "backgroundColor", R.color.grey, R.color.red);
+        colorAnim.setDuration(250);
+        colorAnim.setEvaluator(new ArgbEvaluator());
+        //ObjectAnimator colorRule = new ObjectAnimator().ofFloat(grid.get(column).get(pos), "backgroundColor", R.color.red);
+        //colorRule.setDuration(250);
+        color.play(colorAnim);
+        remove.add(grid.get(column).get(pos));
+        if (column < SIZE_X - 1) {
+            if (grid.get(column + 1).size() - 1 > pos) remove.add(grid.get(column + 1).get(pos));
+        }
+        if (column > 0) {
+            if (grid.get(column - 1).size() - 1 > pos) remove.add(grid.get(column - 1).get(pos));
+        }
+        if (pos > 0) {
+            remove.add(grid.get(column).get(pos - 1));
+        }
+        if (pos < grid.get(column).size() - 1) {
+            remove.add(grid.get(column).get(pos + 1));
         }
     }
 
-    private static void individualMove(View v, int x, int y) { // Moves an individual View
+    private void individualMove(View v, int x, int y) { // Moves an individual View
         AnimatorSet blockMove = new AnimatorSet();
         ObjectAnimator moveX = ObjectAnimator.ofFloat(v, "x", coordinates[y][x].x);
         ObjectAnimator moveY = ObjectAnimator.ofFloat(v, "y", coordinates[y][x].y);
@@ -206,18 +297,24 @@ public class StackActivity extends AppCompatActivity {
         animations.add(blockMove);
     }
 
-    private void newGameTile() {
-        gameTile = new TextView(getApplicationContext()); // Initializes the gameTile, or the Tile that is falling down
-        gameTile.setLayoutParams(lp); // Set the size of the gameTile
-        gameTile.setTag(1, (int) (Math.random() * 9) + 1); // Sets value of the gameTile to value from 1 to 9
-        gameTile.setTag(2, -1); // -1 means no column yet
-        gameTile.setTop(coordinates[7][2].y); // Sets position of block to top middle
-        gameTile.setLeft(coordinates[7][2].x);
+    private static void newGameTile() {
+        int value = (int) (Math.random() * 9) + 1;//Sets variable value to random number from 1 to 9
 
+        gameTile.setLayoutParams(lp); // Set the size of the gameTile
+        gameTile.setTag(R.id.stack_value, value); // Sets value of the gameTile to value from 1 to 9
+        gameTile.setTag(R.id.stack_column, -1); // -1 means no column yet
+        gameTile.setY(coordinates[7][2].y); // Sets position of block to top middle
+        gameTile.setX(coordinates[7][2].x);
+        gameTile.setBackgroundColor(ContextCompat.getColor(StackActivity.getAppContext(), R.color.grey));
+        Log.d("BrainSTEM S", "The gameTile created has this value: " + value + " at " + coordinates[7][2].x + " " + coordinates[7][2].y);
         ((TextView) gameTile).setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); // Centers the text
         ((TextView) gameTile).setTextSize(TEXT_SIZE); // Sets text size
         ((TextView) gameTile).setTextColor(Color.BLACK); // Sets text color
-        ((TextView) gameTile).setText((String) gameTile.getTag(1)); // Sets the text on the block to the tag
+        ((TextView) gameTile).setText("" + value); // Sets the text on the block to the tag
+    }
+
+    public static Context getAppContext() {
+        return StackActivity.context;
     }
 
 }

@@ -27,7 +27,7 @@ public class StackActivity2 extends AppCompatActivity {
             public void onClick(View v){
                 Snackbar snackbar =  Snackbar.make(layout, "Play clicked!", Snackbar.LENGTH_LONG);
                 snackbar.show();
-                startActivity(new Intent(getApplicationContext(), StackGameActivity.class));
+                startActivity(new Intent(getApplicationContext(), StackActivity.class));
             }
         });
     }
