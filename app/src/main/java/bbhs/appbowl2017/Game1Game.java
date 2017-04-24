@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.SystemClock;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,7 +35,7 @@ public class Game1Game extends AppCompatActivity {
     int taps = 0;
     int totalTaps = 0;
     boolean[] activated = new boolean[20];
-
+    long start = System.currentTimeMillis();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -176,6 +177,9 @@ public class Game1Game extends AppCompatActivity {
 
             taps = 0;
         }
+
+
+        endGame(calculateScore());
     }
 
     public static int calculateInSampleSize(
@@ -215,5 +219,23 @@ public class Game1Game extends AppCompatActivity {
         // Decode bitmap with inSampleSize set
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeResource(res, resId, options);
+    }
+
+    public double calculateScore(){
+        return 500.0/Math.log(totalTaps/(Math.pow(.25,((double)Game1.cards.length*2)) - Game1.cards.length)) + 500/Math.log(System.currentTimeMillis() - start);
+
+
+    }
+
+    public boolean gameOver(){
+        for(ImageView i : imageHolders){
+            if(!i.getTag().toString().equals("Flipped")){
+                return false;
+            }
+        }
+    return true;
+    }
+    public void endGame(double score){
+        //end gamey stuff
     }
 }
