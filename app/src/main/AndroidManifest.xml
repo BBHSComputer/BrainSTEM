@@ -8,8 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:hardwareAccelerated="false"
-        android:largeHeap="true"
-        android:theme="@style/Theme.Design.Light">
+        android:largeHeap="true">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +21,7 @@
         <activity android:name=".Game1SettingsActivity" />
         <activity android:name=".Game1Game"></activity>
         <activity android:name=".TileSettingsActivity" />
-        <activity android:name=".TileGameActivity"></activity>
-        <activity android:name=".MusicActivity"></activity>
+        <activity android:name=".TileGameActivity" />
+        <activity android:name=".MusicActivity" />
     </application>
 </manifest>

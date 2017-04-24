@@ -5,4 +5,10 @@
     <color name="colorAccent">#FF4081</color>
     <color name="grey">#999999</color>
     <color name="red">#FF0000</color>
+    <color name="lightCoral">#FA8383</color>
+    <color name="paleTurquoise">#A5F0E4</color>
+    <color name="lightSteelBlue">#9AB7E6</color>
+    <color name="color3">#9DD3CC</color>
+    <color name="skyBlue">#82C7EB</color>
+    <color name="moccasin">#FFE4B3</color>
 </resources>
