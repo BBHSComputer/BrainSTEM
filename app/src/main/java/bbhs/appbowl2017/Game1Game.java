@@ -68,6 +68,7 @@ public class Game1Game extends AppCompatActivity {
 
             });
 
+
         }
 
 
@@ -78,15 +79,23 @@ public class Game1Game extends AppCompatActivity {
 
                 imageHolders[i].setContentDescription(identity.charAt(i / 2) + "");
                 imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000")); //load image, set color, give it a tag indicating it hasnt been flipped
-                imageHolders[i].setTag("fsdfa");
+
 
 
             } catch (ArrayIndexOutOfBoundsException a) {
                 Glide.with(this).load(Game1.cards[(i - 1) / 2]).into(imageHolders[i - 1]);
                 imageHolders[i - 1].setContentDescription(identity.charAt((i - 1) / 2) + "");
-                imageHolders[i - 1].setTag("dfadsfd");//load image, set color, give it a tag indicating it hasnt been flipped
+
                 imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000"));
 
+            }
+
+
+        }
+
+        for(ImageView iv : imageHolders){
+            if(iv!= null){
+                iv.setTag("cffsa");
             }
         }
     }
@@ -120,29 +129,44 @@ public class Game1Game extends AppCompatActivity {
                     }
                 }
                 if (a != null && b != null) {
+                    // if a and b are both permaflippped
+                    if(a.getTag().toString().equals(b.getTag().toString()) && a.getTag().toString().equals("Flipped")){
+                        //do nothing
+                    }
 
-                    if (a.getTag().equals(b.getTag()) && a.getTag().equals("Flipped")) { //if both are flipped permanently, do nothing
+                    //if none are permaflipped
+                  else  if(!a.getTag().toString().equals("Flipped") && !b.getTag().toString().equals("Flipped")){
+                        //If they have the same image
+                        if(a.getContentDescription().toString().equals(b.getContentDescription().toString())){
+                            //get rid of onclick listener, and permaflip them
+                            b.setOnClickListener(null);
+                            a.setOnClickListener(null);
 
-                    } else if (a.getTag().equals(b.getTag()) && !a.getTag().equals("Flipped")) { //if a tag = b tag and they are bi=oth not flipped
-                        if (a.getContentDescription().equals(b.getContentDescription())) { //if  a and b are the same pic
                             a.setTag("Flipped");
-                            b.setTag("Flippped");
-                        } else { //otherwise
-
-                            a.setImageAlpha(0);
-
-
-                            b.setImageAlpha(0);
+                            b.setTag("Flipped");
 
                         }
-                    } else { //if only one is flipped
-                        if (!a.getTag().equals("Flipped")) {
-                            b.setImageAlpha(0);
-                        }
-                        else{
+
+                        //if they don't have the same image
+                        if(!a.getContentDescription().toString().equals(b.getContentDescription().toString())){
+                            //make transparent and do nothing
                             a.setImageAlpha(0);
+                            b.setImageAlpha(0);
                         }
                     }
+
+                    else if(a.getTag().toString().equals("Flipped")){ //If only a is permaflipped
+                        //do nothing to a, make b transparent again
+
+                        b.callOnClick();
+                    }
+                    else if(b.getTag().toString().equals("Flipped")){ //If only b is permaflipped
+                        //do nothing to a, make b transparent again
+                       b.callOnClick();
+
+                    }
+
+
 
                 }
 
