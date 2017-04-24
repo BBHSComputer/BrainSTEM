@@ -17,8 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Game1SettingsActivity" />
-        <activity android:name=".Game1Game"></activity>
+        <activity android:name=".TileSettingsActivity" />
+        <activity android:name=".TileGameActivity" />
     </application>
 
 </manifest>

@@ -1,11 +1,8 @@
 package bbhs.appbowl2017;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.provider.ContactsContract;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-public class Game1SettingsActivity extends AppCompatActivity {
+public class TileSettingsActivity extends AppCompatActivity {
 
    private ImageView imageView;
     private   Button chooser;
@@ -33,7 +30,7 @@ public class Game1SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game1_settings);
+        setContentView(R.layout.activity_tile_settings);
 
        // imageView = (ImageView) findViewById(R.id.imageView);
         chooser = (Button) findViewById(R.id.chooser);
@@ -47,9 +44,6 @@ public class Game1SettingsActivity extends AppCompatActivity {
         for(int i = 0; i < imageDisplay.getChildCount(); i++){
             displayedImages[i] = (ImageView) imageDisplay.getChildAt(i);
         }
-
-
-
         setButtonsOnClick();
 
     }
@@ -66,8 +60,8 @@ public class Game1SettingsActivity extends AppCompatActivity {
                     snackbar.show();
                 }
                 else {
-                    try{
-                        Game1.cards = new Uri[Integer.parseInt(getPairs.getText().toString()) > 10 ? 10 : Integer.parseInt(getPairs.getText().toString())]; //make sure num of cards is <= 10
+                    try {
+                        Tiles.cards = new Uri[Integer.parseInt(getPairs.getText().toString()) > 10 ? 10 : Integer.parseInt(getPairs.getText().toString())]; // make sure num of cards is <= 10
 
                         count = 0;
 
@@ -75,7 +69,7 @@ public class Game1SettingsActivity extends AppCompatActivity {
                             displayedImages[i].setImageURI(null);
                         }
 
-                        for (int i = 0; i < Game1.cards.length; i++) {
+                        for (int i = 0; i < Tiles.cards.length; i++) {
                             getImage();
 
 
@@ -103,15 +97,15 @@ public class Game1SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (Game1.cards == null || getPairs.getText().equals("") || getPairs.getText().equals(null)){
+                if (Tiles.cards == null || getPairs.getText().equals("") || getPairs.getText().equals(null)){
                     Snackbar snackbar = Snackbar
                             .make(imageDisplay, "No cards entered. Please select some images.", Snackbar.LENGTH_LONG);
 
                     snackbar.show();
                 }
                 else {
-                    Game1.test =5;
-                    startActivity(new Intent(getApplicationContext(), Game1Game.class)); //load up the game
+                    Tiles.test = 5;
+                    startActivity(new Intent(getApplicationContext(), TileGameActivity.class)); // load up the game
                 }
             }
         });
@@ -136,7 +130,7 @@ public class Game1SettingsActivity extends AppCompatActivity {
 
 
                     displayedImages[count].setImageURI(image);
-                    Game1.cards[count] = image;
+                    Tiles.cards[count] = image;
                     count++;
 
                 }
