@@ -27,12 +27,12 @@ import java.io.IOException;
 public class Game1Game extends AppCompatActivity {
 
 
-    RelativeLayout imageDisplay; //place for image holders
-    ImageView[] imageHolders = new ImageView[20]; //premake all image holders
+    RelativeLayout imageDisplay;
+    ImageView[] imageHolders = new ImageView[20];
     String identity = "abcdefghijklmnopqrstuvwxyz";
 
 
-    int taps = 0;   //0 1 2 taps for flipping, total taps for scoring.
+    int taps = 0;
     int totalTaps = 0;
     boolean[] activated = new boolean[20];
     long start = System.currentTimeMillis();
@@ -49,7 +49,7 @@ public class Game1Game extends AppCompatActivity {
         Log.d("op", "" + imageDisplay.getChildCount());
 
 
-        for (int i = 0; i < imageDisplay.getChildCount(); i++) { //Give all image views their respective images, and set them transparent
+        for (int i = 0; i < imageDisplay.getChildCount(); i++) {
             imageHolders[i] = (ImageView) imageDisplay.getChildAt(i);
 
             imageHolders[i].setImageAlpha(0);
@@ -87,7 +87,7 @@ public class Game1Game extends AppCompatActivity {
                 Glide.with(this).load(Game1.cards[(i - 1) / 2]).into(imageHolders[i - 1]);
                 imageHolders[i - 1].setContentDescription(identity.charAt((i - 1) / 2) + "");
 
-                imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000"));
+                imageHolders[i].setBackgroundColor(Color.parseColor("#ff0000"));//load image, set color, give it a tag indicating it hasnt been flipped
 
             }
 
@@ -103,7 +103,7 @@ public class Game1Game extends AppCompatActivity {
 
 
     public void flip(ImageView imageView, boolean flipped) { //flips image by turning alpha 0 or 255
-        if (flipped) { //if not transparent make transparent vice versa
+        if (flipped) {
             imageView.setImageAlpha(255);
         } else {
             imageView.setImageAlpha(0);
@@ -145,6 +145,9 @@ public class Game1Game extends AppCompatActivity {
 
                             a.setTag("Flipped");
                             b.setTag("Flipped");
+
+                            a.setVisibility(View.INVISIBLE);
+                            b.setVisibility(View.INVISIBLE);
 
                         }
 
@@ -227,7 +230,7 @@ public class Game1Game extends AppCompatActivity {
 
     }
 
-    public boolean gameOver(){ //if a single one isn't flipped return false and exit
+    public boolean gameOver(){ //if at least a signle pair isnt flipped return false
         for(ImageView i : imageHolders){
             if(!i.getTag().toString().equals("Flipped")){
                 return false;

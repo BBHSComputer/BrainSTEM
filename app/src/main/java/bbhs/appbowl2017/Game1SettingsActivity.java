@@ -35,7 +35,7 @@ public class Game1SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game1_settings);
 
-       // imageView = (ImageView) findViewById(R.id.imageView);
+
         chooser = (Button) findViewById(R.id.chooser);
         getPairs = (EditText) findViewById(R.id.parisOfCards);
         getPairs.setText("");
@@ -45,7 +45,7 @@ public class Game1SettingsActivity extends AppCompatActivity {
         displayedImages = new ImageView[10];
 
         for(int i = 0; i < imageDisplay.getChildCount(); i++){
-            displayedImages[i] = (ImageView) imageDisplay.getChildAt(i);
+            displayedImages[i] = (ImageView) imageDisplay.getChildAt(i); //set displayed images to all of hte imageviews from the imageDisplay
         }
 
 
@@ -81,6 +81,7 @@ public class Game1SettingsActivity extends AppCompatActivity {
 
                         }
                     }
+                    //if invalid cards entered tell user
                     catch(NumberFormatException e){
                         Snackbar snackbar = Snackbar
                                 .make(imageDisplay, "Please enter a number of pairs.", Snackbar.LENGTH_LONG); //if no cards entered
@@ -103,14 +104,14 @@ public class Game1SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (Game1.cards == null || getPairs.getText().equals("") || getPairs.getText().equals(null)){
+                if (Game1.cards == null || getPairs.getText().equals("") || getPairs.getText().equals(null)){ //if no cards selected, tell user that
                     Snackbar snackbar = Snackbar
                             .make(imageDisplay, "No cards entered. Please select some images.", Snackbar.LENGTH_LONG);
 
                     snackbar.show();
                 }
                 else {
-                    Game1.test =5;
+
                     startActivity(new Intent(getApplicationContext(), Game1Game.class)); //load up the game
                 }
             }
@@ -120,19 +121,24 @@ public class Game1SettingsActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         switch (requestCode) {
-            case 0:
+            case 0: //get image set it to the righti mage view, add it to cards, increase the total number of images
                 if (resultCode == RESULT_OK) {
                     selectedImage = imageReturnedIntent.getData();
                     imageView.setImageURI(selectedImage);
 
+
+                    displayedImages[count].setImageURI(image);
+                    Game1.cards[count] = image;
+                    count++;
+
                 }
 
                 break;
-            case 1:
+            case 1://get image set it to the righti mage view, add it to cards, increase the total number of images
                 if (resultCode == RESULT_OK) {
                     selectedImage = imageReturnedIntent.getData();
                     image = selectedImage;
-                    Log.d("jkl", "ive been called " + image);
+
 
 
                     displayedImages[count].setImageURI(image);
