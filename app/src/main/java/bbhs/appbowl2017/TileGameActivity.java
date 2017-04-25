@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
@@ -20,14 +19,20 @@ public class TileGameActivity extends AppCompatActivity {
 	private RelativeLayout layout;
 	private TileImageView[] imageHolders;
 
+	private int numTiles;
+
 	private int numFlipped = 0;
+
 	private int totalTaps = 0;
+	private long startTime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		layout = new RelativeLayout(this.getApplicationContext());
 		setContentView(layout);
+
+		startTime = System.currentTimeMillis();
 
 		layout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
 			@Override
@@ -39,7 +44,7 @@ public class TileGameActivity extends AppCompatActivity {
 
 				int cellSize, numCols; // The length of the side of a cell, and the number of columns of cells, respectively. To be calculated.
 
-				final int n = Tiles.cards.length * 2; // The number of images to create (2x the requested number, so each has a pair)
+				final int n = numTiles = TileSettingsActivity.cards.length * 2; // The number of images to create (2x the requested number, so each has a pair)
 
 				// The number of squares with which we can fill the x axis, given the maximum side of a
 				// square must be (width * height / num). w/sqrt(wh/n)=sqrt(wn/h)
@@ -67,7 +72,7 @@ public class TileGameActivity extends AppCompatActivity {
 
 				// Create a shuffled list of cards
 				final List<Integer> cards = new ArrayList<>(n);
-				for (int i = 0; i < Tiles.cards.length; i++) {
+				for (int i = 0; i < TileSettingsActivity.cards.length; i++) {
 					cards.add(i);
 					cards.add(i);
 				}
@@ -79,7 +84,7 @@ public class TileGameActivity extends AppCompatActivity {
 					// Create a card
 					imageHolders[i] = new TileImageView(TileGameActivity.this.getApplicationContext(), cards.get(i));
 					// Set the image
-					Glide.with(TileGameActivity.this).load(Tiles.cards[cards.get(i)]).into(imageHolders[i]);
+					Glide.with(TileGameActivity.this).load(TileSettingsActivity.cards[cards.get(i)]).into(imageHolders[i]);
 					imageHolders[i].setImageAlpha(0);
 					imageHolders[i].setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.tileBackground)); // Set the color
 
@@ -154,7 +159,12 @@ public class TileGameActivity extends AppCompatActivity {
 						numFlipped = 0;
 						return;
 					}
-					// TODO: Win
+
+					double w1 = 1;
+					double w2 = 0;
+					double score = w1 * Math.log(totalTaps / (0.5 * numTiles *numTiles - 0.5 * numTiles)) + w2 / Math.log((System.currentTimeMillis() - startTime) / 1000);
+
+					// TODO: Show win screen (using the score variable)
 				}
 			} else {
 				// Unflip (note that the if statements should never be false)
