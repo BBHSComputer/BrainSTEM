@@ -27,12 +27,12 @@ import java.io.IOException;
 public class Game1Game extends AppCompatActivity {
 
 
-    RelativeLayout imageDisplay;
-    ImageView[] imageHolders = new ImageView[20];
+    RelativeLayout imageDisplay; //place for image holders
+    ImageView[] imageHolders = new ImageView[20]; //premake all image holders
     String identity = "abcdefghijklmnopqrstuvwxyz";
 
 
-    int taps = 0;
+    int taps = 0;   //0 1 2 taps for flipping, total taps for scoring.
     int totalTaps = 0;
     boolean[] activated = new boolean[20];
     long start = System.currentTimeMillis();
@@ -49,7 +49,7 @@ public class Game1Game extends AppCompatActivity {
         Log.d("op", "" + imageDisplay.getChildCount());
 
 
-        for (int i = 0; i < imageDisplay.getChildCount(); i++) {
+        for (int i = 0; i < imageDisplay.getChildCount(); i++) { //Give all image views their respective images, and set them transparent
             imageHolders[i] = (ImageView) imageDisplay.getChildAt(i);
 
             imageHolders[i].setImageAlpha(0);
@@ -103,7 +103,7 @@ public class Game1Game extends AppCompatActivity {
 
 
     public void flip(ImageView imageView, boolean flipped) { //flips image by turning alpha 0 or 255
-        if (flipped) {
+        if (flipped) { //if not transparent make transparent vice versa
             imageView.setImageAlpha(255);
         } else {
             imageView.setImageAlpha(0);
@@ -227,7 +227,7 @@ public class Game1Game extends AppCompatActivity {
 
     }
 
-    public boolean gameOver(){
+    public boolean gameOver(){ //if a single one isn't flipped return false and exit
         for(ImageView i : imageHolders){
             if(!i.getTag().toString().equals("Flipped")){
                 return false;
