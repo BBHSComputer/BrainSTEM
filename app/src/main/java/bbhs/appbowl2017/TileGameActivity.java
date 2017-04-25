@@ -4,6 +4,7 @@ import android.graphics.BitmapFactory;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -79,6 +80,7 @@ public class TileGameActivity extends AppCompatActivity {
 					imageHolders[i] = new TileImageView(TileGameActivity.this.getApplicationContext(), cards.get(i));
 					// Set the image
 					Glide.with(TileGameActivity.this).load(Tiles.cards[cards.get(i)]).into(imageHolders[i]);
+					imageHolders[i].setImageAlpha(0);
 					imageHolders[i].setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.tileBackground)); // Set the color
 
 					int x = i % numCols; // Calculate x and y based on i
@@ -93,10 +95,9 @@ public class TileGameActivity extends AppCompatActivity {
 						public void onClick(View view) {
 							if (!(view instanceof TileImageView)) return; // Should never happen, but included for security
 							TileImageView tiv = (TileImageView) view;
-							flip(tiv, tiv.flipped);
-							tiv.flipped = !tiv.flipped;
+							flip(tiv);
+							Log.d("FLIP", tiv.flipped + "");
 							totalTaps++;
-							numFlipped += (tiv.flipped ? 1 : -1);
 							if (numFlipped >= 2) {
 								checkRotation();
 							}
@@ -110,52 +111,59 @@ public class TileGameActivity extends AppCompatActivity {
 		});
 	}
 
-	public void flip(ImageView imageView, boolean flipped) { //flips image by turning alpha 0 or 255
-		if (flipped) {
+	public void flip(TileImageView imageView) { //flips image by turning alpha 0 or 255
+		imageView.flipped = !imageView.flipped;
+
+		if (imageView.flipped) {
 			imageView.setImageAlpha(255);
 		} else {
 			imageView.setImageAlpha(0);
 		}
+		numFlipped += (imageView.flipped ? 1 : -1);
+		Log.d("NUM-CARDS", numFlipped + "");
 	}
 
 
 	public void checkRotation() {
-			TileImageView a = null, b = null;
-			for (TileImageView imageView : imageHolders) {
-				if (imageView != null) {
-					if (imageView.flipped && !imageView.matched) {
-						if (a == null) {
-							a = imageView;
-						} else {
-							b = imageView;
-							break;
-						}
+		TileImageView a = null, b = null;
+		for (TileImageView imageView : imageHolders) {
+			if (imageView != null) {
+				if (imageView.flipped && !imageView.matched) {
+					if (a == null) {
+						a = imageView;
+					} else {
+						b = imageView;
+						break;
 					}
 				}
 			}
+		}
 
-			if (a != null && b != null) { // Make sure there are actually two flipped tiles
-				//If they have the same image
-				if (a.imageId == b.imageId) {
-					// Get rid of onclick listener (to prevent further flipping), and set them to matched
-					b.setOnClickListener(null);
-					a.setOnClickListener(null);
+		if (a != null && b != null) { // Make sure there are actually two flipped tiles
+			//If they have the same image
+			if (a.imageId == b.imageId) {
+				// Get rid of onclick listener (to prevent further flipping), and set them to matched
+				b.setOnClickListener(null);
+				a.setOnClickListener(null);
 
-					a.matched = true;
-					b.matched = true;
+				a.matched = true;
+				b.matched = true;
 
-					for (TileImageView imageView : imageHolders) {
-						if (!imageView.matched) return;
-						// TODO: Win
+				for (TileImageView imageView : imageHolders) {
+					if (!imageView.matched) {
+						numFlipped = 0;
+						return;
 					}
-				} else {
-					// Unflip
-					a.setImageAlpha(0);
-					b.setImageAlpha(0);
+					// TODO: Win
 				}
+			} else {
+				// Unflip (note that the if statements should never be false)
+				if (a.flipped) flip(a);
+				if (b.flipped) flip(b);
 			}
+		}
 
-			numFlipped = 0;
+		numFlipped = 0;
 	}
 
 	public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
