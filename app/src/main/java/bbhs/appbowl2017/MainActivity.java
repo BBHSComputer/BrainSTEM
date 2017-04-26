@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 hello.setText("playing game 4");
+                setContentView(R.layout.activity_game4);
             }
         });
     }
