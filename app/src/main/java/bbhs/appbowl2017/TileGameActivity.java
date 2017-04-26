@@ -20,7 +20,7 @@ import java.util.List;
 
 public class TileGameActivity extends AppCompatActivity {
 
-    private static final float DISTANCE = 8000f; // This is from the android tutorial on how to flip the cards; prevents the card from disappearing halfway throughout the animation
+    private static final float DISTANCE = 8000f; // Prevents the card from disappearing halfway throughout the animation
 
     private RelativeLayout layout;
     private TileImageView[] imageHolders;
