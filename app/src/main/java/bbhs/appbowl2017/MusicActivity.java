@@ -23,6 +23,9 @@ public class MusicActivity extends AppCompatActivity {
     private int score = 0;
     Button song1button, song2button, song3button;
     MediaPlayer mediaPlayer;
+
+    //Initializes variable for score, buttons to select song and the media player
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +33,12 @@ public class MusicActivity extends AppCompatActivity {
         song1button = (Button) findViewById(R.id.song1button);
         song2button = (Button) findViewById(R.id.song2button);
         song3button = (Button) findViewById(R.id.song3button);
-        songsOnClick();
+
+        //Finds the buttons in the layout
+
+        songsOnClick(); //Runs the songsOnClick method where you pick a song
     }
-    public void songsOnClick(){
+    public void songsOnClick(){ //Makes all buttons invisible when one is clicked and starts the song of the clicked button
         song1button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +69,7 @@ public class MusicActivity extends AppCompatActivity {
             }
         });
     }
-    public void startGame(int song) {
+    public void startGame(int song) { //Creates a mediaplayer of the song, playing back all of its notes through an array and a time delay handler
         if (song == 1) {
             mediaPlayer = MediaPlayer.create(this, R.raw.starspangledbanner);
             mediaPlayer.start();
@@ -110,26 +116,26 @@ public class MusicActivity extends AppCompatActivity {
 
 
     }
-    public void createNote(){
+    public void createNote(){ //Creates a button for the user to tap in tempo
         final Button note = new Button(this);
         DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(metrics.widthPixels/3, metrics.widthPixels/3);
-        params.topMargin = new Random().nextInt(metrics.heightPixels - metrics.widthPixels/3);
-        params.leftMargin = new Random().nextInt(metrics.widthPixels - metrics.widthPixels/3);
+        getWindowManager().getDefaultDisplay().getMetrics(metrics); //Gets the window parameters
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(metrics.widthPixels/3, metrics.widthPixels/3); //Sets the button size responsively
+        params.topMargin = new Random().nextInt(metrics.heightPixels - metrics.widthPixels/3); //Sets the margin to a random range
+        params.leftMargin = new Random().nextInt(metrics.widthPixels - metrics.widthPixels/3); //Sets the margin to a random range
         note.setText("♫ " + 1);
         note.setTextSize(30);
        final RelativeLayout layout = (RelativeLayout) findViewById(R.id.game4);
-        layout.addView(note, params);
+        layout.addView(note, params); //Adds the button to the layout so it is now visible
 
         note.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { //When clicked, increment score and remove the button from the layout, thus it is now invisible
                 ViewGroup parentView = (ViewGroup) view.getParent();
                 parentView.removeView(view);
                 score++;
                 TextView scoreText = (TextView) findViewById(R.id.scoreText);
-                scoreText.setText("Score: " + score);
+                scoreText.setText("Score: " + score); //Display the new score
 
             }
         });
@@ -139,22 +145,22 @@ public class MusicActivity extends AppCompatActivity {
             public void run() {
                 note.setText("♫ " + 0);
             }
-        }, 1000);
+        }, 1000); //The time left to tap the note
         final Handler noteHandlerB = new Handler();
         noteHandlerB.postDelayed(new Runnable() {
             @Override
             public void run() {
                 note.setVisibility(View.GONE);
             }
-        }, 2000);
+        }, 2000); //The note disappears as time has run out
 
 
     }
-    public void finishGame(int score){
+    public void finishGame(int score){ //Will pass score to a score activity
 
     }
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() { //Stops the song when returning to a previous activity
         mediaPlayer.stop();
         super.onBackPressed();
     }
