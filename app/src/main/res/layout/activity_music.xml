@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/game4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score: 0"></TextView>
+
+    <Button
+        android:id="@+id/song1button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scoreText"
+        android:layout_centerHorizontal="true"
+        android:text="Star-Spangled Banner"
+        app:layout_heightPercent="30%"/>
+    <Button
+        android:id="@+id/song2button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/song1button"
+        android:layout_centerHorizontal="true"
+        android:text="Take Me Out to the Ball Game"
+        app:layout_heightPercent="30%"/>
+    <Button
+        android:id="@+id/song3button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/song2button"
+        android:layout_centerHorizontal="true"
+        android:text="Fur Elise"
+        app:layout_heightPercent="30%"/>
+
+
+</android.support.percent.PercentRelativeLayout>

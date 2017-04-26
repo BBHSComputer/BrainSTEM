@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="toolbar" type="id" />
+    <item name="stack_value" type="id" />
+    <item name="stack_column" type="id" />
+    <item name = "glide_id" type = "id"/>
+</resources>
+
