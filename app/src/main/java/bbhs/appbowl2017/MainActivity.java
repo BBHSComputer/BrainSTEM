@@ -62,9 +62,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Snackbar snackbar = Snackbar
-                        .make(layout, "Summation is disabled at the moment...", Snackbar.LENGTH_LONG);
+                        .make(layout, "Loading up Summation...", Snackbar.LENGTH_LONG);
 
                 snackbar.show();
+                setContentView(R.layout.activity_game4);
             }
         });
 
@@ -76,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
                 snackbar.show();
                 startActivity( new Intent(getApplicationContext(),MusicActivity.class));
-
             }
         });
     }
