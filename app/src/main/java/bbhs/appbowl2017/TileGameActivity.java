@@ -1,5 +1,9 @@
 package bbhs.appbowl2017;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import android.graphics.BitmapFactory;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +19,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class TileGameActivity extends AppCompatActivity {
+
+	private static final float DISTANCE = 8000f; // This is from the android tutorial on how to flip the cards; prevents the card from disappearing halfway throughout the animation
 
 	private RelativeLayout layout;
 	private TileImageView[] imageHolders;
@@ -37,7 +43,8 @@ public class TileGameActivity extends AppCompatActivity {
 		layout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
 			@Override
 			public void onLayoutChange(View view, int left, int top, int right, int bottom, int leftWas, int topWas, int rightWas, int bottomWas) {
-				if (left == leftWas && right == rightWas && top == topWas && bottom == bottomWas) return; // If the view hasn't changed, don't perform any changes (prevents infinite recursion)
+				if (left == leftWas && right == rightWas && top == topWas && bottom == bottomWas)
+					return; // If the view hasn't changed, don't perform any changes (prevents infinite recursion)
 
 				final int w = layout.getWidth(); // The width of the screen
 				final int h = layout.getHeight(); // The height of the screen
@@ -51,7 +58,8 @@ public class TileGameActivity extends AppCompatActivity {
 				final int numSqWideFitX = (int) Math.ceil(Math.sqrt(w * n / h));
 				double sqSizeFitX = w / numSqWideFitX; // The side length of a square given the x axis is filled
 				final int numSqTallFitX = (int) Math.ceil((double) n / numSqWideFitX); // The number of squares that will be fit vertically, given the x axis is filled.
-				if (sqSizeFitX * numSqTallFitX > h) sqSizeFitX = -1; // If there are too many squares vertically, set to -1 to ensure this value is not used.
+				if (sqSizeFitX * numSqTallFitX > h)
+					sqSizeFitX = -1; // If there are too many squares vertically, set to -1 to ensure this value is not used.
 
 				// Repeat to fit y axis instead of x
 				final int numSqTallFitY = (int) Math.ceil(Math.sqrt(h * n / w));
@@ -98,7 +106,8 @@ public class TileGameActivity extends AppCompatActivity {
 					imageHolders[i].setOnClickListener(new View.OnClickListener() {
 						@Override
 						public void onClick(View view) {
-							if (!(view instanceof TileImageView)) return; // Should never happen, but included for security
+							if (!(view instanceof TileImageView))
+								return; // Should never happen, but included for security
 							TileImageView tiv = (TileImageView) view;
 							flip(tiv);
 							Log.d("FLIP", tiv.flipped + "");
@@ -112,22 +121,32 @@ public class TileGameActivity extends AppCompatActivity {
 					// Add the card to the layout
 					layout.addView(imageHolders[i], params);
 				}
+				float scale = getApplicationContext().getResources().getDisplayMetrics().density;
+				view.setCameraDistance(DISTANCE * scale);
 			}
 		});
 	}
 
-	public void flip(TileImageView imageView) { //flips image by turning alpha 0 or 255
+	public void flip(final TileImageView imageView) { //flips image by turning alpha 0 or 255
 		imageView.flipped = !imageView.flipped;
-
+		AnimatorSet flipCard;
 		if (imageView.flipped) {
-			imageView.setImageAlpha(255);
+			flipCard = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.card_flip_left_in);
 		} else {
-			imageView.setImageAlpha(0);
+			flipCard = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.card_flip_left_out);
 		}
+		flipCard.setTarget(imageView);
+		flipCard.start();
+		flipCard.addListener(new AnimatorListenerAdapter() {
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				super.onAnimationEnd(animation);
+				Log.d("Alpha", Float.toString(imageView.getImageAlpha()));
+			}
+		});
 		numFlipped += (imageView.flipped ? 1 : -1);
 		Log.d("NUM-CARDS", numFlipped + "");
 	}
-
 
 	public void checkRotation() {
 		TileImageView a = null, b = null;
@@ -162,7 +181,7 @@ public class TileGameActivity extends AppCompatActivity {
 
 					double w1 = 1;
 					double w2 = 0;
-					double score = w1 * Math.log(totalTaps / (0.5 * numTiles *numTiles - 0.5 * numTiles)) + w2 / Math.log((System.currentTimeMillis() - startTime) / 1000);
+					double score = w1 * Math.log(totalTaps / (0.5 * numTiles * numTiles - 0.5 * numTiles)) + w2 / Math.log((System.currentTimeMillis() - startTime) / 1000);
 
 					// TODO: Show win screen (using the score variable)
 				}
@@ -189,8 +208,7 @@ public class TileGameActivity extends AppCompatActivity {
 
 			// Calculate the largest inSampleSize value that is a power of 2 and keeps both
 			// height and width larger than the requested height and width.
-			while ((halfHeight / inSampleSize) > reqHeight
-					&& (halfWidth / inSampleSize) > reqWidth) {
+			while ((halfHeight / inSampleSize) > reqHeight && (halfWidth / inSampleSize) > reqWidth) {
 				inSampleSize *= 2;
 			}
 		}
