@@ -18,4 +18,7 @@ public class TileImageView extends AppCompatImageView {
 
 		this.imageId = imageId;
 	}
+	public void setImageAlpha(float alpha){
+		super.setImageAlpha((int) alpha);
+	}
 }
