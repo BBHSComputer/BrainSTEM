@@ -1,76 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="bbhs.appbowl2017.MainActivity"
     android:id="@+id/mainLayout">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        />
 
-    <Button
-        android:layout_width="200dp"
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Matching Game"
-        android:id="@+id/game1"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:clickable="true"
-        android:enabled="true"
-        android:background="#f5f5f5"
-        android:textColor="#000000"
-        android:fontFamily="sans-serif" />
+        android:layout_margin="8dp"
+        android:id="@+id/StackCard"
+        app:layout_heightPercent="22.5%">
 
-    <Button
-        android:layout_width="200dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="14dp"
+                android:text="Stack"
+                android:textColor="@color/primary_text_default_material_light"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="0dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="Subtitle here"
+                android:textSize="10sp" />
+
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                android:id="@+id/game1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:padding="0dp"
+                android:text="Play!"
+                android:textSize="10sp"
+                android:textColor="@color/accent_material_light" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_below="@+id/StackCard"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Game 2"
-        android:id="@+id/game2"
-        android:clickable="false"
-        android:enabled="true"
-        android:background="#f5f5f5"
-        android:textColor="#000000"
-        android:layout_below="@+id/game1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:fontFamily="sans-serif"
-        />
+        android:layout_margin="8dp"
+        android:id="@+id/TileCard"
+        app:layout_heightPercent="22.5%">
 
-    <Button
-        android:layout_width="200dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="14dp"
+                android:text="Tile"
+                android:textColor="@color/primary_text_default_material_light"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="0dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="Subtitle here"
+                android:textSize="10sp" />
+
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                android:id="@+id/game2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:padding="0dp"
+                android:text="Play!"
+                android:textSize="10sp"
+                android:textColor="@color/accent_material_light" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_below="@+id/TileCard"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Game 3"
-        android:id="@+id/game3"
-        android:layout_marginTop="50dp"
-        android:clickable="true"
-        android:enabled="true"
-        android:background="#f5f5f5"
-        android:textColor="#000000"
-        android:layout_below="@+id/game2"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif"/>
+        android:layout_margin="8dp"
+        android:id="@+id/SummationCard"
+        app:layout_heightPercent="22.5%">
 
-    <Button
-        android:layout_width="200dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="14dp"
+                android:text="Σ (Summation)"
+                android:textColor="@color/primary_text_default_material_light"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="0dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="Subtitle here"
+                android:textSize="10sp" />
+
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                android:id="@+id/game3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:padding="0dp"
+                android:text="Play!"
+                android:textSize="10sp"
+                android:textColor="@color/accent_material_light" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_below="@+id/SummationCard"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Music"
-        android:id="@+id/game4"
-        android:clickable="true"
-        android:enabled="true"
-        android:background="#f5f5f5"
-        android:textColor="#000000"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/game3"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif"/>
+        android:layout_margin="8dp"
+        android:id="@+id/MusicCard"
+        app:layout_heightPercent="22.5%">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="14dp"
+                android:text="Music"
+                android:textColor="@color/primary_text_default_material_light"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="0dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="Subtitle here"
+                android:textSize="10sp" />
+
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                android:id="@+id/game4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:padding="0dp"
+                android:text="Play!"
+                android:textSize="10sp"
+                android:textColor="@color/accent_material_light" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</android.support.percent.PercentRelativeLayout>
