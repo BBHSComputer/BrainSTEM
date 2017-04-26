@@ -24,13 +24,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         layout = (RelativeLayout) findViewById(R.id.mainLayout);
 
-        hello = (TextView) findViewById(R.id.textView);
         game1 = (Button) findViewById(R.id.game1);
         game2 = (Button) findViewById(R.id.game2);
         game3 = (Button) findViewById(R.id.game3);
         game4 = (Button) findViewById(R.id.game4);
 
-        hello.setText("Welcome to Brain-STEM! Select one of the games below to play!");
         gamesSetOnClick();
 
 
@@ -40,8 +38,11 @@ public class MainActivity extends AppCompatActivity {
         game1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hello.setText("Loading up Matching Game...");
-                startActivity( new Intent(getApplicationContext(),TileSettingsActivity.class));
+                Snackbar snackbar = Snackbar
+                        .make(layout, "Loading up Stack...", Snackbar.LENGTH_LONG);
+
+                snackbar.show();
+                startActivity( new Intent(getApplicationContext(), StackActivity2.class));
 
             }
         });
@@ -49,17 +50,19 @@ public class MainActivity extends AppCompatActivity {
         game2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hello.setText("playing game 2");
-                startActivity(new Intent(getApplicationContext(), StackActivity2.class));
+                Snackbar snackbar = Snackbar
+                        .make(layout, "Loading up Tile...", Snackbar.LENGTH_LONG);
+
+                snackbar.show();
+                startActivity(new Intent(getApplicationContext(), TileSettingsActivity.class));
             }
         });
 
         game3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hello.setText("Loading up Game 3...");
                 Snackbar snackbar = Snackbar
-                        .make(layout, "Games 2-4 are disabled for this demo.", Snackbar.LENGTH_LONG);
+                        .make(layout, "Summation is disabled at the moment...", Snackbar.LENGTH_LONG);
 
                 snackbar.show();
             }
@@ -68,7 +71,10 @@ public class MainActivity extends AppCompatActivity {
         game4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hello.setText("Loading up Game 4...");
+                Snackbar snackbar = Snackbar
+                        .make(layout, "Loading up Music...", Snackbar.LENGTH_LONG);
+
+                snackbar.show();
                 startActivity( new Intent(getApplicationContext(),MusicActivity.class));
 
             }
