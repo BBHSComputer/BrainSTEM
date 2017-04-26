@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Matching Game:"
+        android:text="Tile Settings:"
         android:id="@+id/settings"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -50,7 +50,7 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif"/>
     <TextView
-        android:text="Our matching game allows you to select pairs of cards from your phone's images and works to improve one's memory. Increase the difficulty by increasing the number of cards and trying to beat your past time!"
+        android:text="Tile allows you to select pairs of cards from your phone's images and works to improve one's memory. Increase the difficulty by increasing the number of cards and trying to beat your past time!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/settings"
