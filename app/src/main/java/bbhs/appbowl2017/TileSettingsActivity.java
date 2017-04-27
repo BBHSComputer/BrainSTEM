@@ -132,11 +132,22 @@ public class TileSettingsActivity extends AppCompatActivity {
                     snackbar.show();
 
                 } else { //relevant images into cards
-
-                   for(int i = 0; i < cards.length; i++){
-                       displayedImages[i].setImageURI(defaultCards[i]);
+                   try {
+                       cards = new Uri[Integer.parseInt(getPairs.getText().toString()) > 10 ? 10 : Integer.parseInt(getPairs.getText().toString())]; // make sure num of cards is <= 10
+                       for (int i = 0; i < cards.length; i++) {
+                           displayedImages[i].setImageURI(defaultCards[i]);
+                       }
+                       startActivity(new Intent(getApplicationContext(), TileGameActivity.class)); //loadu p the game
                    }
-                    startActivity(new Intent(getApplicationContext(), TileGameActivity.class)); //loadu p the game
+                   catch (NumberFormatException e) {
+                       Snackbar snackbar = Snackbar.make(imageDisplay, "Please enter a number of pairs.", Snackbar.LENGTH_LONG); //if no cards entered
+                       snackbar.show();
+
+                   } catch (NullPointerException yes) {
+                       Snackbar snackbar = Snackbar.make(imageDisplay, "Please enter a number of pairs.", Snackbar.LENGTH_LONG);
+                       snackbar.show();
+
+                   }
                 }
             }
         });

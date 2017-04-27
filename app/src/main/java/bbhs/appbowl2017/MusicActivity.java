@@ -1,5 +1,7 @@
 package bbhs.appbowl2017;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -87,7 +89,7 @@ public class MusicActivity extends AppCompatActivity {
         else if (song == 2) {
             mediaPlayer = MediaPlayer.create(this, R.raw.takemeout);
             mediaPlayer.start();
-            int arr[] = {758, 1129, 1237, 1328, 1513, 1886, 2070, 2256, 2257, 2642, 3015, 3386, 3760, 3770, 4136, 4143, 4512, 4514, 4888, 4898, 5265, 5271, 5642, 5795, 5886, 6026, 6075, 6399, 6769, 6770, 6816, 7154, 7528, 7898, 8283, 8656, 9027, 9411, 9777, 9784, 10153, 10155, 10539, 10912, 11283, 11667, 12040, 12410, 12411, 12795, 13169, 13540, 13924, 14297, 14666, 14668, 15052, 15425, 15796, 16180, 16553, 16923, 16924, 17299, 17308, 17675, 17681, 18051, 18052, 18437, 18810, 19181, 19288, 19379, 19470, 19660, 19938, 20032, 20212, 20307, 20401, 20695, 21068, 21444, 21812, 21819, 22188, 22564, 22565, 22940, 22949, 23316, 23323, 23693, 24078, 24451, 24820, 24822, 25196, 25206, 25572, 25579, 25950, 26325, 26334, 26701, 26707, 27077, 27078, 27453, 27462, 27835, 28206, 28581, 28957, 29333, 29335, 29719, 30092, 30461, 30463, 30837, 30847, 31220, 31591, 31975, 32348, 32718, 32719, 33103, 33476, 33846, 33847, 34222, 34605, 34974, 34976, 35360, 35733, 36104, 36488, 36861, 37232, 37616, 37989, 38360};
+            int arr[] = {1138, 1897, 2276, 2655, 3035, 3414, 4552, 5691, 6449, 6829, 7208, 7588, 7967, 9864, 10243, 10623, 11002, 11382, 11761, 12140, 12520, 13279, 13658, 14796, 15555, 15934, 16314, 16693, 17073, 17452, 17831, 18211, 18590, 18970, 19349, 20108, 20487, 20867, 21246, 21625, 22764, 23902, 24661, 25040, 25419, 25799, 26178, 27696, 28075, 28455, 29593, 30731, 31110, 31490, 31869, 32249, 32628, 33007, 34146, 35284, 35663, 36043, 36422, 36801, 37181, 37560, 38698};
             for (int i : arr) {
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -123,9 +125,16 @@ public class MusicActivity extends AppCompatActivity {
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(metrics.widthPixels/3, metrics.widthPixels/3); //Sets the button size responsively
         params.topMargin = new Random().nextInt(metrics.heightPixels - metrics.widthPixels/3); //Sets the margin to a random range
         params.leftMargin = new Random().nextInt(metrics.widthPixels - metrics.widthPixels/3); //Sets the margin to a random range
-        note.setText("♫ " + 1);
-        note.setTextSize(30);
-       final RelativeLayout layout = (RelativeLayout) findViewById(R.id.game4);
+        note.setText("♫");
+        note.setTextSize(metrics.widthPixels/3 * .2F);
+        int colorFrom = 0xaaaaaaaa;
+        int colorTo = 0xffFF0000;
+        int duration = 2000;
+        ObjectAnimator anim = ObjectAnimator.ofObject(note, "backgroundColor", new ArgbEvaluator(), colorFrom, colorTo);
+        anim.setDuration(duration).start();
+
+
+        final RelativeLayout layout = (RelativeLayout) findViewById(R.id.game4);
         layout.addView(note, params); //Adds the button to the layout so it is now visible
 
         note.setOnClickListener(new View.OnClickListener() {
@@ -139,13 +148,6 @@ public class MusicActivity extends AppCompatActivity {
 
             }
         });
-        final Handler noteHandlerA = new Handler();
-        noteHandlerA.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                note.setText("♫ " + 0);
-            }
-        }, 1000); //The time left to tap the note
         final Handler noteHandlerB = new Handler();
         noteHandlerB.postDelayed(new Runnable() {
             @Override
@@ -161,7 +163,9 @@ public class MusicActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() { //Stops the song when returning to a previous activity
-        mediaPlayer.stop();
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+        }
         super.onBackPressed();
     }
 
