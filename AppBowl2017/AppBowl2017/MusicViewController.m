@@ -14,11 +14,9 @@
 
 @implementation MusicViewController
 
-CGFloat const size = 64;
+CGFloat const size = 100;
 
-@synthesize song;
-
-int score = 0;
+@synthesize song, score, countdown, scoreLabel;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -44,6 +42,8 @@ int score = 0;
 }
 
 - (void)startGame {
+	[[self countdown] setAlpha:0];
+	
 	// TODO: Play song
 	NSArray *arr;
 	switch (song) {
@@ -59,14 +59,14 @@ int score = 0;
 	}
 	
 	for (NSNumber *n in arr) {
-		[self performSelector:@selector(createNote) withObject:nil afterDelay:[n integerValue] / 1000];
+		[self performSelector:@selector(createNote) withObject:nil afterDelay:[n doubleValue] / 1000];
 	}
 }
 
 - (void)createNote {
-	UIView *background = [[UIView alloc] initWithFrame:CGRectMake(arc4random() % ((int) (self.view.frame.size.width - size)), arc4random() % ((int) (self.view.frame.size.height - size)), size, size)];
+	UIView *background = [[UIView alloc] initWithFrame:CGRectMake(arc4random() % ((int) (self.view.frame.size.width - size)), 128 + arc4random() % ((int) (self.view.frame.size.height - size - 128)), size, size)];
 	[background.layer setCornerRadius:size / 2];
-	[background setBackgroundColor:[UIColor greenColor]];
+	[background setBackgroundColor:[UIColor colorWithRed:1 green:0.5 blue:0.5 alpha:1]];
 	
 	UIButton *note = [UIButton buttonWithType:UIButtonTypeCustom];
 	// ♫ BEAMED EIGHTH NOTES Unicode: U+266B, UTF-8: E2 99 AB
@@ -78,7 +78,7 @@ int score = 0;
 	[note setClipsToBounds:YES];
 	
 	CAShapeLayer *layer = [CAShapeLayer layer];
-	UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:background.center radius:size / 2 startAngle:4.7123889804 endAngle:10.9955742876 clockwise:YES];
+	UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:note.center radius:size / 2 startAngle:4.7123889804 endAngle:10.9955742876 clockwise:NO];
 	[path stroke];
 	[layer setPath:[path CGPath]];
 	[layer setStrokeColor:[[UIColor redColor] CGColor]];
@@ -86,56 +86,42 @@ int score = 0;
 	[layer setFillColor:nil];
 	[background.layer addSublayer:layer];
 	
+	[CATransaction begin];
 	CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"strokeStart"];
-	[anim setFromValue:@0];
-	[anim setToValue:@1];
+	[anim setFromValue:@1];
+	[anim setToValue:@0];
 	[anim setDuration:2];
+	[CATransaction setCompletionBlock:^{
+		[background setUserInteractionEnabled:NO];
+		[note setBackgroundColor:[UIColor redColor]];
+		[UIView animateWithDuration:0.25 animations:^{
+			[background setAlpha:0];
+		} completion:^(BOOL finished) {
+			[background removeFromSuperview];
+		}];
+	}];
 	[layer addAnimation:anim forKey:@"strokeStart"];
+	[CATransaction commit];
+	
+	[note addTarget:self action:@selector(notePressed:) forControlEvents:UIControlEventTouchDown];
 	
 	[background addSubview:note];
 	
-	[self.view addSubview:background];
+	[self.view insertSubview:background atIndex:0];
 }
 
-//public void createNote(){ //Creates a button for the user to tap in tempo
-//	final Button note = new Button(this);
-//	DisplayMetrics metrics = new DisplayMetrics();
-//	getWindowManager().getDefaultDisplay().getMetrics(metrics); //Gets the window parameters
-//	RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(metrics.widthPixels/3, metrics.widthPixels/3); //Sets the button size responsively
-//	params.topMargin = new Random().nextInt(metrics.heightPixels - metrics.widthPixels/3); //Sets the margin to a random range
-//	params.leftMargin = new Random().nextInt(metrics.widthPixels - metrics.widthPixels/3); //Sets the margin to a random range
-//	note.setText("♫ " + 1);
-//	note.setTextSize(30);
-//	final RelativeLayout layout = (RelativeLayout) findViewById(R.id.game4);
-//	layout.addView(note, params); //Adds the button to the layout so it is now visible
-//
-//	note.setOnClickListener(new View.OnClickListener() {
-//		@Override
-//		public void onClick(View view) { //When clicked, increment score and remove the button from the layout, thus it is now invisible
-//			ViewGroup parentView = (ViewGroup) view.getParent();
-//			parentView.removeView(view);
-//			score++;
-//			TextView scoreText = (TextView) findViewById(R.id.scoreText);
-//			scoreText.setText("Score: " + score); //Display the new score
-//
-//		}
-//	});
-//	final Handler noteHandlerA = new Handler();
-//	noteHandlerA.postDelayed(new Runnable() {
-//		@Override
-//		public void run() {
-//			note.setText("♫ " + 0);
-//		}
-//	}, 1000); //The time left to tap the note
-//	final Handler noteHandlerB = new Handler();
-//	noteHandlerB.postDelayed(new Runnable() {
-//		@Override
-//		public void run() {
-//			note.setVisibility(View.GONE);
-//		}
-//	}, 2000); //The note disappears as time has run out
-//
-//
-//}
+- (void)notePressed:(UIButton *)note {
+	score++;
+	[self.scoreLabel setText:[NSString stringWithFormat:@"Score: %i", score]];
+	[note setBackgroundColor:[UIColor grayColor]];
+	[note.superview setBackgroundColor:[UIColor lightGrayColor]];
+	[note setEnabled:false];
+	[UIView animateWithDuration:0.25 animations:^{
+		[note.superview setAlpha:0];
+	} completion:^(BOOL finished) {
+		[note.superview removeFromSuperview];
+	}];
+	
+}
 
 @end

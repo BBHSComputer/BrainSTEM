@@ -12,7 +12,7 @@
 
 extern CGFloat const SIZE;
 
-@property (nonatomic) int song;
-@property (strong, nonatomic) UILabel *countdown, *score;
+@property (nonatomic) int song, score;
+@property (strong, nonatomic) IBOutlet UILabel *countdown, *scoreLabel;
 
 @end

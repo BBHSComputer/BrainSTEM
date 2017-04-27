@@ -10,6 +10,6 @@
 
 @interface MusicSettingsTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) UILabel *name, *composer, *copyright;
+@property (strong, nonatomic) IBOutlet UILabel *name, *composer, *copyright;
 
 @end
