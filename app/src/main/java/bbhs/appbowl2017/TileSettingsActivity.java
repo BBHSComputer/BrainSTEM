@@ -136,6 +136,7 @@ public class TileSettingsActivity extends AppCompatActivity {
                        cards = new Uri[Integer.parseInt(getPairs.getText().toString()) > 10 ? 10 : Integer.parseInt(getPairs.getText().toString())]; // make sure num of cards is <= 10
                        for (int i = 0; i < cards.length; i++) {
                            displayedImages[i].setImageURI(defaultCards[i]);
+                           cards[i] = defaultCards[i];
                        }
                        startActivity(new Intent(getApplicationContext(), TileGameActivity.class)); //loadu p the game
                    }
@@ -160,6 +161,10 @@ public class TileSettingsActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     selectedImage = imageReturnedIntent.getData();
                     imageView.setImageURI(selectedImage);
+
+                    displayedImages[count].setImageURI(image);
+                    cards[count] = image;
+                    count++;
 
                 }
 

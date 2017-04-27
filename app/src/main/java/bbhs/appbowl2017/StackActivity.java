@@ -1,6 +1,7 @@
 package bbhs.appbowl2017;
 
 import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
@@ -10,7 +11,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.support.v4.animation.ValueAnimatorCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,11 +38,13 @@ public class StackActivity extends AppCompatActivity {
     private static List<List<View>> grid = new ArrayList<>(); // This is the 2D game field, the tiles in relative grid positions
     private static List<View> buttons = new ArrayList<>(); // This is the list of gameButtons, which is animated after the blocks are
     private static Point[][] coordinates; // This is a 2D array of the coordinates corresponding to the game field positions [y][x]
-    private static List<Animator> animations = new ArrayList<>(); // List of animations that need to be done
-    private static AnimatorSet color = new AnimatorSet();//Animation of Views that need to be recolored
-    private static AnimatorSet removeAnim = new AnimatorSet();//Animation of removing Views
-    private static List<Pair> rules = new ArrayList<>();
-    private static Set<View> remove = new HashSet<>(); // Sets of views to remove
+
+    private static List<Animator> movementAnim = new ArrayList<>(); // List of animations that need to be done
+    private static HashMap<View, Animator> removeAnimList = new HashMap<>();
+    // private static AnimatorSet removeAnimList = new AnimatorSet();//Animation of removing Views
+    private static List<Pair> rules = new ArrayList<>();//List of rules
+    private static Set<View> remove = new HashSet<>(); // Sets of views to
+    //TODO get rid of this stupid thing
 
     private static RelativeLayout.LayoutParams lp; // This is useful in setting the size of the tiles, initialized in onWindowFocusChanged
     private static View gameTile; // This is the gameTile, or the View that the player places
@@ -70,7 +73,6 @@ public class StackActivity extends AppCompatActivity {
             initializationComplete = true; // Makes sure this only runs once
 
             field = (RelativeLayout) findViewById(R.id.game2_field); // Gets the playing field relative view
-
             int scaleX = field.getWidth() / SIZE_X; // Gets the size of the tiles based on the game field width
             int scaleY = field.getHeight() / SIZE_Y; // Gets the size of the tiles based on the game field height
 
@@ -152,15 +154,15 @@ public class StackActivity extends AppCompatActivity {
                 }
             }
         }
-        if (!animations.isEmpty()) {
-            as.playTogether(animations);
+        if (!movementAnim.isEmpty()) {
+            as.playTogether(movementAnim);
             as.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
-                    animations.clear();
+                    movementAnim.clear();
                     Log.d("BrainSTEM S", "Finished updating position animations");
-                    afterUpdate();
+                    initializeRuleCheck();
                 }
             });
             as.start();
@@ -190,23 +192,30 @@ public class StackActivity extends AppCompatActivity {
                 });
             }
         }
-        Log.d("BrainSTEM S", "Finished setting up View position animations");
+        //Log.d("BrainSTEM S", "Finished setting up View position animations");
         //TODO add newGameTile after recursion of checking and falling is done
     }
 
-    private void afterUpdate() {
-        if (brokenRule()) {
-            color.start();
-            color.addListener(new AnimatorListenerAdapter() {
+    private void initializeRuleCheck() {
+        if (checkStackRules()) {
+            AnimatorSet removeAnimation = new AnimatorSet();
+            for(View view : remove){
+                if(!removeAnimList.containsKey(view)){
+                    AnimatorSet removeNorm = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.stack_remove_norm);
+                    removeNorm.setTarget(view);
+                    removeAnimList.put(view, removeNorm);
+                }
+                grid.get((int) view.getTag(R.id.stack_column)).remove(view);
+            }
+            for(View view : removeAnimList.keySet()){
+                removeAnimation.play(removeAnimList.get(view));
+            }
+            removeAnimation.start();
+            removeAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
-                    for (View v : remove) {
-                        grid.get(Integer.parseInt((String) v.getTag(R.id.stack_column))).remove(v);
-                        ObjectAnimator remove = new ObjectAnimator().ofFloat(v, "alpha", 0);
-                        removeAnim.play(remove);
-                    }
-                    afterColorAnim();
+                    updatePositions();
                 }
             });
         }else{
@@ -214,39 +223,27 @@ public class StackActivity extends AppCompatActivity {
         }
     }
 
-    private void afterColorAnim() {
-        removeAnim.start();
-        removeAnim.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                updatePositions();
-            }
-        });
-    }
-
-    private boolean brokenRule() { // This checks that each View does not break a rule
+    private boolean checkStackRules() { // This checks that each View does not break a rule
         /*  The method will iterate through every single View on the game board, including the gameButtons.
         *   It will then check if the View is not the top most view on the board, not including gameButtons (hence, the -2 on grid.size())
         *   Then, it checks that the View is not in the leftmost or rightmost column
         */
-
         for (int column = 0; column < SIZE_X; column++) {
             List<View> list = grid.get(column);
 
             for (View v : list) {
                 int pos = list.indexOf(v);
                 if (list.size() - 2 > pos) {
-                    if (ruleCheck(v, list.get(pos + 1))) {
-                        addRemove(column, pos);
-                        addRemove(column, pos + 1);
+                    if (pairStackRuleCheck(v, list.get(pos + 1))) {
+                        addToBeRemovedViews(column, pos);
+                        addToBeRemovedViews(column, pos + 1);
                     }
                 }
                 if (SIZE_X - 1 > column) {
                     if ((int) v.getTag(R.id.stack_value) != -1 && grid.get(column + 1).size() - 1 > pos) {
-                        if (ruleCheck(v, grid.get(column + 1).get(pos))) {
-                            addRemove(column, pos);
-                            addRemove(column + 1, pos);
+                        if (pairStackRuleCheck(v, grid.get(column + 1).get(pos))) {
+                            addToBeRemovedViews(column, pos);
+                            addToBeRemovedViews(column + 1, pos);
                         }
                     }
                 }
@@ -258,7 +255,7 @@ public class StackActivity extends AppCompatActivity {
         return false;
     }
 
-    private boolean ruleCheck(View v, View check) { // False if no broken rules, True if there are broken rules
+    private boolean pairStackRuleCheck(View v, View check) { //Checks if the pair of Views break a rule. false if they don't, true if they do.
         for (Pair pair : rules) {
             if (pair.equals(new Pair(Integer.parseInt((String) v.getTag(R.id.stack_value)), Integer.parseInt((String) check.getTag(R.id.stack_value))))) {
                 return true;
@@ -267,14 +264,13 @@ public class StackActivity extends AppCompatActivity {
         return false;
     }
 
-    private void addRemove(int column, int pos) {
-        ValueAnimator colorAnim = ObjectAnimator.ofInt(grid.get(column).get(pos), "backgroundColor", R.color.grey, R.color.red);
-        colorAnim.setDuration(250);
-        colorAnim.setEvaluator(new ArgbEvaluator());
-        //ObjectAnimator colorRule = new ObjectAnimator().ofFloat(grid.get(column).get(pos), "backgroundColor", R.color.red);
-        //colorRule.setDuration(250);
-        color.play(colorAnim);
+    private void addToBeRemovedViews(int column, int pos) {
+        AnimatorSet removeRed = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.stack_remove_red);
+        removeRed.setTarget(grid.get(column).get(pos));
         remove.add(grid.get(column).get(pos));
+
+        removeAnimList.put(grid.get(column).get(pos), removeRed);
+
         if (column < SIZE_X - 1) {
             if (grid.get(column + 1).size() - 1 > pos) remove.add(grid.get(column + 1).get(pos));
         }
@@ -294,7 +290,7 @@ public class StackActivity extends AppCompatActivity {
         ObjectAnimator moveX = ObjectAnimator.ofFloat(v, "x", coordinates[y][x].x);
         ObjectAnimator moveY = ObjectAnimator.ofFloat(v, "y", coordinates[y][x].y);
         blockMove.playSequentially(moveX, moveY);
-        animations.add(blockMove);
+        movementAnim.add(blockMove);
     }
 
     private static void newGameTile() {
