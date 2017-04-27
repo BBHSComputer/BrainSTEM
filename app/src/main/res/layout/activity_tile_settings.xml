@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Tile Settings:"
+        android:text="@string/tile_settings"
         android:id="@+id/settings"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -23,7 +23,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose images"
+        android:text="@string/choose_images"
         android:id="@+id/chooser"
         android:background="#f5f5f5"
         android:textColor="#000000"
@@ -44,13 +44,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Pairs of Cards:"
+        android:text="@string/pairs_of_cards"
         android:id="@+id/textView2"
         android:layout_above="@+id/parisOfCards"
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif"/>
     <TextView
-        android:text="Tile allows you to select pairs of cards from your phone's images and works to improve one's memory. Increase the difficulty by increasing the number of cards and trying to beat your past time!"
+        android:text="@string/tile_allows_you_to_select_pairs_of_cards_from_your_phone_s_images_and_works_to_improve_one_s_memory_increase_the_difficulty_by_increasing_the_number_of_cards_and_trying_to_beat_your_past_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/settings"
@@ -152,7 +152,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play !"
+        android:text="@string/play2"
         android:id="@+id/play"
         android:background="#f5f5f5"
         android:textColor="#000000"
@@ -163,7 +163,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Use default cards"
+        android:text="@string/use_default_cards"
         android:id="@+id/playDefault"
         android:background="#f5f5f5"
         android:textColor="#000000"

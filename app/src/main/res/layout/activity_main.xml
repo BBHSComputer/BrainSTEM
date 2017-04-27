@@ -30,7 +30,7 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:paddingTop="14dp"
-                android:text="Stack"
+                android:text="@string/stack"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="16sp" />
 
@@ -40,7 +40,7 @@
                 android:paddingBottom="0dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="Stack is a rule-based block game. It stimulates the brain, improving cognitive functioning for daily activity as well as combatting the symptoms of dementia."
+                android:text="@string/stack_is_a_rule_based_block_game_it_stimulates_the_brain_improving_cognitive_functioning_for_daily_activity_as_well_as_combatting_the_symptoms_of_dementia"
                 android:textSize="10sp" />
 
             <Button
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="0dp"
-                android:text="Play!"
+                android:text="@string/play2"
                 android:textSize="10sp"
                 android:textColor="@color/accent_material_light" />
         </LinearLayout>
@@ -76,7 +76,7 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:paddingTop="14dp"
-                android:text="Tile"
+                android:text="@string/tile"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="16sp" />
 
@@ -86,7 +86,7 @@
                 android:paddingBottom="0dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="Tile is a card-flipping game that works to allow the brain to make connections as well as challenging the memory loss of Alzheimer’s and similar disorders."
+                android:text="@string/tile_is_a_card_flipping_game_that_works_to_allow_the_brain_to_make_connections_as_well_as_challenging_the_memory_loss_of_alzheimer_s_and_similar_disorders"
                 android:textSize="10sp" />
 
             <Button
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="0dp"
-                android:text="Play!"
+                android:text="@string/play2"
                 android:textSize="10sp"
                 android:textColor="@color/accent_material_light" />
         </LinearLayout>
@@ -122,7 +122,7 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:paddingTop="14dp"
-                android:text="Σ (Summation)"
+                android:text="@string/summation"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="16sp" />
 
@@ -132,7 +132,7 @@
                 android:paddingBottom="0dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="Summation allows users to have a holistic challenge. The spontaneity of the mini-game allows for overall mental stimulation."
+                android:text="@string/summation_allows_users_to_have_a_holistic_challenge_the_spontaneity_of_the_mini_game_allows_for_overall_mental_stimulation"
                 android:textSize="10sp" />
 
             <Button
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="0dp"
-                android:text="Play!"
+                android:text="@string/play2"
                 android:textSize="10sp"
                 android:textColor="@color/accent_material_light" />
         </LinearLayout>
@@ -168,7 +168,7 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:paddingTop="14dp"
-                android:text="Music"
+                android:text="@string/music"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="16sp" />
 
@@ -178,7 +178,7 @@
                 android:paddingBottom="0dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="Music is a rhythm game that challenges those with arthritis to move their joints and improve reflexes."
+                android:text="@string/music_is_a_rhythm_game_that_challenges_those_with_arthritis_to_move_their_joints_and_improve_reflexes"
                 android:textSize="10sp" />
 
             <Button
@@ -188,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="0dp"
-                android:text="Play!"
+                android:text="@string/play2"
                 android:textSize="10sp"
                 android:textColor="@color/accent_material_light" />
         </LinearLayout>
