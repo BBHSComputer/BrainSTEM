@@ -160,4 +160,12 @@
         android:layout_below="@+id/parisOfCards"
         android:layout_alignEnd="@+id/ImageDisplays" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use default cards"
+        android:id="@+id/playDefault"
+        android:layout_below="@+id/parisOfCards"
+        android:layout_toEndOf="@+id/chooser" />
+
 </RelativeLayout>

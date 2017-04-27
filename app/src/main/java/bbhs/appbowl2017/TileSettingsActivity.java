@@ -1,6 +1,8 @@
 package bbhs.appbowl2017;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import android.widget.RelativeLayout;
 public class TileSettingsActivity extends AppCompatActivity {
 
     public static Uri[] cards;
+    public static Uri[] defaultCards;
 
     private ImageView imageView;
     private Button chooser;
@@ -22,6 +25,7 @@ public class TileSettingsActivity extends AppCompatActivity {
     private EditText getPairs;
     private Uri selectedImage;
     private Uri image;
+    private Button useDefaults;
 
     private RelativeLayout imageDisplay; //ONLY PLACES WHERE IMAGES WILL BE DISPLAYED ARE ACCEPTABLE TO PUT IN HERE
 
@@ -42,6 +46,23 @@ public class TileSettingsActivity extends AppCompatActivity {
         play = (Button) findViewById(R.id.play);
 
         displayedImages = new ImageView[10];
+
+        defaultCards = new Uri[10];
+        Resources resources = getApplicationContext().getResources();
+
+        defaultCards[0] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img1) + '/' + resources.getResourceTypeName(R.drawable.img1) + '/' + resources.getResourceEntryName(R.drawable.img1));
+        defaultCards[1] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img2) + '/' + resources.getResourceTypeName(R.drawable.img2) + '/' + resources.getResourceEntryName(R.drawable.img2));
+        defaultCards[2] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img3) + '/' + resources.getResourceTypeName(R.drawable.img3) + '/' + resources.getResourceEntryName(R.drawable.img3));
+        defaultCards[3] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img4) + '/' + resources.getResourceTypeName(R.drawable.img4) + '/' + resources.getResourceEntryName(R.drawable.img4));
+        defaultCards[4] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img5) + '/' + resources.getResourceTypeName(R.drawable.img5) + '/' + resources.getResourceEntryName(R.drawable.img5));
+        defaultCards[5] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img6) + '/' + resources.getResourceTypeName(R.drawable.img6) + '/' + resources.getResourceEntryName(R.drawable.img6));
+        defaultCards[6] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img7) + '/' + resources.getResourceTypeName(R.drawable.img7) + '/' + resources.getResourceEntryName(R.drawable.img7));
+        defaultCards[7] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img8) + '/' + resources.getResourceTypeName(R.drawable.img8) + '/' + resources.getResourceEntryName(R.drawable.img8));
+        defaultCards[8] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img9) + '/' + resources.getResourceTypeName(R.drawable.img9) + '/' + resources.getResourceEntryName(R.drawable.img9));
+        defaultCards[9] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img10) + '/' + resources.getResourceTypeName(R.drawable.img10) + '/' + resources.getResourceEntryName(R.drawable.img10));
+
+        useDefaults = (Button) findViewById(R.id.playDefault);
+
 
         for (int i = 0; i < imageDisplay.getChildCount(); i++) {
             displayedImages[i] = (ImageView) imageDisplay.getChildAt(i); // Set displayed images to all of the imageviews from the imageDisplay
@@ -97,6 +118,25 @@ public class TileSettingsActivity extends AppCompatActivity {
                     snackbar.show();
                 } else {
                     startActivity(new Intent(getApplicationContext(), TileGameActivity.class)); // load up the game
+                }
+            }
+        });
+
+
+        useDefaults.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getPairs.getText().equals("") || getPairs.getText().equals(null)) {
+                    Snackbar snackbar = Snackbar.make(imageDisplay, "No cards entered. Please select some images.", Snackbar.LENGTH_LONG); //if no cards entered
+
+                    snackbar.show();
+
+                } else { //relevant images into cards
+
+                   for(int i = 0; i < cards.length; i++){
+                       displayedImages[i].setImageURI(defaultCards[i]);
+                   }
+                    startActivity(new Intent(getApplicationContext(), TileGameActivity.class)); //loadu p the game
                 }
             }
         });
