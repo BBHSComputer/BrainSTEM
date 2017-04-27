@@ -14,9 +14,7 @@
 
 @implementation TileSettingsViewController
 
-NSUInteger previousValue;
-
-@synthesize stepperValue, stepper, collection, images;
+@synthesize previousValue, stepperValue, stepper, collection, images;
 
 #pragma mark - Interface Builder Actions
 

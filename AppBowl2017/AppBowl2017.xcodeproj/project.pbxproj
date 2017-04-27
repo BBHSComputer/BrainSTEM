@@ -20,6 +20,10 @@
 		9A4727FD1E6A014200E98AAE /* TileEndViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727FC1E6A014200E98AAE /* TileEndViewController.m */; };
 		9AD1C3631E9549A400C8F86E /* Rule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1C3621E9549A300C8F86E /* Rule.m */; };
 		9AD1C3661E954A8000C8F86E /* AdjacencyRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1C3651E954A8000C8F86E /* AdjacencyRule.m */; };
+		9ADD28481EB144A800CB4FA9 /* MusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADD28471EB144A800CB4FA9 /* MusicViewController.m */; };
+		9ADD284B1EB144B900CB4FA9 /* MusicSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADD284A1EB144B900CB4FA9 /* MusicSettingsTableViewController.m */; };
+		9ADD284E1EB144CE00CB4FA9 /* MusicSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADD284D1EB144CE00CB4FA9 /* MusicSettingsTableViewCell.m */; };
+		9ADD28531EB18DEB00CB4FA9 /* Strings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9ADD28521EB18DEB00CB4FA9 /* Strings.strings */; };
 		9AEAFC3A1E80170D00908941 /* PlayfairDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC341E80170D00908941 /* PlayfairDisplay-Black.ttf */; };
 		9AEAFC3B1E80170D00908941 /* PlayfairDisplay-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC351E80170D00908941 /* PlayfairDisplay-BlackItalic.ttf */; };
 		9AEAFC3C1E80170D00908941 /* PlayfairDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAFC361E80170D00908941 /* PlayfairDisplay-Bold.ttf */; };
@@ -95,6 +99,13 @@
 		9AD1C3621E9549A300C8F86E /* Rule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rule.m; sourceTree = "<group>"; };
 		9AD1C3641E954A8000C8F86E /* AdjacencyRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjacencyRule.h; sourceTree = "<group>"; };
 		9AD1C3651E954A8000C8F86E /* AdjacencyRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdjacencyRule.m; sourceTree = "<group>"; };
+		9ADD28461EB144A800CB4FA9 /* MusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicViewController.h; sourceTree = "<group>"; };
+		9ADD28471EB144A800CB4FA9 /* MusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicViewController.m; sourceTree = "<group>"; };
+		9ADD28491EB144B900CB4FA9 /* MusicSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicSettingsTableViewController.h; sourceTree = "<group>"; };
+		9ADD284A1EB144B900CB4FA9 /* MusicSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicSettingsTableViewController.m; sourceTree = "<group>"; };
+		9ADD284C1EB144CE00CB4FA9 /* MusicSettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicSettingsTableViewCell.h; sourceTree = "<group>"; };
+		9ADD284D1EB144CE00CB4FA9 /* MusicSettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicSettingsTableViewCell.m; sourceTree = "<group>"; };
+		9ADD28521EB18DEB00CB4FA9 /* Strings.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Strings.strings; sourceTree = "<group>"; };
 		9AEAFC341E80170D00908941 /* PlayfairDisplay-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-Black.ttf"; sourceTree = "<group>"; };
 		9AEAFC351E80170D00908941 /* PlayfairDisplay-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-BlackItalic.ttf"; sourceTree = "<group>"; };
 		9AEAFC361E80170D00908941 /* PlayfairDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-Bold.ttf"; sourceTree = "<group>"; };
@@ -193,6 +204,7 @@
 				9A4727F91E69E0A900E98AAE /* Assets.xcassets */,
 				9A4727C51E67CE1700E98AAE /* LaunchScreen.storyboard */,
 				9A4727C81E67CE1700E98AAE /* Info.plist */,
+				9ADD28521EB18DEB00CB4FA9 /* Strings.strings */,
 				9AEAFC641E80172400908941 /* Fonts */,
 				9A4727B71E67CE1700E98AAE /* Supporting Files */,
 			);
@@ -267,6 +279,12 @@
 		9ADDE9571EAA570600D09191 /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				9ADD28491EB144B900CB4FA9 /* MusicSettingsTableViewController.h */,
+				9ADD284A1EB144B900CB4FA9 /* MusicSettingsTableViewController.m */,
+				9ADD284C1EB144CE00CB4FA9 /* MusicSettingsTableViewCell.h */,
+				9ADD284D1EB144CE00CB4FA9 /* MusicSettingsTableViewCell.m */,
+				9ADD28461EB144A800CB4FA9 /* MusicViewController.h */,
+				9ADD28471EB144A800CB4FA9 /* MusicViewController.m */,
 			);
 			name = Music;
 			sourceTree = "<group>";
@@ -433,6 +451,7 @@
 				9AEAFC5A1E80171C00908941 /* Montserrat-Italic.ttf in Resources */,
 				9AEAFC631E80171C00908941 /* Montserrat-ThinItalic.ttf in Resources */,
 				9AEAFC5B1E80171C00908941 /* Montserrat-Light.ttf in Resources */,
+				9ADD28531EB18DEB00CB4FA9 /* Strings.strings in Resources */,
 				9AEAFC3D1E80170D00908941 /* PlayfairDisplay-BoldItalic.ttf in Resources */,
 				9AEAFC3E1E80170D00908941 /* PlayfairDisplay-Italic.ttf in Resources */,
 			);
@@ -459,8 +478,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ADD284B1EB144B900CB4FA9 /* MusicSettingsTableViewController.m in Sources */,
 				9AEAFC6A1E81D73700908941 /* GameListTableViewController.m in Sources */,
 				9AEAFC791E82C30A00908941 /* PhotoCollectionViewCell.m in Sources */,
+				9ADD28481EB144A800CB4FA9 /* MusicViewController.m in Sources */,
 				9A4727FD1E6A014200E98AAE /* TileEndViewController.m in Sources */,
 				9A4727F81E68BF2C00E98AAE /* TileImageView.m in Sources */,
 				9AD1C3631E9549A400C8F86E /* Rule.m in Sources */,
@@ -469,6 +490,7 @@
 				9AEAFC671E81D65000908941 /* GameListTableViewCell.m in Sources */,
 				9AEAFCBB1E8A9A9500908941 /* StackSettingsViewController.m in Sources */,
 				9A4727BC1E67CE1700E98AAE /* AppDelegate.m in Sources */,
+				9ADD284E1EB144CE00CB4FA9 /* MusicSettingsTableViewCell.m in Sources */,
 				9AD1C3661E954A8000C8F86E /* AdjacencyRule.m in Sources */,
 				9A4727B91E67CE1700E98AAE /* main.m in Sources */,
 				9A4727F51E684D7F00E98AAE /* TileViewController.m in Sources */,

@@ -14,6 +14,8 @@
 
 @interface TileSettingsViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 
+@property (nonatomic) NSUInteger previousValue;
+
 @property (strong, nonatomic) IBOutlet UILabel *stepperValue; // The display for the value of the stepper
 @property (strong, nonatomic) IBOutlet UIStepper *stepper; // The stepper for the number of images
 @property (strong, nonatomic) IBOutlet UICollectionView *collection; // The collection view for the images

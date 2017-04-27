@@ -15,20 +15,9 @@
 
 @implementation TileViewController
 
-// The amount of time since the game started
-NSInteger gameTime = 0;
-// The number of moves that have been made
-int gameMoves = 0;
-
-// How many tiles are currently selected
-int selections = 0;
-// How many tiles are currently in  the flip animation.
-int flipping = 0;
-// The currently flipped tiles
-TileImageView *a, *b;
-
 // Autosynthsize the setters/getters for these properties (from the header file)
 @synthesize time, moves, images, imageViews;
+@synthesize gameTime, gameMoves, selections, flipping, a, b;
 
 /// Layout the requested number of images
 - (void)layoutImages:(int)numberOfImages {
@@ -235,7 +224,11 @@ TileImageView *a, *b;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+	
+	gameTime = 0;
+	gameMoves = 0;
+	selections = 0;
+	flipping = 0;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -14,16 +14,13 @@
 
 @implementation StackViewController
 
-@synthesize toDrop, numberToDrop, buttons, rules;
-
-float size;
-BOOL dropping = NO;
+@synthesize toDrop, numberToDrop, buttons, rules, size, dropping;
 
 #pragma mark - ViewController methods
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	// Do any additional setup after loading the view.
+	dropping = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated { // Just before the view appears...

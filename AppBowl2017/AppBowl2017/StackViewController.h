@@ -11,6 +11,9 @@
 
 @interface StackViewController : UIViewController
 
+@property (nonatomic) float size;
+@property (nonatomic) BOOL dropping;
+
 // The labels that show level and number of rules
 @property (strong, nonatomic) IBOutlet UILabel *level, *ruleCount;
 
