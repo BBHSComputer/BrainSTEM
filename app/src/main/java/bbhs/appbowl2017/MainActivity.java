@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         .make(layout, "Loading up Summation...", Snackbar.LENGTH_LONG);
 
                 snackbar.show();
-                setContentView(R.layout.activity_game4);
+                startActivity(new Intent(getApplicationContext(), SummationGame.class));
             }
         });
 
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         .make(layout, "Loading up Music...", Snackbar.LENGTH_LONG);
 
                 snackbar.show();
-                startActivity( new Intent(getApplicationContext(),MusicActivity.class));
+                startActivity(new Intent(getApplicationContext(), MusicActivity.class));
             }
         });
     }

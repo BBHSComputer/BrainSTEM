@@ -1,23 +1,15 @@
 package bbhs.appbowl2017;
 
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static bbhs.appbowl2017.R.drawable.parking;
-
-public class Game4 extends AppCompatActivity implements QuestionListener {
+public class SummationGame extends AppCompatActivity implements QuestionListener {
 
     private List<Question> questions = new ArrayList<>();
     private int questionNumber = 0;
@@ -26,7 +18,7 @@ public class Game4 extends AppCompatActivity implements QuestionListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game4);
+        setContentView(R.layout.activity_summation);
 
         // Setup questions
         questions.add(new SimpleQuestion(this, "On which parking space is the car parked?", new String[]{"78", "89", "87", "97"}, 2, getResources().getIdentifier("parking" , "drawable", getPackageName())));
@@ -51,13 +43,13 @@ public class Game4 extends AppCompatActivity implements QuestionListener {
     public void onAnswered(boolean correct) {
         if (correct) {
             if (++questionNumber == questions.size()) {
-                setContentView(R.layout.activity_game4); // Win
+                setContentView(R.layout.activity_summation); // Win
                 questionNumber = 0;
             } else {
                 questions.get(questionNumber).initiate(); // Next question
             }
         } else {
-            setContentView(R.layout.activity_game4); // Loss
+            setContentView(R.layout.activity_summation); // Loss
             questionNumber = 0;
         }
     }

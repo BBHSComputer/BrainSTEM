@@ -2,7 +2,6 @@ package bbhs.appbowl2017;
 
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -21,8 +20,8 @@ public class TimedQuestion extends Question {
     private int correctAnswer;
     private boolean waited;
 
-    protected TimedQuestion(Game4 game, String question, String[] answers, int correctAnswer, long wait) {
-        super(R.layout.activity_game4_simple, game);
+    protected TimedQuestion(SummationGame game, String question, String[] answers, int correctAnswer, long wait) {
+        super(R.layout.activity_summation_simple, game);
 
         this.question = question;
         this.answers = answers;
