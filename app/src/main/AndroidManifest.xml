@@ -23,6 +23,7 @@
         <activity android:name=".StackGameActivity" />
         <activity android:name=".TileSettingsActivity" />
         <activity android:name=".TileGameActivity" />
+        <activity android:name=".Game4" />
         <activity android:name=".MusicActivity" />
     </application>
 </manifest>

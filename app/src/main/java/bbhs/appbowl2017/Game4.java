@@ -41,6 +41,7 @@ public class Game4 extends AppCompatActivity implements QuestionListener {
 
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Log.d("garg", "Hu");
                 questions.get(questionNumber).initiate();
             }
         });
