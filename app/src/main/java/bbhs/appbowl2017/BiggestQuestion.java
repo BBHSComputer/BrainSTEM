@@ -1,6 +1,5 @@
 package bbhs.appbowl2017;
 
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,8 +15,8 @@ public class BiggestQuestion extends Question {
     private Button[] answerButtons = new Button[4];
     private int big = 0;
 
-    public BiggestQuestion(Game4 game, String question, String[] answers) {
-        super(R.layout.activity_game4_biggest, game);
+    public BiggestQuestion(SummationGame game, String question, String[] answers) {
+        super(R.layout.activity_summation_biggest, game);
 
         this.question = question;
         this.answers = answers;

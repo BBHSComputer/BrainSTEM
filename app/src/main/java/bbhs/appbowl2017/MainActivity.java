@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         .make(layout, "Loading up Summation...", Snackbar.LENGTH_LONG);
 
                 snackbar.show();
-                startActivity(new Intent(getApplicationContext(), Game4.class));
+                startActivity(new Intent(getApplicationContext(), SummationGame.class));
             }
         });
 

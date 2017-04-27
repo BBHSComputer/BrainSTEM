@@ -1,6 +1,5 @@
 package bbhs.appbowl2017;
 
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,15 +15,15 @@ public class SimpleQuestion extends Question {
     private TextView text;
     private int imageResId = 0;
 
-    protected SimpleQuestion(Game4 game, String question, String[] answers, final int correctAnswer) {
-        super(R.layout.activity_game4_simple, game);
+    protected SimpleQuestion(SummationGame game, String question, String[] answers, final int correctAnswer) {
+        super(R.layout.activity_summation_simple, game);
 
         this.question = question;
         this.answers = answers;
         this.correctAnswer = correctAnswer;
     }
 
-    protected SimpleQuestion(Game4 game, String question, String[] answers, final int correctAnswer, int imageResId) {
+    protected SimpleQuestion(SummationGame game, String question, String[] answers, final int correctAnswer, int imageResId) {
         this(game, question, answers, correctAnswer);
         this.imageResId = imageResId;
     }
