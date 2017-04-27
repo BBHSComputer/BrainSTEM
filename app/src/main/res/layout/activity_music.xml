@@ -19,7 +19,8 @@
         android:layout_below="@+id/scoreText"
         android:layout_centerHorizontal="true"
         android:text="Star-Spangled Banner"
-        app:layout_heightPercent="30%"/>
+        app:layout_heightPercent="30%"
+        app:layout_widthPercent="33.3%"/>
     <Button
         android:id="@+id/song2button"
         android:layout_width="wrap_content"
@@ -27,7 +28,8 @@
         android:layout_below="@+id/song1button"
         android:layout_centerHorizontal="true"
         android:text="Take Me Out to the Ball Game"
-        app:layout_heightPercent="30%"/>
+        app:layout_heightPercent="30%"
+        app:layout_widthPercent="33.3%"/>
     <Button
         android:id="@+id/song3button"
         android:layout_width="wrap_content"
@@ -35,7 +37,8 @@
         android:layout_below="@+id/song2button"
         android:layout_centerHorizontal="true"
         android:text="Fur Elise"
-        app:layout_heightPercent="30%"/>
+        app:layout_heightPercent="30%"
+        app:layout_widthPercent="33.3%"/>
 
 
 </android.support.percent.PercentRelativeLayout>

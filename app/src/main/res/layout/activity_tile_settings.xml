@@ -165,7 +165,11 @@
         android:layout_height="wrap_content"
         android:text="Use default cards"
         android:id="@+id/playDefault"
+        android:background="#f5f5f5"
+        android:textColor="#000000"
+        android:fontFamily="sans-serif"
         android:layout_below="@+id/parisOfCards"
+        android:paddingLeft="10dp"
         android:layout_toEndOf="@+id/chooser" />
 
 </RelativeLayout>

@@ -40,7 +40,7 @@
                 android:paddingBottom="0dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="Subtitle here"
+                android:text="Stack is a rule-based block game. It stimulates the brain, improving cognitive functioning for daily activity as well as combatting the symptoms of dementia."
                 android:textSize="10sp" />
 
             <Button
@@ -86,7 +86,7 @@
                 android:paddingBottom="0dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="Subtitle here"
+                android:text="Tile is a card-flipping game that works to allow the brain to make connections as well as challenging the memory loss of Alzheimer’s and similar disorders."
                 android:textSize="10sp" />
 
             <Button
@@ -132,7 +132,7 @@
                 android:paddingBottom="0dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="Subtitle here"
+                android:text="Summation allows users to have a holistic challenge. The spontaneity of the mini-game allows for overall mental stimulation."
                 android:textSize="10sp" />
 
             <Button
@@ -178,7 +178,7 @@
                 android:paddingBottom="0dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="Subtitle here"
+                android:text="Music is a rhythm game that challenges those with arthritis to move their joints and improve reflexes."
                 android:textSize="10sp" />
 
             <Button
