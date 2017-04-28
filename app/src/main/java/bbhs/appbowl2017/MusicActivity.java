@@ -2,11 +2,9 @@ package bbhs.appbowl2017;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -73,9 +71,11 @@ public class MusicActivity extends AppCompatActivity {
     }
     public void startGame(int song) { //Creates a mediaplayer of the song, playing back all of its notes through an array and a time delay handler
         if (song == 1) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.starspangledbanner);
-            mediaPlayer.start();
-            int arr[] = {1446, 1968, 2153, 2885, 3596, 4303, 5035, 5746, 6269, 6453, 7185, 7896, 8603, 10047, 10570, 10754, 11486, 11842, 12197, 12904, 13636, 13992, 14347, 15054, 15786, 16498, 17205, 17937, 18648, 18999, 19355, 20087, 20798, 21505, 22237, 22949, 23299, 23655, 24388, 25099, 25806, 26538, 27249, 27600, 27956, 29045, 29399, 30106, 31195, 31550, 32257, 32989, 33700, 34407, 35850, 36557, 37289, 38001, 38708, 39440, 40151, 40858, 41590, 41946, 42301, 42652, 43008, 43740, 44451, 44802, 45158, 45891, 46247, 46602, 46952, 47309, 48041, 48752, 49103, 49459, 50191, 50547, 50902, 51609};
+            mediaPlayer = MediaPlayer.create(this, R.raw.starspangledbanner); // Load the MIDI file
+            mediaPlayer.start(); // Start playing the music
+
+            // An array of the times (in ms) when all of the notes are to be played
+            int arr[] = {0, 468, 625, 1250, 1875, 2500, 3750, 4218, 4375, 5000, 5625, 6250, 7500, 7812, 8124, 9062, 9375, 10000, 11250, 11562, 11875, 12500, 13125, 13750, 14375, 15000, 15468, 15625, 16249, 16875, 17500, 18750, 19218, 19375, 20000, 20625, 21250, 22500, 22812, 23125, 24062, 24375, 25000, 26250, 26562, 26875, 27500, 28125, 28750, 29375, 30000, 30468, 30625, 31250, 31875, 32499, 33750, 34062, 34375, 35000, 35625, 36250, 37500, 38125, 39062, 39375, 40000, 41250, 41562, 41875, 42500, 43125, 43750, 45000, 45625, 46250, 46875, 47187, 47500, 48125, 48750, 49375, 50000, 50312, 50625, 50937, 51250, 51875, 53125, 53593, 54062, 55468, 55937, 56406, 56875, 58750, 59218, 59687, 61093, 61562, 62500};
             for (int i : arr) {
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -83,7 +83,7 @@ public class MusicActivity extends AppCompatActivity {
                     public void run() {
                         createNote();
                     }
-                }, i);
+                }, i - 250); // Create a note at the specified time (from the array)
             }
         }
         else if (song == 2) {
