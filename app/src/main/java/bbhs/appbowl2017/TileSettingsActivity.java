@@ -173,7 +173,7 @@ public class TileSettingsActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     selectedImage = imageReturnedIntent.getData();
                     image = selectedImage;
-                    Log.d("jkl", "ive been called " + image);
+
 
                     displayedImages[count].setImageURI(image);
                     cards[count] = image;

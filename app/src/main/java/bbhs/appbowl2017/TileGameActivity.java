@@ -4,7 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +21,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 
 public class TileGameActivity extends AppCompatActivity {
 
@@ -112,7 +117,14 @@ public class TileGameActivity extends AppCompatActivity {
                             flip(tiv);
                             Log.d("FLIP", tiv.flipped + "");
                             totalTaps++;
+
                             if (numFlipped >= 2) {
+
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                                 checkRotation();
                             }
                         }
@@ -131,8 +143,12 @@ public class TileGameActivity extends AppCompatActivity {
         imageView.flipped = !imageView.flipped;
         AnimatorSet flipCard;
         if (imageView.flipped) {
+
+
             flipCard = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.card_flip_left_in);
         } else {
+
+
             flipCard = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.card_flip_left_out);
         }
         flipCard.setTarget(imageView);
@@ -179,13 +195,22 @@ public class TileGameActivity extends AppCompatActivity {
                         return;
                     }
 
-                    double w1 = 1;
-                    double w2 = 0;
-                    double score = w1 * Math.log(totalTaps / (0.5 * numTiles * numTiles - 0.5 * numTiles)) + w2 / Math.log((System.currentTimeMillis() - startTime) / 1000);
 
-                    // TODO: Show win screen (using the score variable)
+
+
                 }
+
+                double w1 = 1;
+                double w2 = 0;
+                double score = w1 * Math.log(totalTaps / (0.5 * numTiles * numTiles - 0.5 * numTiles)) + w2 / Math.log((System.currentTimeMillis() - startTime) / 1000);
+
+                //set win information and show screen
+                TileWinActivity.score = score;
+                TileWinActivity.length = System.currentTimeMillis() - startTime;
+                TileWinActivity.moves = totalTaps;
+                startActivity(new Intent(getApplicationContext(), TileWinActivity.class));
             } else {
+
                 // Unflip (note that the if statements should never be false)
                 if (a.flipped) flip(a);
                 if (b.flipped) flip(b);
