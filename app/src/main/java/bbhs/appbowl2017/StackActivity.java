@@ -47,7 +47,6 @@ public class StackActivity extends AppCompatActivity {
     // private static AnimatorSet removeAnimList = new AnimatorSet();//Animation of removing Views
     private static List<Pair> rules = new ArrayList<>();//List of rules
     private static Set<View> remove = new HashSet<>(); // Sets of views to
-    //TODO get rid of this stupid thing
 
     private static RelativeLayout.LayoutParams lp; // This is useful in setting the size of the tiles, initialized in onWindowFocusChanged
     private static View gameTile; // This is the gameTile, or the View that the player places
@@ -97,6 +96,7 @@ public class StackActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                rules.clear();
                 clearBoard();
                 finish();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
