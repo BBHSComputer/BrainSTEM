@@ -23,5 +23,5 @@
         android:valueTo="@integer/alphaOpaque"
         android:propertyName="imageAlpha"
         android:startOffset="250"
-        android:duration="0" />
+        android:duration="500" />
 </set>

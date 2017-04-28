@@ -120,11 +120,7 @@ public class TileGameActivity extends AppCompatActivity {
 
                             if (numFlipped >= 2) {
 
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
+
                                 checkRotation();
                             }
                         }

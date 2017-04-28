@@ -51,6 +51,7 @@
                 android:layout_margin="4dp"
                 android:padding="0dp"
                 android:text="@string/play2"
+
                 android:textSize="10sp"
                 android:textColor="@color/accent_material_light" />
         </LinearLayout>

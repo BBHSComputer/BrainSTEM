@@ -1,10 +1,63 @@
-<resources>
+<?xml version="1.0"?>
+
+    <resources>
+
     <string name="game2_name">Stack</string>
-    <string name="game2_description">
-        The game is centered around remembering an increasing number of rules for block placement.
-        Blocks will fall from the top of the screen. The left button will shift the block to the left and the right button will shift the block to the right.
-        Follow the rules to fill up the screen. Be careful! If a rule is broken, you will lose some of your progress.
-    </string>
+
+    <string name="game2_description"> The game is centered around remembering an increasing number of rules for block placement. Blocks will fall from the top of the screen. The left button will shift the block to the left and the right button will shift the block to the right. Follow the rules to fill up the screen. Be careful! If a rule is broken, you will lose some of your progress. </string>
+
     <string name="game_rules_title">Rules:</string>
+
     <string name="app_name">BrainSTEM</string>
+
+    <string name="star_spangled_banner">Star-Spangled Banner</string>
+
+    <string name="take_me_out_to_the_ball_game">Take Me Out to the Ball Game</string>
+
+    <string name="fur_elise">Fur Elise</string>
+
+    <string name="play">Play</string>
+
+    <string name="music">Music</string>
+
+    <string name="music_is_a_rhythm_game_that_challenges_those_with_arthritis_to_move_their_joints_and_improve_reflexes">Music is a rhythm game that challenges those with arthritis to move their joints and improve reflexes.</string>
+
+    <string name="play2">Play!</string>
+
+    <string name="summation_allows_users_to_have_a_holistic_challenge_the_spontaneity_of_the_mini_game_allows_for_overall_mental_stimulation">Summation allows users to have a holistic challenge. The spontaneity of the mini-game allows for overall mental stimulation.</string>
+
+    <string name="summation">Σ (Summation)</string>
+
+    <string name="tile_is_a_card_flipping_game_that_works_to_allow_the_brain_to_make_connections_as_well_as_challenging_the_memory_loss_of_alzheimer_s_and_similar_disorders">Tile is a card-flipping game that works to allow the brain to make connections as well as challenging the memory loss of Alzheimer’s and similar disorders.</string>
+
+    <string name="tile">Tile</string>
+
+    <string name="stack_is_a_rule_based_block_game_it_stimulates_the_brain_improving_cognitive_functioning_for_daily_activity_as_well_as_combatting_the_symptoms_of_dementia">Stack is a rule-based block game. It stimulates the brain, improving cognitive functioning for daily activity as well as combatting the symptoms of dementia.</string>
+
+    <string name="stack">Stack</string>
+
+    <string name="home">Home</string>
+
+    <string name="pause">Pause</string>
+
+    <string name="answer4">answer4</string>
+
+    <string name="answer1">answer1</string>
+
+    <string name="answer2">answer2</string>
+
+    <string name="answer3">answer3</string>
+
+    <string name="tile_settings">Tile Settings:</string>
+
+    <string name="choose_images">Choose images</string>
+
+    <string name="pairs_of_cards">Pairs of Cards:</string>
+
+    <string name="tile_allows_you_to_select_pairs_of_cards_from_your_phone_s_images_and_works_to_improve_one_s_memory_increase_the_difficulty_by_increasing_the_number_of_cards_and_trying_to_beat_your_past_time">Tile allows you to select pairs of cards from your phone\'s images and works to improve one\'s memory. Increase the difficulty by increasing the number of cards and trying to beat your past time!</string>
+
+    <string name="use_default_cards">Use default cards</string>
+
+    <string name="choose_image">Choose image</string>
+
 </resources>
