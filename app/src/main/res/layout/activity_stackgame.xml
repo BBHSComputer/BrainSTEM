@@ -5,15 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/stack_field"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/game2_bbar"
-        android:layout_below="@+id/stack_life"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"></RelativeLayout>
-
     <LinearLayout
         android:id="@+id/game2_bbar"
         android:layout_width="match_parent"
@@ -43,27 +34,43 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/lightSteelBlue"
+        android:background="@color/paleTurquoise"
         app:layout_heightPercent="5%" />
 
     <RelativeLayout
+        android:id="@+id/stack_field"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/game2_bbar"
+        android:layout_below="@+id/stack_life"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"></RelativeLayout>
+
+    <android.support.percent.PercentRelativeLayout
         android:id="@+id/stack_pause"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color3">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/stack_ruleAccept"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <FrameLayout
+            android:id="@+id/pause_contain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_below="@+id/rule_Text"
             android:layout_centerHorizontal="true"
-            android:clickable="true"
-            android:padding="20dp"
-            app:backgroundTint="@color/colorAccent"
-            app:elevation="5dp"
-            app:fabSize="normal"
-            app:srcCompat="@android:drawable/ic_media_play" />
+            app:layout_heightPercent="15%"
+            app:layout_widthPercent="45%">
+
+            <Button
+                android:id="@+id/stack_ruleAccept"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:text="@string/play"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                app:backgroundTint="@color/cardview_light_background"
+                app:srcCompat="@android:drawable/ic_media_play" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/rule_Text"
@@ -77,15 +84,7 @@
             android:text="TextView"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
-        <TextView
-            android:id="@+id/stacktitle2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/stack_ruleAccept"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="38dp"
-            android:text="@string/stack_is_a_rule_based_block_game_it_stimulates_the_brain_improving_cognitive_functioning_for_daily_activity_as_well_as_combatting_the_symptoms_of_dementia"
-            android:textSize="20sp" />
-    </RelativeLayout>
+
+    </android.support.percent.PercentRelativeLayout>
 
 </android.support.percent.PercentRelativeLayout>

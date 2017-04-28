@@ -11,12 +11,15 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.percent.PercentRelativeLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -51,10 +54,11 @@ public class StackActivity extends AppCompatActivity {
     private static RelativeLayout.LayoutParams lp; // This is useful in setting the size of the tiles, initialized in onWindowFocusChanged
     private static View gameTile; // This is the gameTile, or the View that the player places
     private static RelativeLayout field; // This is the playing field
-    private static RelativeLayout pause_menu;
-    private static Button home;
-    private static Button pause;
-    private static FloatingActionButton play;
+    private static PercentRelativeLayout pause_menu;//THis is the layout that appears when the game starts and when the pause button is clicked
+    private static FrameLayout frame;
+    private static Button home;//This button goes back to the home screen
+    private static Button pause;//This button pauses the game
+    private static Button play;//This button plays the game/ reume
     private static TextView ruleNotify;
 
     @Override
@@ -67,15 +71,15 @@ public class StackActivity extends AppCompatActivity {
         }
         coordinates = new Point[SIZE_Y][SIZE_X]; // Initializes the coordinates grid
 
-        ruleNotify = (TextView) findViewById(R.id.rule_Text);
-        Pair a = newRule(1);
+        ruleNotify = (TextView) findViewById(R.id.rule_Text);//Finds the TextView for Views
+        Pair a = newRule(1);//Create rule 1 and 2
         Pair b = newRule(1);
         ruleNotify.setText(context.getString(R.string.rule_prefix) + "\n" + a.toString()+ "\n" + b.toString());
 
-        pause_menu = (RelativeLayout) findViewById(R.id.stack_pause); //Gets the pause menu
+        pause_menu = (PercentRelativeLayout) findViewById(R.id.stack_pause); //Gets the pause menu
         field = (RelativeLayout) findViewById(R.id.stack_field); // Gets the playing field relative view
-
-        play = (FloatingActionButton) findViewById(R.id.stack_ruleAccept);
+        frame = (FrameLayout) findViewById(R.id.pause_contain);
+        play = (Button) findViewById(R.id.stack_ruleAccept);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +88,10 @@ public class StackActivity extends AppCompatActivity {
                 pause.setEnabled(true);
                 ObjectAnimator play_fadeOut = ObjectAnimator.ofFloat(pause_menu, "alpha", 0);
                 play_fadeOut.start();
+                ((ViewGroup)(frame.getParent())).removeView(frame);
+                    for(View button : buttons){
+                    button.setEnabled(true);
+                }
                 if(!initializationComplete) {
                     initializationComplete = true;
                     gameStart(); // Set up the game playing field with buttons
@@ -95,7 +103,7 @@ public class StackActivity extends AppCompatActivity {
         home.setEnabled(false);
         home.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
+            public void onClick(View v){//Resets the game and starts MainActivity
                 rules.clear();
                 clearBoard();
                 finish();
@@ -143,6 +151,7 @@ public class StackActivity extends AppCompatActivity {
         }
     }
     private void pauseAction(){
+        pause_menu.addView(frame);
         ObjectAnimator play_fadeIn = ObjectAnimator.ofFloat(pause_menu, "alpha", 1);
         play_fadeIn.start();
         play.setEnabled(true);
@@ -155,16 +164,12 @@ public class StackActivity extends AppCompatActivity {
 
     private void gameStart() {
         gameTile = new TextView(getApplicationContext()); // Initializes the gameTile, or the Tile that is falling down
-        newGameTile();
-        field.addView(gameTile);
-        //TODO figure out the changing values of gameButtons
         for (int column = 0; column < SIZE_X; column++) { // Sets up the buttons that place the gameTile in each row
             View gameButton = new TextView(getApplicationContext());
             gameButton.setLayoutParams(lp);
             gameButton.setAlpha(0.8F);
             gameButton.setTag(R.id.stack_value, -1);
             gameButton.setTag(R.id.stack_column, column);
-            ((TextView) gameButton).setText("" + (int) gameTile.getTag(R.id.stack_value));
             ((TextView) gameButton).setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); // Centers the text
             ((TextView) gameButton).setTextSize(TEXT_SIZE); // Sets text size
             ((TextView) gameButton).setTextColor(Color.BLACK); // Sets text color
@@ -178,6 +183,7 @@ public class StackActivity extends AppCompatActivity {
             gameButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) { // When gameButton is clicked - v is the gameButton that is clicked
+                    Log.d("BrainSTEM S", "gameButton clicked!");
                     if (!fallingAnim) {
                         AnimatorSet fade = new AnimatorSet();
                         for (View button : buttons) {
@@ -213,7 +219,7 @@ public class StackActivity extends AppCompatActivity {
                 }
             }
         }
-        if (!movementAnim.isEmpty()) {
+        if (!movementAnim.isEmpty()) {//If positions do not need to be updated
             fallingAnim = true;
             as.playTogether(movementAnim);
             as.addListener(new AnimatorListenerAdapter() {
@@ -222,21 +228,21 @@ public class StackActivity extends AppCompatActivity {
                     super.onAnimationEnd(animation);
                     movementAnim.clear();
                     Log.d("BrainSTEM S", "Finished updating position animations");
-                    initializeRuleCheck();
+                    initializeRuleCheck();//Check rules after positions are updated
                 }
             });
             as.start();
         }else{
             Log.d("BrainSTEM S", "Update recursion has finished");
             boolean testNextLevel = true;
-            for(ArrayList<View> column : grid){
+            for(ArrayList<View> column : grid){//Test if the board is filled
                 if(column.size() < SIZE_Y){
                     testNextLevel = false;
                     break;
                 }
             }
-            if(testNextLevel){
-                clearBoard();
+            if(testNextLevel){//Testing win condition
+                clearBoard();//Clear the board, adds new rule, and pauses to let user know of new rule
                 newRule(2);
                 pauseAction();
             }else{
@@ -244,34 +250,40 @@ public class StackActivity extends AppCompatActivity {
                     fallingAnim = false;
                     gameTile = new TextView(getApplicationContext()); // Initializes the gameTile, or the Tile that is falling down
                     newGameTile();
-                    field.addView(gameTile);
-                    AnimatorSet fade = new AnimatorSet();
+
+                    AnimatorSet fade = new AnimatorSet();//Adds the button back in
                     for (View button : buttons) {
                         ((TextView) button).setText("" + gameTile.getTag(R.id.stack_value));
                         if(grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y) {
                             ObjectAnimator fadeIn = ObjectAnimator.ofFloat(button, "alpha", 0.8f);
-                            button.setEnabled(true);
                             fade.play(fadeIn);
                         }
                     }
                     fade.start();
+                    fade.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            for(View button : buttons){
+                                button.setEnabled(true);
+                            }
+                        }
+                    });
                 }
             }
         }
-
-        //Log.d("BrainSTEM S", "Finished setting up View position animations");
     }
 
-    private void initializeRuleCheck() {
+    private void initializeRuleCheck() { //Starts and controls rule checking life cycle
         if (checkStackRules()) {
             AnimatorSet removeAnimation = new AnimatorSet();
-            for(View view : remove){
+            for(View view : remove){//Adds removal animation in set to AnimatorSet
                 if(!removeAnimList.containsKey(view)){
                     AnimatorSet removeNorm = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.stack_remove_norm);
                     removeNorm.setTarget(view);
                     removeAnimList.put(view, removeNorm);
                 }
-                grid.get((int) view.getTag(R.id.stack_column)).remove(view);
+                grid.get((int) view.getTag(R.id.stack_column)).remove(view);//Removes respective view from screen
             }
             for(View view : removeAnimList.keySet()){
                 removeAnimation.play(removeAnimList.get(view));
@@ -279,7 +291,7 @@ public class StackActivity extends AppCompatActivity {
             removeAnimation.start();
             removeAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animation) {
+                public void onAnimationEnd(Animator animation) {//Resursively updatesPosition when animation is done
                     for(View view : removeAnimList.keySet()){
                         field.removeView(view);
                     }
@@ -334,7 +346,7 @@ public class StackActivity extends AppCompatActivity {
         return false;
     }
 
-    private void addToBeRemovedViews(int column, int pos) {
+    private void addToBeRemovedViews(int column, int pos) {//Adds removal animation to animationList
         AnimatorSet removeRed = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.stack_remove_red);
         removeRed.setTarget(grid.get(column).get(pos));
         remove.add(grid.get(column).get(pos));
@@ -355,7 +367,7 @@ public class StackActivity extends AppCompatActivity {
         }
     }
 
-    private void individualMove(View v, int x, int y) { // Moves an individual View
+    private void individualMove(View v, int x, int y) { // Sets up an individual View animation
         AnimatorSet blockMove = new AnimatorSet();
         ObjectAnimator moveX = ObjectAnimator.ofFloat(v, "x", coordinates[y][x].x);
         ObjectAnimator moveY = ObjectAnimator.ofFloat(v, "y", coordinates[y][x].y);
@@ -377,21 +389,29 @@ public class StackActivity extends AppCompatActivity {
         ((TextView) gameTile).setTextSize(TEXT_SIZE); // Sets text size
         ((TextView) gameTile).setTextColor(Color.BLACK); // Sets text color
         ((TextView) gameTile).setText("" + value); // Sets the text on the block to the tag
+
+        for(View button : buttons){
+            ((TextView) button).setText("" + (int) gameTile.getTag(R.id.stack_value));
+        }
+        field.addView(gameTile);
     }
 
     public static Context getAppContext() {
         return StackActivity.context;
     }
 
+    private void playInitialize(){
+
+    }
     private Pair newRule(int i){
         boolean works = false;
-        Pair a = new Pair((int) (Math.random() * 10), (int) (Math.random() * 10));
+        Pair a = new Pair((int) (Math.random() * 10) + 1, (int) (Math.random() * 10) + 1);
         while(!works){
             boolean unique = true;
             for (Pair compare : rules){
                 if(a.equals(compare)){
                     unique = false;
-                    a = new Pair((int) (Math.random() * 10), (int) (Math.random() * 10));
+                    a = new Pair((int) (Math.random() * 10) + 1, (int) (Math.random() * 10) + 1);
                 }
             }
             if(unique) works = true;
