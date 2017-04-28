@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="game2_name">Apilar</string>
+    <string name="game2_description">
+       El juego se enfoca en acordarse de una cantidad incremental de ubicación de bloques.
+       Los bloques caerán desde arriba de la pantalla. El botón de la izquierda desplaza el bloque hacia la izquierda. El botón de la derecha desplaza el bloque a la derecha. Siga las reglas hasta que llene la pantalla. ¡Ten cuidado! Si no se cumple una regla, usted perderá parte de su progreso.
+    </string>
+    <string name="game_rules_title">Reglas:</string>
     <string name="app_name">BrainSTEM</string>
+    <string name="star_spangled_banner">Star-Spangled Banner</string>
+    <string name="take_me_out_to_the_ball_game">Take Me Out to the Ball Game</string>
+    <string name="fur_elise">Para Elisa</string>
+    <string name="play">Comenzar</string>
+    <string name="music">Música</string>
+    <string name="music_is_a_rhythm_game_that_challenges_those_with_arthritis_to_move_their_joints_and_improve_reflexes">Música es un juego de ritmo que incita a la gente con sintomos de artritis a que muevan las articulaciones, y que mejoren los reflejos.</string>
+    <string name="play2">Comenzar!</string>
+    <string name="summation_allows_users_to_have_a_holistic_challenge_the_spontaneity_of_the_mini_game_allows_for_overall_mental_stimulation">Suma permite que usuarios tengan un desafío holístico. La espontaneidad del juego crea promueve una estimulación mental completa.</string>
+    <string name="summation">Σ (Suma)</string>
+    <string name="tile_is_a_card_flipping_game_that_works_to_allow_the_brain_to_make_connections_as_well_as_challenging_the_memory_loss_of_alzheimer_s_and_similar_disorders">Fichas es un juego de cartas que le permite al cerebro hacer conecciones, y luchar contra la perdida de memoria en la enfermedad de Alzheimer y desordenes similares.</string>
+    <string name="tile">Fichas</string>
+    <string name="stack_is_a_rule_based_block_game_it_stimulates_the_brain_improving_cognitive_functioning_for_daily_activity_as_well_as_combatting_the_symptoms_of_dementia">Apilar es un en juego de bloques basado en reglas de ubicación. El juego estimula el cerebro, mejorando la función cognitiva para actividades cotidianas, y combatiendo síntomas de demencia.</string>
+    <string name="stack">Apilar</string>
+    <string name="home">Menu</string>
+    <string name="pause">Pausa</string>
+    <string name="answer4">answer4</string>
     <string name="answer1">answer1</string>
     <string name="answer2">answer2</string>
     <string name="answer3">answer3</string>
-    <string name="answer4">answer4</string>
-    <string name="choose_image">Seleccionar imagen</string>
-    <string name="choose_images">Seleccionar imágenes:</string>
-    <string name="fur_elise">Fur Elise</string>
+    <string name="tile_settings">Configuración de Fichas:</string>
+    <string name="choose_images">Elegir imagenes</string>
+    <string name="pairs_of_cards">Pares de Cartas:</string>
+    <string name="tile_allows_you_to_select_pairs_of_cards_from_your_phone_s_images_and_works_to_improve_one_s_memory_increase_the_difficulty_by_increasing_the_number_of_cards_and_trying_to_beat_your_past_time">Fichas permite seleccionar pares de cartas de la biblioteca de imagenes del telefono celular, e intenta mejorar la memoria del usuario. La dificultad se incrementa incrementando el número de cartas, e intentando superar el tiempo de juego pasado del usuario</string>
+    <string name="use_default_cards">Usar cartas por defecto</string>
+    <string name="choose_image">Elegir imagenes</string>
 </resources>
