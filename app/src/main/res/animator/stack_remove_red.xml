@@ -7,7 +7,7 @@
 		android:duration="500" />
 
 	<objectAnimator
-		android:valueFrom="255"
+		android:valueFrom="1"
 		android:valueTo="0"
 		android:propertyName="alpha"
 		android:startOffset="500"
