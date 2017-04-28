@@ -20,14 +20,14 @@
         android:id="@+id/game2_bbar">
 
         <Button
-            android:text="Home"
+            android:text="@string/home"
             android:layout_height="wrap_content"
             android:id="@+id/game2_home"
             android:layout_weight="1"
             android:layout_width="wrap_content" />
 
         <Button
-            android:text="Pause"
+            android:text="@string/pause"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/game2_pause"

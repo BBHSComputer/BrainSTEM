@@ -9,7 +9,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="TextView"
         android:textSize="30sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -21,7 +20,7 @@
         android:layout_alignStart="@+id/answer3"
         android:layout_below="@+id/answer3"
         android:layout_marginTop="30dp"
-        android:text="answer4" />
+        android:text="@string/answer4" />
 
     <Button
         android:id="@+id/answer1"
@@ -30,7 +29,7 @@
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:text="answer1" />
+        android:text="@string/answer1" />
 
     <Button
         android:id="@+id/answer2"
@@ -39,7 +38,7 @@
         android:layout_alignStart="@+id/answer1"
         android:layout_below="@+id/answer1"
         android:layout_marginTop="30dp"
-        android:text="answer2" />
+        android:text="@string/answer2" />
 
     <Button
         android:id="@+id/answer3"
@@ -48,7 +47,7 @@
         android:layout_alignStart="@+id/answer2"
         android:layout_below="@+id/answer2"
         android:layout_marginTop="30dp"
-        android:text="answer3" />
+        android:text="@string/answer3" />
 
     <ImageView
         android:id="@+id/image"
