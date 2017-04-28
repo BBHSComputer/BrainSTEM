@@ -10,7 +10,8 @@
         android:id="@+id/scoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Score: 0"/>
+        android:text="@string/music_is_a_rhythm_game_that_challenges_those_with_arthritis_to_move_their_joints_and_improve_reflexes"
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/song1button"

@@ -22,12 +22,12 @@ public class SummationGame extends AppCompatActivity implements QuestionListener
         setContentView(R.layout.activity_summation);
 
         // Setup base questions
-        questions.add(new SimpleQuestion(this, "On which parking space is the car parked?", new String[]{"78", "89", "87", "97"}, 2, getResources().getIdentifier("parking" , "drawable", getPackageName())));
-        questions.add(new SimpleQuestion(this, "A and C but not B", new String[]{"A: A", "B: B, A, and D", "C: C and D", "D: D and A"}, 2));
-        questions.add(new SimpleQuestion(this, "Where is I?", new String[]{"Here", "There", "Hair", "Anywhere"}, 2));
-        questions.add(new SimpleQuestion(this, "Choose the answer closest to the correct answer", new String[]{"the answer", "the answer", "the answer", "the answer"}, 0));
-        questions.add(new BiggestQuestion(this, "Click on the biggest answer", new String[]{"Answer!", "Answer.", "Big", "Answer?"}));
-        questions.add(new TimedQuestion(this, "Run out of time", new String[]{"Done", "Run", "No", "What?"}, 0, 5000));
+        questions.add(new SimpleQuestion(this, getString(R.string.q1), new String[]{getString(R.string.q1a), getString(R.string.q1b), getString(R.string.q1c), getString(R.string.q1d)}, 2, getResources().getIdentifier("parking" , "drawable", getPackageName())));
+        questions.add(new SimpleQuestion(this, getString(R.string.q2), new String[]{getString(R.string.q2a), getString(R.string.q2b), getString(R.string.q2c), getString(R.string.q2d)}, 2));
+        questions.add(new SimpleQuestion(this, getString(R.string.q3), new String[]{getString(R.string.here), getString(R.string.there), getString(R.string.hair), getString(R.string.anywhere)}, 2));
+        questions.add(new SimpleQuestion(this, getString(R.string.q4), new String[]{getString(R.string.answer), getString(R.string.answer), getString(R.string.answer), getString(R.string.answer)}, 0));
+        questions.add(new BiggestQuestion(this, getString(R.string.q5), new String[]{getString(R.string.answer) + "!", getString(R.string.answer) + ".", getString(R.string.big), getString(R.string.answer) + "?"}));
+        questions.add(new TimedQuestion(this, getString(R.string.q6), new String[]{getString(R.string.done), getString(R.string.run), "No", getString(R.string.what)}, 0, 5000));
 
         setUp(false);
     }

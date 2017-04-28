@@ -27,5 +27,13 @@
         android:text="@string/summation"
         android:textSize="30sp"
         android:textStyle="bold" />
-
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:text="@string/summation_allows_users_to_have_a_holistic_challenge_the_spontaneity_of_the_mini_game_allows_for_overall_mental_stimulation"
+        android:textSize="20sp" />
 </RelativeLayout>

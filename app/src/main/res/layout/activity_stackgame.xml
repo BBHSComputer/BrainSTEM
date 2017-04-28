@@ -43,36 +43,27 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/paleTurquoise"
+        android:background="@color/lightSteelBlue"
         app:layout_heightPercent="5%" />
 
-    <android.support.percent.PercentRelativeLayout
+    <RelativeLayout
         android:id="@+id/stack_pause"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color3">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/stack_ruleAccept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/rule_Text"
             android:layout_centerHorizontal="true"
-            app:layout_heightPercent="35%"
-            app:layout_widthPercent="35%">
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/stack_ruleAccept"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:clickable="true"
-                android:padding="20dp"
-                app:borderWidth="0dp"
-                app:backgroundTint="@color/colorAccent"
-                app:elevation="10dp"
-                app:fabSize="normal"
-                app:srcCompat="@android:drawable/ic_media_play" />
-        </FrameLayout>
+            android:clickable="true"
+            android:padding="20dp"
+            app:backgroundTint="@color/colorAccent"
+            app:elevation="5dp"
+            app:fabSize="normal"
+            app:srcCompat="@android:drawable/ic_media_play" />
 
         <TextView
             android:id="@+id/rule_Text"
@@ -86,6 +77,15 @@
             android:text="TextView"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
-    </android.support.percent.PercentRelativeLayout>
+        <TextView
+            android:id="@+id/stacktitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/stack_ruleAccept"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="38dp"
+            android:text="@string/stack_is_a_rule_based_block_game_it_stimulates_the_brain_improving_cognitive_functioning_for_daily_activity_as_well_as_combatting_the_symptoms_of_dementia"
+            android:textSize="20sp" />
+    </RelativeLayout>
 
 </android.support.percent.PercentRelativeLayout>

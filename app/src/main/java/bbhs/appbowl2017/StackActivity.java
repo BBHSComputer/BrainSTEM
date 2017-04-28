@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.percent.PercentRelativeLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -52,7 +51,7 @@ public class StackActivity extends AppCompatActivity {
     private static RelativeLayout.LayoutParams lp; // This is useful in setting the size of the tiles, initialized in onWindowFocusChanged
     private static View gameTile; // This is the gameTile, or the View that the player places
     private static RelativeLayout field; // This is the playing field
-    private static PercentRelativeLayout pause_menu;
+    private static RelativeLayout pause_menu;
     private static Button home;
     private static Button pause;
     private static FloatingActionButton play;
@@ -73,10 +72,24 @@ public class StackActivity extends AppCompatActivity {
         Pair b = newRule(1);
         ruleNotify.setText(context.getString(R.string.rule_prefix) + "\n" + a.toString()+ "\n" + b.toString());
 
-        pause_menu = (PercentRelativeLayout) findViewById(R.id.stack_pause); //Gets the pause menu
+        pause_menu = (RelativeLayout) findViewById(R.id.stack_pause); //Gets the pause menu
         field = (RelativeLayout) findViewById(R.id.stack_field); // Gets the playing field relative view
 
-
+        play = (FloatingActionButton) findViewById(R.id.stack_ruleAccept);
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                play.setEnabled(false);
+                home.setEnabled(true);
+                pause.setEnabled(true);
+                ObjectAnimator play_fadeOut = ObjectAnimator.ofFloat(pause_menu, "alpha", 0);
+                play_fadeOut.start();
+                if(!initializationComplete) {
+                    initializationComplete = true;
+                    gameStart(); // Set up the game playing field with buttons
+                }
+            }
+        });
 
         home = (Button) findViewById(R.id.game2_home);
         home.setEnabled(false);
@@ -95,7 +108,6 @@ public class StackActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pauseAction();
-                playInitialize();
             }
         });
 
@@ -143,12 +155,16 @@ public class StackActivity extends AppCompatActivity {
 
     private void gameStart() {
         gameTile = new TextView(getApplicationContext()); // Initializes the gameTile, or the Tile that is falling down
+        newGameTile();
+        field.addView(gameTile);
+        //TODO figure out the changing values of gameButtons
         for (int column = 0; column < SIZE_X; column++) { // Sets up the buttons that place the gameTile in each row
             View gameButton = new TextView(getApplicationContext());
             gameButton.setLayoutParams(lp);
             gameButton.setAlpha(0.8F);
             gameButton.setTag(R.id.stack_value, -1);
             gameButton.setTag(R.id.stack_column, column);
+            ((TextView) gameButton).setText("" + (int) gameTile.getTag(R.id.stack_value));
             ((TextView) gameButton).setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); // Centers the text
             ((TextView) gameButton).setTextSize(TEXT_SIZE); // Sets text size
             ((TextView) gameButton).setTextColor(Color.BLACK); // Sets text color
@@ -162,7 +178,6 @@ public class StackActivity extends AppCompatActivity {
             gameButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) { // When gameButton is clicked - v is the gameButton that is clicked
-                    Log.d("BrainSTEM S", "gameButton clicked!");
                     if (!fallingAnim) {
                         AnimatorSet fade = new AnimatorSet();
                         for (View button : buttons) {
@@ -229,25 +244,17 @@ public class StackActivity extends AppCompatActivity {
                     fallingAnim = false;
                     gameTile = new TextView(getApplicationContext()); // Initializes the gameTile, or the Tile that is falling down
                     newGameTile();
-
+                    field.addView(gameTile);
                     AnimatorSet fade = new AnimatorSet();
                     for (View button : buttons) {
                         ((TextView) button).setText("" + gameTile.getTag(R.id.stack_value));
                         if(grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y) {
                             ObjectAnimator fadeIn = ObjectAnimator.ofFloat(button, "alpha", 0.8f);
+                            button.setEnabled(true);
                             fade.play(fadeIn);
                         }
                     }
                     fade.start();
-                    fade.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            super.onAnimationEnd(animation);
-                            for(View button : buttons){
-                                button.setEnabled(true);
-                            }
-                        }
-                    });
                 }
             }
         }
@@ -370,46 +377,21 @@ public class StackActivity extends AppCompatActivity {
         ((TextView) gameTile).setTextSize(TEXT_SIZE); // Sets text size
         ((TextView) gameTile).setTextColor(Color.BLACK); // Sets text color
         ((TextView) gameTile).setText("" + value); // Sets the text on the block to the tag
-
-        for(View button : buttons){
-            ((TextView) button).setText("" + (int) gameTile.getTag(R.id.stack_value));
-        }
-        field.addView(gameTile);
     }
 
     public static Context getAppContext() {
         return StackActivity.context;
     }
-    private void playInitialize(){
-        play = (FloatingActionButton) findViewById(R.id.stack_ruleAccept);
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                play.setEnabled(false);
-                field.removeView(play);
-                home.setEnabled(true);
-                pause.setEnabled(true);
-                ObjectAnimator play_fadeOut = ObjectAnimator.ofFloat(pause_menu, "alpha", 0);
-                play_fadeOut.start();
-                for(View button : buttons){
-                    button.setEnabled(true);
-                }
-                if(!initializationComplete) {
-                    initializationComplete = true;
-                    gameStart(); // Set up the game playing field with buttons
-                }
-            }
-        });
-    }
+
     private Pair newRule(int i){
         boolean works = false;
-        Pair a = new Pair((int) (Math.random() * 10) + 1, (int) (Math.random() * 10) + 1);
+        Pair a = new Pair((int) (Math.random() * 10), (int) (Math.random() * 10));
         while(!works){
             boolean unique = true;
             for (Pair compare : rules){
                 if(a.equals(compare)){
                     unique = false;
-                    a = new Pair((int) (Math.random() * 10) + 1, (int) (Math.random() * 10) + 1);
+                    a = new Pair((int) (Math.random() * 10), (int) (Math.random() * 10));
                 }
             }
             if(unique) works = true;

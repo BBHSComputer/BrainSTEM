@@ -65,5 +65,28 @@
     <string name="rule_prefix">New Rules:</string>
 
     <string name="win">You Win!</string>
+    <string name="q1">On which parking space is the car parked?</string>
+    <string name="q2">A and C but not B</string>
+    <string name="q3">Where is I?</string>
+    <string name="q4">Choose the answer closest to the correct answer</string>
+    <string name="q5">Click on the biggest answer</string>
+    <string name="q6">Run out of time</string>
+    <string name="q1a">78</string>
+    <string name="q1b">89</string>
+    <string name="q1c">87</string>
+    <string name="q1d">97</string>
+    <string name="q2a">A: A</string>
+    <string name="q2b">B: B, A, and D</string>
+    <string name="q2c">C: C and D</string>
+    <string name="q2d">D: D and A</string>
+    <string name="here">Here</string>
+    <string name="there">There</string>
+    <string name="hair">Hair</string>
+    <string name="anywhere">Anywhere</string>
+    <string name="answer">the answer</string>
+    <string name="big">Big</string>
+    <string name="done">Done</string>
+    <string name="run">Run</string>
+    <string name="what">What?</string>
 
 </resources>
