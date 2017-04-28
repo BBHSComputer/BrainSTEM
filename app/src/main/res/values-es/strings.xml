@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BrainSTEM</string>
+    <string name="answer1">answer1</string>
+    <string name="answer2">answer2</string>
+    <string name="answer3">answer3</string>
+    <string name="answer4">answer4</string>
+    <string name="choose_image">Seleccionar imagen</string>
+    <string name="choose_images">Seleccionar imagenes:</string>
+    <string name="fur_elise">Fur Elise</string>
+</resources>
