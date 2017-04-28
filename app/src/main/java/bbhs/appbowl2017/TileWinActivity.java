@@ -46,7 +46,7 @@ public class TileWinActivity extends AppCompatActivity {
 
         tTime.setText(tTime.getText().toString() + minutes + ":" + seconds);
         tMoves.setText(tMoves.getText().toString() + moves);
-        tScore.setText(tScore.getText().toString() + (int)(score*100));
+        tScore.setText(tScore.getText().toString() + (int)(score*-100));
 
 
 
