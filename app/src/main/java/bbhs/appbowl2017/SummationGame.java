@@ -36,14 +36,12 @@ public class SummationGame extends AppCompatActivity implements QuestionListener
     public void onAnswered(boolean correct) {
         if (correct) {
             if (++questionNumber == questions.size()) {
-                setContentView(R.layout.activity_summation); // Win
-                setUp(true);
+                setUp(true); // Win
             } else {
                 questions.get(questionNumber).initiate(); // Next question
             }
         } else {
-            setContentView(R.layout.activity_summation); // Loss
-            setUp(true);
+            setUp(true); // Loss
         }
     }
 

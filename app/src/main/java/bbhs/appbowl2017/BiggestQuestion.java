@@ -59,7 +59,7 @@ public class BiggestQuestion extends Question {
         });
     }
 
-    private void press(int index) {
+    private void press(int index) { // Press an answer to make it big, and then press it again to proceed
         if (big == 0) {
             big = index + 1;
             answerButtons[index].setTextSize(answerButtons[index].getTextSize() * 1.1f);
