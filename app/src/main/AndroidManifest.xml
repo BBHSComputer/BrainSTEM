@@ -17,15 +17,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StackActivity2" />
         <activity android:name=".StackActivity" />
+        <activity android:name=".StackActivity2" />
         <activity android:name=".StackSettingsActivity" />
         <activity android:name=".StackGameActivity" />
         <activity android:name=".TileSettingsActivity" />
         <activity android:name=".TileGameActivity" />
+        <activity android:name=".TileWinActivity" />
         <activity android:name=".SummationGame" />
         <activity android:name=".MusicActivity" />
-        <activity android:name=".TileWinActivity"></activity>
     </application>
 
 </manifest>
