@@ -42,8 +42,6 @@ public class SimpleQuestion extends Question {
         text = (TextView) game.findViewById(R.id.title);
         text.setText(question);
 
-
-
         for (int i = 0; i < answerButtons.length; i++) {
             setupButton(answerButtons[i], answers[i], i);
         }
@@ -54,8 +52,6 @@ public class SimpleQuestion extends Question {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 game.onAnswered(correctAnswer == buttonIndex);
-                Log.d("Pos X", "" + v.getX());
-                Log.d("Pos Y", "" + v.getY());
             }
         });
     }

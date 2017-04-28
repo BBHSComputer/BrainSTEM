@@ -45,6 +45,7 @@ public class TimedQuestion extends Question {
             setupButton(answerButtons[i], answers[i], i);
         }
 
+        // Sets timer to "run out of time"
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
