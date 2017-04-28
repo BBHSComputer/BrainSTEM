@@ -55,7 +55,6 @@ public class StackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         StackActivity.context = getApplicationContext();
         setContentView(R.layout.activity_stackgame); // Sets view layout to activity_stackgame.xml
-
         for (int column = 0; column < SIZE_X; column++) { // Initializes the size of the grid ArrayList, or the number of columns
             grid.add(new ArrayList<View>()); // Adds column to grid ArrayList
         }
@@ -155,6 +154,7 @@ public class StackActivity extends AppCompatActivity {
             }
         }
         if (!movementAnim.isEmpty()) {
+            fallingAnim = true;
             as.playTogether(movementAnim);
             as.addListener(new AnimatorListenerAdapter() {
                 @Override
@@ -176,7 +176,7 @@ public class StackActivity extends AppCompatActivity {
                 AnimatorSet fade = new AnimatorSet();
                 for (View button : buttons) {
                     button.setTag(R.id.stack_value, gameTile.getTag(R.id.stack_value));
-                    ((TextView) button).setText((String) button.getTag(R.id.stack_value));
+                    ((TextView) button).setText("" + button.getTag(R.id.stack_value));
                     ObjectAnimator fadeIn = ObjectAnimator.ofFloat(button, "alpha", 0.8f);
                     fade.play(fadeIn);
                 }
@@ -193,7 +193,6 @@ public class StackActivity extends AppCompatActivity {
             }
         }
         //Log.d("BrainSTEM S", "Finished setting up View position animations");
-        //TODO add newGameTile after recursion of checking and falling is done
     }
 
     private void initializeRuleCheck() {
