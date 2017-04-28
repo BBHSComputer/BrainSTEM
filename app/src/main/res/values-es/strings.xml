@@ -30,6 +30,6 @@
     <string name="choose_images">Elegir imagenes</string>
     <string name="pairs_of_cards">Pares de Cartas:</string>
     <string name="tile_allows_you_to_select_pairs_of_cards_from_your_phone_s_images_and_works_to_improve_one_s_memory_increase_the_difficulty_by_increasing_the_number_of_cards_and_trying_to_beat_your_past_time">Fichas permite seleccionar pares de cartas de la biblioteca de imagenes del telefono celular, e intenta mejorar la memoria del usuario. La dificultad se incrementa incrementando el número de cartas, e intentando superar el tiempo de juego pasado del usuario</string>
-    <string name="use_default_cards">Usar cartas por defecto</string>
+    <string name="use_default_cards">Por defecto</string>
     <string name="choose_image">Elegir imagenes</string>
 </resources>
