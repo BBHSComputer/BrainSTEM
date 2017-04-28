@@ -9,6 +9,13 @@ public class Pair{
         this.b = Math.max(a, b);
     }
 
+    public int getA(){
+        return this.a;
+    }
+    public int getB(){
+        return this.b;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -27,6 +34,11 @@ public class Pair{
         if (a != other.a) return false;
         if (b != other.b) return false;
         return true;
+    }
+
+    @Override
+    public String toString(){
+        return this.a + " and " + this.b;
     }
 
     public boolean containsNum(int n){

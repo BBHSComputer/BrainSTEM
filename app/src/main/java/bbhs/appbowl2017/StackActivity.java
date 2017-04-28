@@ -4,18 +4,19 @@ import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
-import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,12 +32,14 @@ public class StackActivity extends AppCompatActivity {
     public static final int SIZE_X = 5; // This is the number of tiles across the game board is
     public static final int SIZE_Y = 8; // This is the number of tiles top to bottom the game board is - subtract one to get grid size
     public static final int TEXT_SIZE = 36;
+    public static int field_x;
+    public static int field_y;
 
     private static boolean initializationComplete = false; // Just makes sure that the game start only happens once
     private static boolean fallingAnim = false; // Check if animations are currently running
 
-    private static List<List<View>> grid = new ArrayList<>(); // This is the 2D game field, the tiles in relative grid positions
-    private static List<View> buttons = new ArrayList<>(); // This is the list of gameButtons, which is animated after the blocks are
+    private static ArrayList<ArrayList<View>> grid = new ArrayList<>(); // This is the 2D game field, the tiles in relative grid positions
+    private static ArrayList<View> buttons = new ArrayList<>(); // This is the list of gameButtons, which is animated after the blocks are
     private static Point[][] coordinates; // This is a 2D array of the coordinates corresponding to the game field positions [y][x]
 
     private static List<Animator> movementAnim = new ArrayList<>(); // List of animations that need to be done
@@ -49,6 +52,11 @@ public class StackActivity extends AppCompatActivity {
     private static RelativeLayout.LayoutParams lp; // This is useful in setting the size of the tiles, initialized in onWindowFocusChanged
     private static View gameTile; // This is the gameTile, or the View that the player places
     private static RelativeLayout field; // This is the playing field
+    private static RelativeLayout pause_menu;
+    private static Button home;
+    private static Button pause;
+    private static FloatingActionButton play;
+    private static TextView ruleNotify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,20 +66,58 @@ public class StackActivity extends AppCompatActivity {
         for (int column = 0; column < SIZE_X; column++) { // Initializes the size of the grid ArrayList, or the number of columns
             grid.add(new ArrayList<View>()); // Adds column to grid ArrayList
         }
-
         coordinates = new Point[SIZE_Y][SIZE_X]; // Initializes the coordinates grid
+
+        ruleNotify = (TextView) findViewById(R.id.rule_Text);
+        Pair a = newRule(1);
+        Pair b = newRule(1);
+        ruleNotify.setText(context.getString(R.string.rule_prefix) + "\n" + a.toString()+ "\n" + b.toString());
+
+        pause_menu = (RelativeLayout) findViewById(R.id.stack_pause); //Gets the pause menu
+        field = (RelativeLayout) findViewById(R.id.stack_field); // Gets the playing field relative view
+
+        play = (FloatingActionButton) findViewById(R.id.stack_ruleAccept);
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                play.setEnabled(false);
+                home.setEnabled(true);
+                pause.setEnabled(true);
+                ObjectAnimator play_fadeOut = ObjectAnimator.ofFloat(pause_menu, "alpha", 0);
+                play_fadeOut.start();
+                if(!initializationComplete) {
+                    initializationComplete = true;
+                    gameStart(); // Set up the game playing field with buttons
+                }
+            }
+        });
+
+        home = (Button) findViewById(R.id.game2_home);
+        home.setEnabled(false);
+        home.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                clearBoard();
+                finish();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+        pause = (Button) findViewById(R.id.game2_pause);
+        pause.setEnabled(false);
+        pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pauseAction();
+            }
+        });
+
 
         Log.d("BrainSTEM S", "onCreate() finished");
     }
 
-
-
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        if (!initializationComplete) {
-            initializationComplete = true; // Makes sure this only runs once
-
-            field = (RelativeLayout) findViewById(R.id.game2_field); // Gets the playing field relative view
+        if(field_x != field.getWidth() || field_y != field.getHeight()){ //Checks if the size of the playing field has changed
             int scaleX = field.getWidth() / SIZE_X; // Gets the size of the tiles based on the game field width
             int scaleY = field.getHeight() / SIZE_Y; // Gets the size of the tiles based on the game field height
 
@@ -84,12 +130,26 @@ public class StackActivity extends AppCompatActivity {
                     //Android calculates coordinate by the top left of the View, so the int row needs to start at 1, not 0
                 }
             }
-
             Log.d("BrainSTEM S", "The size of the game field is X: " + field.getWidth() + " & Y: " + field.getHeight());
 
             lp = new RelativeLayout.LayoutParams(scaleX, scaleY);
-
-            gameStart(); // Set up the game playing field with buttons
+        }
+        for(ArrayList<View> column : grid){
+            if(!column.isEmpty()){
+                for(View v : column){
+                    v.setLayoutParams(lp);
+                }
+            }
+        }
+    }
+    private void pauseAction(){
+        ObjectAnimator play_fadeIn = ObjectAnimator.ofFloat(pause_menu, "alpha", 1);
+        play_fadeIn.start();
+        play.setEnabled(true);
+        home.setEnabled(false);
+        pause.setEnabled(false);
+        for(View button : buttons){
+            button.setEnabled(false);
         }
     }
 
@@ -102,7 +162,7 @@ public class StackActivity extends AppCompatActivity {
             View gameButton = new TextView(getApplicationContext());
             gameButton.setLayoutParams(lp);
             gameButton.setAlpha(0.8F);
-            gameButton.setTag(R.id.stack_value, gameTile.getTag(R.id.stack_value));
+            gameButton.setTag(R.id.stack_value, -1);
             gameButton.setTag(R.id.stack_column, column);
             ((TextView) gameButton).setText("" + (int) gameTile.getTag(R.id.stack_value));
             ((TextView) gameButton).setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); // Centers the text
@@ -168,30 +228,37 @@ public class StackActivity extends AppCompatActivity {
             as.start();
         }else{
             Log.d("BrainSTEM S", "Update recursion has finished");
-            if (fallingAnim) {
-                fallingAnim = false;
-                gameTile = new TextView(getApplicationContext()); // Initializes the gameTile, or the Tile that is falling down
-                newGameTile();
-                field.addView(gameTile);
-                AnimatorSet fade = new AnimatorSet();
-                for (View button : buttons) {
-                    button.setTag(R.id.stack_value, gameTile.getTag(R.id.stack_value));
-                    ((TextView) button).setText("" + button.getTag(R.id.stack_value));
-                    ObjectAnimator fadeIn = ObjectAnimator.ofFloat(button, "alpha", 0.8f);
-                    fade.play(fadeIn);
+            boolean testNextLevel = true;
+            for(ArrayList<View> column : grid){
+                if(column.size() < SIZE_Y){
+                    testNextLevel = false;
+                    break;
                 }
-                fade.start();
-                fade.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        for (View button : buttons) {
+            }
+            if(testNextLevel){
+                clearBoard();
+                newRule(2);
+                pauseAction();
+            }else{
+                if (fallingAnim) {
+                    fallingAnim = false;
+                    gameTile = new TextView(getApplicationContext()); // Initializes the gameTile, or the Tile that is falling down
+                    newGameTile();
+                    field.addView(gameTile);
+                    AnimatorSet fade = new AnimatorSet();
+                    for (View button : buttons) {
+                        ((TextView) button).setText("" + gameTile.getTag(R.id.stack_value));
+                        if(grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y) {
+                            ObjectAnimator fadeIn = ObjectAnimator.ofFloat(button, "alpha", 0.8f);
                             button.setEnabled(true);
+                            fade.play(fadeIn);
                         }
                     }
-                });
+                    fade.start();
+                }
             }
         }
+
         //Log.d("BrainSTEM S", "Finished setting up View position animations");
     }
 
@@ -213,6 +280,10 @@ public class StackActivity extends AppCompatActivity {
             removeAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
+                    for(View view : removeAnimList.keySet()){
+                        field.removeView(view);
+                    }
+                    removeAnimList.clear();
                     super.onAnimationEnd(animation);
                     updatePositions();
                 }
@@ -256,7 +327,7 @@ public class StackActivity extends AppCompatActivity {
 
     private boolean pairStackRuleCheck(View v, View check) { //Checks if the pair of Views break a rule. false if they don't, true if they do.
         for (Pair pair : rules) {
-            if (pair.equals(new Pair(Integer.parseInt((String) v.getTag(R.id.stack_value)), Integer.parseInt((String) check.getTag(R.id.stack_value))))) {
+            if (pair.equals(new Pair((int) (v.getTag(R.id.stack_value)), (int) (check.getTag(R.id.stack_value))))) {
                 return true;
             }
         }
@@ -279,7 +350,7 @@ public class StackActivity extends AppCompatActivity {
         if (pos > 0) {
             remove.add(grid.get(column).get(pos - 1));
         }
-        if (pos < grid.get(column).size() - 1) {
+        if (pos < grid.get(column).size() - 2) {
             remove.add(grid.get(column).get(pos + 1));
         }
     }
@@ -312,4 +383,38 @@ public class StackActivity extends AppCompatActivity {
         return StackActivity.context;
     }
 
+    private Pair newRule(int i){
+        boolean works = false;
+        Pair a = new Pair((int) (Math.random() * 10), (int) (Math.random() * 10));
+        while(!works){
+            boolean unique = true;
+            for (Pair compare : rules){
+                if(a.equals(compare)){
+                    unique = false;
+                    a = new Pair((int) (Math.random() * 10), (int) (Math.random() * 10));
+                }
+            }
+            if(unique) works = true;
+        }
+        Log.d("BrainSTEM S", "Rule created: " + a.toString());
+        rules.add(a);
+        switch (i){
+            case 1:
+                ruleNotify.setText(context.getString(R.string.rule_prefix) + "\n" + a.toString());
+                break;
+            case 2:
+                ruleNotify.setText(context.getString(R.string.win) + "\n" +context.getString(R.string.rule_prefix) + "\n" + a.toString());
+                break;
+        }
+        return  a;
+    }
+    private void clearBoard(){
+        for(ArrayList<View> column : grid){
+            for(View v : column){
+                field.removeView(v);
+            }
+            column.clear();
+        }
+        initializationComplete = false;
+    }
 }

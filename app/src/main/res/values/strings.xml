@@ -62,4 +62,8 @@
 
     <string name="choose_image">Choose image</string>
 
+    <string name="rule_prefix">New Rules:</string>
+
+    <string name="win">You Win!</string>
+
 </resources>

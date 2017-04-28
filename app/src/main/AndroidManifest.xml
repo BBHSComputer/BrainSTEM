@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".StackActivity2" />
-        <activity android:name=".StackActivity" />
+        <activity android:name=".StackActivity" android:screenOrientation="portrait"/>
         <activity android:name=".StackSettingsActivity" />
         <activity android:name=".StackGameActivity" />
         <activity android:name=".TileSettingsActivity" />

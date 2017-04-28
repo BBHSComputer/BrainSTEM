@@ -49,7 +49,7 @@ public class StackGameActivity extends AppCompatActivity {
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Log.d("Test", "post SetContentView");
 
-        field = (RelativeLayout) findViewById(R.id.game2_field);
+        field = (RelativeLayout) findViewById(R.id.stack_field);
         home = (Button) findViewById(R.id.game2_home);
         pause = (Button) findViewById(R.id.game2_pause);
         Log.d("Test", "post find Home and Pause");
