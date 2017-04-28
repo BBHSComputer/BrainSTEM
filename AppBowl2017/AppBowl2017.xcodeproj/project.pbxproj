@@ -18,6 +18,17 @@
 		9A4727F81E68BF2C00E98AAE /* TileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727F71E68BF2C00E98AAE /* TileImageView.m */; };
 		9A4727FA1E69E0A900E98AAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A4727F91E69E0A900E98AAE /* Assets.xcassets */; };
 		9A4727FD1E6A014200E98AAE /* TileEndViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4727FC1E6A014200E98AAE /* TileEndViewController.m */; };
+		9A7E08A51EB296E600BF1910 /* SummationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E08A41EB296E600BF1910 /* SummationViewController.m */; };
+		9A7E08A81EB2978B00BF1910 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E08A71EB2978B00BF1910 /* Question.m */; };
+		9A8F2F0F1EB3557C0006B5A3 /* SimpleQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F2F0E1EB3557C0006B5A3 /* SimpleQuestion.m */; };
+		9A8F2F121EB376220006B5A3 /* BiggestQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F2F111EB376220006B5A3 /* BiggestQuestion.m */; };
+		9A8F2F151EB3798D0006B5A3 /* TimedQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F2F141EB3798D0006B5A3 /* TimedQuestion.m */; };
+		9A8F2F1A1EB388350006B5A3 /* furelisemp3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F2F161EB388350006B5A3 /* furelisemp3.mp3 */; };
+		9A8F2F1B1EB388350006B5A3 /* heartandsoulmp3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F2F171EB388350006B5A3 /* heartandsoulmp3.mp3 */; };
+		9A8F2F1C1EB388350006B5A3 /* starspangledbannermp3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F2F181EB388350006B5A3 /* starspangledbannermp3.mp3 */; };
+		9A8F2F1D1EB388350006B5A3 /* takemeoutmp3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F2F191EB388350006B5A3 /* takemeoutmp3.mp3 */; };
+		9A8F2F201EB3A9720006B5A3 /* SummationEndViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F2F1F1EB3A9720006B5A3 /* SummationEndViewController.m */; };
+		9A8F2F231EB3AEA90006B5A3 /* MusicEndViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F2F221EB3AEA90006B5A3 /* MusicEndViewController.m */; };
 		9AD1C3631E9549A400C8F86E /* Rule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1C3621E9549A300C8F86E /* Rule.m */; };
 		9AD1C3661E954A8000C8F86E /* AdjacencyRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1C3651E954A8000C8F86E /* AdjacencyRule.m */; };
 		9ADD28481EB144A800CB4FA9 /* MusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADD28471EB144A800CB4FA9 /* MusicViewController.m */; };
@@ -95,6 +106,24 @@
 		9A4727F91E69E0A900E98AAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A4727FB1E6A014200E98AAE /* TileEndViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileEndViewController.h; sourceTree = "<group>"; };
 		9A4727FC1E6A014200E98AAE /* TileEndViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileEndViewController.m; sourceTree = "<group>"; };
+		9A7E08A31EB296E600BF1910 /* SummationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummationViewController.h; sourceTree = "<group>"; };
+		9A7E08A41EB296E600BF1910 /* SummationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummationViewController.m; sourceTree = "<group>"; };
+		9A7E08A61EB2978B00BF1910 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		9A7E08A71EB2978B00BF1910 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		9A8F2F0D1EB3557C0006B5A3 /* SimpleQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleQuestion.h; sourceTree = "<group>"; };
+		9A8F2F0E1EB3557C0006B5A3 /* SimpleQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleQuestion.m; sourceTree = "<group>"; };
+		9A8F2F101EB376220006B5A3 /* BiggestQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiggestQuestion.h; sourceTree = "<group>"; };
+		9A8F2F111EB376220006B5A3 /* BiggestQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiggestQuestion.m; sourceTree = "<group>"; };
+		9A8F2F131EB3798D0006B5A3 /* TimedQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimedQuestion.h; sourceTree = "<group>"; };
+		9A8F2F141EB3798D0006B5A3 /* TimedQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimedQuestion.m; sourceTree = "<group>"; };
+		9A8F2F161EB388350006B5A3 /* furelisemp3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = furelisemp3.mp3; sourceTree = "<group>"; };
+		9A8F2F171EB388350006B5A3 /* heartandsoulmp3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = heartandsoulmp3.mp3; sourceTree = "<group>"; };
+		9A8F2F181EB388350006B5A3 /* starspangledbannermp3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = starspangledbannermp3.mp3; sourceTree = "<group>"; };
+		9A8F2F191EB388350006B5A3 /* takemeoutmp3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = takemeoutmp3.mp3; sourceTree = "<group>"; };
+		9A8F2F1E1EB3A9720006B5A3 /* SummationEndViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummationEndViewController.h; sourceTree = "<group>"; };
+		9A8F2F1F1EB3A9720006B5A3 /* SummationEndViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummationEndViewController.m; sourceTree = "<group>"; };
+		9A8F2F211EB3AEA90006B5A3 /* MusicEndViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicEndViewController.h; sourceTree = "<group>"; };
+		9A8F2F221EB3AEA90006B5A3 /* MusicEndViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicEndViewController.m; sourceTree = "<group>"; };
 		9AD1C3611E9549A300C8F86E /* Rule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rule.h; sourceTree = "<group>"; };
 		9AD1C3621E9549A300C8F86E /* Rule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rule.m; sourceTree = "<group>"; };
 		9AD1C3641E954A8000C8F86E /* AdjacencyRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdjacencyRule.h; sourceTree = "<group>"; };
@@ -205,6 +234,10 @@
 				9A4727C51E67CE1700E98AAE /* LaunchScreen.storyboard */,
 				9A4727C81E67CE1700E98AAE /* Info.plist */,
 				9ADD28521EB18DEB00CB4FA9 /* Strings.strings */,
+				9A8F2F161EB388350006B5A3 /* furelisemp3.mp3 */,
+				9A8F2F171EB388350006B5A3 /* heartandsoulmp3.mp3 */,
+				9A8F2F181EB388350006B5A3 /* starspangledbannermp3.mp3 */,
+				9A8F2F191EB388350006B5A3 /* takemeoutmp3.mp3 */,
 				9AEAFC641E80172400908941 /* Fonts */,
 				9A4727B71E67CE1700E98AAE /* Supporting Files */,
 			);
@@ -272,6 +305,18 @@
 		9ADDE9561EAA56F100D09191 /* Summation */ = {
 			isa = PBXGroup;
 			children = (
+				9A7E08A31EB296E600BF1910 /* SummationViewController.h */,
+				9A7E08A41EB296E600BF1910 /* SummationViewController.m */,
+				9A7E08A61EB2978B00BF1910 /* Question.h */,
+				9A7E08A71EB2978B00BF1910 /* Question.m */,
+				9A8F2F0D1EB3557C0006B5A3 /* SimpleQuestion.h */,
+				9A8F2F0E1EB3557C0006B5A3 /* SimpleQuestion.m */,
+				9A8F2F101EB376220006B5A3 /* BiggestQuestion.h */,
+				9A8F2F111EB376220006B5A3 /* BiggestQuestion.m */,
+				9A8F2F131EB3798D0006B5A3 /* TimedQuestion.h */,
+				9A8F2F141EB3798D0006B5A3 /* TimedQuestion.m */,
+				9A8F2F1E1EB3A9720006B5A3 /* SummationEndViewController.h */,
+				9A8F2F1F1EB3A9720006B5A3 /* SummationEndViewController.m */,
 			);
 			name = Summation;
 			sourceTree = "<group>";
@@ -285,6 +330,8 @@
 				9ADD284D1EB144CE00CB4FA9 /* MusicSettingsTableViewCell.m */,
 				9ADD28461EB144A800CB4FA9 /* MusicViewController.h */,
 				9ADD28471EB144A800CB4FA9 /* MusicViewController.m */,
+				9A8F2F211EB3AEA90006B5A3 /* MusicEndViewController.h */,
+				9A8F2F221EB3AEA90006B5A3 /* MusicEndViewController.m */,
 			);
 			name = Music;
 			sourceTree = "<group>";
@@ -427,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AEAFC5E1E80171C00908941 /* Montserrat-MediumItalic.ttf in Resources */,
+				9A8F2F1C1EB388350006B5A3 /* starspangledbannermp3.mp3 in Resources */,
 				9AEAFC551E80171C00908941 /* Montserrat-BoldItalic.ttf in Resources */,
 				9AEAFC5F1E80171C00908941 /* Montserrat-Regular.ttf in Resources */,
 				9AEAFC3C1E80170D00908941 /* PlayfairDisplay-Bold.ttf in Resources */,
@@ -438,6 +486,7 @@
 				9AEAFC561E80171C00908941 /* Montserrat-ExtraBold.ttf in Resources */,
 				9AEAFC3F1E80170D00908941 /* PlayfairDisplay-Regular.ttf in Resources */,
 				9AEAFC3B1E80170D00908941 /* PlayfairDisplay-BlackItalic.ttf in Resources */,
+				9A8F2F1D1EB388350006B5A3 /* takemeoutmp3.mp3 in Resources */,
 				9AEAFC5C1E80171C00908941 /* Montserrat-LightItalic.ttf in Resources */,
 				9AEAFC3A1E80170D00908941 /* PlayfairDisplay-Black.ttf in Resources */,
 				9AEAFC621E80171C00908941 /* Montserrat-Thin.ttf in Resources */,
@@ -449,7 +498,9 @@
 				9AEAFC581E80171C00908941 /* Montserrat-ExtraLight.ttf in Resources */,
 				9AEAFC591E80171C00908941 /* Montserrat-ExtraLightItalic.ttf in Resources */,
 				9AEAFC5A1E80171C00908941 /* Montserrat-Italic.ttf in Resources */,
+				9A8F2F1B1EB388350006B5A3 /* heartandsoulmp3.mp3 in Resources */,
 				9AEAFC631E80171C00908941 /* Montserrat-ThinItalic.ttf in Resources */,
+				9A8F2F1A1EB388350006B5A3 /* furelisemp3.mp3 in Resources */,
 				9AEAFC5B1E80171C00908941 /* Montserrat-Light.ttf in Resources */,
 				9ADD28531EB18DEB00CB4FA9 /* Strings.strings in Resources */,
 				9AEAFC3D1E80170D00908941 /* PlayfairDisplay-BoldItalic.ttf in Resources */,
@@ -482,16 +533,23 @@
 				9AEAFC6A1E81D73700908941 /* GameListTableViewController.m in Sources */,
 				9AEAFC791E82C30A00908941 /* PhotoCollectionViewCell.m in Sources */,
 				9ADD28481EB144A800CB4FA9 /* MusicViewController.m in Sources */,
+				9A8F2F0F1EB3557C0006B5A3 /* SimpleQuestion.m in Sources */,
+				9A8F2F151EB3798D0006B5A3 /* TimedQuestion.m in Sources */,
 				9A4727FD1E6A014200E98AAE /* TileEndViewController.m in Sources */,
 				9A4727F81E68BF2C00E98AAE /* TileImageView.m in Sources */,
 				9AD1C3631E9549A400C8F86E /* Rule.m in Sources */,
 				9AEAFC6D1E81DA3500908941 /* StackViewController.m in Sources */,
+				9A8F2F231EB3AEA90006B5A3 /* MusicEndViewController.m in Sources */,
 				9A4727F21E684D5200E98AAE /* TileSettingsViewController.m in Sources */,
 				9AEAFC671E81D65000908941 /* GameListTableViewCell.m in Sources */,
 				9AEAFCBB1E8A9A9500908941 /* StackSettingsViewController.m in Sources */,
 				9A4727BC1E67CE1700E98AAE /* AppDelegate.m in Sources */,
+				9A7E08A51EB296E600BF1910 /* SummationViewController.m in Sources */,
 				9ADD284E1EB144CE00CB4FA9 /* MusicSettingsTableViewCell.m in Sources */,
 				9AD1C3661E954A8000C8F86E /* AdjacencyRule.m in Sources */,
+				9A7E08A81EB2978B00BF1910 /* Question.m in Sources */,
+				9A8F2F201EB3A9720006B5A3 /* SummationEndViewController.m in Sources */,
+				9A8F2F121EB376220006B5A3 /* BiggestQuestion.m in Sources */,
 				9A4727B91E67CE1700E98AAE /* main.m in Sources */,
 				9A4727F51E684D7F00E98AAE /* TileViewController.m in Sources */,
 			);

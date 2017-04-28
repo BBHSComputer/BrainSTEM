@@ -363,15 +363,17 @@ int cellsToRemove;
 }
 
 - (void)addNewRule {
+	// Create a new random rule
 	Rule *newRule = [[AdjacencyRule alloc] initWithTile:[NSNumber numberWithInt:arc4random() % 9 + 1] and:[NSNumber numberWithInt:arc4random() % 9 + 1]];
-	for (Rule *rule in self.rules) {
+	for (Rule *rule in self.rules) { // If this rule already exists...
 		if ([rule isEqual:newRule]) {
-			[self addNewRule];
+			[self addNewRule]; // Try again
 			return;
 		}
 	}
 	[self.rules addObject:newRule];
 	
+	// Update the counter label
 	[self.ruleCount setText:[NSString stringWithFormat:@"Rules: %i", (int) self.rules.count]];
 }
 

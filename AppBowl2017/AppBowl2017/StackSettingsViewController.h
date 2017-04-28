@@ -10,4 +10,6 @@
 
 @interface StackSettingsViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UILabel *desc;
+
 @end

@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "MusicEndViewController.h"
 
 @interface MusicViewController : UIViewController
 
 extern CGFloat const SIZE;
 
-@property (nonatomic) int song, score;
+@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
+
+@property (nonatomic) int song, score, numNotes;
 @property (strong, nonatomic) IBOutlet UILabel *countdown, *scoreLabel;
 
 @end

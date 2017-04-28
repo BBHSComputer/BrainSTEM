@@ -77,7 +77,7 @@
 		int cardNumber = [(NSNumber *) [cards objectAtIndex:i] intValue];
 		
 		// Create a card and configure it
-		TileImageView *card = [[TileImageView alloc] initWithImage:[UIImage imageNamed:@"CardBack"]];
+		TileImageView *card = [[TileImageView alloc] initWithImage:[UIImage imageNamed:@"AppIcon"]];
 		[card setHighlightedImage:[images objectAtIndex:cardNumber]];
 		card.imageId = cardNumber;
 		[card setContentMode:UIViewContentModeScaleAspectFit];
@@ -175,7 +175,7 @@
 	// Flip a
 	[UIView transitionWithView:a duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
 		a.flipped = FlippingStateUnflipping;
-		[a setImage:[UIImage imageNamed:@"CardBack"]];
+		[a setImage:[UIImage imageNamed:@"AppIcon"]];
 	} completion:^(BOOL finished) {
 		a.flipped = FlippingStateUnflipped;
 		selections--;
@@ -185,7 +185,7 @@
 	// Flip b
 	[UIView transitionWithView:b duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
 		b.flipped = FlippingStateUnflipping;
-		[b setImage:[UIImage imageNamed:@"CardBack"]];
+		[b setImage:[UIImage imageNamed:@"AppIcon"]];
 	} completion:^(BOOL finished) {
 		b.flipped = FlippingStateUnflipped;
 		selections--;

@@ -16,6 +16,9 @@
         <array key="Montserrat-Regular.ttf">
             <string>Montserrat-Regular</string>
         </array>
+        <array key="PlayfairDisplay-Bold.ttf">
+            <string>PlayfairDisplay-Bold</string>
+        </array>
         <array key="PlayfairDisplay-Regular.ttf">
             <string>PlayfairDisplay-Regular</string>
         </array>
@@ -189,7 +192,7 @@
         <!--Settings-->
         <scene sceneID="G0z-oC-4E8">
             <objects>
-                <viewController title="Settings" id="Wx1-Pa-0QP" customClass="Game2SettingsViewController" sceneMemberID="viewController">
+                <viewController title="Settings" id="Wx1-Pa-0QP" customClass="StackSettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gkb-H3-cUK"/>
                         <viewControllerLayoutGuide type="bottom" id="Pap-Tb-OdR"/>
@@ -198,12 +201,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjG-4A-nev">
-                                <rect key="frame" x="28" y="72" width="358" height="358"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drop the numbers to fill the grid!Hello!" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjG-4A-nev">
+                                <rect key="frame" x="28" y="72.000000000000014" width="358" height="143.33333333333337"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="jjG-4A-nev" secondAttribute="height" multiplier="1:1" id="0Zu-Hd-TRo"/>
+                                    <constraint firstAttribute="width" secondItem="jjG-4A-nev" secondAttribute="height" multiplier="5:2" id="0Zu-Hd-TRo"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="PlayfairDisplay-Regular" family="Playfair Display" pointSize="360"/>
+                                <fontDescription key="fontDescription" name="PlayfairDisplay-Regular" family="Playfair Display" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -229,15 +232,18 @@
                             <constraint firstItem="hwf-sz-aqc" firstAttribute="leading" secondItem="76R-Xo-BEG" secondAttribute="leadingMargin" id="ogI-EI-JiB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="desc" destination="jjG-4A-nev" id="L2L-Ih-7lf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K2k-7I-hs3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2057" y="3334"/>
         </scene>
-        <!--Neostriatum-->
+        <!--Stack-->
         <scene sceneID="brX-Pk-bHG">
             <objects>
-                <viewController title="Neostriatum" id="utC-zK-MfS" customClass="Game2ViewController" sceneMemberID="viewController">
+                <viewController title="Stack" id="utC-zK-MfS" customClass="StackViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4wb-7G-7hF"/>
                         <viewControllerLayoutGuide type="bottom" id="CMI-bJ-tuV"/>
@@ -266,8 +272,8 @@
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vRH-Dl-7Cc">
                                 <rect key="frame" x="20" y="74" width="374" height="2"/>
-                                <color key="progressTintColor" red="0.0" green="0.50196078431372548" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="trackTintColor" red="1" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="progressTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -377,10 +383,10 @@
             </objects>
             <point key="canvasLocation" x="3745" y="2585"/>
         </scene>
-        <!--Concentration-->
+        <!--Tile-->
         <scene sceneID="6He-if-8OY">
             <objects>
-                <viewController title="Concentration" id="heQ-Zq-Kcl" customClass="TileViewController" sceneMemberID="viewController">
+                <viewController title="Tile" id="heQ-Zq-Kcl" customClass="TileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nT4-j1-AWC"/>
                         <viewControllerLayoutGuide type="bottom" id="Eb7-e5-teP"/>
@@ -450,15 +456,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameCell" id="TXf-08-Rww" customClass="GameListTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GameCell" id="TXf-08-Rww" customClass="GameListTableViewCell">
                                 <rect key="frame" x="0.0" y="28" width="414" height="112"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TXf-08-Rww" id="pIY-TJ-BjJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="111"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="111"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="MLp-v2-o4M">
-                                            <rect key="frame" x="112" y="8" width="294" height="48"/>
+                                            <rect key="frame" x="112" y="8" width="261" height="48"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="SX7-Xp-HR9"/>
                                             </constraints>
@@ -473,7 +479,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Focus, Focus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Tjr-fs-Xgb">
-                                            <rect key="frame" x="112" y="63.999999999999993" width="294" height="29.333333333333321"/>
+                                            <rect key="frame" x="112" y="63.999999999999993" width="261" height="29.333333333333321"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -505,33 +511,34 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="BrainSTEM" id="6jv-b7-S81"/>
                     <connections>
-                        <segue destination="6WP-qa-APB" kind="show" identifier="0" id="P6Y-K1-WvU"/>
-                        <segue destination="Wx1-Pa-0QP" kind="show" identifier="1" id="Kpj-uA-fFb"/>
+                        <segue destination="6WP-qa-APB" kind="show" identifier="1" id="P6Y-K1-WvU"/>
+                        <segue destination="Wx1-Pa-0QP" kind="show" identifier="0" id="Kpj-uA-fFb"/>
                         <segue destination="L1v-Pg-OmK" kind="show" identifier="3" id="rNc-eb-Bfi"/>
+                        <segue destination="WLa-CH-rPn" kind="show" identifier="2" id="cHZ-Ze-Lfr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7k-nY-rtS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1284" y="4002"/>
         </scene>
-        <!--Music Settings Table View Controller-->
+        <!--Song Selection-->
         <scene sceneID="DGM-ql-Xdg">
             <objects>
-                <tableViewController id="L1v-Pg-OmK" customClass="MusicSettingsTableViewController" sceneMemberID="viewController">
+                <tableViewController title="Song Selection" id="L1v-Pg-OmK" customClass="MusicSettingsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="128" sectionHeaderHeight="18" sectionFooterHeight="18" id="uxM-2c-etd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Song" id="d62-qZ-sGU" customClass="MusicSettingsTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Song" id="d62-qZ-sGU" customClass="MusicSettingsTableViewCell">
                                 <rect key="frame" x="0.0" y="56" width="414" height="128"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d62-qZ-sGU" id="Hc8-yw-gfI">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="127"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="127"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Name of the Song" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="ZCG-55-rcM">
-                                            <rect key="frame" x="8" y="8" width="398" height="42"/>
+                                            <rect key="frame" x="8" y="8" width="365" height="42"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="42" id="AHs-GP-ZFi"/>
                                             </constraints>
@@ -540,7 +547,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Composer of the Song" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TGD-lP-3LX">
-                                            <rect key="frame" x="8" y="58" width="398" height="24"/>
+                                            <rect key="frame" x="8" y="58" width="365" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="bpX-f8-0lY"/>
                                             </constraints>
@@ -549,7 +556,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© The Copyright Holder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgo-LP-Q9O">
-                                            <rect key="frame" x="8" y="98" width="398" height="21"/>
+                                            <rect key="frame" x="8" y="98" width="365" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Xoa-8V-xCS"/>
                                             </constraints>
@@ -590,10 +597,99 @@
             </objects>
             <point key="canvasLocation" x="2057" y="4002"/>
         </scene>
-        <!--Music View Controller-->
+        <!--Summation-->
+        <scene sceneID="fFP-Df-Lfc">
+            <objects>
+                <viewController title="Summation" id="WLa-CH-rPn" customClass="SummationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qtK-TS-mLx"/>
+                        <viewControllerLayoutGuide type="bottom" id="kM6-RT-8EK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vxj-Sm-4u6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A rather stort phrase that is not a question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dD-6g-DlN">
+                                <rect key="frame" x="20" y="72" width="374" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="DHr-Bf-7kn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PlayfairDisplay-Regular" family="Playfair Display" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5XD-7X-D8D">
+                                <rect key="frame" x="60" y="208" width="294" height="86"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <state key="normal" title="Answer 1"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSL-AD-RXk">
+                                <rect key="frame" x="60" y="302" width="294" height="86"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <state key="normal" title="Answer 2"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOY-R4-Rfc">
+                                <rect key="frame" x="60" y="396" width="294" height="86"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <state key="normal" title="Answer 3"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TG5-OU-Ksu">
+                                <rect key="frame" x="60" y="490" width="294" height="86"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <state key="normal" title="Answer 4"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INCORRECT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="HVv-QL-2VZ">
+                                <rect key="frame" x="60" y="326" width="294" height="85.333333333333314"/>
+                                <fontDescription key="fontDescription" name="PlayfairDisplay-Bold" family="Playfair Display" pointSize="64"/>
+                                <color key="textColor" red="0.50196078431372548" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PSL-AD-RXk" firstAttribute="top" secondItem="5XD-7X-D8D" secondAttribute="bottom" constant="8" id="4LZ-Xy-Q65"/>
+                            <constraint firstItem="WOY-R4-Rfc" firstAttribute="centerX" secondItem="5XD-7X-D8D" secondAttribute="centerX" id="5lj-7b-Uox"/>
+                            <constraint firstItem="0dD-6g-DlN" firstAttribute="top" secondItem="qtK-TS-mLx" secondAttribute="bottom" constant="8" id="7kz-xz-Gzb"/>
+                            <constraint firstItem="kM6-RT-8EK" firstAttribute="top" secondItem="TG5-OU-Ksu" secondAttribute="bottom" constant="160" id="Ez8-JB-4lQ"/>
+                            <constraint firstItem="TG5-OU-Ksu" firstAttribute="centerX" secondItem="5XD-7X-D8D" secondAttribute="centerX" id="Ffy-Vq-Uda"/>
+                            <constraint firstItem="WOY-R4-Rfc" firstAttribute="top" secondItem="PSL-AD-RXk" secondAttribute="bottom" constant="8" id="SPS-lN-yzQ"/>
+                            <constraint firstItem="TG5-OU-Ksu" firstAttribute="height" secondItem="5XD-7X-D8D" secondAttribute="height" id="SjT-St-n1i"/>
+                            <constraint firstItem="0dD-6g-DlN" firstAttribute="leading" secondItem="Vxj-Sm-4u6" secondAttribute="leadingMargin" id="WFy-Tt-sUq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0dD-6g-DlN" secondAttribute="trailing" id="Y7t-fS-Dyc"/>
+                            <constraint firstItem="5XD-7X-D8D" firstAttribute="leading" secondItem="Vxj-Sm-4u6" secondAttribute="leadingMargin" constant="40" id="ZCM-49-Xts"/>
+                            <constraint firstItem="5XD-7X-D8D" firstAttribute="top" secondItem="0dD-6g-DlN" secondAttribute="bottom" constant="8" id="ZEe-ie-NdR"/>
+                            <constraint firstItem="HVv-QL-2VZ" firstAttribute="leading" secondItem="Vxj-Sm-4u6" secondAttribute="leadingMargin" constant="40" id="bQp-vp-dKo"/>
+                            <constraint firstItem="TG5-OU-Ksu" firstAttribute="width" secondItem="5XD-7X-D8D" secondAttribute="width" id="e9R-hN-1bt"/>
+                            <constraint firstItem="PSL-AD-RXk" firstAttribute="height" secondItem="5XD-7X-D8D" secondAttribute="height" id="fUp-pB-261"/>
+                            <constraint firstItem="TG5-OU-Ksu" firstAttribute="top" secondItem="WOY-R4-Rfc" secondAttribute="bottom" constant="8" id="hci-Do-mok"/>
+                            <constraint firstItem="WOY-R4-Rfc" firstAttribute="width" secondItem="5XD-7X-D8D" secondAttribute="width" id="idr-No-o9j"/>
+                            <constraint firstItem="PSL-AD-RXk" firstAttribute="width" secondItem="5XD-7X-D8D" secondAttribute="width" id="mWF-Hp-z8y"/>
+                            <constraint firstItem="PSL-AD-RXk" firstAttribute="centerX" secondItem="5XD-7X-D8D" secondAttribute="centerX" id="mpg-aC-ImK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5XD-7X-D8D" secondAttribute="trailing" constant="40" id="o0o-LB-ynO"/>
+                            <constraint firstItem="HVv-QL-2VZ" firstAttribute="centerY" secondItem="Vxj-Sm-4u6" secondAttribute="centerY" id="rYp-i0-L0e"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HVv-QL-2VZ" secondAttribute="trailing" constant="40" id="sia-bc-wTx"/>
+                            <constraint firstItem="HVv-QL-2VZ" firstAttribute="centerX" secondItem="Vxj-Sm-4u6" secondAttribute="centerX" id="uer-0l-axI"/>
+                            <constraint firstItem="WOY-R4-Rfc" firstAttribute="height" secondItem="5XD-7X-D8D" secondAttribute="height" id="zBM-hB-Pw0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="button1" destination="5XD-7X-D8D" id="pA2-t5-VHp"/>
+                        <outlet property="button2" destination="PSL-AD-RXk" id="P8c-vA-N4T"/>
+                        <outlet property="button3" destination="WOY-R4-Rfc" id="Ptn-Q7-2vd"/>
+                        <outlet property="button4" destination="TG5-OU-Ksu" id="WFG-g1-jv6"/>
+                        <outlet property="correctLabel" destination="HVv-QL-2VZ" id="GH6-KY-ppg"/>
+                        <outlet property="questionTitle" destination="0dD-6g-DlN" id="EDm-21-CFO"/>
+                        <segue destination="Kuz-2a-2yi" kind="showDetail" identifier="EndGame" action="showViewController:sender:" id="F4Z-hg-9KH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1XT-Zo-YOQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2057" y="4696"/>
+        </scene>
+        <!--Music-->
         <scene sceneID="Vig-gC-0c6">
             <objects>
-                <viewController id="djs-cP-Lfb" customClass="MusicViewController" sceneMemberID="viewController">
+                <viewController title="Music" id="djs-cP-Lfb" customClass="MusicViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YaP-oQ-cEs"/>
                         <viewControllerLayoutGuide type="bottom" id="Nen-d9-DSY"/>
@@ -632,12 +728,163 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="countdown" destination="fPX-Bi-cdg" id="eaN-Ty-ECg"/>
-                        <outlet property="score" destination="cl8-3h-FEj" id="ckV-I2-3Dd"/>
+                        <outlet property="scoreLabel" destination="cl8-3h-FEj" id="UuV-v4-16i"/>
+                        <segue destination="0Dz-hZ-0SB" kind="showDetail" identifier="EndMusic" id="C1h-Iz-0FF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eGd-HT-Aih" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2885.507246376812" y="4001.902173913044"/>
+        </scene>
+        <!--Summation End View Controller-->
+        <scene sceneID="Hhl-KZ-xJj">
+            <objects>
+                <viewController id="Kuz-2a-2yi" customClass="SummationEndViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZGQ-bJ-sFt"/>
+                        <viewControllerLayoutGuide type="bottom" id="XlT-gN-L8V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0le-Ec-XAg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ra9-BY-i6p">
+                                <rect key="frame" x="20" y="120" width="374" height="91"/>
+                                <fontDescription key="fontDescription" name="PlayfairDisplay-Regular" family="Playfair Display" pointSize="68"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzo-qm-39W">
+                                <rect key="frame" x="20" y="275" width="374" height="38"/>
+                                <fontDescription key="fontDescription" name="PlayfairDisplay-Regular" family="Playfair Display" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correct: 6/6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hw-ia-AGw">
+                                <rect key="frame" x="20" y="321" width="374" height="30"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wad-u7-T2W">
+                                <rect key="frame" x="20" y="658" width="374" height="42"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <state key="normal" title="Return to Home Screen"/>
+                                <connections>
+                                    <segue destination="9Ed-y9-ELC" kind="unwind" unwindAction="unwindToHome:" id="DAb-Na-g4X"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wpN-RW-XB7">
+                                <rect key="frame" x="20" y="608" width="374" height="42"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <state key="normal" title="Play Again"/>
+                                <connections>
+                                    <segue destination="9Ed-y9-ELC" kind="unwind" unwindAction="unwindToPlayAgain:" id="DAj-rw-3MY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wpN-RW-XB7" firstAttribute="trailing" secondItem="0le-Ec-XAg" secondAttribute="trailingMargin" id="1Bq-Fd-aDM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Yzo-qm-39W" secondAttribute="trailing" id="2DO-zd-ZrU"/>
+                            <constraint firstItem="2hw-ia-AGw" firstAttribute="top" secondItem="Yzo-qm-39W" secondAttribute="bottom" constant="8" id="3Lb-HT-cId"/>
+                            <constraint firstItem="Yzo-qm-39W" firstAttribute="top" secondItem="ra9-BY-i6p" secondAttribute="bottom" constant="64" id="9bI-Rs-lgx"/>
+                            <constraint firstItem="Yzo-qm-39W" firstAttribute="leading" secondItem="0le-Ec-XAg" secondAttribute="leadingMargin" id="BB7-o8-Yoo"/>
+                            <constraint firstItem="2hw-ia-AGw" firstAttribute="leading" secondItem="0le-Ec-XAg" secondAttribute="leadingMargin" id="DFv-W7-zdX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wad-u7-T2W" secondAttribute="trailing" id="Jg8-Wl-Kg8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2hw-ia-AGw" secondAttribute="trailing" id="N0T-gK-Ncv"/>
+                            <constraint firstItem="ra9-BY-i6p" firstAttribute="top" secondItem="ZGQ-bJ-sFt" secondAttribute="bottom" constant="100" id="Oev-fF-YLr"/>
+                            <constraint firstItem="XlT-gN-L8V" firstAttribute="top" secondItem="wad-u7-T2W" secondAttribute="bottom" constant="36" id="Oh8-nC-OpS"/>
+                            <constraint firstItem="wpN-RW-XB7" firstAttribute="leading" secondItem="0le-Ec-XAg" secondAttribute="leadingMargin" id="ZCj-Yi-boc"/>
+                            <constraint firstItem="wad-u7-T2W" firstAttribute="leading" secondItem="0le-Ec-XAg" secondAttribute="leadingMargin" id="e4d-f9-las"/>
+                            <constraint firstItem="wad-u7-T2W" firstAttribute="top" secondItem="wpN-RW-XB7" secondAttribute="bottom" constant="8" id="e9Z-EF-gAf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ra9-BY-i6p" secondAttribute="trailing" id="hHh-Yy-PHU"/>
+                            <constraint firstItem="ra9-BY-i6p" firstAttribute="leading" secondItem="0le-Ec-XAg" secondAttribute="leadingMargin" id="klf-82-2J1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="score" destination="2hw-ia-AGw" id="K7Q-fv-6np"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uAb-t3-wW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="9Ed-y9-ELC" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2865" y="4696"/>
+        </scene>
+        <!--Summation End View Controller-->
+        <scene sceneID="lLO-PE-7Jo">
+            <objects>
+                <viewController id="0Dz-hZ-0SB" customClass="SummationEndViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zoi-cF-sJp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z3v-nm-Rcv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hhO-kp-5zq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERn-oS-qBw">
+                                <rect key="frame" x="20" y="120" width="374" height="91"/>
+                                <fontDescription key="fontDescription" name="PlayfairDisplay-Regular" family="Playfair Display" pointSize="68"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vwb-hu-Vqf">
+                                <rect key="frame" x="20" y="275" width="374" height="38"/>
+                                <fontDescription key="fontDescription" name="PlayfairDisplay-Regular" family="Playfair Display" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes Hit: 0/0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaD-1m-0u8">
+                                <rect key="frame" x="20" y="321" width="374" height="30"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8e-Nh-w4r">
+                                <rect key="frame" x="20" y="658" width="374" height="42"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <state key="normal" title="Return to Home Screen"/>
+                                <connections>
+                                    <segue destination="y1k-xN-Dah" kind="unwind" unwindAction="unwindToHome:" id="nQX-I9-hdQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l9a-3c-fjV">
+                                <rect key="frame" x="20" y="608" width="374" height="42"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <state key="normal" title="Play Again"/>
+                                <connections>
+                                    <segue destination="y1k-xN-Dah" kind="unwind" unwindAction="unwindToSettings:" id="olg-NM-DuF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="AaD-1m-0u8" firstAttribute="leading" secondItem="hhO-kp-5zq" secondAttribute="leadingMargin" id="GSB-zN-ttr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Vwb-hu-Vqf" secondAttribute="trailing" id="GnC-Mh-CKJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="D8e-Nh-w4r" secondAttribute="trailing" id="IUx-hg-3PE"/>
+                            <constraint firstItem="Vwb-hu-Vqf" firstAttribute="leading" secondItem="hhO-kp-5zq" secondAttribute="leadingMargin" id="KGD-U8-Rt7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ERn-oS-qBw" secondAttribute="trailing" id="MUQ-YY-dcj"/>
+                            <constraint firstItem="l9a-3c-fjV" firstAttribute="trailing" secondItem="hhO-kp-5zq" secondAttribute="trailingMargin" id="Mlb-TG-2Rl"/>
+                            <constraint firstItem="Vwb-hu-Vqf" firstAttribute="top" secondItem="ERn-oS-qBw" secondAttribute="bottom" constant="64" id="VVs-ZD-H40"/>
+                            <constraint firstItem="ERn-oS-qBw" firstAttribute="leading" secondItem="hhO-kp-5zq" secondAttribute="leadingMargin" id="b4f-cc-ZO2"/>
+                            <constraint firstItem="AaD-1m-0u8" firstAttribute="top" secondItem="Vwb-hu-Vqf" secondAttribute="bottom" constant="8" id="kZK-VB-4HJ"/>
+                            <constraint firstItem="l9a-3c-fjV" firstAttribute="leading" secondItem="hhO-kp-5zq" secondAttribute="leadingMargin" id="kxD-Zu-Jap"/>
+                            <constraint firstItem="Z3v-nm-Rcv" firstAttribute="top" secondItem="D8e-Nh-w4r" secondAttribute="bottom" constant="36" id="m3r-ve-VKC"/>
+                            <constraint firstItem="ERn-oS-qBw" firstAttribute="top" secondItem="Zoi-cF-sJp" secondAttribute="bottom" constant="100" id="p0O-CH-k4m"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AaD-1m-0u8" secondAttribute="trailing" id="sMJ-kx-Zru"/>
+                            <constraint firstItem="D8e-Nh-w4r" firstAttribute="leading" secondItem="hhO-kp-5zq" secondAttribute="leadingMargin" id="yFK-Ob-WN7"/>
+                            <constraint firstItem="D8e-Nh-w4r" firstAttribute="top" secondItem="l9a-3c-fjV" secondAttribute="bottom" constant="8" id="ysh-p9-Zmi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="score" destination="AaD-1m-0u8" id="s12-22-z6O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ETc-76-Rlp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="y1k-xN-Dah" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3745" y="4002"/>
         </scene>
     </scenes>
 </document>

@@ -10,4 +10,6 @@
 
 @interface MusicSettingsTableViewController : UITableViewController
 
+@property (nonatomic) int song;
+
 @end

@@ -33,7 +33,7 @@
 
 // Number of rows = number of songs
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 3;
+	return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -55,24 +55,30 @@
 			[cell.composer setText:@"Ludwig van Beethoven"];
 			[cell.copyright setText:nil];
 			break;
+		case 3:
+			[cell.name setText:@"Heart and Soul"];
+			[cell.composer setText:@"Hoagy Carmichael"];
+			[cell.copyright setText:nil];
+			break;
 	}
 	
 	return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-	return @"All music is adapted from sources licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 License (CC BY-NC-SA 3.0). See the about page for more details.";
+	return @"All music is licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 License (CC BY-NC-SA 3.0), or in the public domain. See the about page for more details.";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[self performSegueWithIdentifier:@"PlayGame" sender:[NSNumber numberWithInteger:indexPath.row]];
+	self.song = (int) indexPath.row;
+	[self performSegueWithIdentifier:@"PlayGame" sender:self];
 }
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([segue.identifier isEqualToString:@"PlayGame"]) {
-		if ([sender isKindOfClass:[NSNumber class]]) [(MusicViewController *) [segue destinationViewController] setSong:[sender intValue]];
+		[(MusicViewController *) [segue destinationViewController] setSong:self.song];
 	}
 }
 
