@@ -1,6 +1,7 @@
 package bbhs.appbowl2017;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -49,7 +50,12 @@ public class SummationGame extends AppCompatActivity implements QuestionListener
         if (end) {
             setContentView(R.layout.activity_summation_end);
             ((TextView) findViewById(R.id.title)).setText(questionNumber == questions.size() ? "Congratulations!" : "So close!");
-            ((TextView) findViewById(R.id.score)).setText(questionNumber + " / " + questions.size());
+            int savedScore = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getInt("sumScore", 0);
+            if (savedScore < questionNumber){
+                PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putInt("sumScore", questionNumber).commit();
+                savedScore = questionNumber;
+            }
+            ((TextView) findViewById(R.id.score)).setText(questionNumber + " / " + questions.size() + "\nBest: " + savedScore + " / " + questions.size());
         }
 
         Collections.shuffle(questions);
