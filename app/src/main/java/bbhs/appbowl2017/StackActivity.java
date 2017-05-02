@@ -228,8 +228,10 @@ public class StackActivity extends AppCompatActivity {
         stats.putInt("rules", numRules);
         Intent win = new Intent(getApplicationContext(), StackWin.class);
         win.putExtras(stats);
-        finish();
         startActivity(win);
+        rules.clear();
+        clearBoard();
+
     }
 
     private void updatePositions() {
