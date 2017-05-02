@@ -38,7 +38,7 @@ public class Pair{
 
     @Override
     public String toString(){
-        return this.a + " and " + this.b;
+        return this.a + " & " + this.b;
     }
 
     public boolean containsNum(int n){
