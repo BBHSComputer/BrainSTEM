@@ -70,6 +70,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                 app:backgroundTint="@color/cardview_light_background"
                 app:srcCompat="@android:drawable/ic_media_play" />
+
         </FrameLayout>
 
         <TextView
@@ -85,6 +86,16 @@
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
+        <TextView
+            android:id="@+id/stacktitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stack_is_a_rule_based_block_game_it_stimulates_the_brain_improving_cognitive_functioning_for_daily_activity_as_well_as_combatting_the_symptoms_of_dementia"
+            android:textSize="20sp"
+            android:layout_below="@+id/pause_contain"
+            android:layout_centerHorizontal="true" />
+
     </android.support.percent.PercentRelativeLayout>
+
 
 </android.support.percent.PercentRelativeLayout>

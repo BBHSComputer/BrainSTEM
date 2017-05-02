@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +31,15 @@ public class MainActivity extends AppCompatActivity {
         game2 = (Button) findViewById(R.id.game2);
         game3 = (Button) findViewById(R.id.game3);
         game4 = (Button) findViewById(R.id.game4);
+        ImageView stackImage = (ImageView) findViewById(R.id.stackImage);
+        ImageView tileImage = (ImageView) findViewById(R.id.tileImage);
+        ImageView sumImage = (ImageView) findViewById(R.id.sumImage);
+        ImageView musicImage = (ImageView) findViewById(R.id.musicImage);
+
+        Glide.with(this).load(R.drawable.stack).into(stackImage);
+        Glide.with(this).load(R.drawable.tile).into(tileImage);
+        Glide.with(this).load(R.drawable.summation).into(sumImage);
+        Glide.with(this).load(R.drawable.music).into(musicImage);
 
         gamesSetOnClick();
 

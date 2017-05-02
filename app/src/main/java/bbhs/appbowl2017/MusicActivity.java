@@ -21,7 +21,7 @@ import java.util.Random;
  */
 
 public class MusicActivity extends AppCompatActivity {
-	private int score = 0;
+	public static int score = 0;
     public static int notes;
 	Button song1button, song2button, song3button, song4button;
 	MediaPlayer mediaPlayer;
