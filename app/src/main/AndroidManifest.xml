@@ -10,22 +10,42 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StackActivity2" />
-        <activity android:name=".StackActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".StackSettingsActivity" />
-        <activity android:name=".StackWin"/>
-        <activity android:name=".TileSettingsActivity" />
-        <activity android:name=".TileGameActivity" />
-        <activity android:name=".TileWinActivity" />
-        <activity android:name=".SummationGame" />
-        <activity android:name=".MusicActivity" />
+        <activity android:name=".StackActivity2"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".StackActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".StackSettingsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".StackWin"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TileSettingsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TileGameActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TileWinActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SummationGame"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MusicActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
