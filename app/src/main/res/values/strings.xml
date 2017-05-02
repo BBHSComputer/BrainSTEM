@@ -89,5 +89,9 @@
     <string name="run">Run</string>
     <string name="what">What?</string>
     <string name="and">and</string>
-
+    <string name="lose">Game Over! \n Your Statistics:</string>
+    <string name="returnHome">Tap Screen to Return to Main Menu</string>
+    <string name="rules">Number of Rules:</string>
+    <string name="placed">Blocks Placed:</string>
+    <string name="broken">Rules Broken:</string>
 </resources>

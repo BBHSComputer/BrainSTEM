@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -37,6 +38,8 @@ public class StackActivity extends AppCompatActivity {
     public static final int TEXT_SIZE = 36;
     public static int field_x;
     public static int field_y;
+    private static int stacks;
+    private static int rulesBroken;
 
     private static boolean initializationComplete = false; // Just makes sure that the game start only happens once
     private static boolean fallingAnim = false; // Check if animations are currently running
@@ -60,6 +63,7 @@ public class StackActivity extends AppCompatActivity {
     private static Button pause;//This button pauses the game
     private static Button play;//This button plays the game/ reume
     private static TextView ruleNotify;
+    private static ProgressBar life;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +80,11 @@ public class StackActivity extends AppCompatActivity {
         Pair b = newRule(1);
         ruleNotify.setText(context.getString(R.string.rule_prefix) + "\n" + a.toString()+ "\n" + b.toString());
 
+        stacks = 0;
+        rulesBroken = 0;
+
+        life = (ProgressBar) findViewById(R.id.stack_life);
+        life.setScaleY(3f);
         pause_menu = (PercentRelativeLayout) findViewById(R.id.stack_pause); //Gets the pause menu
         field = (RelativeLayout) findViewById(R.id.stack_field); // Gets the playing field relative view
         frame = (FrameLayout) findViewById(R.id.pause_contain);
@@ -104,8 +113,6 @@ public class StackActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){//Resets the game and starts MainActivity
-                rules.clear();
-                clearBoard();
                 finish();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
@@ -149,6 +156,12 @@ public class StackActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        rules.clear();
+        clearBoard();
     }
     private void pauseAction(){
         pause_menu.addView(frame);
@@ -198,7 +211,8 @@ public class StackActivity extends AppCompatActivity {
                         grid.get(column).add(grid.get(column).indexOf(v), gameTile);
                         Log.d("BrainSTEM S", "GameTile added to grid at " + column + " " + (grid.get(column).size() - 2));
                         //This places gameTile in the row that the gameButton is in, at the index that gameButton is in
-
+                        stacks++;
+                        life.incrementProgressBy(1);
                         updatePositions();
                     }
                 }
@@ -206,8 +220,22 @@ public class StackActivity extends AppCompatActivity {
         }
         updatePositions();
     }
+    private void gameFinish(){
+        int numRules = rules.size();
+        Bundle stats = new Bundle();
+        stats.putInt("broken", rulesBroken);
+        stats.putInt("placed", stacks);
+        stats.putInt("rules", numRules);
+        Intent win = new Intent(getApplicationContext(), StackWin.class);
+        win.putExtras(stats);
+        finish();
+        startActivity(win);
+    }
 
     private void updatePositions() {
+        if(life.getProgress() == 0){
+            gameFinish();
+        }
         AnimatorSet as = new AnimatorSet();
         for (int x = 0; x < grid.size(); x++) {
             List<View> column = grid.get(x);
@@ -292,11 +320,14 @@ public class StackActivity extends AppCompatActivity {
             removeAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {//Resursively updatesPosition when animation is done
+                    super.onAnimationEnd(animation);
                     for(View view : removeAnimList.keySet()){
                         field.removeView(view);
                     }
+                    life.incrementProgressBy(-15);
+                    //TODO change this back to -2
+                    rulesBroken++;
                     removeAnimList.clear();
-                    super.onAnimationEnd(animation);
                     updatePositions();
                 }
             });
@@ -310,6 +341,7 @@ public class StackActivity extends AppCompatActivity {
         *   It will then check if the View is not the top most view on the board, not including gameButtons (hence, the -2 on grid.size())
         *   Then, it checks that the View is not in the leftmost or rightmost column
         */
+        remove.clear();
         for (int column = 0; column < SIZE_X; column++) {
             List<View> list = grid.get(column);
 
@@ -405,13 +437,13 @@ public class StackActivity extends AppCompatActivity {
     }
     private Pair newRule(int i){
         boolean works = false;
-        Pair a = new Pair((int) (Math.random() * 10) + 1, (int) (Math.random() * 10) + 1);
+        Pair a = new Pair((int) (Math.random() * 9) + 1, (int) (Math.random() * 9) + 1);
         while(!works){
             boolean unique = true;
             for (Pair compare : rules){
                 if(a.equals(compare)){
                     unique = false;
-                    a = new Pair((int) (Math.random() * 10) + 1, (int) (Math.random() * 10) + 1);
+                    a = new Pair((int) (Math.random() * 9) + 1, (int) (Math.random() * 9) + 1);
                 }
             }
             if(unique) works = true;
