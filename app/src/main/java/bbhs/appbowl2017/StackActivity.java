@@ -187,7 +187,6 @@ public class StackActivity extends AppCompatActivity {
             ((TextView) gameButton).setTextSize(TEXT_SIZE); // Sets text size
             ((TextView) gameButton).setTextColor(Color.BLACK); // Sets text color
             //((TextView)gameButton).setText((int)gameButton.getTag(R.id.stack_value)); // Set up the text of the buttons to match the gameTile
-            //TODO move this to the newGameTile method somehow
 
             buttons.add(gameButton);
             grid.get(column).add(gameButton);
@@ -326,8 +325,7 @@ public class StackActivity extends AppCompatActivity {
                     for(View view : removeAnimList.keySet()){
                         field.removeView(view);
                     }
-                    life.incrementProgressBy(-15);
-                    //TODO change this back to -2
+                    life.incrementProgressBy(-2);
                     rulesBroken++;
                     removeAnimList.clear();
                     updatePositions();
