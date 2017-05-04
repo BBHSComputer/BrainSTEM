@@ -3,7 +3,7 @@
     android:id="@+id/stack_win_back"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color3">
+    android:background="@color/lightSteelBlue">
 
     <TextView
         android:id="@+id/loseText"

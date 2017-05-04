@@ -34,9 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:max="15"
-        android:progress="5"
-        android:progressTint="@color/colorPrimary" />
+        android:max="1500"
+        android:progress="500"
+        android:progressTint="@android:color/holo_green_dark" />
 
     <RelativeLayout
         android:id="@+id/stack_field"
@@ -51,7 +51,7 @@
         android:id="@+id/stack_pause"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color3">
+        android:background="@color/lightSteelBlue">
 
         <FrameLayout
             android:id="@+id/pause_contain"
@@ -86,15 +86,6 @@
             android:text="TextView"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
-
-        <TextView
-            android:id="@+id/stacktitle2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/stack_is_a_rule_based_block_game_it_stimulates_the_brain_improving_cognitive_functioning_for_daily_activity_as_well_as_combatting_the_symptoms_of_dementia"
-            android:textSize="20sp"
-            android:layout_below="@+id/pause_contain"
-            android:layout_centerHorizontal="true" />
 
     </android.support.percent.PercentRelativeLayout>
 

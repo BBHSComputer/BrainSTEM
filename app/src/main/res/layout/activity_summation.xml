@@ -34,6 +34,6 @@
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp"
-        android:text="@string/summation_allows_users_to_have_a_holistic_challenge_the_spontaneity_of_the_mini_game_allows_for_overall_mental_stimulation"
+        android:text="@string/summation_description"
         android:textSize="20sp" />
 </RelativeLayout>

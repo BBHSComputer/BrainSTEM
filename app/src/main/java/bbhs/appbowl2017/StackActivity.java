@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
@@ -211,7 +212,9 @@ public class StackActivity extends AppCompatActivity {
                         Log.d("BrainSTEM S", "GameTile added to grid at " + column + " " + (grid.get(column).size() - 2));
                         //This places gameTile in the row that the gameButton is in, at the index that gameButton is in
                         stacks++;
-                        life.incrementProgressBy(1);
+                        ObjectAnimator progress = ObjectAnimator.ofInt(life, "progress", Math.min(life.getMax(), life.getProgress() + 100));
+                        progress.setInterpolator(new LinearInterpolator());
+                        movementAnim.add(progress);
                         updatePositions();
                     }
                 }
@@ -317,6 +320,9 @@ public class StackActivity extends AppCompatActivity {
             for(View view : removeAnimList.keySet()){
                 removeAnimation.play(removeAnimList.get(view));
             }
+            ObjectAnimator progress = ObjectAnimator.ofInt(life, "progress", Math.max(0, life.getProgress() - 300));
+            progress.setInterpolator(new LinearInterpolator());
+            removeAnimation.play(progress);
             removeAnimation.start();
             removeAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override
@@ -325,7 +331,6 @@ public class StackActivity extends AppCompatActivity {
                     for(View view : removeAnimList.keySet()){
                         field.removeView(view);
                     }
-                    life.incrementProgressBy(-2);
                     rulesBroken++;
                     removeAnimList.clear();
                     updatePositions();
