@@ -25,7 +25,8 @@
         android:layout_centerHorizontal="true"
         android:text="TextView"
         android:textColor="@color/colorAccent"
-        android:textSize="30sp" />
+        style="@android:style/TextAppearance.Medium"
+        />
 
     <TextView
         android:id="@+id/returnHome"
@@ -38,6 +39,6 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
+        style="@android:style/TextAppearance.Medium"
         android:textStyle="bold|italic" />
 </RelativeLayout>

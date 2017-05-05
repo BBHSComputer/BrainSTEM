@@ -3,10 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/game4"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"><![CDATA[
+    android:layout_height="match_parent"
     tools:context="bbhs.appbowl2017.SummationGame">
-
-    ]]>
 
     <Button
         android:id="@+id/playButton"
@@ -15,7 +13,8 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/play2"
-        android:textSize="30sp" />
+        style="@android:style/TextAppearance.Large"
+        />
 
     <TextView
         android:id="@+id/title"
@@ -25,7 +24,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp"
         android:text="@string/summation"
-        android:textSize="30sp"
+        style="@android:style/TextAppearance.Large"
         android:textStyle="bold" />
     <TextView
         android:id="@+id/title2"
@@ -35,5 +34,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp"
         android:text="@string/summation_description"
-        android:textSize="20sp" />
+        style="@android:style/TextAppearance.Large"
+        />
 </RelativeLayout>
