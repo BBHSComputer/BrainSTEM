@@ -34,7 +34,7 @@ public class StackWin extends AppCompatActivity{
             savedPlaced = placed;
         }
         int savedRules = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getInt("broken", 0);
-        if (savedRules > rulesBroken){
+        if (savedRules < rulesBroken){
             PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putInt("broken", rulesBroken).commit();
             savedRules = rulesBroken;
         }
@@ -49,7 +49,7 @@ public class StackWin extends AppCompatActivity{
         String blockPlaced = getApplicationContext().getString(R.string.placed);
         String broken = getApplicationContext().getString(R.string.broken);
 
-        statistics.setText(rules + " " + numRules + "\n" + blockPlaced + " " + placed + "\n" + broken + " " + rulesBroken + "\n\nBest Num of Rules: " + savedNum + "\nBest Blocks Placed: " + savedPlaced + "\nLeast Rules Broken: " + savedRules);
+        statistics.setText(rules + " " + numRules + "\n" + blockPlaced + " " + placed + "\n" + broken + " " + rulesBroken + "\n\nRecord Num of Rules: " + savedNum + "\nRecord Blocks Placed: " + savedPlaced + "\nMost Rules Broken: " + savedRules);
 
         back = (RelativeLayout) findViewById(R.id.stack_win_back);
         back.setOnClickListener(new View.OnClickListener() {

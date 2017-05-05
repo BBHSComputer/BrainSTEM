@@ -12,4 +12,5 @@
     <color name="skyBlue">#82C7EB</color>
     <color name="moccasin">#ffe4b3</color>
     <color name="tileBackground">#FF0000</color>
+    <color name="text_win_color">#f14982</color>
 </resources>

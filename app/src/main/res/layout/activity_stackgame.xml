@@ -34,8 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:max="1500"
-        android:progress="500"
+        android:max="1800"
+        android:progress="600"
         android:progressTint="@android:color/holo_green_dark" />
 
     <RelativeLayout

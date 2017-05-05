@@ -19,14 +19,14 @@
 
     <TextView
         android:id="@+id/stack_stat"
+        style="@android:style/TextAppearance.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/loseText"
         android:layout_centerHorizontal="true"
         android:text="TextView"
-        android:textColor="@color/colorAccent"
-        style="@android:style/TextAppearance.Medium"
-        />
+        android:textAlignment="center"
+        android:textColor="@color/text_win_color" />
 
     <TextView
         android:id="@+id/returnHome"

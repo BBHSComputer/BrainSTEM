@@ -35,7 +35,7 @@ public class StackActivity extends AppCompatActivity {
     private static Context context;
 
     public static final int SIZE_X = 5; // This is the number of tiles across the game board is
-    public static final int SIZE_Y = 8; // This is the number of tiles top to bottom the game board is - subtract one to get grid size
+    public static final int SIZE_Y = 7; // This is the number of tiles top to bottom the game board is - subtract one to get grid size
     public static final int TEXT_SIZE = 36;
     public static int field_x;
     public static int field_y;
@@ -136,21 +136,22 @@ public class StackActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         if(field_x != field.getWidth() || field_y != field.getHeight()){ //Checks if the size of the playing field has changed
-            int scaleX = field.getWidth() / SIZE_X; // Gets the size of the tiles based on the game field width
-            int scaleY = field.getHeight() / SIZE_Y; // Gets the size of the tiles based on the game field height
-
+            int scaleX = Math.min(field.getWidth() / SIZE_X, field.getHeight() /SIZE_Y); // Gets the size of the tiles based on the game field width
+            int scaleY = Math.min(field.getHeight() / SIZE_Y, field.getWidth()/SIZE_X); // Gets the size of the tiles based on the game field height
+            int shiftX = (field.getWidth() - (scaleX * SIZE_X))/2;
             for (int column = 0; column < SIZE_X; column++) { // For loop to set coordinate X values
                 int x = scaleX * column; // Sets coordinates for X so the row loop doesn't have to calculate it every time
                 for (int row = 0; row < SIZE_Y; row++) { // For loop to set coordinate Y values
-                    coordinates[row][column] = new Point(x, field.getHeight() - (scaleY * (row + 1))); // Sets Point to corresponding X & Y
+                    coordinates[row][column] = new Point(x + shiftX, field.getHeight() - (scaleY * (row + 1))); // Sets Point to corresponding X & Y
                     //Explanation of Y calculation: Android has the max Y coordinate at the bottom
                     //Since the game has the first elements of the grid ArrayList at the bottom, the subtraction of field.getHeight() is needed
                     //Android calculates coordinate by the top left of the View, so the int row needs to start at 1, not 0
                 }
             }
             Log.d("BrainSTEM S", "The size of the game field is X: " + field.getWidth() + " & Y: " + field.getHeight());
-
-            lp = new RelativeLayout.LayoutParams(scaleX, scaleY);
+            int margins = (int)(scaleX * 0.05);
+            lp = new RelativeLayout.LayoutParams(scaleX - margins, scaleY - margins);
+            lp.setMargins(margins, margins, margins, margins);
         }
         for(ArrayList<View> column : grid){
             if(!column.isEmpty()){
@@ -214,7 +215,7 @@ public class StackActivity extends AppCompatActivity {
                         Log.d("BrainSTEM S", "GameTile added to grid at " + column + " " + (grid.get(column).size() - 2));
                         //This places gameTile in the row that the gameButton is in, at the index that gameButton is in
                         stacks++;
-                        ObjectAnimator progress = ObjectAnimator.ofInt(life, "progress", Math.min(life.getMax(), life.getProgress() + 100));
+                        ObjectAnimator progress = ObjectAnimator.ofInt(life, "progress", Math.min(life.getMax(), life.getProgress() + 40));
                         progress.setInterpolator(new LinearInterpolator());
                         movementAnim.add(progress);
                         updatePositions();
@@ -323,7 +324,7 @@ public class StackActivity extends AppCompatActivity {
             for(View view : removeAnimList.keySet()){
                 removeAnimation.play(removeAnimList.get(view));
             }
-            ObjectAnimator progress = ObjectAnimator.ofInt(life, "progress", Math.max(0, life.getProgress() - 300));
+            ObjectAnimator progress = ObjectAnimator.ofInt(life, "progress", Math.max(0, life.getProgress() - 500));
             progress.setInterpolator(new LinearInterpolator());
             removeAnimation.play(progress);
             removeAnimation.start();
@@ -421,10 +422,9 @@ public class StackActivity extends AppCompatActivity {
         gameTile.setLayoutParams(lp); // Set the size of the gameTile
         gameTile.setTag(R.id.stack_value, value); // Sets value of the gameTile to value from 1 to 9
         gameTile.setTag(R.id.stack_column, -1); // -1 means no column yet
-        gameTile.setY(coordinates[SIZE_Y-1][SIZE_X/2].y); // Sets position of block to top middle
-        gameTile.setX(coordinates[SIZE_Y-1][SIZE_X/2].x);
+
         gameTile.setBackgroundColor(ContextCompat.getColor(StackActivity.getAppContext(), R.color.grey));
-        Log.d("BrainSTEM S", "The gameTile created has this value: " + value + " at " + coordinates[7][2].x + " " + coordinates[7][2].y);
+        Log.d("BrainSTEM S", "The gameTile created has this value: " + value + " at " + coordinates[SIZE_Y - 1 ][SIZE_X/2].x + " " + coordinates[SIZE_Y-1][SIZE_X/2].y);
         ((TextView) gameTile).setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); // Centers the text
         ((TextView) gameTile).setTextSize(TEXT_SIZE); // Sets text size
         ((TextView) gameTile).setTextColor(Color.BLACK); // Sets text color
@@ -434,6 +434,8 @@ public class StackActivity extends AppCompatActivity {
             ((TextView) button).setText("" + (int) gameTile.getTag(R.id.stack_value));
         }
         field.addView(gameTile);
+        gameTile.setY(coordinates[SIZE_Y-1][SIZE_X/2].y); // Sets position of block to top middle
+        gameTile.setX(coordinates[SIZE_Y-1][SIZE_X/2].x);
     }
 
     public static Context getAppContext() {
