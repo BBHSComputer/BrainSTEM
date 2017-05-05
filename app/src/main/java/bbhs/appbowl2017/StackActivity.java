@@ -99,8 +99,10 @@ public class StackActivity extends AppCompatActivity {
                 ObjectAnimator play_fadeOut = ObjectAnimator.ofFloat(pause_menu, "alpha", 0);
                 play_fadeOut.start();
                 ((ViewGroup)(frame.getParent())).removeView(frame);
-                    for(View button : buttons){
-                    button.setEnabled(true);
+                for(View button : buttons){
+                    if(grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y){
+                        button.setEnabled(true);
+                    }
                 }
                 if(!initializationComplete) {
                     initializationComplete = true;
@@ -297,7 +299,8 @@ public class StackActivity extends AppCompatActivity {
                         public void onAnimationEnd(Animator animation) {
                             super.onAnimationEnd(animation);
                             for(View button : buttons){
-                                button.setEnabled(true);
+                                if(grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y)
+                                    button.setEnabled(true);
                             }
                         }
                     });
@@ -418,8 +421,8 @@ public class StackActivity extends AppCompatActivity {
         gameTile.setLayoutParams(lp); // Set the size of the gameTile
         gameTile.setTag(R.id.stack_value, value); // Sets value of the gameTile to value from 1 to 9
         gameTile.setTag(R.id.stack_column, -1); // -1 means no column yet
-        gameTile.setY(coordinates[7][2].y); // Sets position of block to top middle
-        gameTile.setX(coordinates[7][2].x);
+        gameTile.setY(coordinates[SIZE_Y-1][SIZE_X/2].y); // Sets position of block to top middle
+        gameTile.setX(coordinates[SIZE_Y-1][SIZE_X/2].x);
         gameTile.setBackgroundColor(ContextCompat.getColor(StackActivity.getAppContext(), R.color.grey));
         Log.d("BrainSTEM S", "The gameTile created has this value: " + value + " at " + coordinates[7][2].x + " " + coordinates[7][2].y);
         ((TextView) gameTile).setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); // Centers the text

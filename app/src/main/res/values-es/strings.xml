@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="game2_name">Apilar</string>
-    <string name="game2_description">
-       El juego se enfoca en acordarse de una cantidad incremental de ubicación de bloques.
-       Los bloques caerán desde arriba de la pantalla. El botón de la izquierda desplaza el bloque hacia la izquierda. El botón de la derecha desplaza el bloque a la derecha. Siga las reglas hasta que llene la pantalla. ¡Ten cuidado! Si no se cumple una regla, usted perderá parte de su progreso.
-    </string>
     <string name="game_rules_title">Reglas:</string>
     <string name="app_name">BrainSTEM</string>
     <string name="star_spangled_banner">Star-Spangled Banner</string>
