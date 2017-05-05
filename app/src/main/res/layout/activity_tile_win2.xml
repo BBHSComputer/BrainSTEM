@@ -13,11 +13,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="You Win !"
+        android:text="You win!"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textSize="36dp" />
+        style="@android:style/TextAppearance.Large"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,7 +29,8 @@
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
         android:layout_marginTop="43dp"
-        android:textSize="36dp" />
+        style="@android:style/TextAppearance.Large"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,7 +38,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Time:"
         android:id="@+id/time"
-        android:textSize="36dp"
+        style="@android:style/TextAppearance.Large"
         android:layout_below="@+id/score"
         android:layout_alignParentStart="true" />
 
@@ -46,7 +48,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Moves:"
         android:id="@+id/moves"
-        android:textSize="36dp"
+        style="@android:style/TextAppearance.Large"
         android:layout_below="@+id/time"
         android:layout_alignParentStart="true" />
 

@@ -36,21 +36,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="16dp"
-                    android:paddingLeft="23dp"
+                    android:paddingLeft="16dp"
                     android:paddingRight="16dp"
                     android:paddingTop="14dp"
                     android:text="@string/stack"
                     android:textColor="@color/primary_text_default_material_light"
-                    android:textSize="20sp" />
+                    style="@android:style/TextAppearance.Large" />
                 <Button
-                    style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                    style="@android:style/TextAppearance.Medium"
                     android:id="@+id/game1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:padding="0dp"
                     android:text="@string/play2"
-                    android:textSize="15sp"
                     android:textColor="@color/accent_material_light" />
             </LinearLayout>
         </android.support.percent.PercentRelativeLayout>
@@ -90,17 +89,17 @@
                 android:paddingTop="14dp"
                 android:text="@string/tile"
                 android:textColor="@color/primary_text_default_material_light"
-                android:textSize="20sp" />
+                style="@android:style/TextAppearance.Large"
+                />
 
             <Button
-                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
                 android:id="@+id/game2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="0dp"
                 android:text="@string/play2"
-                android:textSize="15sp"
+                style="@android:style/TextAppearance.Medium"
                 android:textColor="@color/accent_material_light" />
         </LinearLayout>
         </android.support.percent.PercentRelativeLayout>
@@ -139,17 +138,17 @@
                 android:paddingTop="14dp"
                 android:text="@string/summation"
                 android:textColor="@color/primary_text_default_material_light"
-                android:textSize="20sp" />
+                style="@android:style/TextAppearance.Large"
+                />
 
             <Button
-                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
                 android:id="@+id/game3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="0dp"
                 android:text="@string/play2"
-                android:textSize="15sp"
+                style="@android:style/TextAppearance.Medium"
                 android:textColor="@color/accent_material_light" />
         </LinearLayout>
         </android.support.percent.PercentRelativeLayout>
@@ -189,17 +188,17 @@
                 android:paddingTop="14dp"
                 android:text="@string/music"
                 android:textColor="@color/primary_text_default_material_light"
-                android:textSize="20sp" />
+                style="@android:style/TextAppearance.Large"
+                />
 
             <Button
-                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
                 android:id="@+id/game4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="0dp"
                 android:text="@string/play2"
-                android:textSize="15sp"
+                style="@android:style/TextAppearance.Medium"
                 android:textColor="@color/accent_material_light" />
         </LinearLayout>
         </android.support.percent.PercentRelativeLayout>

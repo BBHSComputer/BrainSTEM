@@ -85,7 +85,8 @@
             android:paddingTop="100dp"
             android:text="TextView"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            />
 
     </android.support.percent.PercentRelativeLayout>
 
