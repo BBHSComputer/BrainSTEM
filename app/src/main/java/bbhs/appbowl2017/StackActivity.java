@@ -55,16 +55,16 @@ public class StackActivity extends AppCompatActivity {
     private static List<Pair> rules = new ArrayList<>();//List of rules
     private static Set<View> remove = new HashSet<>(); // Sets of views to
 
-    private static RelativeLayout.LayoutParams lp; // This is useful in setting the size of the tiles, initialized in onWindowFocusChanged
-    private static View gameTile; // This is the gameTile, or the View that the player places
-    private static RelativeLayout field; // This is the playing field
-    private static PercentRelativeLayout pause_menu;//THis is the layout that appears when the game starts and when the pause button is clicked
-    private static FrameLayout frame;
-    private static Button home;//This button goes back to the home screen
-    private static Button pause;//This button pauses the game
-    private static Button play;//This button plays the game/ reume
-    private static TextView ruleNotify;
-    private static ProgressBar life;
+    private RelativeLayout.LayoutParams lp; // This is useful in setting the size of the tiles, initialized in onWindowFocusChanged
+    private View gameTile; // This is the gameTile, or the View that the player places
+    private RelativeLayout field; // This is the playing field
+    private PercentRelativeLayout pause_menu;//THis is the layout that appears when the game starts and when the pause button is clicked
+    private FrameLayout frame;
+    private Button home;//This button goes back to the home screen
+    private Button pause;//This button pauses the game
+    private Button play;//This button plays the game/ reume
+    private TextView ruleNotify;
+    private ProgressBar life;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -415,7 +415,7 @@ public class StackActivity extends AppCompatActivity {
         movementAnim.add(blockMove);
     }
 
-    private static void newGameTile() {
+    private void newGameTile() {
         int value = (int) (Math.random() * 9) + 1;//Sets variable value to random number from 1 to 9
 
         gameTile.setLayoutParams(lp); // Set the size of the gameTile
@@ -440,9 +440,6 @@ public class StackActivity extends AppCompatActivity {
         return StackActivity.context;
     }
 
-    private void playInitialize(){
-
-    }
     private Pair newRule(int i){
         boolean works = false;
         Pair a = new Pair((int) (Math.random() * 9) + 1, (int) (Math.random() * 9) + 1);
