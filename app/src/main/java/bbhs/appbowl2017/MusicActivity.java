@@ -2,11 +2,13 @@ package bbhs.appbowl2017;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DrawableUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -186,6 +188,7 @@ public class MusicActivity extends AppCompatActivity {
 
 	public void createNote() { //Creates a button for the user to tap in tempo
 		final Button note = new Button(this);
+		note.setBackgroundResource(R.drawable.round_button);
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics); //Gets the window parameters
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(metrics.widthPixels / 3, metrics.widthPixels / 3); //Sets the button size responsively
@@ -193,11 +196,13 @@ public class MusicActivity extends AppCompatActivity {
 		params.leftMargin = new Random().nextInt(metrics.widthPixels - metrics.widthPixels / 3); //Sets the margin to a random range
 		note.setText("♫");
 		note.setTextSize(metrics.widthPixels / 3 * .2F);
+		/*
 		int colorFrom = 0xaaaaaaaa;
 		int colorTo = 0xffFF0000;
 		int duration = 2000;
 		ObjectAnimator anim = ObjectAnimator.ofObject(note, "backgroundColor", new ArgbEvaluator(), colorFrom, colorTo);
 		anim.setDuration(duration).start();
+		*/
 
 		final RelativeLayout layout = (RelativeLayout) findViewById(R.id.game4);
 		layout.addView(note, params); //Adds the button to the layout so it is now visible
