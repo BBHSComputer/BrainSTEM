@@ -162,16 +162,16 @@ public class MusicActivity extends AppCompatActivity {
         StateListDrawable drawable = (StateListDrawable)note.getBackground();
         DrawableContainer.DrawableContainerState dcs = (DrawableContainer.DrawableContainerState)drawable.getConstantState();
         Drawable[] drawableItems = dcs.getChildren();
-        GradientDrawable gradientDrawableChecked = (GradientDrawable)drawableItems[0]; // unclicked state
-        GradientDrawable gradientDrawableUnChecked = (GradientDrawable)drawableItems[1]; // clicked state
+        StrokeDrawable gradientDrawableChecked = (StrokeDrawable)drawableItems[0]; // unclicked state
+        StrokeDrawable gradientDrawableUnChecked = (StrokeDrawable)drawableItems[1]; // clicked state
 		int colorFrom = 0xaaaaaaaa;
 		int colorTo = 0xffFF0000;
 		int duration = 2000;
         //gradientDrawableChecked.setColor() Sets an int rgb, so it works like below
         //gradientDrawableChecked.setStroke(); Sets a width before the color, so ObjectAnimator can't do it, it only sets first parameter. Any good way to override this method?
-		ObjectAnimator anim = ObjectAnimator.ofObject(gradientDrawableChecked, "color", new ArgbEvaluator(), colorFrom, colorTo);
+		ObjectAnimator anim = ObjectAnimator.ofObject(gradientDrawableChecked, "stroke", new ArgbEvaluator(), colorFrom, colorTo);
 		anim.setDuration(duration).start();
-        ObjectAnimator anim2 = ObjectAnimator.ofObject(gradientDrawableUnChecked, "color", new ArgbEvaluator(), colorFrom, colorTo);
+        ObjectAnimator anim2 = ObjectAnimator.ofObject(gradientDrawableUnChecked, "stroke", new ArgbEvaluator(), colorFrom, colorTo);
         anim2.setDuration(duration).start();
 
 		layout.addView(note, params); //Adds the button to the layout so it is now visible
