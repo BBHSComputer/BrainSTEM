@@ -44,6 +44,7 @@ public class StackActivity extends AppCompatActivity {
     public static int field_y;
     private static int stacks;
     private static int rulesBroken;
+    private static final int duration = 100;
 
     private static boolean initializationComplete = false; // Just makes sure that the game start only happens once
     private static boolean fallingAnim = false; // Check if animations are currently running
@@ -67,7 +68,7 @@ public class StackActivity extends AppCompatActivity {
     private FrameLayout frame;
     private Button home;//This button goes back to the home screen
     private Button pause;//This button pauses the game
-    private Button play;//This button plays the game/ reume
+    private Button play;//This button plays the game/resume
     private TextView ruleNotify;
     private ProgressBar life;
 
@@ -192,6 +193,7 @@ public class StackActivity extends AppCompatActivity {
             gameButton.setAlpha(0.8F);
             gameButton.setTag(R.id.stack_value, -1);
             gameButton.setTag(R.id.stack_column, column);
+            gameButton.setFocusableInTouchMode(false);//Stops double tapping to place blocks
             ((TextView) gameButton).setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); // Centers the text
             ((TextView) gameButton).setTextSize(TEXT_SIZE); // Sets text size
             ((TextView) gameButton).setTextColor(Color.BLACK); // Sets text color
@@ -210,6 +212,7 @@ public class StackActivity extends AppCompatActivity {
                         for (View button : buttons) {
                             button.setEnabled(false);
                             ObjectAnimator fadeOut = ObjectAnimator.ofFloat(button, "alpha", 0f);
+                            fadeOut.setDuration(100);
                             fade.play(fadeOut);
                         }
                         fade.start();
@@ -296,6 +299,7 @@ public class StackActivity extends AppCompatActivity {
                         ((TextView) button).setText("" + gameTile.getTag(R.id.stack_value));
                         if(grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y) {
                             ObjectAnimator fadeIn = ObjectAnimator.ofFloat(button, "alpha", 0.8f);
+                            fadeIn.setDuration(100);
                             fade.play(fadeIn);
                         }
                     }
@@ -416,6 +420,7 @@ public class StackActivity extends AppCompatActivity {
     private void individualMove(View v, int x, int y) { // Sets up an individual View animation
         AnimatorSet blockMove = new AnimatorSet();
         ObjectAnimator moveX = ObjectAnimator.ofFloat(v, "x", coordinates[y][x].x);
+        Log.d("BrainSTEM S", "X: " + coordinates[y][x].x + " " + v.getX());
         ObjectAnimator moveY = ObjectAnimator.ofFloat(v, "y", coordinates[y][x].y);
         blockMove.playSequentially(moveX, moveY);
         movementAnim.add(blockMove);
@@ -438,8 +443,42 @@ public class StackActivity extends AppCompatActivity {
         gameTile.setTag(R.id.stack_value, value); // Sets value of the gameTile to value from 1 to 9
         gameTile.setTag(R.id.stack_column, -1); // -1 means no column yet
 
-        gameTile.setBackgroundColor(ContextCompat.getColor(StackActivity.getAppContext(), R.color.grey));
-        Log.d("BrainSTEM S", "The gameTile created has this value: " + value + " at " + coordinates[SIZE_Y - 1 ][SIZE_X/2].x + " " + coordinates[SIZE_Y-1][SIZE_X/2].y);
+        int color;
+        switch (value){
+            case 1:
+                color = R.color.amber;
+                break;
+            case 2:
+                color = R.color.blue;
+                break;
+            case 3:
+                color = R.color.cyan;
+                break;
+            case 4:
+                color = R.color.deepPurple;
+                break;
+            case 5:
+                color = R.color.blueGrey;
+                break;
+            case 6:
+                color = R.color.indigo;
+                break;
+            case 7:
+                color = R.color.pink;
+                break;
+            case 8:
+                color = R.color.purple;
+                break;
+            case 9:
+                color = R.color.teal;
+                break;
+            default:
+                color = R.color.grey;
+                break;
+        }
+
+        gameTile.setBackgroundColor(ContextCompat.getColor(StackActivity.getAppContext(), color));
+        Log.d("BrainSTEM S", "The gameTile created has this value: " + value + " at " + coordinates[SIZE_Y - 1][SIZE_X/2].x + " " + coordinates[SIZE_Y-1][SIZE_X/2].y);
         ((TextView) gameTile).setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); // Centers the text
         ((TextView) gameTile).setTextSize(TEXT_SIZE); // Sets text size
         ((TextView) gameTile).setTextColor(Color.BLACK); // Sets text color
@@ -449,8 +488,11 @@ public class StackActivity extends AppCompatActivity {
             ((TextView) button).setText("" + (int) gameTile.getTag(R.id.stack_value));
         }
         field.addView(gameTile);
-        gameTile.setY(coordinates[SIZE_Y-1][SIZE_X/2].y); // Sets position of block to top middle
-        gameTile.setX(coordinates[SIZE_Y-1][SIZE_X/2].x);
+        gameTile.setY(coordinates[SIZE_Y-1][2].y - lp.topMargin); // Sets position of block to top middle
+        gameTile.setX(coordinates[SIZE_Y-1][2].x - lp.leftMargin);//Not sure why I need the lp.leftMargin/TopMargin, but seems to set it in correct positions without offset
+        //Without it (leftMargin, topMargin), gameTile is in wrong position and getX and getY returns two different values for some reason
+        Log.d("BrainSTEM S", gameTile.getParent().toString());
+        Log.d("BrainSTEM S", "Tile at: " + gameTile.getX() + " " + gameTile.getY());
     }
 
     public static Context getAppContext() {
