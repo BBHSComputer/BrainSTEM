@@ -3,6 +3,9 @@ package bbhs.appbowl2017;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.DrawableContainer;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -155,13 +158,21 @@ public class MusicActivity extends AppCompatActivity {
 		params.leftMargin = rand.nextInt(layout.getWidth() - size); //Sets the margin to a random range
 		note.setText("♫");
 		note.setTextSize(size * .2F);
-		/*
+
+        StateListDrawable drawable = (StateListDrawable)note.getBackground();
+        DrawableContainer.DrawableContainerState dcs = (DrawableContainer.DrawableContainerState)drawable.getConstantState();
+        Drawable[] drawableItems = dcs.getChildren();
+        GradientDrawable gradientDrawableChecked = (GradientDrawable)drawableItems[0]; // unclicked state
+        GradientDrawable gradientDrawableUnChecked = (GradientDrawable)drawableItems[1]; // clicked state
 		int colorFrom = 0xaaaaaaaa;
 		int colorTo = 0xffFF0000;
 		int duration = 2000;
-		ObjectAnimator anim = ObjectAnimator.ofObject(note, "backgroundColor", new ArgbEvaluator(), colorFrom, colorTo);
+        //gradientDrawableChecked.setColor() Sets an int rgb, so it works like below
+        //gradientDrawableChecked.setStroke(); Sets a width before the color, so ObjectAnimator can't do it, it only sets first parameter. Any good way to override this method?
+		ObjectAnimator anim = ObjectAnimator.ofObject(gradientDrawableChecked, "color", new ArgbEvaluator(), colorFrom, colorTo);
 		anim.setDuration(duration).start();
-		*/
+        ObjectAnimator anim2 = ObjectAnimator.ofObject(gradientDrawableUnChecked, "color", new ArgbEvaluator(), colorFrom, colorTo);
+        anim2.setDuration(duration).start();
 
 		layout.addView(note, params); //Adds the button to the layout so it is now visible
 
