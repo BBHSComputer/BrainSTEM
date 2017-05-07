@@ -187,7 +187,7 @@ public class MusicActivity extends AppCompatActivity {
 				score++;
 				TextView scoreText = (TextView) findViewById(R.id.scoreText);
 				scoreText.setText("Score: " + score); //Display the new score
-
+				pb.setVisibility(View.GONE);
 			}
 		});
 		final Handler noteHandlerB = new Handler();
