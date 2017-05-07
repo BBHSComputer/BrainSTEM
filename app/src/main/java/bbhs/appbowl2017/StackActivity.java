@@ -25,7 +25,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -37,6 +39,7 @@ public class StackActivity extends AppCompatActivity {
     public static final int SIZE_X = 5; // This is the number of tiles across the game board is
     public static final int SIZE_Y = 7; // This is the number of tiles top to bottom the game board is - subtract one to get grid size
     public static final int TEXT_SIZE = 36;
+	public static final int BAG_SIZE = 3; // The number of times the integers 1-9 appear in the random bag (random bag is a random number generator where objects are thrown into a "bag" and then taken out in random order, thus being random but also evenly distributed)
     public static int field_x;
     public static int field_y;
     private static int stacks;
@@ -54,6 +57,8 @@ public class StackActivity extends AppCompatActivity {
     // private static AnimatorSet removeAnimList = new AnimatorSet();//Animation of removing Views
     private static List<Pair> rules = new ArrayList<>();//List of rules
     private static Set<View> remove = new HashSet<>(); // Sets of views to
+
+    private final ArrayDeque<Integer> newTiles = new ArrayDeque<>();
 
     private RelativeLayout.LayoutParams lp; // This is useful in setting the size of the tiles, initialized in onWindowFocusChanged
     private View gameTile; // This is the gameTile, or the View that the player places
@@ -417,7 +422,17 @@ public class StackActivity extends AppCompatActivity {
     }
 
     private void newGameTile() {
-        int value = (int) (Math.random() * 9) + 1;//Sets variable value to random number from 1 to 9
+		if (newTiles.isEmpty()) {
+			List<Integer> newList = new ArrayList<>(10 * BAG_SIZE);
+			for (int n = 0; n < BAG_SIZE; n++) {
+				for (int i = 1; i < 10; i++) {
+					newList.add(i);
+				}
+			}
+			Collections.shuffle(newList);
+			newTiles.addAll(newList);
+		}
+        int value = newTiles.pop();//Sets variable value to random number from 1 to 9
 
         gameTile.setLayoutParams(lp); // Set the size of the gameTile
         gameTile.setTag(R.id.stack_value, value); // Sets value of the gameTile to value from 1 to 9
