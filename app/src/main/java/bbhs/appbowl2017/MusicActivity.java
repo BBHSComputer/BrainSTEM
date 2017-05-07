@@ -1,6 +1,7 @@
 package bbhs.appbowl2017;
 
 import android.animation.ArgbEvaluator;
+import android.animation.IntEvaluator;
 import android.animation.ObjectAnimator;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.DrawableContainer;
@@ -16,6 +17,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -153,28 +155,29 @@ public class MusicActivity extends AppCompatActivity {
 		getWindowManager().getDefaultDisplay().getMetrics(metrics); //Gets the window parameters\
 
 		int size = (int) (metrics.widthPixels / BUTTONS_PER_SCREEN);
-		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(size, size); //Sets the button size responsively
-		params.topMargin = rand.nextInt(layout.getHeight() - size); //Sets the margin to a random range
-		params.leftMargin = rand.nextInt(layout.getWidth() - size); //Sets the margin to a random range
 		note.setText("♫");
 		note.setTextSize(size * .2F);
 
-        StateListDrawable drawable = (StateListDrawable)note.getBackground();
-        DrawableContainer.DrawableContainerState dcs = (DrawableContainer.DrawableContainerState)drawable.getConstantState();
-        Drawable[] drawableItems = dcs.getChildren();
-        GradientDrawable gradientDrawableChecked = (GradientDrawable)drawableItems[0]; // unclicked state
-        GradientDrawable gradientDrawableUnChecked = (GradientDrawable)drawableItems[1]; // clicked state
-		int colorFrom = 0xaaaaaaaa;
-		int colorTo = 0xffFF0000;
 		int duration = 2000;
-        //gradientDrawableChecked.setColor() Sets an int rgb, so it works like below
-        //gradientDrawableChecked.setStroke(); Sets a width before the color, so ObjectAnimator can't do it, it only sets first parameter. Any good way to override this method?
-		ObjectAnimator anim = ObjectAnimator.ofObject(gradientDrawableChecked, "color", new ArgbEvaluator(), colorFrom, colorTo);
-		anim.setDuration(duration).start();
-        ObjectAnimator anim2 = ObjectAnimator.ofObject(gradientDrawableUnChecked, "color", new ArgbEvaluator(), colorFrom, colorTo);
-        anim2.setDuration(duration).start();
 
+		final ProgressBar pb = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
+		pb.setProgressDrawable(getResources().getDrawable(R.drawable.circular_progress));
+		pb.setMax(duration);
+		pb.setProgress(rand.nextInt(duration));
+		ObjectAnimator.ofObject(pb, "progress", new IntEvaluator(), 0, duration).setDuration(duration).start();
+
+		int offset = dpToPx(10);
+
+		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(size, size); //Sets the button size responsively
+		params.topMargin = offset + rand.nextInt(layout.getHeight() - size - offset * 2); //Sets the margin to a random range
+		params.leftMargin = offset + rand.nextInt(layout.getWidth() - size - offset * 2); //Sets the margin to a random range
 		layout.addView(note, params); //Adds the button to the layout so it is now visible
+
+		RelativeLayout.LayoutParams progressParams = new RelativeLayout.LayoutParams(size + offset * 2, size + offset * 2);
+		progressParams.topMargin = params.topMargin - offset;
+		progressParams.leftMargin = params.leftMargin - offset;
+		layout.addView(pb, progressParams);
+
 
 		note.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -192,9 +195,15 @@ public class MusicActivity extends AppCompatActivity {
 			@Override
 			public void run() {
 				note.setVisibility(View.GONE);
+				pb.setVisibility(View.GONE);
 			}
 		}, 2000); //The note disappears as time has run out
 
+	}
+
+	public int dpToPx(int dp) {
+		DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+		return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
 	}
 
 	public void finishGame(int score, int song) { //Will pass score to a score activity

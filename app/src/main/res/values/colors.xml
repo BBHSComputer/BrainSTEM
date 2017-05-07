@@ -13,4 +13,5 @@
     <color name="moccasin">#ffe4b3</color>
     <color name="tileBackground">#FF0000</color>
     <color name="text_win_color">#f14982</color>
+    <color name="musicProgressColor">#FF0040</color>
 </resources>
