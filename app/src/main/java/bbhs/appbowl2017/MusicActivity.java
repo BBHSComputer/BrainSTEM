@@ -1,18 +1,14 @@
 package bbhs.appbowl2017;
 
-import android.animation.ArgbEvaluator;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.IntEvaluator;
 import android.animation.ObjectAnimator;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.DrawableContainer;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.StateListDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DrawableUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +26,8 @@ import java.util.Random;
 public class MusicActivity extends AppCompatActivity {
 	public static final double BUTTONS_PER_SCREEN = 4;
 	public static final Random rand = new Random();
+
+	private Handler handler;
 
 	public int score = 0;
 	public int notes;
@@ -124,11 +122,12 @@ public class MusicActivity extends AppCompatActivity {
 	}
 
 	private void playSong(int[] times, int musicId, final int song) {
+		handler = new Handler();
+
 		mediaPlayer = MediaPlayer.create(this, musicId);
 		mediaPlayer.start();
 		notes = times.length;
 		for (int i : times) {
-			final Handler handler = new Handler();
 			handler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
@@ -163,8 +162,17 @@ public class MusicActivity extends AppCompatActivity {
 		final ProgressBar pb = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
 		pb.setProgressDrawable(getResources().getDrawable(R.drawable.circular_progress));
 		pb.setMax(duration);
-		pb.setProgress(rand.nextInt(duration));
-		ObjectAnimator.ofObject(pb, "progress", new IntEvaluator(), 0, duration).setDuration(duration).start();
+
+		final ObjectAnimator anim = ObjectAnimator.ofObject(pb, "progress", new IntEvaluator(), 0, duration).setDuration(duration);
+		anim.addListener(new AnimatorListenerAdapter() {
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				note.setVisibility(View.GONE);
+				pb.setVisibility(View.GONE);
+			}
+		});
+		anim.start();
+
 
 		int offset = dpToPx(10);
 
@@ -178,27 +186,13 @@ public class MusicActivity extends AppCompatActivity {
 		progressParams.leftMargin = params.leftMargin - offset;
 		layout.addView(pb, progressParams);
 
-
 		note.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) { //When clicked, increment score and remove the button from the layout, thus it is now invisible
-				ViewGroup parentView = (ViewGroup) view.getParent();
-				parentView.removeView(view);
-				score++;
-				TextView scoreText = (TextView) findViewById(R.id.scoreText);
-				scoreText.setText("Score: " + score); //Display the new score
-				pb.setVisibility(View.GONE);
+				anim.end();
+				((TextView) findViewById(R.id.scoreText)).setText("Score: " + ++score); //Display the new score
 			}
 		});
-		final Handler noteHandlerB = new Handler();
-		noteHandlerB.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				note.setVisibility(View.GONE);
-				pb.setVisibility(View.GONE);
-			}
-		}, 2000); //The note disappears as time has run out
-
 	}
 
 	public int dpToPx(int dp) {
