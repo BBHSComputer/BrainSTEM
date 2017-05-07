@@ -8,12 +8,14 @@ import android.graphics.drawable.DrawableContainer;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DrawableUtils;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -99,7 +101,9 @@ public class MusicActivity extends AppCompatActivity {
 	}
 
 	public void startGame(final int song) { //Creates a mediaplayer of the song, playing back all of its notes through an array and a time delay handler
-		switch (song) {
+        TextView scoreText = (TextView) findViewById(R.id.scoreText);
+        scoreText.setText("Score: 0");
+        switch (song) {
 			case 1:
 				playSong(new int[] {0, 468, 625, 1250, 1875, 2500, 3750, 4218, 4375, 5000, 5625, 6250, 7500, 7812, 8124, 9062, 9375, 10000, 11250, 11562, 11875, 12500, 13125, 13750, 14375, 15000, 15468, 15625, 16249, 16875, 17500, 18750, 19218, 19375, 20000, 20625, 21250, 22500, 22812, 23125, 24062, 24375, 25000, 26250, 26562, 26875, 27500, 28125, 28750, 29375, 30000, 30468, 30625, 31250, 31875, 32499, 33750, 34062, 34375, 35000, 35625, 36250, 37500, 38125, 39062, 39375, 40000, 41250, 41562, 41875, 42500, 43125, 43750, 45000, 45625, 46250, 46875, 47187, 47500, 48125, 48750, 49375, 50000, 50312, 50625, 50937, 51250, 51875, 53125, 53593, 54062, 55468, 55937, 56406, 56875, 58750, 59218, 59687, 61093, 61562, 62500},
 						R.raw.starspangledbanner,
@@ -140,7 +144,7 @@ public class MusicActivity extends AppCompatActivity {
 							public void run() {
 								finishGame(score, song);
 							}
-						}, 200);
+						}, 2000);
 				}
 			}, i - 150); // Create a note at the specified time (from the array)
 		}
@@ -214,7 +218,15 @@ public class MusicActivity extends AppCompatActivity {
             savedScore = score;
         }
         scoreText.setText("Score: " + score + "\nBest: " + savedScore); //Display the new score
-	}
+        final RelativeLayout layout = (RelativeLayout) findViewById(R.id.game4);
+        scoreText.setGravity(Gravity.CENTER);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            scoreText.setTextAppearance(android.R.style.TextAppearance_Large);
+        }
+        scoreText.setX((layout.getWidth()/2) - (scoreText.getWidth()/2));
+        scoreText.setY((layout.getHeight()/2) - (scoreText.getHeight()/2));
+
+    }
 
 	@Override
 	public void onBackPressed() { //Stops the song when returning to a previous activity
