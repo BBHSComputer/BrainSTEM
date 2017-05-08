@@ -104,7 +104,7 @@
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
                         android:paddingTop="5dp"
-                        android:text="Jack Norworth and Albert Von Tilzer"
+                        android:text="Jack Norworth &amp; Albert Von Tilzer"
                         android:textColor="@color/primary_text_default_material_light"
                         style="@android:style/TextAppearance.Small" />
                     <Button
