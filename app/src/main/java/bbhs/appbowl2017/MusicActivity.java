@@ -34,6 +34,7 @@ public class MusicActivity extends AppCompatActivity {
 	public int score = 0;
 	public int notes;
 	Button song1button, song2button, song3button, song4button;
+	android.support.percent.PercentRelativeLayout songCards;
 	MediaPlayer mediaPlayer;
 
 	//Initializes variable for score, buttons to select song and the media player
@@ -46,6 +47,7 @@ public class MusicActivity extends AppCompatActivity {
 		song2button = (Button) findViewById(R.id.song2button);
 		song3button = (Button) findViewById(R.id.song3button);
 		song4button = (Button) findViewById(R.id.song4button);
+		songCards = (android.support.percent.PercentRelativeLayout) findViewById(R.id.songCards);
 
 		//Finds the buttons in the layout
 
@@ -60,6 +62,7 @@ public class MusicActivity extends AppCompatActivity {
 				song2button.setVisibility(View.GONE);
 				song3button.setVisibility(View.GONE);
 				song4button.setVisibility(View.GONE);
+				songCards.setVisibility(View.GONE);
 				startGame(1);
 			}
 		});
@@ -71,6 +74,7 @@ public class MusicActivity extends AppCompatActivity {
 				song2button.setVisibility(View.GONE);
 				song3button.setVisibility(View.GONE);
 				song4button.setVisibility(View.GONE);
+				songCards.setVisibility(View.GONE);
 				startGame(2);
 			}
 		});
@@ -82,6 +86,7 @@ public class MusicActivity extends AppCompatActivity {
 				song2button.setVisibility(View.GONE);
 				song3button.setVisibility(View.GONE);
 				song4button.setVisibility(View.GONE);
+				songCards.setVisibility(View.GONE);
 				startGame(3);
 			}
 		});
@@ -93,6 +98,7 @@ public class MusicActivity extends AppCompatActivity {
 				song2button.setVisibility(View.GONE);
 				song3button.setVisibility(View.GONE);
 				song4button.setVisibility(View.GONE);
+				songCards.setVisibility(View.GONE);
 				startGame(4);
 			}
 		});
@@ -101,7 +107,10 @@ public class MusicActivity extends AppCompatActivity {
 	public void startGame(final int song) { //Creates a mediaplayer of the song, playing back all of its notes through an array and a time delay handler
         TextView scoreText = (TextView) findViewById(R.id.scoreText);
         scoreText.setText("Score: 0");
-        switch (song) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			scoreText.setTextAppearance(android.R.style.TextAppearance_Medium);
+		}
+		switch (song) {
 			case 1:
 				playSong(new int[] {0, 468, 625, 1250, 1875, 2500, 3750, 4218, 4375, 5000, 5625, 6250, 7500, 7812, 8124, 9062, 9375, 10000, 11250, 11562, 11875, 12500, 13125, 13750, 14375, 15000, 15468, 15625, 16249, 16875, 17500, 18750, 19218, 19375, 20000, 20625, 21250, 22500, 22812, 23125, 24062, 24375, 25000, 26250, 26562, 26875, 27500, 28125, 28750, 29375, 30000, 30468, 30625, 31250, 31875, 32499, 33750, 34062, 34375, 35000, 35625, 36250, 37500, 38125, 39062, 39375, 40000, 41250, 41562, 41875, 42500, 43125, 43750, 45000, 45625, 46250, 46875, 47187, 47500, 48125, 48750, 49375, 50000, 50312, 50625, 50937, 51250, 51875, 53125, 53593, 54062, 55468, 55937, 56406, 56875, 58750, 59218, 59687, 61093, 61562, 62500},
 						R.raw.starspangledbanner,
@@ -184,7 +193,6 @@ public class MusicActivity extends AppCompatActivity {
 		params.topMargin = offset + rand.nextInt(layout.getHeight() - size - offset * 2); //Sets the margin to a random range
 		params.leftMargin = offset + rand.nextInt(layout.getWidth() - size - offset * 2); //Sets the margin to a random range
 		layout.addView(note, params); //Adds the button to the layout so it is now visible
-
 		RelativeLayout.LayoutParams progressParams = new RelativeLayout.LayoutParams(size + offset * 2, size + offset * 2);
 		progressParams.topMargin = params.topMargin - offset;
 		progressParams.leftMargin = params.leftMargin - offset;
