@@ -14,14 +14,14 @@
     <color name="tileBackground">#FF0000</color>
     <color name="text_win_color">#f14982</color>
     <color name="musicProgressColor">#FF0040</color>
-    <color name="amber">#FFC107</color>
-    <color name="pink">#E91E63</color>
-    <color name="cyan">#00BCD4</color>
-    <color name="deepPurple">#9575CD</color>
-    <color name="indigo">#7986CB</color>
-    <color name="teal">#009688</color>
+    <color name="magenta">#F49AC2</color>
+    <color name="violet">#CB99C9</color>
+    <color name="blue">#bae1ff</color>
+    <color name="green">#baffc9</color>
+    <color name="orange">#ffdfba</color>
+    <color name="darkBlue">#779ecb</color>
     <color name="blueGrey">#90A4AE</color>
-    <color name="blue">#2196F3</color>
-    <color name="purple">#CE93D8</color>
+    <color name="peach">#FFA891</color>
+    <color name="teal">	#71c1b6</color>
 
 </resources>

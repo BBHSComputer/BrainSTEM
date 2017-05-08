@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.percent.PercentRelativeLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -446,28 +445,28 @@ public class StackActivity extends AppCompatActivity {
         int color;
         switch (value){
             case 1:
-                color = R.color.amber;
+                color = R.color.magenta;
                 break;
             case 2:
-                color = R.color.blue;
+                color = R.color.violet;
                 break;
             case 3:
-                color = R.color.cyan;
+                color = R.color.blue;
                 break;
             case 4:
-                color = R.color.deepPurple;
+                color = R.color.green;
                 break;
             case 5:
-                color = R.color.blueGrey;
+                color = R.color.orange;
                 break;
             case 6:
-                color = R.color.indigo;
+                color = R.color.darkBlue;
                 break;
             case 7:
-                color = R.color.pink;
+                color = R.color.blueGrey;
                 break;
             case 8:
-                color = R.color.purple;
+                color = R.color.peach;
                 break;
             case 9:
                 color = R.color.teal;
