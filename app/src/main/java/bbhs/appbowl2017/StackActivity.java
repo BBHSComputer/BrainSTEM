@@ -38,7 +38,7 @@ public class StackActivity extends AppCompatActivity {
     public static final int SIZE_X = 5; // This is the number of tiles across the game board is
     public static final int SIZE_Y = 7; // This is the number of tiles top to bottom the game board is - subtract one to get grid size
     public static final int TEXT_SIZE = 36;
-	public static final int BAG_SIZE = 3; // The number of times the integers 1-9 appear in the random bag (random bag is a random number generator where objects are thrown into a "bag" and then taken out in random order, thus being random but also evenly distributed)
+	public static final int BAG_SIZE = 2; // The number of times the integers 1-9 appear in the random bag (random bag is a random number generator where objects are thrown into a "bag" and then taken out in random order, thus being random but also evenly distributed)
     public static int field_x;
     public static int field_y;
     private static int stacks;
@@ -165,6 +165,15 @@ public class StackActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+    @Override
+    protected void onPause(){
+        super.onPause();
+        pause.callOnClick();
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
     }
     @Override
     protected void onDestroy(){
@@ -318,6 +327,7 @@ public class StackActivity extends AppCompatActivity {
         }
     }
 
+
     private void initializeRuleCheck() { //Starts and controls rule checking life cycle
         if (checkStackRules()) {
             AnimatorSet removeAnimation = new AnimatorSet();
@@ -463,7 +473,7 @@ public class StackActivity extends AppCompatActivity {
                 color = R.color.darkBlue;
                 break;
             case 7:
-                color = R.color.blueGrey;
+                color = R.color.pale;
                 break;
             case 8:
                 color = R.color.peach;

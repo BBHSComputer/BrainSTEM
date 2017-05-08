@@ -15,13 +15,13 @@
     <color name="text_win_color">#f14982</color>
     <color name="musicProgressColor">#FF0040</color>
     <color name="magenta">#F49AC2</color>
-    <color name="violet">#CB99C9</color>
+    <color name="violet">#dbb6da</color>
     <color name="blue">#bae1ff</color>
     <color name="green">#baffc9</color>
     <color name="orange">#ffdfba</color>
-    <color name="darkBlue">#779ecb</color>
-    <color name="blueGrey">#90A4AE</color>
-    <color name="peach">#FFA891</color>
-    <color name="teal">	#71c1b6</color>
+    <color name="darkBlue">#b6c1ea</color>
+    <color name="pale">#ede7c4</color>
+    <color name="peach">#FFC9B5</color>
+    <color name="teal">#baddc9</color>
 
 </resources>
