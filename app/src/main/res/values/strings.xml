@@ -92,4 +92,14 @@
     <string name="rules">Number of Rules:</string>
     <string name="placed">Blocks Placed:</string>
     <string name="broken">Rules Broken:</string>
+    <string name="stackDesc">TODO: Describe Stack in as few words as possible while explaining how to play the game.</string>
+    <string name="stackTellRules">Tell me the rules</string>
+    <string name="stackGuessRules">Let me guess</string>
+    <string name="stackStartLevel">Start on level:</string>
+    <string name="tileDesc">TODO: Describe Tile in as few words as possible while explaining how to play the game.</string>
+    <string name="tileCount">Number of Images:</string>
+    <string name="tileChangeImages">Change Images</string>
+    <string name="sumDesc">TODO: Describe Summation in as few words as possible while explaining how to play the game.</string>
+    <string name="musicDesc">TODO: Describe Music in as few words as possible while explaining how to play the game.</string>
+
 </resources>

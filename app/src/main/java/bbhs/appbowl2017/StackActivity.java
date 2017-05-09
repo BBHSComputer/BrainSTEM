@@ -38,7 +38,7 @@ public class StackActivity extends AppCompatActivity {
     public static final int SIZE_X = 5; // This is the number of tiles across the game board is
     public static final int SIZE_Y = 7; // This is the number of tiles top to bottom the game board is - subtract one to get grid size
     public static final int TEXT_SIZE = 36;
-	public static final int BAG_SIZE = 2; // The number of times the integers 1-9 appear in the random bag (random bag is a random number generator where objects are thrown into a "bag" and then taken out in random order, thus being random but also evenly distributed)
+    public static final int BAG_SIZE = 2; // The number of times the integers 1-9 appear in the random bag (random bag is a random number generator where objects are thrown into a "bag" and then taken out in random order, thus being random but also evenly distributed)
     public static int field_x;
     public static int field_y;
     private static int stacks;
@@ -80,11 +80,10 @@ public class StackActivity extends AppCompatActivity {
             grid.add(new ArrayList<View>()); // Adds column to grid ArrayList
         }
         coordinates = new Point[SIZE_Y][SIZE_X]; // Initializes the coordinates grid
-
+        boolean tellRules = getIntent().getExtras().getBoolean("tellRules");
         ruleNotify = (TextView) findViewById(R.id.rule_Text);//Finds the TextView for Views
         Pair a = newRule(1);//Create rule 1 and 2
         Pair b = newRule(1);
-        ruleNotify.setText(context.getString(R.string.rule_prefix) + "\n" + a.toString()+ "\n" + b.toString());
 
         stacks = 0;
         rulesBroken = 0;
@@ -103,13 +102,13 @@ public class StackActivity extends AppCompatActivity {
                 pause.setEnabled(true);
                 ObjectAnimator play_fadeOut = ObjectAnimator.ofFloat(pause_menu, "alpha", 0);
                 play_fadeOut.start();
-                ((ViewGroup)(frame.getParent())).removeView(frame);
-                for(View button : buttons){
-                    if(grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y){
+                ((ViewGroup) (frame.getParent())).removeView(frame);
+                for (View button : buttons) {
+                    if (grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y) {
                         button.setEnabled(true);
                     }
                 }
-                if(!initializationComplete) {
+                if (!initializationComplete) {
                     initializationComplete = true;
                     gameStart(); // Set up the game playing field with buttons
                 }
@@ -118,9 +117,9 @@ public class StackActivity extends AppCompatActivity {
 
         home = (Button) findViewById(R.id.game2_home);
         home.setEnabled(false);
-        home.setOnClickListener(new View.OnClickListener(){
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){//Resets the game and starts MainActivity
+            public void onClick(View v) {//Resets the game and starts MainActivity
                 finish();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
@@ -136,14 +135,33 @@ public class StackActivity extends AppCompatActivity {
 
 
         Log.d("BrainSTEM S", "onCreate() finished");
+        if (tellRules) {
+            ruleNotify.setText(context.getString(R.string.rule_prefix) + "\n" + a.toString() + "\n" + b.toString());
+        } else {
+            play.setEnabled(false);
+            home.setEnabled(true);
+            pause.setEnabled(true);
+            ObjectAnimator play_fadeOut = ObjectAnimator.ofFloat(pause_menu, "alpha", 0);
+            play_fadeOut.start();
+            ((ViewGroup) (frame.getParent())).removeView(frame);
+            for (View button : buttons) {
+                if (grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y) {
+                    button.setEnabled(true);
+                }
+            }
+            if (!initializationComplete) {
+                initializationComplete = true;
+                gameStart(); // Set up the game playing field with buttons
+            }
+        }
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        if(field_x != field.getWidth() || field_y != field.getHeight()){ //Checks if the size of the playing field has changed
-            int scaleX = Math.min(field.getWidth() / SIZE_X, field.getHeight() /SIZE_Y); // Gets the size of the tiles based on the game field width
-            int scaleY = Math.min(field.getHeight() / SIZE_Y, field.getWidth()/SIZE_X); // Gets the size of the tiles based on the game field height
-            int shiftX = (field.getWidth() - (scaleX * SIZE_X))/2;
+        if (field_x != field.getWidth() || field_y != field.getHeight()) { //Checks if the size of the playing field has changed
+            int scaleX = Math.min(field.getWidth() / SIZE_X, field.getHeight() / SIZE_Y); // Gets the size of the tiles based on the game field width
+            int scaleY = Math.min(field.getHeight() / SIZE_Y, field.getWidth() / SIZE_X); // Gets the size of the tiles based on the game field height
+            int shiftX = (field.getWidth() - (scaleX * SIZE_X)) / 2;
             for (int column = 0; column < SIZE_X; column++) { // For loop to set coordinate X values
                 int x = scaleX * column; // Sets coordinates for X so the row loop doesn't have to calculate it every time
                 for (int row = 0; row < SIZE_Y; row++) { // For loop to set coordinate Y values
@@ -154,41 +172,45 @@ public class StackActivity extends AppCompatActivity {
                 }
             }
             Log.d("BrainSTEM S", "The size of the game field is X: " + field.getWidth() + " & Y: " + field.getHeight());
-            int margins = (int)(scaleX * 0.05);
+            int margins = (int) (scaleX * 0.05);
             lp = new RelativeLayout.LayoutParams(scaleX - margins, scaleY - margins);
             lp.setMargins(margins, margins, margins, margins);
         }
-        for(ArrayList<View> column : grid){
-            if(!column.isEmpty()){
-                for(View v : column){
+        for (ArrayList<View> column : grid) {
+            if (!column.isEmpty()) {
+                for (View v : column) {
                     v.setLayoutParams(lp);
                 }
             }
         }
     }
+
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
         pause.callOnClick();
     }
+
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
     }
+
     @Override
-    protected void onDestroy(){
+    protected void onDestroy() {
         super.onDestroy();
         rules.clear();
         clearBoard();
     }
-    private void pauseAction(){
+
+    private void pauseAction() {
         pause_menu.addView(frame);
         ObjectAnimator play_fadeIn = ObjectAnimator.ofFloat(pause_menu, "alpha", 1);
         play_fadeIn.start();
         play.setEnabled(true);
         home.setEnabled(false);
         pause.setEnabled(false);
-        for(View button : buttons){
+        for (View button : buttons) {
             button.setEnabled(false);
         }
     }
@@ -241,7 +263,8 @@ public class StackActivity extends AppCompatActivity {
         }
         updatePositions();
     }
-    private void gameFinish(){
+
+    private void gameFinish() {
         int numRules = rules.size();
         Bundle stats = new Bundle();
         stats.putInt("broken", rulesBroken);
@@ -256,7 +279,7 @@ public class StackActivity extends AppCompatActivity {
     }
 
     private void updatePositions() {
-        if(life.getProgress() == 0){
+        if (life.getProgress() == 0) {
             gameFinish();
         }
         AnimatorSet as = new AnimatorSet();
@@ -283,20 +306,20 @@ public class StackActivity extends AppCompatActivity {
                 }
             });
             as.start();
-        }else{
+        } else {
             Log.d("BrainSTEM S", "Update recursion has finished");
             boolean testNextLevel = true;
-            for(ArrayList<View> column : grid){//Test if the board is filled
-                if(column.size() < SIZE_Y){
+            for (ArrayList<View> column : grid) {//Test if the board is filled
+                if (column.size() < SIZE_Y) {
                     testNextLevel = false;
                     break;
                 }
             }
-            if(testNextLevel){//Testing win condition
+            if (testNextLevel) {//Testing win condition
                 clearBoard();//Clear the board, adds new rule, and pauses to let user know of new rule
                 newRule(2);
                 pauseAction();
-            }else{
+            } else {
                 if (fallingAnim) {
                     fallingAnim = false;
                     gameTile = new TextView(getApplicationContext()); // Initializes the gameTile, or the Tile that is falling down
@@ -305,7 +328,7 @@ public class StackActivity extends AppCompatActivity {
                     AnimatorSet fade = new AnimatorSet();//Adds the button back in
                     for (View button : buttons) {
                         ((TextView) button).setText("" + gameTile.getTag(R.id.stack_value));
-                        if(grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y) {
+                        if (grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y) {
                             ObjectAnimator fadeIn = ObjectAnimator.ofFloat(button, "alpha", 0.8f);
                             fadeIn.setDuration(100);
                             fade.play(fadeIn);
@@ -316,8 +339,8 @@ public class StackActivity extends AppCompatActivity {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             super.onAnimationEnd(animation);
-                            for(View button : buttons){
-                                if(grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y)
+                            for (View button : buttons) {
+                                if (grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y)
                                     button.setEnabled(true);
                             }
                         }
@@ -331,15 +354,15 @@ public class StackActivity extends AppCompatActivity {
     private void initializeRuleCheck() { //Starts and controls rule checking life cycle
         if (checkStackRules()) {
             AnimatorSet removeAnimation = new AnimatorSet();
-            for(View view : remove){//Adds removal animation in set to AnimatorSet
-                if(!removeAnimList.containsKey(view)){
+            for (View view : remove) {//Adds removal animation in set to AnimatorSet
+                if (!removeAnimList.containsKey(view)) {
                     AnimatorSet removeNorm = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.stack_remove_norm);
                     removeNorm.setTarget(view);
                     removeAnimList.put(view, removeNorm);
                 }
                 grid.get((int) view.getTag(R.id.stack_column)).remove(view);//Removes respective view from screen
             }
-            for(View view : removeAnimList.keySet()){
+            for (View view : removeAnimList.keySet()) {
                 removeAnimation.play(removeAnimList.get(view));
             }
             ObjectAnimator progress = ObjectAnimator.ofInt(life, "progress", Math.max(0, life.getProgress() - 500));
@@ -350,7 +373,7 @@ public class StackActivity extends AppCompatActivity {
                 @Override
                 public void onAnimationEnd(Animator animation) {//Resursively updatesPosition when animation is done
                     super.onAnimationEnd(animation);
-                    for(View view : removeAnimList.keySet()){
+                    for (View view : removeAnimList.keySet()) {
                         field.removeView(view);
                     }
                     rulesBroken++;
@@ -358,7 +381,7 @@ public class StackActivity extends AppCompatActivity {
                     updatePositions();
                 }
             });
-        }else{
+        } else {
             updatePositions();
         }
     }
@@ -436,16 +459,16 @@ public class StackActivity extends AppCompatActivity {
     }
 
     private void newGameTile() {
-		if (newTiles.isEmpty()) {
-			List<Integer> newList = new ArrayList<>(10 * BAG_SIZE);
-			for (int n = 0; n < BAG_SIZE; n++) {
-				for (int i = 1; i < 10; i++) {
-					newList.add(i);
-				}
-			}
-			Collections.shuffle(newList);
-			newTiles.addAll(newList);
-		}
+        if (newTiles.isEmpty()) {
+            List<Integer> newList = new ArrayList<>(10 * BAG_SIZE);
+            for (int n = 0; n < BAG_SIZE; n++) {
+                for (int i = 1; i < 10; i++) {
+                    newList.add(i);
+                }
+            }
+            Collections.shuffle(newList);
+            newTiles.addAll(newList);
+        }
         int value = newTiles.pop();//Sets variable value to random number from 1 to 9
 
         gameTile.setLayoutParams(lp); // Set the size of the gameTile
@@ -453,7 +476,7 @@ public class StackActivity extends AppCompatActivity {
         gameTile.setTag(R.id.stack_column, -1); // -1 means no column yet
 
         int color;
-        switch (value){
+        switch (value) {
             case 1:
                 color = R.color.magenta;
                 break;
@@ -487,18 +510,18 @@ public class StackActivity extends AppCompatActivity {
         }
 
         gameTile.setBackgroundColor(ContextCompat.getColor(StackActivity.getAppContext(), color));
-        Log.d("BrainSTEM S", "The gameTile created has this value: " + value + " at " + coordinates[SIZE_Y - 1][SIZE_X/2].x + " " + coordinates[SIZE_Y-1][SIZE_X/2].y);
+        Log.d("BrainSTEM S", "The gameTile created has this value: " + value + " at " + coordinates[SIZE_Y - 1][SIZE_X / 2].x + " " + coordinates[SIZE_Y - 1][SIZE_X / 2].y);
         ((TextView) gameTile).setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); // Centers the text
         ((TextView) gameTile).setTextSize(TEXT_SIZE); // Sets text size
         ((TextView) gameTile).setTextColor(Color.BLACK); // Sets text color
         ((TextView) gameTile).setText("" + value); // Sets the text on the block to the tag
 
-        for(View button : buttons){
+        for (View button : buttons) {
             ((TextView) button).setText("" + (int) gameTile.getTag(R.id.stack_value));
         }
         field.addView(gameTile);
-        gameTile.setY(coordinates[SIZE_Y-1][2].y - lp.topMargin); // Sets position of block to top middle
-        gameTile.setX(coordinates[SIZE_Y-1][2].x - lp.leftMargin);//Not sure why I need the lp.leftMargin/TopMargin, but seems to set it in correct positions without offset
+        gameTile.setY(coordinates[SIZE_Y - 1][2].y - lp.topMargin); // Sets position of block to top middle
+        gameTile.setX(coordinates[SIZE_Y - 1][2].x - lp.leftMargin);//Not sure why I need the lp.leftMargin/TopMargin, but seems to set it in correct positions without offset
         //Without it (leftMargin, topMargin), gameTile is in wrong position and getX and getY returns two different values for some reason
         Log.d("BrainSTEM S", gameTile.getParent().toString());
         Log.d("BrainSTEM S", "Tile at: " + gameTile.getX() + " " + gameTile.getY());
@@ -508,34 +531,35 @@ public class StackActivity extends AppCompatActivity {
         return StackActivity.context;
     }
 
-    private Pair newRule(int i){
+    private Pair newRule(int i) {
         boolean works = false;
         Pair a = new Pair((int) (Math.random() * 9) + 1, (int) (Math.random() * 9) + 1);
-        while(!works){
+        while (!works) {
             boolean unique = true;
-            for (Pair compare : rules){
-                if(a.equals(compare)){
+            for (Pair compare : rules) {
+                if (a.equals(compare)) {
                     unique = false;
                     a = new Pair((int) (Math.random() * 9) + 1, (int) (Math.random() * 9) + 1);
                 }
             }
-            if(unique) works = true;
+            if (unique) works = true;
         }
         Log.d("BrainSTEM S", "Rule created: " + a.toString());
         rules.add(a);
-        switch (i){
+        switch (i) {
             case 1:
                 ruleNotify.setText(context.getString(R.string.rule_prefix) + "\n" + a.toString());
                 break;
             case 2:
-                ruleNotify.setText(context.getString(R.string.win) + "\n" +context.getString(R.string.rule_prefix) + "\n" + a.toString());
+                ruleNotify.setText(context.getString(R.string.win) + "\n" + context.getString(R.string.rule_prefix) + "\n" + a.toString());
                 break;
         }
-        return  a;
+        return a;
     }
-    private void clearBoard(){
-        for(ArrayList<View> column : grid){
-            for(View v : column){
+
+    private void clearBoard() {
+        for (ArrayList<View> column : grid) {
+            for (View v : column) {
                 field.removeView(v);
             }
             column.clear();

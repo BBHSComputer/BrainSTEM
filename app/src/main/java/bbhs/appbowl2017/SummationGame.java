@@ -30,7 +30,7 @@ public class SummationGame extends AppCompatActivity implements QuestionListener
         questions.add(new BiggestQuestion(this, getString(R.string.q5), new String[]{getString(R.string.answer) + "!", getString(R.string.answer) + ".", getString(R.string.big), getString(R.string.answer) + "?"}));
         questions.add(new TimedQuestion(this, getString(R.string.q6), new String[]{getString(R.string.done), getString(R.string.run), "No", getString(R.string.what)}, 0, 5000));
 
-        setUp(false);
+        questions.get(questionNumber).initiate();
     }
  
     @Override
