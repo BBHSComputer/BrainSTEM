@@ -70,6 +70,7 @@ public class StackActivity extends AppCompatActivity {
     private Button play;//This button plays the game/resume
     private TextView ruleNotify;
     private ProgressBar life;
+    private boolean tellRules;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class StackActivity extends AppCompatActivity {
             grid.add(new ArrayList<View>()); // Adds column to grid ArrayList
         }
         coordinates = new Point[SIZE_Y][SIZE_X]; // Initializes the coordinates grid
-        boolean tellRules = getIntent().getExtras().getBoolean("tellRules");
+        tellRules = getIntent().getExtras().getBoolean("tellRules");
         ruleNotify = (TextView) findViewById(R.id.rule_Text);//Finds the TextView for Views
         Pair a = newRule(1);//Create rule 1 and 2
         Pair b = newRule(1);
@@ -135,25 +136,8 @@ public class StackActivity extends AppCompatActivity {
 
 
         Log.d("BrainSTEM S", "onCreate() finished");
-        if (tellRules) {
+        if(tellRules)
             ruleNotify.setText(context.getString(R.string.rule_prefix) + "\n" + a.toString() + "\n" + b.toString());
-        } else {
-            play.setEnabled(false);
-            home.setEnabled(true);
-            pause.setEnabled(true);
-            ObjectAnimator play_fadeOut = ObjectAnimator.ofFloat(pause_menu, "alpha", 0);
-            play_fadeOut.start();
-            ((ViewGroup) (frame.getParent())).removeView(frame);
-            for (View button : buttons) {
-                if (grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y) {
-                    button.setEnabled(true);
-                }
-            }
-            if (!initializationComplete) {
-                initializationComplete = true;
-                gameStart(); // Set up the game playing field with buttons
-            }
-        }
     }
 
     @Override
@@ -181,6 +165,23 @@ public class StackActivity extends AppCompatActivity {
                 for (View v : column) {
                     v.setLayoutParams(lp);
                 }
+            }
+        }
+        if (!tellRules) {
+            play.setEnabled(false);
+            home.setEnabled(true);
+            pause.setEnabled(true);
+            ObjectAnimator play_fadeOut = ObjectAnimator.ofFloat(pause_menu, "alpha", 0);
+            play_fadeOut.start();
+            ((ViewGroup) (frame.getParent())).removeView(frame);
+            for (View button : buttons) {
+                if (grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y) {
+                    button.setEnabled(true);
+                }
+            }
+            if (!initializationComplete) {
+                initializationComplete = true;
+                gameStart(); // Set up the game playing field with buttons
             }
         }
     }
@@ -548,7 +549,8 @@ public class StackActivity extends AppCompatActivity {
         rules.add(a);
         switch (i) {
             case 1:
-                ruleNotify.setText(context.getString(R.string.rule_prefix) + "\n" + a.toString());
+                if (tellRules)
+                    ruleNotify.setText(context.getString(R.string.rule_prefix) + "\n" + a.toString());
                 break;
             case 2:
                 ruleNotify.setText(context.getString(R.string.win) + "\n" + context.getString(R.string.rule_prefix) + "\n" + a.toString());
