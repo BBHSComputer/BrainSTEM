@@ -33,8 +33,15 @@ public class MainActivity extends AppCompatActivity {
 		Button sumPlay = (Button) findViewById(R.id.sumPlay);
 		Button musicPlay = (Button) findViewById(R.id.musicPlay);
 
+		Button stackAdd = (Button) findViewById(R.id.stackAdd);
+		Button stackSubtract = (Button) findViewById(R.id.stackSubtract);
+		final TextView stackValue = (TextView) findViewById(R.id.stackValue);
 		final RadioButton stackGuess = (RadioButton) findViewById(R.id.stackGuess);
 		final RadioButton stackTell = (RadioButton) findViewById(R.id.stackTell);
+
+		Button tileAdd = (Button) findViewById(R.id.tileAdd);
+		Button tileSubtract = (Button) findViewById(R.id.tileSubtract);
+		final TextView tileValue = (TextView) findViewById(R.id.tileValue);
 
 		tellRules = true;
 
@@ -102,6 +109,32 @@ public class MainActivity extends AppCompatActivity {
 					if (stackGuess.isChecked())
 						stackGuess.setChecked(false);
 					tellRules = true;
+				}
+			});
+			stackAdd.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					stackValue.setText(Integer.toString(Integer.parseInt(stackValue.getText().toString()) + 1));
+				}
+			});
+			stackSubtract.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					stackValue.setText(Integer.toString(Integer.parseInt(stackValue.getText().toString()) - 1));
+				}
+			});
+			tileAdd.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if (Integer.parseInt(tileValue.getText().toString()) < 8)
+						tileValue.setText(Integer.toString(Integer.parseInt(tileValue.getText().toString()) + 1));
+				}
+			});
+			tileSubtract.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if (Integer.parseInt(tileValue.getText().toString()) > 1)
+						tileValue.setText(Integer.toString(Integer.parseInt(tileValue.getText().toString()) - 1));
 				}
 			});
 		}
