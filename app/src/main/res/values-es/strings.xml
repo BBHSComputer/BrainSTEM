@@ -3,9 +3,9 @@
     <string name="game2_name">Apilar</string>
     <string name="game_rules_title">Reglas:</string>
     <string name="app_name">BrainSTEM</string>
-    <string name="star_spangled_banner">Star-Spangled Banner</string>
-    <string name="take_me_out_to_the_ball_game">Take Me Out to the Ball Game</string>
-    <string name="fur_elise">Para Elisa</string>
+    <string name="music_song1">Star-Spangled Banner</string>
+    <string name="music_song2">Take Me Out to the Ball Game</string>
+    <string name="music_song3">Para Elisa</string>
     <string name="play">¡Comenzar!</string>
     <string name="music">Música</string>
     <string name="music_description">Música es un juego de ritmo que incita a la gente con sintomos de artritis a que muevan las articulaciones, y que mejoren los reflejos.</string>
@@ -35,7 +35,7 @@
     <string name="there">Ahí</string>
     <string name="big">Grande</string>
     <string name="done">Completo</string>
-    <string name="heart_and_soul">Heart and Soul</string>
+    <string name="music_song4">Heart and Soul</string>
     <string name="here">Aquí</string>
     <string name="q1">Cual es el número del espacio de estacionamiento del carro</string>
     <string name="q1a">78</string>

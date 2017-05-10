@@ -1,231 +1,296 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/game4"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:id="@+id/music_main">
 
     <TextView
         android:id="@+id/scoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/music_description"
-        style="@android:style/TextAppearance.Small"
-        />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <android.support.percent.PercentRelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/scoreText"
-        android:id="@+id/songCards"
-        >
-        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
+        android:id="@+id/musicScrollPane"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scoreText">
+
+        <LinearLayout
+            android:id="@+id/songCards"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:id="@+id/song1Card"
-            app:layout_heightPercent="22.5%">
-            <android.support.percent.PercentRelativeLayout
-                android:layout_width="wrap_content"
+            android:layout_margin="16dp"
+            android:divider="@drawable/space"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            tools:context="ricky3350.test.MainActivity">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/song1card"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <LinearLayout
+
+                <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_widthPercent="100%">
+                    android:layout_height="match_parent">
+
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/song1title"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="5dp"
-                        android:text="@string/star_spangled_banner"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/music_song1"
                         android:textColor="@color/primary_text_default_material_light"
-                        style="@android:style/TextAppearance.Medium" />
+                        android:textSize="24sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/song1author"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="0dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="5dp"
-                        android:text="Francis Scott Key"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/music_song1_author"
                         android:textColor="@color/primary_text_default_material_light"
-                        style="@android:style/TextAppearance.Small" />
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/song1title"/>
+
+                    <TextView
+                        android:id="@+id/song1copyright"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/music_song1_copyright"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/song1author"/>
+
                     <Button
-                        style="@android:style/TextAppearance.Medium"
                         android:id="@+id/song1button"
+                        style="@android:style/TextAppearance.Medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="5dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/play2"
-                        android:textColor="@color/accent_material_light" />
-                </LinearLayout>
-            </android.support.percent.PercentRelativeLayout>
+                        android:textColor="@color/accent_material_light"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/song1copyright"/>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
 
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:id="@+id/song2Card"
-            android:layout_below="@+id/song1Card"
-            app:layout_heightPercent="22.5%">
-            <android.support.percent.PercentRelativeLayout
-                android:layout_width="wrap_content"
+            <android.support.v7.widget.CardView
+                android:id="@+id/song2card"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <LinearLayout
+
+                <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_widthPercent="100%">
+                    android:layout_height="match_parent">
+
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/song2title"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="5dp"
-                        android:text="@string/take_me_out_to_the_ball_game"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/music_song2"
                         android:textColor="@color/primary_text_default_material_light"
-                        style="@android:style/TextAppearance.Medium" />
+                        android:textSize="24sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/song2author"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="0dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="5dp"
-                        android:text="Jack Norworth &amp; Albert Von Tilzer"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/music_song2_author"
                         android:textColor="@color/primary_text_default_material_light"
-                        style="@android:style/TextAppearance.Small" />
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/song2title"/>
+
+                    <TextView
+                        android:id="@+id/song2copyright"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/music_song2_copyright"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/song2author"/>
+
                     <Button
-                        style="@android:style/TextAppearance.Medium"
                         android:id="@+id/song2button"
+                        style="@android:style/TextAppearance.Medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="5dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/play2"
-                        android:textColor="@color/accent_material_light" />
-                </LinearLayout>
-            </android.support.percent.PercentRelativeLayout>
+                        android:textColor="@color/accent_material_light"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/song2copyright"/>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
 
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:id="@+id/song3Card"
-            android:layout_below="@id/song2Card"
-            app:layout_heightPercent="22.5%">
-            <android.support.percent.PercentRelativeLayout
-                android:layout_width="wrap_content"
+            <android.support.v7.widget.CardView
+                android:id="@+id/song3card"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <LinearLayout
+
+                <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_widthPercent="100%">
+                    android:layout_height="match_parent">
+
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/song3title"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="5dp"
-                        android:text="@string/fur_elise"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/music_song3"
                         android:textColor="@color/primary_text_default_material_light"
-                        style="@android:style/TextAppearance.Medium" />
+                        android:textSize="24sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/song3author"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="0dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="5dp"
-                        android:text="Ludwig van Beethoven"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/music_song3_author"
                         android:textColor="@color/primary_text_default_material_light"
-                        style="@android:style/TextAppearance.Small" />
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/song3title"/>
+
+                    <TextView
+                        android:id="@+id/song3copyright"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/music_song3_copyright"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/song3author"/>
+
                     <Button
-                        style="@android:style/TextAppearance.Medium"
                         android:id="@+id/song3button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="5dp"
-                        android:text="@string/play2"
-                        android:textColor="@color/accent_material_light" />
-                </LinearLayout>
-            </android.support.percent.PercentRelativeLayout>
-
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:id="@+id/song4Card"
-            android:layout_below="@+id/song3Card"
-            app:layout_heightPercent="22.5%">
-            <android.support.percent.PercentRelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_widthPercent="100%">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="5dp"
-                        android:text="@string/heart_and_soul"
-                        android:textColor="@color/primary_text_default_material_light"
-                        style="@android:style/TextAppearance.Medium" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="0dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="5dp"
-                        android:text="Hoagy Carmichael"
-                        android:textColor="@color/primary_text_default_material_light"
-                        style="@android:style/TextAppearance.Small" />
-                    <Button
                         style="@android:style/TextAppearance.Medium"
-                        android:id="@+id/song4button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="5dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/play2"
-                        android:textColor="@color/accent_material_light" />
-                </LinearLayout>
-            </android.support.percent.PercentRelativeLayout>
+                        android:textColor="@color/accent_material_light"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/song3copyright"/>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
 
-        </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/song4card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </android.support.percent.PercentRelativeLayout>
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
+                    <TextView
+                        android:id="@+id/song4title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/music_song4"
+                        android:textColor="@color/primary_text_default_material_light"
+                        android:textSize="24sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
 
+                    <TextView
+                        android:id="@+id/song4author"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/music_song4_author"
+                        android:textColor="@color/primary_text_default_material_light"
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/song4title"/>
 
-</android.support.percent.PercentRelativeLayout>
+                    <TextView
+                        android:id="@+id/song4copyright"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/music_song4_copyright"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/song4author"/>
+
+                    <Button
+                        android:id="@+id/song4button"
+                        style="@android:style/TextAppearance.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/play2"
+                        android:textColor="@color/accent_material_light"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/song4copyright"/>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/music_copyright_description"/>
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

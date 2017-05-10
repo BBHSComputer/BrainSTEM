@@ -8,19 +8,30 @@
 
     <string name="app_name">BrainSTEM</string>
 
-    <string name="star_spangled_banner">Star-Spangled Banner</string>
-
-    <string name="take_me_out_to_the_ball_game">Take Me Out to the Ball Game</string>
-
-    <string name="fur_elise">Fur Elise</string>
-
-    <string name="heart_and_soul">Heart and Soul</string>
-
-    <string name="play">Play</string>
-
     <string name="music">Music</string>
 
     <string name="music_description">Music is a rhythm game that challenges those with arthritis to move their joints and improve reflexes. All music is licensed under CC BY-NC-SA 3.0 or is in the public domain.</string>
+
+    <string name="music_song1">Star-Spangled Banner</string>
+    <string name="music_song2">Take Me Out to the Ball Game</string>
+    <string name="music_song3">Fur Elise</string>
+    <string name="music_song4">Heart and Soul</string>
+
+    <string name="music_song1_author">Francis Scott Key</string>
+    <string name="music_song2_author">Jack Norworth and Albert Von Tilzer</string>
+    <string name="music_song3_author">Ludwig van Beethoven</string>
+    <string name="music_song4_author">Hoagy Carmichael</string>
+
+    <string name="music_song1_copyright">Adapted from Bryce Poindexter (musescore.org)</string>
+    <string name="music_song2_copyright">Public Domain</string>
+    <string name="music_song3_copyright">Public Domain</string>
+    <string name="music_song4_copyright">Adapted from Toma\'Nimation (musescore.org)</string>
+
+    <string name="music_copyright_description">All soundtracks are in the public domain or licensed under CC BY-NC-SA 3.0.</string>
+
+    <string name="music_score" formatted="false">Score: %d</string>
+
+    <string name="play">Play</string>
 
     <string name="play2">Play!</string>
 
