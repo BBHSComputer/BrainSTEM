@@ -1,4 +1,4 @@
-package bbhs.appbowl2017;
+package bbhs.appbowl2017.music;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -20,6 +20,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.Random;
+
+import bbhs.appbowl2017.R;
 
 /**
  * Created by adamf on 4/11/2017.

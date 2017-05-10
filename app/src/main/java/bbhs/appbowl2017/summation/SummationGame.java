@@ -1,9 +1,8 @@
-package bbhs.appbowl2017;
+package bbhs.appbowl2017.summation;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,6 +10,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import bbhs.appbowl2017.R;
 
 public class SummationGame extends AppCompatActivity implements QuestionListener {
 
@@ -20,7 +21,6 @@ public class SummationGame extends AppCompatActivity implements QuestionListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_summation);
 
         // Setup base questions
         questions.add(new SimpleQuestion(this, getString(R.string.q1), new String[]{getString(R.string.q1a), getString(R.string.q1b), getString(R.string.q1c), getString(R.string.q1d)}, 2, getResources().getIdentifier("parking" , "drawable", getPackageName())));

@@ -1,4 +1,4 @@
-package bbhs.appbowl2017;
+package bbhs.appbowl2017.stack;
 
 
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import bbhs.appbowl2017.MainActivity;
+import bbhs.appbowl2017.R;
 
 public class StackWin extends AppCompatActivity{
     private static int placed;

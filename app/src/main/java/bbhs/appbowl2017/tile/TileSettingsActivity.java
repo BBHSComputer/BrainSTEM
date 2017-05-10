@@ -1,4 +1,4 @@
-package bbhs.appbowl2017;
+package bbhs.appbowl2017.tile;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -7,12 +7,13 @@ import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import bbhs.appbowl2017.R;
 
 public class TileSettingsActivity extends AppCompatActivity {
 

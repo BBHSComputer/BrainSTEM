@@ -1,4 +1,4 @@
-package bbhs.appbowl2017;
+package bbhs.appbowl2017.tile;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
@@ -6,9 +6,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import bbhs.appbowl2017.R;
 
 public class TileGameActivity extends AppCompatActivity {
 

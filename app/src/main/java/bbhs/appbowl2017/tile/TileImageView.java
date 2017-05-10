@@ -1,4 +1,4 @@
-package bbhs.appbowl2017;
+package bbhs.appbowl2017.tile;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;

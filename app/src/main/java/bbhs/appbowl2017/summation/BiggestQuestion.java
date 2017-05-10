@@ -1,8 +1,10 @@
-package bbhs.appbowl2017;
+package bbhs.appbowl2017.summation;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import bbhs.appbowl2017.R;
 
 /**
  * Created by Matias on 4/18/2017.

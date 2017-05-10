@@ -1,16 +1,19 @@
 package bbhs.appbowl2017;
 
 import android.content.Intent;
-import android.graphics.Rect;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import java.util.Locale;
+
+import bbhs.appbowl2017.music.MusicActivity;
+import bbhs.appbowl2017.stack.StackActivity;
+import bbhs.appbowl2017.summation.SummationGame;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 	private TextView[] descriptions;
 	private View[] settings;
 	private boolean tellRules;
+
+	private int stackLevel = 1, tileNumPairs = 10;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -116,28 +121,29 @@ public class MainActivity extends AppCompatActivity {
 			stackAdd.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					stackValue.setText(Integer.toString(Integer.parseInt(stackValue.getText().toString()) + 1));
+					if (stackLevel < 43)
+						stackValue.setText(String.format(Locale.getDefault(), "%d", ++stackLevel));
 				}
 			});
 			stackSubtract.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					if (Integer.parseInt(stackValue.getText().toString()) > 1)
-						stackValue.setText(Integer.toString(Integer.parseInt(stackValue.getText().toString()) - 1));
+					if (stackLevel > 1)
+						stackValue.setText(String.format(Locale.getDefault(), "%d", --stackLevel));
 				}
 			});
 			tileAdd.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					if (Integer.parseInt(tileValue.getText().toString()) < 8)
-						tileValue.setText(Integer.toString(Integer.parseInt(tileValue.getText().toString()) + 1));
+					if (tileNumPairs < 16)
+						tileValue.setText(String.format(Locale.getDefault(), "%d", ++tileNumPairs));
 				}
 			});
 			tileSubtract.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					if (Integer.parseInt(tileValue.getText().toString()) > 1)
-						tileValue.setText(Integer.toString(Integer.parseInt(tileValue.getText().toString()) - 1));
+					if (tileNumPairs > 1)
+						tileValue.setText(String.format(Locale.getDefault(), "%d", --tileNumPairs));
 				}
 			});
 		}

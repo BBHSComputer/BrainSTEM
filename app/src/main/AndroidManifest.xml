@@ -19,31 +19,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StackActivity2"
+        <activity android:name=".stack.StackActivity"
+                  android:configChanges="orientation"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".stack.StackWin"
+                  android:configChanges="orientation"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".tile.TileSettingsActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
-        <activity android:name=".StackActivity"
+        <activity android:name=".tile.TileGameActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
-        <activity android:name=".StackSettingsActivity"
+        <activity android:name=".tile.TileWinActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
-        <activity android:name=".StackWin"
+        <activity android:name=".summation.SummationGame"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
-        <activity android:name=".TileSettingsActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".TileGameActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".TileWinActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SummationGame"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MusicActivity"
+        <activity android:name=".music.MusicActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
     </application>

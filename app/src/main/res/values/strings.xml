@@ -14,10 +14,10 @@
 
     <string name="music_song1">Star-Spangled Banner</string>
     <string name="music_song2">Take Me Out to the Ball Game</string>
-    <string name="music_song3">Fur Elise</string>
+    <string name="music_song3">Für Elise</string>
     <string name="music_song4">Heart and Soul</string>
 
-    <string name="music_song1_author">Francis Scott Key</string>
+    <string name="music_song1_author" translatable="false">Francis Scott Key</string>
     <string name="music_song2_author">Jack Norworth and Albert Von Tilzer</string>
     <string name="music_song3_author">Ludwig van Beethoven</string>
     <string name="music_song4_author">Hoagy Carmichael</string>

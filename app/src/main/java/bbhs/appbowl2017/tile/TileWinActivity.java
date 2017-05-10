@@ -1,4 +1,4 @@
-package bbhs.appbowl2017;
+package bbhs.appbowl2017.tile;
 
 import android.content.Intent;
 import android.preference.PreferenceManager;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import bbhs.appbowl2017.MainActivity;
+import bbhs.appbowl2017.R;
+
 public class TileWinActivity extends AppCompatActivity {
     public static double score, length, moves;
     private TextView tScore,tTime,tMoves;
@@ -16,7 +19,7 @@ public class TileWinActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tile_win2);
+        setContentView(R.layout.activity_tile_win);
 
         tScore = (TextView) findViewById(R.id.score); //time moves
         tTime = (TextView) findViewById(R.id.time);
