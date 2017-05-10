@@ -185,7 +185,7 @@ public class MusicActivity extends AppCompatActivity {
             savedScore = score;
         }
         scoreText.setText("Score: " + score + "\nBest: " + savedScore); //Display the new score
-        final RelativeLayout layout = (RelativeLayout) findViewById(R.id.game4);
+        final RelativeLayout layout = (RelativeLayout) findViewById(R.id.music_main);
         scoreText.setGravity(Gravity.CENTER);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             scoreText.setTextAppearance(android.R.style.TextAppearance_Large);
