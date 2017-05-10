@@ -47,6 +47,7 @@ public class StackActivity extends AppCompatActivity {
 
 	private static boolean initializationComplete = false; // Just makes sure that the game start only happens once
 	private static boolean fallingAnim = false; // Check if animations are currently running
+    private static boolean paused = true;
 
 	private static ArrayList<ArrayList<View>> grid = new ArrayList<>(); // This is the 2D game field, the tiles in relative grid positions
 	private static ArrayList<View> buttons = new ArrayList<>(); // This is the list of gameButtons, which is animated after the blocks are
@@ -54,9 +55,8 @@ public class StackActivity extends AppCompatActivity {
 
 	private static List<Animator> movementAnim = new ArrayList<>(); // List of animations that need to be done
 	private static HashMap<View, Animator> removeAnimList = new HashMap<>();
-	// private static AnimatorSet removeAnimList = new AnimatorSet();//Animation of removing Views
 	private static List<Rule> rules = new ArrayList<>();//List of rules
-	private static Set<View> remove = new HashSet<>(); // Sets of views to
+	private static Set<View> remove = new HashSet<>(); // Sets of views to remove
 
 	private final ArrayDeque<Integer> newTiles = new ArrayDeque<>();
 
@@ -70,6 +70,7 @@ public class StackActivity extends AppCompatActivity {
 	private Button play;//This button plays the game/resume
 	private TextView ruleNotify;
 	private ProgressBar life;
+
 	private boolean tellRules;
 
 	@Override
@@ -97,6 +98,7 @@ public class StackActivity extends AppCompatActivity {
 		play.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+                paused = false;
 				play.setEnabled(false);
 				home.setEnabled(true);
 				pause.setEnabled(true);
@@ -135,8 +137,7 @@ public class StackActivity extends AppCompatActivity {
 
 
 		Log.d("BrainSTEM S", "onCreate() finished");
-		if(tellRules)
-			ruleNotify.setText(getApplicationContext().getString(R.string.rule_prefix) + "\n" + a.toString() + "\n" + b.toString());
+		if(tellRules) ruleNotify.setText(getApplicationContext().getString(R.string.rule_prefix) + "\n" + a.toString() + "\n" + b.toString());
 	}
 
 	@Override
@@ -166,29 +167,13 @@ public class StackActivity extends AppCompatActivity {
 				}
 			}
 		}
-		if (!tellRules) {
-			play.setEnabled(false);
-			home.setEnabled(true);
-			pause.setEnabled(true);
-			ObjectAnimator play_fadeOut = ObjectAnimator.ofFloat(pause_menu, "alpha", 0);
-			play_fadeOut.start();
-			((ViewGroup) (frame.getParent())).removeView(frame);
-			for (View button : buttons) {
-				if (grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y) {
-					button.setEnabled(true);
-				}
-			}
-			if (!initializationComplete) {
-				initializationComplete = true;
-				gameStart(); // Set up the game playing field with buttons
-			}
-		}
+        if(!initializationComplete && !tellRules) play.callOnClick();
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		pause.callOnClick();
+        if(!paused) pause.callOnClick();
 	}
 
 	@Override
@@ -201,10 +186,12 @@ public class StackActivity extends AppCompatActivity {
 		super.onDestroy();
 		rules.clear();
 		clearBoard();
+        grid.clear();
 	}
 
 	private void pauseAction() {
 		pause_menu.addView(frame);
+        paused = true;
 		ObjectAnimator play_fadeIn = ObjectAnimator.ofFloat(pause_menu, "alpha", 1);
 		play_fadeIn.start();
 		play.setEnabled(true);
@@ -275,7 +262,6 @@ public class StackActivity extends AppCompatActivity {
 		startActivity(win);
 		rules.clear();
 		clearBoard();
-
 	}
 
 	private void updatePositions() {
@@ -296,11 +282,11 @@ public class StackActivity extends AppCompatActivity {
 		if (!movementAnim.isEmpty()) {//If positions do not need to be updated
 			fallingAnim = true;
 			as.playTogether(movementAnim);
+            movementAnim.clear();
 			as.addListener(new AnimatorListenerAdapter() {
 				@Override
 				public void onAnimationEnd(Animator animation) {
 					super.onAnimationEnd(animation);
-					movementAnim.clear();
 					Log.d("BrainSTEM S", "Finished updating position animations");
 					initializeRuleCheck();//Check rules after positions are updated
 				}
@@ -310,6 +296,7 @@ public class StackActivity extends AppCompatActivity {
 			Log.d("BrainSTEM S", "Update recursion has finished");
 			boolean testNextLevel = true;
 			for (ArrayList<View> column : grid) {//Test if the board is filled
+                Log.d("BrainSTEM S", "Size: " + column.size());
 				if (column.size() < SIZE_Y) {
 					testNextLevel = false;
 					break;
@@ -543,12 +530,8 @@ public class StackActivity extends AppCompatActivity {
 		Log.d("BrainSTEM S", "Rule created: " + a.toString());
 		rules.add(a);
 		switch (i) {
-			case 1:
-				if (tellRules)
-					ruleNotify.setText(getApplicationContext().getString(R.string.rule_prefix) + "\n" + a.toString());
-				break;
 			case 2:
-				ruleNotify.setText(getApplicationContext().getString(R.string.win) + "\n" + getApplicationContext().getString(R.string.rule_prefix) + "\n" + a.toString());
+			    if (tellRules) ruleNotify.setText(getApplicationContext().getString(R.string.win) + "\n" + getApplicationContext().getString(R.string.rule_prefix) + "\n" + a.toString());
 				break;
 		}
 		return a;
