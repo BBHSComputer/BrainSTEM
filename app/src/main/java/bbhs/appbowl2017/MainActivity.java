@@ -122,7 +122,8 @@ public class MainActivity extends AppCompatActivity {
 			stackSubtract.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					stackValue.setText(Integer.toString(Integer.parseInt(stackValue.getText().toString()) - 1));
+					if (Integer.parseInt(stackValue.getText().toString()) > 1)
+						stackValue.setText(Integer.toString(Integer.parseInt(stackValue.getText().toString()) - 1));
 				}
 			});
 			tileAdd.setOnClickListener(new View.OnClickListener() {
