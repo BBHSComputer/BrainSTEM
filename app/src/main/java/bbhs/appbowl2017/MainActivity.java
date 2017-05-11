@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
 							PopupWindow window = new PopupWindow(customView, LayoutParams.WRAP_CONTENT,
 									ActionBar.LayoutParams.WRAP_CONTENT);
-							window.showAtLocation((ConstraintLayout)findViewById(R.id.popupTile), Gravity.CENTER,0,0);
+							window.showAtLocation((RelativeLayout)findViewById(R.id.main_activity), Gravity.CENTER,0,0);
 						}
 
 					}
