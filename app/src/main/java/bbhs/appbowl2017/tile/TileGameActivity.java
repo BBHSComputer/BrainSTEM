@@ -195,7 +195,7 @@ public class TileGameActivity extends AppCompatActivity {
                 }
 
                 double w1 = 1;
-                double w2 = 0;
+                double w2 = .1;
                 double score = w1 * Math.log(totalTaps / (0.5 * numTiles * numTiles - 0.5 * numTiles)) + w2 / Math.log((System.currentTimeMillis() - startTime) / 1000);
 
                 //set win information and show screen

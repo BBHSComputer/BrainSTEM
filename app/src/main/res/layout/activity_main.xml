@@ -38,8 +38,6 @@
                         android:id="@+id/stackImage"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="0dp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/stack"/>
@@ -70,15 +68,14 @@
                         android:textSize="16sp"
                         app:layout_constraintLeft_toRightOf="@+id/stackImage"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/stackTitle"/>
+                        app:layout_constraintTop_toBottomOf="@+id/stackTitle"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp" />
 
                     <android.support.constraint.ConstraintLayout
                         android:id="@+id/stackSettings"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="0dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="8dp"
                         android:visibility="gone"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
@@ -89,9 +86,7 @@
                             style="@style/Widget.AppCompat.Button.Small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="0dp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginTop="0dp"
                             android:text="–"
                             android:textSize="18sp"
                             android:visibility="visible"
@@ -103,16 +98,16 @@
                             android:id="@+id/stackStartLevelLabel"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="0dp"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
-                            android:layout_marginTop="0dp"
                             android:text="@string/stackStartLevel"
                             android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="@+id/stackSubtract"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toLeftOf="@+id/stackSubtract"
-                            app:layout_constraintTop_toTopOf="@+id/stackSubtract"/>
+                            app:layout_constraintTop_toTopOf="@+id/stackSubtract"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp" />
 
                         <RadioButton
                             android:id="@+id/stackGuess"
@@ -151,11 +146,9 @@
 
                         <TextView
                             android:id="@+id/stackValue"
-                            android:layout_width="32dp"
+                            android:layout_width="1dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="0dp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginTop="0dp"
                             android:text="1"
                             android:textAlignment="center"
                             android:textSize="18sp"
@@ -184,11 +177,10 @@
                         android:id="@+id/stackDropdown"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
-                        android:layout_height="32dp"
-                        android:layout_marginBottom="0dp"
+                        android:layout_height="48dp"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginRight="0dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:scaleType="fitCenter"
@@ -218,8 +210,6 @@
                         android:id="@+id/tileImage"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="0dp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/tile"/>
@@ -250,15 +240,14 @@
                         android:textSize="16sp"
                         app:layout_constraintLeft_toRightOf="@+id/tileImage"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tileTitle"/>
+                        app:layout_constraintTop_toBottomOf="@+id/tileTitle"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp" />
 
                     <android.support.constraint.ConstraintLayout
                         android:id="@+id/tileSettings"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="0dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="8dp"
                         android:visibility="gone"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
@@ -269,9 +258,7 @@
                             style="@style/Widget.AppCompat.Button.Small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="0dp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginTop="0dp"
                             android:text="–"
                             android:textSize="18sp"
                             android:visibility="visible"
@@ -283,16 +270,16 @@
                             android:id="@+id/tileStartLevelLabel"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="0dp"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
-                            android:layout_marginTop="0dp"
                             android:text="@string/tileCount"
                             android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="@+id/tileSubtract"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toLeftOf="@+id/tileSubtract"
-                            app:layout_constraintTop_toTopOf="@+id/tileSubtract"/>
+                            app:layout_constraintTop_toTopOf="@+id/tileSubtract"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp" />
 
                         <Button
                             android:id="@+id/tileAdd"
@@ -308,11 +295,9 @@
 
                         <TextView
                             android:id="@+id/tileValue"
-                            android:layout_width="32dp"
+                            android:layout_width="1dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="0dp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginTop="0dp"
                             android:text="10"
                             android:textAlignment="center"
                             android:textSize="18sp"
@@ -355,11 +340,10 @@
                         android:id="@+id/tileDropdown"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
-                        android:layout_height="32dp"
-                        android:layout_marginBottom="0dp"
+                        android:layout_height="48dp"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginRight="0dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:scaleType="fitCenter"
@@ -367,7 +351,9 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tileSettings"
-                        app:srcCompat="@drawable/dropdown">
+                        app:srcCompat="@drawable/dropdown"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintVertical_bias="0.0">
                     </ImageButton>
                 </android.support.constraint.ConstraintLayout>
 
@@ -389,8 +375,6 @@
                         android:id="@+id/sumImage"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="0dp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/summation"/>
@@ -421,15 +405,14 @@
                         android:textSize="16sp"
                         app:layout_constraintLeft_toRightOf="@+id/sumImage"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sumTitle"/>
+                        app:layout_constraintTop_toBottomOf="@+id/sumTitle"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp" />
 
                     <android.support.constraint.ConstraintLayout
                         android:id="@+id/sumSettings"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="0dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="8dp"
                         android:visibility="gone"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
@@ -456,11 +439,10 @@
                         android:id="@+id/sumDropdown"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
-                        android:layout_height="32dp"
-                        android:layout_marginBottom="0dp"
+                        android:layout_height="48dp"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginRight="0dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:scaleType="fitCenter"
@@ -490,8 +472,6 @@
                         android:id="@+id/musicImage"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="0dp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/music"/>
@@ -522,15 +502,14 @@
                         android:textSize="16sp"
                         app:layout_constraintLeft_toRightOf="@+id/musicImage"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/musicTitle"/>
+                        app:layout_constraintTop_toBottomOf="@+id/musicTitle"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp" />
 
                     <android.support.constraint.ConstraintLayout
                         android:id="@+id/musicSettings"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="0dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="8dp"
                         android:visibility="gone"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
@@ -557,11 +536,10 @@
                         android:id="@+id/musicDropdown"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
-                        android:layout_height="32dp"
-                        android:layout_marginBottom="0dp"
+                        android:layout_height="48dp"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginRight="0dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:scaleType="fitCenter"

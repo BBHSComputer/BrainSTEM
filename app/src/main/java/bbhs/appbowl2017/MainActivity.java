@@ -1,11 +1,18 @@
 package bbhs.appbowl2017;
 
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.solver.widgets.ConstraintAnchor;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -14,7 +21,10 @@ import java.util.Locale;
 import bbhs.appbowl2017.music.MusicActivity;
 import bbhs.appbowl2017.stack.StackActivity;
 import bbhs.appbowl2017.summation.SummationGame;
-
+import android.widget.ImageButton;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.view.ViewGroup.LayoutParams;
 public class MainActivity extends AppCompatActivity {
 
 	private boolean expanded[];
@@ -70,6 +80,17 @@ public class MainActivity extends AppCompatActivity {
 						descriptions[n].setMaxLines(Integer.MAX_VALUE);
 						settings[n].setVisibility(View.VISIBLE);
 						expanded[n] = true;
+						if(n==1){
+							LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+
+							// Inflate the custom layout/view
+							View customView = inflater.inflate(R.layout.activity_main,null);
+
+							PopupWindow window = new PopupWindow(customView, LayoutParams.WRAP_CONTENT,
+									ActionBar.LayoutParams.WRAP_CONTENT);
+							window.showAtLocation((ConstraintLayout)findViewById(R.id.popupTile), Gravity.CENTER,0,0);
+						}
+
 					}
 				}
 			});
