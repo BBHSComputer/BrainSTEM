@@ -94,79 +94,80 @@ public class MainActivity extends AppCompatActivity {
 					}
 				}
 			});
-			stackPlay.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					Intent stackIntent = new Intent(getApplicationContext(), StackActivity.class);
-					stackIntent.putExtra("tellRules", tellRules);
-					System.out.println("BBDEBUG: " + tellRules);
-					startActivity(stackIntent);
-				}
-			});
-			tilePlay.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					//Start tile
-				}
-			});
-			sumPlay.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					startActivity( new Intent(getApplicationContext(), SummationGame.class));
 
-				}
-			});
-			musicPlay.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					startActivity( new Intent(getApplicationContext(), MusicActivity.class));
-
-				}
-			});
-			stackGuess.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if (stackTell.isChecked())
-						stackTell.setChecked(false);
-					tellRules = false;
-				}
-			});
-			stackTell.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if (stackGuess.isChecked())
-						stackGuess.setChecked(false);
-					tellRules = true;
-				}
-			});
-			stackAdd.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if (stackLevel < 43)
-						stackValue.setText(String.format(Locale.getDefault(), "%d", ++stackLevel));
-				}
-			});
-			stackSubtract.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if (stackLevel > 1)
-						stackValue.setText(String.format(Locale.getDefault(), "%d", --stackLevel));
-				}
-			});
-			tileAdd.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if (tileNumPairs < 16)
-						tileValue.setText(String.format(Locale.getDefault(), "%d", ++tileNumPairs));
-				}
-			});
-			tileSubtract.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if (tileNumPairs > 1)
-						tileValue.setText(String.format(Locale.getDefault(), "%d", --tileNumPairs));
-				}
-			});
 		}
+		stackPlay.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent stackIntent = new Intent(getApplicationContext(), StackActivity.class);
+				stackIntent.putExtra("tellRules", tellRules);
+				System.out.println("BBDEBUG: " + tellRules);
+				startActivity(stackIntent);
+			}
+		});
+		tilePlay.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//Start tile
+			}
+		});
+		sumPlay.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity( new Intent(getApplicationContext(), SummationGame.class));
+
+			}
+		});
+		musicPlay.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity( new Intent(getApplicationContext(), MusicActivity.class));
+
+			}
+		});
+		stackGuess.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (stackTell.isChecked())
+					stackTell.setChecked(false);
+				tellRules = false;
+			}
+		});
+		stackTell.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (stackGuess.isChecked())
+					stackGuess.setChecked(false);
+				tellRules = true;
+			}
+		});
+		stackAdd.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (stackLevel < 43)
+					stackValue.setText(String.format(Locale.getDefault(), "%d", ++stackLevel));
+			}
+		});
+		stackSubtract.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (stackLevel > 1)
+					stackValue.setText(String.format(Locale.getDefault(), "%d", --stackLevel));
+			}
+		});
+		tileAdd.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (tileNumPairs < 16)
+					tileValue.setText(String.format(Locale.getDefault(), "%d", ++tileNumPairs));
+			}
+		});
+		tileSubtract.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (tileNumPairs > 1)
+					tileValue.setText(String.format(Locale.getDefault(), "%d", --tileNumPairs));
+			}
+		});
 	}
 }
