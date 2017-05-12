@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
     <resources>
-
+    
     <string name="game2_name">Stack</string>
 
     <string name="game_rules_title">Rules:</string>
