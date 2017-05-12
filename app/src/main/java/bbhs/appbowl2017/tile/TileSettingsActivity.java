@@ -20,7 +20,7 @@ public class TileSettingsActivity extends AppCompatActivity {
     public static Uri[] cards;
     public static Uri[] defaultCards;
 
-    private ImageView imageView;
+    public static  ImageView imageView;
     private Button chooser;
     private Button play;
     private EditText getPairs;
@@ -30,9 +30,9 @@ public class TileSettingsActivity extends AppCompatActivity {
 
     private RelativeLayout imageDisplay; //ONLY PLACES WHERE IMAGES WILL BE DISPLAYED ARE ACCEPTABLE TO PUT IN HERE
 
-    private ImageView[] displayedImages;
+    public static ImageView[] displayedImages;
 
-    private int count = 0;
+    public static int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,23 +133,22 @@ public class TileSettingsActivity extends AppCompatActivity {
                     snackbar.show();
 
                 } else { //relevant images into cards
-                   try {
-                       cards = new Uri[Integer.parseInt(getPairs.getText().toString()) > 10 ? 10 : Integer.parseInt(getPairs.getText().toString())]; // make sure num of cards is <= 10
-                       for (int i = 0; i < cards.length; i++) {
-                           displayedImages[i].setImageURI(defaultCards[i]);
-                           cards[i] = defaultCards[i];
-                       }
-                       startActivity(new Intent(getApplicationContext(), TileGameActivity.class)); //loadu p the game
-                   }
-                   catch (NumberFormatException e) {
-                       Snackbar snackbar = Snackbar.make(imageDisplay, "Please enter a number of pairs.", Snackbar.LENGTH_LONG); //if no cards entered
-                       snackbar.show();
+                    try {
+                        cards = new Uri[Integer.parseInt(getPairs.getText().toString()) > 10 ? 10 : Integer.parseInt(getPairs.getText().toString())]; // make sure num of cards is <= 10
+                        for (int i = 0; i < cards.length; i++) {
+                            displayedImages[i].setImageURI(defaultCards[i]);
+                            cards[i] = defaultCards[i];
+                        }
+                        startActivity(new Intent(getApplicationContext(), TileGameActivity.class)); //loadu p the game
+                    } catch (NumberFormatException e) {
+                        Snackbar snackbar = Snackbar.make(imageDisplay, "Please enter a number of pairs.", Snackbar.LENGTH_LONG); //if no cards entered
+                        snackbar.show();
 
-                   } catch (NullPointerException yes) {
-                       Snackbar snackbar = Snackbar.make(imageDisplay, "Please enter a number of pairs.", Snackbar.LENGTH_LONG);
-                       snackbar.show();
+                    } catch (NullPointerException yes) {
+                        Snackbar snackbar = Snackbar.make(imageDisplay, "Please enter a number of pairs.", Snackbar.LENGTH_LONG);
+                        snackbar.show();
 
-                   }
+                    }
                 }
             }
         });
@@ -191,5 +190,6 @@ public class TileSettingsActivity extends AppCompatActivity {
         startActivityForResult(pickPhoto, 1);//one can be replaced with any action code
 
     }
+
 
 }
