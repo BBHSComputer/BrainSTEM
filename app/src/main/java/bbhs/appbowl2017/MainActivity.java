@@ -84,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
 							LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
 
 							// Inflate the custom layout/view
-							View customView = inflater.inflate(R.layout.activity_main,null);
+							View customView = inflater.inflate(R.layout.popup_tile_imageselect,null);
 
 							PopupWindow window = new PopupWindow(customView, LayoutParams.WRAP_CONTENT,
 									ActionBar.LayoutParams.WRAP_CONTENT);
-							window.showAtLocation((RelativeLayout)findViewById(R.id.main_activity), Gravity.CENTER,0,0);
+							window.showAtLocation(findViewById(R.id.main_activity), Gravity.CENTER,0,0);
 						}
 
 					}
