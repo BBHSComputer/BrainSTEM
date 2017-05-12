@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         tilePlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Start tile
+                startActivity(new Intent(getApplicationContext(), TileGameActivity.class));
             }
         });
         sumPlay.setOnClickListener(new View.OnClickListener() {
