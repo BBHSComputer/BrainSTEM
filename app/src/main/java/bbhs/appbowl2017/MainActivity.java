@@ -3,17 +3,20 @@ package bbhs.appbowl2017;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.solver.widgets.ConstraintAnchor;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
@@ -25,151 +28,169 @@ import bbhs.appbowl2017.music.MusicActivity;
 import bbhs.appbowl2017.stack.StackActivity;
 import bbhs.appbowl2017.summation.SummationGame;
 import bbhs.appbowl2017.tile.ChooseImagesDialog;
+import bbhs.appbowl2017.tile.TileGameActivity;
+import bbhs.appbowl2017.tile.TileSettingsActivity;
 
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.view.ViewGroup.LayoutParams;
+
+import static bbhs.appbowl2017.tile.TileSettingsActivity.cards;
+import static bbhs.appbowl2017.tile.TileSettingsActivity.displayedImages;
+
 public class MainActivity extends AppCompatActivity {
 
-	private boolean expanded[];
-	private ImageButton[] dropdownButtons;
-	private TextView[] descriptions;
-	private View[] settings;
-	private boolean tellRules;
+    private boolean expanded[];
+    private ImageButton[] dropdownButtons;
+    private TextView[] descriptions;
+    private View[] settings;
+    private boolean tellRules;
 
-	private int stackLevel = 1, tileNumPairs = 8;
+    private int stackLevel = 1, tileNumPairs = 8;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+    private Button customImages;
+    private  Button  defaultImages;
+    private Uri selectedImage;
+    private Uri image;
 
-		expanded = new boolean[4];
-		dropdownButtons = new ImageButton[] {(ImageButton) findViewById(R.id.stackDropdown), (ImageButton) findViewById(R.id.tileDropdown), (ImageButton) findViewById(R.id.sumDropdown), (ImageButton) findViewById(R.id.musicDropdown)};
-		descriptions = new TextView[] {(TextView) findViewById(R.id.stackDesc), (TextView) findViewById(R.id.tileDesc), (TextView) findViewById(R.id.sumDesc), (TextView) findViewById(R.id.musicDesc)};
-		settings = new View[] {findViewById(R.id.stackSettings), findViewById(R.id.tileSettings), findViewById(R.id.sumSettings), findViewById(R.id.musicSettings)};
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-		Button stackPlay = (Button) findViewById(R.id.stackPlay);
-		Button tilePlay = (Button) findViewById(R.id.tilePlay);
-		Button sumPlay = (Button) findViewById(R.id.sumPlay);
-		Button musicPlay = (Button) findViewById(R.id.musicPlay);
+        expanded = new boolean[4];
+        dropdownButtons = new ImageButton[]{(ImageButton) findViewById(R.id.stackDropdown), (ImageButton) findViewById(R.id.tileDropdown), (ImageButton) findViewById(R.id.sumDropdown), (ImageButton) findViewById(R.id.musicDropdown)};
+        descriptions = new TextView[]{(TextView) findViewById(R.id.stackDesc), (TextView) findViewById(R.id.tileDesc), (TextView) findViewById(R.id.sumDesc), (TextView) findViewById(R.id.musicDesc)};
+        settings = new View[]{findViewById(R.id.stackSettings), findViewById(R.id.tileSettings), findViewById(R.id.sumSettings), findViewById(R.id.musicSettings)};
 
-		Button stackAdd = (Button) findViewById(R.id.stackAdd);
-		Button stackSubtract = (Button) findViewById(R.id.stackSubtract);
-		final TextView stackValue = (TextView) findViewById(R.id.stackValue);
-		final RadioButton stackGuess = (RadioButton) findViewById(R.id.stackGuess);
-		final RadioButton stackTell = (RadioButton) findViewById(R.id.stackTell);
+        Button stackPlay = (Button) findViewById(R.id.stackPlay);
+        Button tilePlay = (Button) findViewById(R.id.tilePlay);
+        Button sumPlay = (Button) findViewById(R.id.sumPlay);
+        Button musicPlay = (Button) findViewById(R.id.musicPlay);
 
-		Button tileAdd = (Button) findViewById(R.id.tileAdd);
-		Button tileSubtract = (Button) findViewById(R.id.tileSubtract);
-		Button tileConfigure = (Button) findViewById(R.id.tileChangeImages);
-		final TextView tileValue = (TextView) findViewById(R.id.tileValue);
+        Button stackAdd = (Button) findViewById(R.id.stackAdd);
+        Button stackSubtract = (Button) findViewById(R.id.stackSubtract);
+        final TextView stackValue = (TextView) findViewById(R.id.stackValue);
+        final RadioButton stackGuess = (RadioButton) findViewById(R.id.stackGuess);
+        final RadioButton stackTell = (RadioButton) findViewById(R.id.stackTell);
 
-		tellRules = true;
+        Button tileAdd = (Button) findViewById(R.id.tileAdd);
+        Button tileSubtract = (Button) findViewById(R.id.tileSubtract);
+        Button tileConfigure = (Button) findViewById(R.id.tileChangeImages);
+        final TextView tileValue = (TextView) findViewById(R.id.tileValue);
 
-		for (int i = 0; i < dropdownButtons.length; i++) {
-			final int n = i;
 
-			dropdownButtons[i].setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if (expanded[n]) {
-						dropdownButtons[n].setRotation(0);
-						descriptions[n].setMinLines(2);
-						descriptions[n].setMaxLines(2);
-						settings[n].setVisibility(View.GONE);
-						expanded[n] = false;
-					} else {
-						dropdownButtons[n].setRotation(-180);
-						descriptions[n].setMinLines(3);
-						descriptions[n].setMaxLines(Integer.MAX_VALUE);
-						settings[n].setVisibility(View.VISIBLE);
-						expanded[n] = true;
-					}
-				}
-			});
-		}
 
-		stackPlay.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent stackIntent = new Intent(getApplicationContext(), StackActivity.class);
-				stackIntent.putExtra("tellRules", tellRules);
-				System.out.println("BBDEBUG: " + tellRules);
-				startActivity(stackIntent);
-			}
-		});
-		tilePlay.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				//Start tile
-			}
-		});
-		sumPlay.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				startActivity( new Intent(getApplicationContext(), SummationGame.class));
 
-			}
-		});
-		musicPlay.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				startActivity( new Intent(getApplicationContext(), MusicActivity.class));
+        tellRules = true;
 
-			}
-		});
-		stackGuess.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (stackTell.isChecked())
-					stackTell.setChecked(false);
-				tellRules = false;
-			}
-		});
-		stackTell.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (stackGuess.isChecked())
-					stackGuess.setChecked(false);
-				tellRules = true;
-			}
-		});
-		stackAdd.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (stackLevel < 43)
-					stackValue.setText(String.format(Locale.getDefault(), "%d", ++stackLevel));
-			}
-		});
-		stackSubtract.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (stackLevel > 1)
-					stackValue.setText(String.format(Locale.getDefault(), "%d", --stackLevel));
-			}
-		});
-		tileAdd.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (tileNumPairs < 8)
-					tileValue.setText(String.format(Locale.getDefault(), "%d", ++tileNumPairs));
-			}
-		});
-		tileSubtract.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (tileNumPairs > 1)
-					tileValue.setText(String.format(Locale.getDefault(), "%d", --tileNumPairs));
-			}
-		});
+        for (int i = 0; i < dropdownButtons.length; i++) {
+            final int n = i;
 
-		tileConfigure.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				ChooseImagesDialog dialog = new ChooseImagesDialog();
-				dialog.show(getSupportFragmentManager(), "ChooseImages");
+            dropdownButtons[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (expanded[n]) {
+                        dropdownButtons[n].setRotation(0);
+                        descriptions[n].setMinLines(2);
+                        descriptions[n].setMaxLines(2);
+                        settings[n].setVisibility(View.GONE);
+                        expanded[n] = false;
+                    } else {
+                        dropdownButtons[n].setRotation(-180);
+                        descriptions[n].setMinLines(3);
+                        descriptions[n].setMaxLines(Integer.MAX_VALUE);
+                        settings[n].setVisibility(View.VISIBLE);
+                        expanded[n] = true;
+                    }
+                }
+            });
+        }
+
+        stackPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent stackIntent = new Intent(getApplicationContext(), StackActivity.class);
+                stackIntent.putExtra("tellRules", tellRules);
+                System.out.println("BBDEBUG: " + tellRules);
+                startActivity(stackIntent);
+            }
+        });
+        tilePlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Start tile
+            }
+        });
+        sumPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SummationGame.class));
+
+            }
+        });
+        musicPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MusicActivity.class));
+
+            }
+        });
+        stackGuess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (stackTell.isChecked())
+                    stackTell.setChecked(false);
+                tellRules = false;
+            }
+        });
+        stackTell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (stackGuess.isChecked())
+                    stackGuess.setChecked(false);
+                tellRules = true;
+            }
+        });
+        stackAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (stackLevel < 43)
+                    stackValue.setText(String.format(Locale.getDefault(), "%d", ++stackLevel));
+            }
+        });
+        stackSubtract.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (stackLevel > 1)
+                    stackValue.setText(String.format(Locale.getDefault(), "%d", --stackLevel));
+            }
+        });
+        tileAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tileNumPairs < 8)
+                    tileValue.setText(String.format(Locale.getDefault(), "%d", ++tileNumPairs));
+            }
+        });
+        tileSubtract.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tileNumPairs > 1)
+                    tileValue.setText(String.format(Locale.getDefault(), "%d", --tileNumPairs));
+            }
+        });
+
+        tileConfigure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChooseImagesDialog dialog = new ChooseImagesDialog();
+                dialog.show(getSupportFragmentManager(), "ChooseImages");
+                customImages = (Button) findViewById(R.id.customB);
+                defaultImages = (Button) findViewById(R.id.defaultB);
+                setPopUpButtons();
+
 
 //				View mainView = findViewById(R.id.main_activity);
 //
@@ -191,7 +212,82 @@ public class MainActivity extends AppCompatActivity {
 //				p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
 //				p.dimAmount = 0.3f;
 //				wm.updateViewLayout(mainView, p);
-			}
-		});
-	}
+            }
+        });
+
+    }
+
+
+    public void setPopUpButtons(){
+        Log.d("uio", "ipo");
+        Log.d("uio", new Boolean((View) (findViewById(R.id.tileImageSelectPopup)) == null).toString());
+
+        customImages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             cards = new Uri[tileNumPairs]; // make sure num of cards is <= 10
+
+                TileSettingsActivity.count = 0;
+
+                for (int i = 0; i < displayedImages.length; i++) {
+                    displayedImages[i].setImageURI(null);
+                }
+
+                for (int i = 0; i < cards.length; i++) {
+                    getImage();
+
+                }
+            }
+        });
+
+        defaultImages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cards = new Uri[tileNumPairs];
+                for (int i = 0; i < cards.length; i++) {
+                    displayedImages[i].setImageURI(TileSettingsActivity.defaultCards[i]);
+                    cards[i] = TileSettingsActivity.defaultCards[i];
+                }
+                startActivity(new Intent(getApplicationContext(), TileGameActivity.class)); //loadu p the game
+            }
+        });
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+        switch (requestCode) {
+            case 0:
+                if (resultCode == RESULT_OK) {
+                    selectedImage = imageReturnedIntent.getData();
+                    TileSettingsActivity.imageView.setImageURI(selectedImage);
+
+                    TileSettingsActivity.displayedImages[TileSettingsActivity.count].setImageURI(image);
+                    cards[TileSettingsActivity.count] = image;
+                    TileSettingsActivity.count++;
+
+                }
+
+                break;
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    selectedImage = imageReturnedIntent.getData();
+                    image = selectedImage;
+
+
+                    displayedImages[TileSettingsActivity.count].setImageURI(image);
+                    cards[TileSettingsActivity.count] = image;
+                    TileSettingsActivity.count++;
+
+                }
+                break;
+        }
+
+    }
+
+
+    public void getImage() { //simplieifes image retrival calls
+        Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(pickPhoto, 1);//one can be replaced with any action code
+
+    }
 }

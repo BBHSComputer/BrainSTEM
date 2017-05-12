@@ -32,6 +32,7 @@ public class ChooseImagesDialog extends DialogFragment {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {}
 		});
+
 		return builder.create();
 	}
 }
