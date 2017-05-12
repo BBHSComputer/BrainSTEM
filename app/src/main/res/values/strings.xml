@@ -73,7 +73,7 @@
 
     <string name="rule_prefix">New Rules:</string>
 
-    <string name="win">You Win!</string>
+    <string name="stack_progress">Next Level!</string>
     <string name="q1">On which parking space is the car parked?</string>
     <string name="q2">A and C but not B</string>
     <string name="q3">Where is I?</string>

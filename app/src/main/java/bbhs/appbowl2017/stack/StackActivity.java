@@ -65,7 +65,6 @@ public class StackActivity extends AppCompatActivity {
 	private RelativeLayout field; // This is the playing field
 	private PercentRelativeLayout pause_menu;//THis is the layout that appears when the game starts and when the pause button is clicked
 	private FrameLayout frame;
-	private Button home;//This button goes back to the home screen
 	private Button pause;//This button pauses the game
 	private Button play;//This button plays the game/resume
 	private TextView ruleNotify;
@@ -100,7 +99,6 @@ public class StackActivity extends AppCompatActivity {
 			public void onClick(View v) {
                 paused = false;
 				play.setEnabled(false);
-				home.setEnabled(true);
 				pause.setEnabled(true);
 				ObjectAnimator play_fadeOut = ObjectAnimator.ofFloat(pause_menu, "alpha", 0);
 				play_fadeOut.start();
@@ -117,15 +115,6 @@ public class StackActivity extends AppCompatActivity {
 			}
 		});
 
-		home = (Button) findViewById(R.id.game2_home);
-		home.setEnabled(false);
-		home.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {//Resets the game and starts MainActivity
-				finish();
-				startActivity(new Intent(getApplicationContext(), MainActivity.class));
-			}
-		});
 		pause = (Button) findViewById(R.id.game2_pause);
 		pause.setEnabled(false);
 		pause.setOnClickListener(new View.OnClickListener() {
@@ -195,7 +184,6 @@ public class StackActivity extends AppCompatActivity {
 		ObjectAnimator play_fadeIn = ObjectAnimator.ofFloat(pause_menu, "alpha", 1);
 		play_fadeIn.start();
 		play.setEnabled(true);
-		home.setEnabled(false);
 		pause.setEnabled(false);
 		for (View button : buttons) {
 			button.setEnabled(false);
@@ -531,7 +519,8 @@ public class StackActivity extends AppCompatActivity {
 		rules.add(a);
 		switch (i) {
 			case 2:
-			    if (tellRules) ruleNotify.setText(getApplicationContext().getString(R.string.win) + "\n" + getApplicationContext().getString(R.string.rule_prefix) + "\n" + a.toString());
+			    if (tellRules) ruleNotify.setText(getApplicationContext().getString(R.string.stack_progress) + "\n" + getApplicationContext().getString(R.string.rule_prefix) + "\n" + a.toString());
+				else ruleNotify.setText(getApplicationContext().getString(R.string.stack_progress) + "\n" + "A new rule has been added!\n");
 				break;
 		}
 		return a;

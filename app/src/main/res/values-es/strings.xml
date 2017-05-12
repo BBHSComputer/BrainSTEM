@@ -53,7 +53,7 @@
     <string name="rule_prefix">Reglas Nuevas:</string>
     <string name="run">Correr</string>
     <string name="what">\¿Que?</string>
-    <string name="win">¡Juego completo!</string>
+    <string name="stack_progress">¡Juego completo!</string>
     <string name="and">y</string>
     <string name="music_score">Tanteo: %d</string>
     <string name="music_copyright_description"></string>
