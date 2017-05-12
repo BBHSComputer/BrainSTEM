@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 	private View[] settings;
 	private boolean tellRules;
 
-	private int stackLevel = 1, tileNumPairs = 10;
+	private int stackLevel = 1, tileNumPairs = 8;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 		tileAdd.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (tileNumPairs < 16)
+				if (tileNumPairs < 8)
 					tileValue.setText(String.format(Locale.getDefault(), "%d", ++tileNumPairs));
 			}
 		});
