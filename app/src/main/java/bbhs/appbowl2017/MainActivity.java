@@ -49,11 +49,14 @@ public class MainActivity extends AppCompatActivity {
     private Button customImages;
     private  Button  defaultImages;
 
+    public static Context appCont;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        appCont = getApplicationContext();
 
         expanded = new boolean[4];
         dropdownButtons = new ImageButton[]{(ImageButton) findViewById(R.id.stackDropdown), (ImageButton) findViewById(R.id.tileDropdown), (ImageButton) findViewById(R.id.sumDropdown), (ImageButton) findViewById(R.id.musicDropdown)};
