@@ -35,31 +35,30 @@ import java.util.Set;
 import bbhs.appbowl2017.MainActivity;
 import bbhs.appbowl2017.R;
 
-import static bbhs.appbowl2017.R.id.stack_pause;
 
 public class StackActivity extends AppCompatActivity {
-	public static final int SIZE_X = 5; // This is the number of tiles across the game board is
-	public static final int SIZE_Y = 7; // This is the number of tiles top to bottom the game board is - subtract one to get grid size
-	public static final int TEXT_SIZE = 36;
-	public static final int BAG_SIZE = 2; // The number of times the integers 1-9 appear in the random bag (random bag is a random number generator where objects are thrown into a "bag" and then taken out in random order, thus being random but also evenly distributed)
-	public static int field_x;
-	public static int field_y;
-	private static int stacks;
-	private static int rulesBroken;
-	private static final int duration = 100;
+	public final int SIZE_X = 5; // This is the number of tiles across the game board is
+	public final int SIZE_Y = 7; // This is the number of tiles top to bottom the game board is - subtract one to get grid size
+	public  final int TEXT_SIZE = 36;
+	public  final int BAG_SIZE = 2; // The number of times the integers 1-9 appear in the random bag (random bag is a random number generator where objects are thrown into a "bag" and then taken out in random order, thus being random but also evenly distributed)
+	public  int field_x;
+	public  int field_y;
+	private  int stacks;
+	private  int rulesBroken;
+	private  final int duration = 100;
 
-	private static boolean initializationComplete = false; // Just makes sure that the game start only happens once
-	private static boolean fallingAnim = false; // Check if animations are currently running
-    private static boolean paused = true;
+	private  boolean initializationComplete = false; // Just makes sure that the game start only happens once
+	private  boolean fallingAnim = false; // Check if animations are currently running
+    private  boolean paused = true;
 
-	private static ArrayList<ArrayList<View>> grid = new ArrayList<>(); // This is the 2D game field, the tiles in relative grid positions
-	private static ArrayList<View> buttons = new ArrayList<>(); // This is the list of gameButtons, which is animated after the blocks are
-	private static Point[][] coordinates; // This is a 2D array of the coordinates corresponding to the game field positions [y][x]
+	private  ArrayList<ArrayList<View>> grid; // This is the 2D game field, the tiles in relative grid positions
+	private  ArrayList<View> buttons = new ArrayList<>(); // This is the list of gameButtons, which is animated after the blocks are
+	private  Point[][] coordinates; // This is a 2D array of the coordinates corresponding to the game field positions [y][x]
 
-	private static List<Animator> movementAnim = new ArrayList<>(); // List of animations that need to be done
-	private static HashMap<View, Animator> removeAnimList = new HashMap<>();
-	private static List<Rule> rules = new ArrayList<>();//List of rules
-	private static Set<View> remove = new HashSet<>(); // Sets of views to remove
+	private  List<Animator> movementAnim = new ArrayList<>(); // List of animations that need to be done
+	private  HashMap<View, Animator> removeAnimList = new HashMap<>();
+	private  List<Rule> rules = new ArrayList<>();//List of rules
+	private  Set<View> remove = new HashSet<>(); // Sets of views to remove
 
 	private final ArrayDeque<Integer> newTiles = new ArrayDeque<>();
 
@@ -80,6 +79,7 @@ public class StackActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_stackgame); // Sets view layout to activity_stackgame.xml
+		grid = new ArrayList<>();
 		for (int column = 0; column < SIZE_X; column++) { // Initializes the size of the grid ArrayList, or the number of columns
 			grid.add(new ArrayList<View>()); // Adds column to grid ArrayList
 		}
