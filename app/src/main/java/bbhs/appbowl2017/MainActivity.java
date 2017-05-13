@@ -187,8 +187,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ChooseImagesDialog dialog = new ChooseImagesDialog();
                 dialog.show(getSupportFragmentManager(), "ChooseImages");
-                customImages = (Button) findViewById(R.id.customB);
-                defaultImages = (Button) findViewById(R.id.defaultB);
+                LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View view = inflater.inflate(R.layout.popup_tile_imageselect, null);
+                customImages = (Button) view.findViewById(R.id.customB);
+                defaultImages = (Button) view.findViewById(R.id.defaultB);
                 setPopUpButtons();
 
 
@@ -225,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
         customImages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             cards = new Uri[tileNumPairs]; // make sure num of cards is <= 10
+                cards = new Uri[tileNumPairs]; // make sure num of cards is <= 10
 
                 TileSettingsActivity.count = 0;
 
