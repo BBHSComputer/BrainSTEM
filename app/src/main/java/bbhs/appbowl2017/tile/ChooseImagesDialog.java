@@ -48,6 +48,7 @@ public class ChooseImagesDialog extends DialogFragment {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {}
 		});
+		//Weiss your listeners are below vv
 		customImages.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
