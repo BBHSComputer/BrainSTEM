@@ -36,9 +36,6 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.view.ViewGroup.LayoutParams;
 
-import static bbhs.appbowl2017.tile.TileSettingsActivity.cards;
-import static bbhs.appbowl2017.tile.TileSettingsActivity.displayedImages;
-
 public class MainActivity extends AppCompatActivity {
 
     private boolean expanded[];
@@ -51,8 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button customImages;
     private  Button  defaultImages;
-    private Uri selectedImage;
-    private Uri image;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,12 +182,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ChooseImagesDialog dialog = new ChooseImagesDialog();
+                Bundle args = new Bundle();
+                args.putInt("tileNumPairs", tileNumPairs);
+                dialog.setArguments(args);
                 dialog.show(getSupportFragmentManager(), "ChooseImages");
-                LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View view = inflater.inflate(R.layout.popup_tile_imageselect, null);
-                customImages = (Button) view.findViewById(R.id.customB);
-                defaultImages = (Button) view.findViewById(R.id.defaultB);
-                setPopUpButtons();
 
 
 //				View mainView = findViewById(R.id.main_activity);
@@ -223,73 +217,8 @@ public class MainActivity extends AppCompatActivity {
     public void setPopUpButtons(){
         Log.d("uio", "ipo");
         Log.d("uio", new Boolean((View) (findViewById(R.id.tileImageSelectPopup)) == null).toString());
-
-        customImages.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cards = new Uri[tileNumPairs]; // make sure num of cards is <= 10
-
-                TileSettingsActivity.count = 0;
-
-                for (int i = 0; i < displayedImages.length; i++) {
-                    displayedImages[i].setImageURI(null);
-                }
-
-                for (int i = 0; i < cards.length; i++) {
-                    getImage();
-
-                }
-            }
-        });
-
-        defaultImages.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cards = new Uri[tileNumPairs];
-                for (int i = 0; i < cards.length; i++) {
-                    displayedImages[i].setImageURI(TileSettingsActivity.defaultCards[i]);
-                    cards[i] = TileSettingsActivity.defaultCards[i];
-                }
-                startActivity(new Intent(getApplicationContext(), TileGameActivity.class)); //loadu p the game
-            }
-        });
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-        switch (requestCode) {
-            case 0:
-                if (resultCode == RESULT_OK) {
-                    selectedImage = imageReturnedIntent.getData();
-                    TileSettingsActivity.imageView.setImageURI(selectedImage);
-
-                    TileSettingsActivity.displayedImages[TileSettingsActivity.count].setImageURI(image);
-                    cards[TileSettingsActivity.count] = image;
-                    TileSettingsActivity.count++;
-
-                }
-
-                break;
-            case 1:
-                if (resultCode == RESULT_OK) {
-                    selectedImage = imageReturnedIntent.getData();
-                    image = selectedImage;
-
-
-                    displayedImages[TileSettingsActivity.count].setImageURI(image);
-                    cards[TileSettingsActivity.count] = image;
-                    TileSettingsActivity.count++;
-
-                }
-                break;
-        }
-
+        //I've been moved to ChooseImagesDialog thanks
     }
 
 
-    public void getImage() { //simplieifes image retrival calls
-        Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(pickPhoto, 1);//one can be replaced with any action code
-
-    }
 }
