@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayDeque;
@@ -33,6 +34,8 @@ import java.util.Set;
 
 import bbhs.appbowl2017.MainActivity;
 import bbhs.appbowl2017.R;
+
+import static bbhs.appbowl2017.R.id.stack_pause;
 
 public class StackActivity extends AppCompatActivity {
 	public static final int SIZE_X = 5; // This is the number of tiles across the game board is
@@ -65,6 +68,7 @@ public class StackActivity extends AppCompatActivity {
 	private RelativeLayout field; // This is the playing field
 	private PercentRelativeLayout pause_menu;//THis is the layout that appears when the game starts and when the pause button is clicked
 	private FrameLayout frame;
+    private ScrollView ruleScroll;
 	private Button pause;//This button pauses the game
 	private Button play;//This button plays the game/resume
 	private TextView ruleNotify;
@@ -93,6 +97,7 @@ public class StackActivity extends AppCompatActivity {
 		pause_menu = (PercentRelativeLayout) findViewById(R.id.stack_pause); //Gets the pause menu
 		field = (RelativeLayout) findViewById(R.id.stack_field); // Gets the playing field relative view
 		frame = (FrameLayout) findViewById(R.id.pause_contain);
+        ruleScroll = (ScrollView) findViewById(R.id.rule_scroll);
 		play = (Button) findViewById(R.id.stack_ruleAccept);
 		play.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -102,7 +107,8 @@ public class StackActivity extends AppCompatActivity {
 				pause.setEnabled(true);
 				ObjectAnimator play_fadeOut = ObjectAnimator.ofFloat(pause_menu, "alpha", 0);
 				play_fadeOut.start();
-				((ViewGroup) (frame.getParent())).removeView(frame);
+				pause_menu.removeView(frame);
+                pause_menu.removeView(ruleScroll);
 				for (View button : buttons) {
 					if (grid.get((int) button.getTag(R.id.stack_column)).size() < SIZE_Y) {
 						button.setEnabled(true);
@@ -120,10 +126,11 @@ public class StackActivity extends AppCompatActivity {
 		pause.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				pauseAction();
+				if(!paused){
+					pauseAction();
+				}
 			}
 		});
-
 
 		Log.d("BrainSTEM S", "onCreate() finished");
 		if(tellRules) ruleNotify.setText(getApplicationContext().getString(R.string.rule_prefix) + "\n" + a.toString() + "\n" + b.toString());
@@ -180,6 +187,7 @@ public class StackActivity extends AppCompatActivity {
 
 	private void pauseAction() {
 		pause_menu.addView(frame);
+        pause_menu.addView(ruleScroll);
         paused = true;
 		ObjectAnimator play_fadeIn = ObjectAnimator.ofFloat(pause_menu, "alpha", 1);
 		play_fadeIn.start();
