@@ -103,7 +103,6 @@ public class ChooseImagesDialog extends DialogFragment {
                     }
                     cards[i] = defaultCards[i];
                 }
-                startActivity(new Intent(getContext(), TileGameActivity.class)); //loadu p the game
             }
         });
 

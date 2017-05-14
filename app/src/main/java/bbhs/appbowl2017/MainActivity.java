@@ -6,6 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.solver.widgets.ConstraintAnchor;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.view.ViewGroup.LayoutParams;
+import static bbhs.appbowl2017.tile.TileSettingsActivity.cards;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -79,8 +82,7 @@ public class MainActivity extends AppCompatActivity {
         Button tileConfigure = (Button) findViewById(R.id.tileChangeImages);
         final TextView tileValue = (TextView) findViewById(R.id.tileValue);
 
-
-
+        final RelativeLayout layout = (RelativeLayout) findViewById(R.id.main_activity);
 
         tellRules = true;
 
@@ -119,7 +121,13 @@ public class MainActivity extends AppCompatActivity {
         tilePlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), TileGameActivity.class));
+                if(cards != null){
+                    startActivity(new Intent(getApplicationContext(), TileGameActivity.class));
+                }
+                else{
+                    Snackbar snackbar = Snackbar.make(layout, "Please set your cards under \"Change Images\".", Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
             }
         });
         sumPlay.setOnClickListener(new View.OnClickListener() {
@@ -190,27 +198,6 @@ public class MainActivity extends AppCompatActivity {
                 dialog.setArguments(args);
                 dialog.show(getSupportFragmentManager(), "ChooseImages");
 
-
-//				View mainView = findViewById(R.id.main_activity);
-//
-//				ConstraintLayout popupLayout = (ConstraintLayout) findViewById(R.id.tileImageSelectPopup);
-//
-//				LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-//				// Inflate the custom layout/view
-//				View view = inflater.inflate(R.layout.popup_tile_imageselect, popupLayout);
-//
-//				PopupWindow popup = new PopupWindow(getApplicationContext());
-//				popup.setContentView(view);
-//				int diff = (int) (mainView.getWidth() * 0.1);
-//				popup.setWidth(mainView.getWidth() - diff);
-//				popup.setHeight(mainView.getHeight() - diff);
-//				popup.setBackgroundDrawable(getResources().getDrawable(R.drawable.popup_bg));
-//				popup.showAtLocation(mainView, Gravity.CENTER, 0, 0);
-//
-//				WindowManager.LayoutParams p = (WindowManager.LayoutParams) mainView.getLayoutParams();
-//				p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
-//				p.dimAmount = 0.3f;
-//				wm.updateViewLayout(mainView, p);
             }
         });
 
