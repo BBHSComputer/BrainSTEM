@@ -39,7 +39,7 @@ public class TileWinActivity extends AppCompatActivity {
         playAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), TileSettingsActivity.class)); // if play again load p tile
+                // startActivity(new Intent(getApplicationContext(), TileSettingsActivity.class)); // if play again load p tile
             }
         });
 
