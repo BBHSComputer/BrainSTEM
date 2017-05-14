@@ -61,12 +61,4 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="95dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Play Again"
-        android:id="@+id/again"
-        android:layout_alignTop="@+id/goHome"
-        android:layout_alignStart="@+id/goHome"
-        android:layout_marginTop="46dp" />
 </RelativeLayout>
