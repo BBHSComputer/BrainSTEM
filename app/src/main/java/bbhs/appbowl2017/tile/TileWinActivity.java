@@ -14,7 +14,7 @@ import bbhs.appbowl2017.R;
 public class TileWinActivity extends AppCompatActivity {
     public static double score, length, moves;
     private TextView tScore,tTime,tMoves;
-    private Button mainMenu,playAgain;
+    private Button mainMenu;
     public static double fTime, fMoves, fScore; //F meaning final, post Weiss' algorithms
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,20 +26,12 @@ public class TileWinActivity extends AppCompatActivity {
         tMoves = (TextView) findViewById(R.id.moves);
 
         mainMenu = (Button) findViewById(R.id.goHome);
-        playAgain = (Button) findViewById(R.id.again);
 
 
         mainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class)); //if main menu go to main menu
-            }
-        });
-
-        playAgain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // startActivity(new Intent(getApplicationContext(), TileSettingsActivity.class)); // if play again load p tile
             }
         });
 

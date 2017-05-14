@@ -40,7 +40,7 @@ import bbhs.appbowl2017.R;
 
 public class ChooseImagesDialog extends DialogFragment {
 
-	public static final int MAX_CARDS = 16;
+	public static final int MAX_CARDS = MainActivity.tileNumPairs;
 
 	public static final int[] DEFAULT_IDS = {R.drawable.defaulttile01, R.drawable.defaulttile02, R.drawable.defaulttile03, R.drawable.defaulttile04, R.drawable.defaulttile05, R.drawable.defaulttile06, R.drawable.defaulttile07, R.drawable.defaulttile08, R.drawable.defaulttile09, R.drawable.defaulttile10, R.drawable.defaulttile11, R.drawable.defaulttile12, R.drawable.defaulttile13, R.drawable.defaulttile14, R.drawable.defaulttile15, R.drawable.defaulttile16};
 
