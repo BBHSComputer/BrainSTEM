@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), TileGameActivity.class));
                 }
                 else{
-                    Snackbar snackbar = Snackbar.make(layout, "Please set your cards under \"Change Images\".", Snackbar.LENGTH_LONG);
+                    Snackbar snackbar = Snackbar.make(layout, getString(R.string.tileException), Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
             }
