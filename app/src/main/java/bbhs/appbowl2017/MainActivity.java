@@ -2,24 +2,14 @@ package bbhs.appbowl2017;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
-import android.support.constraint.ConstraintLayout;
-import android.support.constraint.solver.widgets.ConstraintAnchor;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -30,13 +20,10 @@ import bbhs.appbowl2017.stack.StackActivity;
 import bbhs.appbowl2017.summation.SummationGame;
 import bbhs.appbowl2017.tile.ChooseImagesDialog;
 import bbhs.appbowl2017.tile.TileGameActivity;
-import bbhs.appbowl2017.tile.TileSettingsActivity;
 
-import android.widget.ImageButton;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.view.ViewGroup.LayoutParams;
-import static bbhs.appbowl2017.tile.TileSettingsActivity.cards;
+
+import static bbhs.appbowl2017.tile.ChooseImagesDialog.cards;
 
 
 public class MainActivity extends AppCompatActivity {

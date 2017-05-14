@@ -1,5 +1,6 @@
 package bbhs.appbowl2017.tile;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentResolver;
@@ -8,144 +9,181 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import bbhs.appbowl2017.MainActivity;
 import bbhs.appbowl2017.R;
 
-import static android.R.attr.parentActivityName;
-import static android.R.attr.popupLayout;
-import static android.app.Activity.RESULT_OK;
-import static bbhs.appbowl2017.tile.TileSettingsActivity.cards;
-import static bbhs.appbowl2017.tile.TileSettingsActivity.defaultCards;
-import static bbhs.appbowl2017.tile.TileSettingsActivity.displayedImages;
-
-
 /**
  * Created by Ethan Tillison on 11 May. 2017.
+ *
  */
 
 public class ChooseImagesDialog extends DialogFragment {
-    private Uri selectedImage;
-    private Uri image;
 
+	public static final int MAX_CARDS = 16;
 
-    @Override
+	public static final int[] DEFAULT_IDS = {R.drawable.defaulttile01, R.drawable.defaulttile02, R.drawable.defaulttile03, R.drawable.defaulttile04, R.drawable.defaulttile05, R.drawable.defaulttile06, R.drawable.defaulttile07, R.drawable.defaulttile08, R.drawable.defaulttile09, R.drawable.defaulttile10, R.drawable.defaulttile11, R.drawable.defaulttile12, R.drawable.defaulttile13, R.drawable.defaulttile14, R.drawable.defaulttile15, R.drawable.defaulttile16};
+
+	public static Uri[] cards = new Uri[MAX_CARDS];
+
+	private ImageView[] imageViews = new ImageView[MAX_CARDS];
+
+	private final Set<Integer> selectedIndices = new HashSet<>();
+
+	/**
+	 * Maps the index of all grid view positions containing default images to the index in {@link ChooseImagesDialog#DEFAULT_IDS} of that image
+	 */
+	private final Map<Integer, Integer> currentlyUsedDefaultImages = new HashMap<>();
+
+    @NonNull
+	@Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		Bundle b = getArguments();
+		final int tileNumPairs = b.getInt("tileNumPairs");
+
+		LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         // Inflate the custom layout/view
         View view = inflater.inflate(R.layout.popup_tile_imageselect, null);
+
+		GridView grid = (GridView) view.findViewById(R.id.imageGrid);
+		grid.setAdapter(new BaseAdapter() {
+			@Override
+			public int getCount() {
+				return MAX_CARDS;
+			}
+
+			@Override
+			public Object getItem(int position) {
+				return null;
+			}
+
+			@Override
+			public long getItemId(int position) {
+				return 0;
+			}
+
+			@Override
+			public View getView(int position, View convertView, ViewGroup parent) {
+				if (convertView == null) {
+					imageViews[position] = new ImageView(getContext());
+					imageViews[position].setLayoutParams(new GridView.LayoutParams(100, 100));
+					imageViews[position].setScaleType(ImageView.ScaleType.FIT_CENTER);
+				} else {
+					imageViews[position] = (ImageView) convertView;
+				}
+
+				Glide.with(getContext()).load(DEFAULT_IDS[position]).into(imageViews[position]);
+
+				imageViews[position].setImageAlpha(position >= tileNumPairs ? 128 : 255);
+
+				return imageViews[position];
+			}
+		});
+		grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				if (selectedIndices.contains(position)) selectedIndices.remove(position);
+				else selectedIndices.add(position);
+			}
+		});
+
+		for (int i = 0; i < MAX_CARDS; i++) {
+			currentlyUsedDefaultImages.put(i, i);
+			cards[i] = uriForDrawable(DEFAULT_IDS[i]);
+		}
+
+
         Button customImages = (Button) view.findViewById(R.id.customB);
-        Button defaultImages = (Button) view.findViewById(R.id.defaultB);
-        Bundle b = getArguments();
+		customImages.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				for (Integer ix : selectedIndices) {
+					currentlyUsedDefaultImages.remove(ix);
+					getImage(ix);
+				}
+				selectedIndices.clear();
+			}
+		});
 
-        final int tileNumPairs = b.getInt("tileNumPairs");
+        final Button defaultImages = (Button) view.findViewById(R.id.defaultB);
+		defaultImages.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				for (Integer ix : selectedIndices) {
+					currentlyUsedDefaultImages.remove(ix);
 
+					int imageIndex = 0;
+					while (currentlyUsedDefaultImages.containsValue(imageIndex)) {
+						imageIndex++;
+					}
+
+					currentlyUsedDefaultImages.put(ix, imageIndex);
+					Glide.with(getContext()).load(DEFAULT_IDS[imageIndex]).into(imageViews[imageIndex]);
+					cards[imageIndex] = uriForDrawable(DEFAULT_IDS[imageIndex]);
+				}
+				selectedIndices.clear();
+			}
+		});
 
         builder.setMessage(R.string.tileChangeImages).setView(view).setNeutralButton("OK", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-
-        TileSettingsActivity.displayedImages = new ImageView[10];
-
-        customImages.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cards = new Uri[tileNumPairs]; // make sure num of cards is <= 10
-
-                TileSettingsActivity.count = 0;
-
-			/*	for (int i = 0; i < displayedImages.length; i++) {
-                    displayedImages[i].setImageURI(null);
-				}*/
-
-                for (int i = 0; i < cards.length; i++) {
-                    getImage();
-
-                }
-            }
-        });
-
-        defaultCards = new Uri[10];
-        Resources resources = MainActivity.appCont.getResources();
-
-
-        defaultCards[0] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img1) + '/' + resources.getResourceTypeName(R.drawable.img1) + '/' + resources.getResourceEntryName(R.drawable.img1));
-        defaultCards[1] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img2) + '/' + resources.getResourceTypeName(R.drawable.img2) + '/' + resources.getResourceEntryName(R.drawable.img2));
-        defaultCards[2] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img3) + '/' + resources.getResourceTypeName(R.drawable.img3) + '/' + resources.getResourceEntryName(R.drawable.img3));
-        defaultCards[3] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img4) + '/' + resources.getResourceTypeName(R.drawable.img4) + '/' + resources.getResourceEntryName(R.drawable.img4));
-        defaultCards[4] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img5) + '/' + resources.getResourceTypeName(R.drawable.img5) + '/' + resources.getResourceEntryName(R.drawable.img5));
-        defaultCards[5] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img6) + '/' + resources.getResourceTypeName(R.drawable.img6) + '/' + resources.getResourceEntryName(R.drawable.img6));
-        defaultCards[6] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img7) + '/' + resources.getResourceTypeName(R.drawable.img7) + '/' + resources.getResourceEntryName(R.drawable.img7));
-        defaultCards[7] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img8) + '/' + resources.getResourceTypeName(R.drawable.img8) + '/' + resources.getResourceEntryName(R.drawable.img8));
-        defaultCards[8] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img9) + '/' + resources.getResourceTypeName(R.drawable.img9) + '/' + resources.getResourceEntryName(R.drawable.img9));
-        defaultCards[9] = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(R.drawable.img10) + '/' + resources.getResourceTypeName(R.drawable.img10) + '/' + resources.getResourceEntryName(R.drawable.img10));
-
-
-        defaultImages.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cards = new Uri[tileNumPairs];
-                for (int i = 0; i < cards.length; i++) {
-                    try {
-                        displayedImages[i].setImageURI(defaultCards[i]);
-                    } catch (NullPointerException n) {
-                    }
-                    cards[i] = defaultCards[i];
-                }
-            }
+            public void onClick(DialogInterface dialog, int which) {}
         });
 
         return builder.create();
     }
 
-    public void getImage() { //simplifies image retrival calls
+    private int currentIndex;
+    public void getImage(int index) { //simplifies image retrival calls
+		currentIndex = index;
         Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(pickPhoto, 1);//one can be replaced with any action code
-
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         switch (requestCode) {
             case 0:
-                if (resultCode == RESULT_OK) {
-                    selectedImage = imageReturnedIntent.getData();
-                    TileSettingsActivity.imageView.setImageURI(selectedImage);
-
-                    TileSettingsActivity.displayedImages[TileSettingsActivity.count].setImageURI(image);
-                    cards[TileSettingsActivity.count] = image;
-                    TileSettingsActivity.count++;
-
-                }
-
-                break;
             case 1:
-                if (resultCode == RESULT_OK) {
-                    selectedImage = imageReturnedIntent.getData();
-                    image = selectedImage;
+                if (resultCode == Activity.RESULT_OK) {
+                    Uri selectedImage = imageReturnedIntent.getData();
 
+					Log.d("TILE_SELECT", currentIndex + ", " + selectedImage);
 
-                    try {
-                        displayedImages[TileSettingsActivity.count].setImageURI(image);
-                    } catch (NullPointerException n) {
-                    }
-                    cards[TileSettingsActivity.count] = image;
-                    TileSettingsActivity.count++;
+					this.cards[currentIndex] = selectedImage;
 
+					// Glide.with(getContext()).load(selectedImage).into(this.imageViews[currentIndex]);
+					imageViews[currentIndex].setImageURI(selectedImage);
                 }
                 break;
         }
 
     }
+
+    private Uri uriForDrawable(int resId) {
+		Resources resources = getContext().getResources();
+		return Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resources.getResourcePackageName(resId) + '/' + resources.getResourceTypeName(resId) + '/' + resources.getResourceEntryName(resId));
+	}
 }

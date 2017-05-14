@@ -54,7 +54,7 @@ public class TileGameActivity extends AppCompatActivity {
 
                 int cellSize, numCols; // The length of the side of a cell, and the number of columns of cells, respectively. To be calculated.
 
-                final int n = numTiles = TileSettingsActivity.cards.length * 2; // The number of images to create (2x the requested number, so each has a pair)
+                final int n = numTiles = ChooseImagesDialog.cards.length * 2; // The number of images to create (2x the requested number, so each has a pair)
 
                 // The number of squares with which we can fill the x axis, given the maximum side of a
                 // square must be (width * height / num). w/sqrt(wh/n)=sqrt(wn/h)
@@ -83,7 +83,7 @@ public class TileGameActivity extends AppCompatActivity {
 
                 // Create a shuffled list of cards
                 final List<Integer> cards = new ArrayList<>(n);
-                for (int i = 0; i < TileSettingsActivity.cards.length; i++) {
+                for (int i = 0; i < ChooseImagesDialog.cards.length; i++) {
                     cards.add(i);
                     cards.add(i);
                 }
@@ -95,7 +95,7 @@ public class TileGameActivity extends AppCompatActivity {
                     // Create a card
                     imageHolders[i] = new TileImageView(TileGameActivity.this.getApplicationContext(), cards.get(i));
                     // Set the image
-                    Glide.with(TileGameActivity.this).load(TileSettingsActivity.cards[cards.get(i)]).into(imageHolders[i]);
+                    Glide.with(TileGameActivity.this).load(ChooseImagesDialog.cards[cards.get(i)]).into(imageHolders[i]);
                     imageHolders[i].setImageAlpha(0);
                     imageHolders[i].setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.tileBackground)); // Set the color
 
