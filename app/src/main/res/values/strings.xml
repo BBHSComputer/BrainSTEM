@@ -112,5 +112,6 @@
     <string name="tileChangeImages">Change Images</string>
     <string name="sumDesc">TODO: Describe Summation in as few words as possible while explaining how to play the game.</string>
     <string name="musicDesc">TODO: Describe Music in as few words as possible while explaining how to play the game.</string>
+    <string name="tileException">Please set your cards.</string>
 
 </resources>
