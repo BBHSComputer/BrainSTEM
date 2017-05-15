@@ -86,8 +86,11 @@ public class StackActivity extends AppCompatActivity {
 		coordinates = new Point[SIZE_Y][SIZE_X]; // Initializes the coordinates grid
 		tellRules = getIntent().getExtras().getBoolean("tellRules");
 		ruleNotify = (TextView) findViewById(R.id.rule_Text);//Finds the TextView for Views
-		Rule a = newRule(1);//Create rule 1 and 2
-		Rule b = newRule(1);
+
+        int initNumRules = getIntent().getExtras().getInt("ruleNum") + 1;
+        for(int i = 0; i < initNumRules; i++){
+            newRule(1);
+        }
 
 		stacks = 0;
 		rulesBroken = 0;
@@ -133,8 +136,18 @@ public class StackActivity extends AppCompatActivity {
 		});
 
 		Log.d("BrainSTEM S", "onCreate() finished");
-		if(tellRules) ruleNotify.setText(getApplicationContext().getString(R.string.rule_prefix) + "\n" + a.toString() + "\n" + b.toString());
-	}
+        if (tellRules) {
+            String listOfRules = "";
+            for (Rule rule : rules) {
+                listOfRules = listOfRules + rule.toString() + "\n";
+            }
+            ruleNotify.setText("Welcome to Stack!\n" + getApplicationContext().getString(R.string.rule_prefix) + "\n" + listOfRules);
+            //Set to welcome user and tell them what rules they have
+        } else {
+            ruleNotify.setText("Welcome to Stack!\nYou have " + rules.size() + " new rules");
+            //Set to welcome user and tell how many rules they have
+        }
+    }
 
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
@@ -163,7 +176,7 @@ public class StackActivity extends AppCompatActivity {
 				}
 			}
 		}
-        if(!initializationComplete && !tellRules) play.callOnClick();
+        //if(!initializationComplete && !tellRules) play.callOnClick();
 	}
 
 	@Override

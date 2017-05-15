@@ -77,7 +77,7 @@ public class StackGame extends AppCompatActivity {
 
         life.setScaleY(3.0f);
 
-        int initNumRules = getIntent().getExtras().getInt("ruleNum");
+        int initNumRules = getIntent().getExtras().getInt("ruleNum") + 1;
         createRules(initNumRules);
 
         tellRules = getIntent().getExtras().getBoolean("tellRules");
