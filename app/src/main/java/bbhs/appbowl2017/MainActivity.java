@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent stackIntent = new Intent(getApplicationContext(), StackActivity.class);
                 stackIntent.putExtra("tellRules", tellRules);
+                stackIntent.putExtra("ruleNum", Integer.parseInt(stackValue.getText().toString()));
                 System.out.println("BBDEBUG: " + tellRules);
                 startActivity(stackIntent);
             }
